@@ -1,0 +1,37 @@
+# Table of contents
+
+format: jb-book
+root: about/unsyllabus
+parts:
+- caption: About this course
+  chapters:
+    - file: about/syllabus
+    - file: about/course_schedule
+    - file: about/accommodations
+    - file: about/doing_well
+    - file: about/faq
+- caption: Seminar
+  chapters:
+    - file: class/week01_summary
+      title: Introduction and Survey
+    - file: class/week02_summary
+      title: Kapitel 2
+- caption: Labor
+  chapters:
+    - file: lab/Experiment_01
+#    - file: lab/Experiment_02
+    - file: lab/Experiment_02_TZ
+#    - file: lab/Experiment_03
+    - file: lab/Experiment_03_TZ
+    - file: lab/Experiment_04
+    - file: lab/Experiment_05
+    - file: lab/Experiment_06
+    - file: lab/Experiment_07
+    - file: lab/Experiment_08
+    - file: lab/Experiment_09
+    - file: lab/Experiment_10
+    - file: lab/Experiment_11
+    - file: lab/Experiment_12
+    - file: lab/Experiment_13
+    - file: lab/Experiment_14
+    - file: lab/RedPitaya_Messautomatisierung
