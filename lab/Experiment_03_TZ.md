@@ -263,7 +263,7 @@ weniger Zufall ist, ob die Spitzen der Sinuswelle erwischt werden oder nicht, sp
 
 # Differenzierer
 
-### Mathematische Herleitung
+## Mathematische Herleitung
 
 Wie beim Integrator beginnen wir auch hier zuerst mit der mathematischen Herleitung der Ausgangsspannung des
 invertierenden Differenzierers. Die Schaltung des invertierenden Differenzierers ist in Abbildung {numref}`03_fig_06` zu
@@ -308,7 +308,7 @@ $$
 	i_1 = \frac{dV_1}{dt}· C
 $$ (03_eq_14)
 
-### Dreieckssignal
+## Dreieckssignal
 
 Der Differenzierer macht mathematisch gesehen das Gegenteil vom Integrator. Während der Integrator die Stammfunktion des
 Eingangssignals bildet, bildet der Differenzierer die Ableitung des Eingangssignals. Bei dem Integrator stellt also das
@@ -371,7 +371,7 @@ Kondensator mit $100\mu F$ statt $100nF$, denn die Abweichung um einen Faktor vo
 auffällig. Da die Messungen jedoch über das Internet aufgenommen wurden, ist es schwer einzuschätzen, was die Abweichung
 am ehesten verursacht haben könnte.
 
-### Rechtecksignal
+## Rechtecksignal
 
 Als Nächstes wurde eine rechteckförmige Wechselspannung mit einer Frequenz von 75Hz und einer Amplitude von 0,5V in den
 Differenzierer gespeist. Ein Rechtecksignal bleibt die meiste Zeit über gleich und hat immer nur kurze Sprünge beim
@@ -406,7 +406,7 @@ den Kondensator am Eingang so weit auf, dass der OP sofort in die Sättigung geh
 Sättigung bleibt und sich erst danach langsam zurück auf die 0V auspendelt.
 
 
-### Amplitudengang
+## Amplitudengang
 
 Anschließend wurde, genauso wie bei dem Integrator, auch für den Differenzierer der Amplitudengang gemessen. Hierzu
 wurde wieder eine sinusförmige Wechselspannung mit einer Amplitude von 1 V am Eingang des Differenzierers angelegt und

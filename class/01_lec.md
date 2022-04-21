@@ -1,14 +1,3 @@
-<div class="container youtube">
-<iframe class="responsive-iframe" src="https://www.youtube-nocookie.com/embed/yBMeYW8Nm_s" frameborder="0"
-allow="accelerometer; autoplay="0"; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</div>
-
-<div class="container youtube">
-<iframe class="responsive-iframe" src="https://www.youtube-nocookie.com/embed/OoO5d5P0Jn4" frameborder="0"
-allow="accelerometer; autoplay="0"; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</div>
 <!-- !split -->
 <!-- jupyter-book 01_lec.md -->
 # Introduction and Survey
@@ -22,7 +11,7 @@ like books, papers and application notes, also.
 
 
 <!-- !split -->
-### Analysis vs. Design
+## Analysis vs. Design
 Unlike common perception, analog circuit analysis and design is not "black magic"
 *Circuit analysis.* 
 * The art of decomposing a circuit into manageable pieces.
@@ -42,7 +31,7 @@ Unlike common perception, analog circuit analysis and design is not "black magic
 
 
 <!-- !split -->
-### Signal Conditioning
+## Signal Conditioning
 *Wikipedia.* 
 "In electronics, signal conditioning means manipulating an analog signal in such a way that
 it meets the requirements of the next stage for further processing."
@@ -53,19 +42,19 @@ any other processes required to make sensor output suitable for processing after
 
 
 <!-- !split -->
-### Meeting a System
+## Meeting a System
 
 <!-- <img src="fig/lec01-wireless_comm.png" width="400"><p><em>Block diagram of a wireless communication system. <div id="fig:wireless_comm"></div></em></p> -->
 ![<p><em>Block diagram of a wireless communication system. <div id="fig:wireless_comm"></div></em></p>](fig/lec01-wireless_comm.png)
 
 <!-- !split -->
-### Low-Noise Amplifier (LNA)
+## Low-Noise Amplifier (LNA)
 
 <!-- <img src="fig/lec01-lna_cs_stage.png" width="400"><p><em>Low noise amplifier (LNA). <div id="fig:lna_cs"></div></em></p> -->
 ![<p><em>Low noise amplifier (LNA). <div id="fig:lna_cs"></div></em></p>](fig/lec01-lna_cs_stage.png)
 
 <!-- !split -->
-### Mixers
+## Mixers
 <!-- !bslidecell 00 0.3 -->
 <!-- <img src="fig/lec01-mixer_single_balanced_block.png" width="400"><p><em>Block diagram. <div id="fig:mixer"></div></em></p> -->
 ![<p><em>Block diagram. <div id="fig:mixer"></div></em></p>](fig/lec01-mixer_single_balanced_block.png)
@@ -77,7 +66,7 @@ any other processes required to make sensor output suitable for processing after
 <!-- !eslidecell -->
 
 <!-- !split -->
-### Cross-Coupled Oscillators
+## Cross-Coupled Oscillators
 <!-- <img src="fig/lec01-oscillator_circuit.png" width="400"> -->
 ![](fig/lec01-oscillator_circuit.png)
 
@@ -91,22 +80,22 @@ $$
 
 
 <!-- !split -->
-### Phase-Locked Loop (PLL)
+## Phase-Locked Loop (PLL)
 <!-- <img src="fig/lec01-pll_circuit.png" width="400"> -->
 ![](fig/lec01-pll_circuit.png)
 
 <!-- !split -->
-### Biquads (Active Filter)
+## Biquads (Active Filter)
 <!-- <img src="fig/lec01-biquad_circuit.png" width="400"> -->
 ![](fig/lec01-biquad_circuit.png)
 
 <!-- !split -->
-### ADC / DAC
+## ADC / DAC
 <!-- <img src="fig/lec01-sdm_circuit.png" width="400"> -->
 ![](fig/lec01-sdm_circuit.png)
 
 <!-- !split -->
-### Course Objectives
+## Course Objectives
 * Acquire a thorough understanding of the basic principles, challenges and limitations in analog/mixed-signal (AMS) circuit design
   * Focus on concepts that are unlikely to expire
   * Preparation for further study of state-of-the-art "fine-tuned" realizations 
@@ -117,7 +106,7 @@ $$
 
 
 <!-- !split -->
-### Scientific Computing / Data Science
+## Scientific Computing / Data Science
 * [Python](https://www.anaconda.com/download/)
 * [R Project](https://www.r-project.org) 
 * [Matlab](http://de.mathworks.com/?requestedDomain=de.mathworks.com)
@@ -125,23 +114,23 @@ $$
 * [Command-line tools](http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html) 
 
 <!-- !split -->
-### Circuit Simulation
-* [LTspice Linear Technology](http://www.linear.com/designtools/software/)
-* [TINA-TI SPICE-Based Analog Simulation Program](http://www.ti.com/tool/tina-ti) 
-* [ngspice (open-source)](http://ngspice.sourceforge.net)
-* [ELDO (Mentor/Siemens)](https://www.mentor.com/products/ic_nanometer_design/analog-mixed-signal-verification/eldo/)
-* [Spectre (Cadence)](https://www.cadence.com/content/cadence-www/global/en_US/home/tools/custom-ic-analog-rf-design/circuit-simulation/spectre-circuit-simulator.html)
-* [HSPICE (Synopsys)](https://www.synopsys.com/tools/Verification/AMSVerification/CircuitSimulation/HSPICE/Pages/default.aspx)
+## Analog Circuit Simulation (SPICE)
+* [LTspice (Analog Devices)](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)
+* [TINA-TI (Texas Instruments)](https://www.ti.com/tool/TINA-TI)
+* [ngspice (Open Source)](http://ngspice.sourceforge.net)
+* [ELDO (Siemens EDA)](https://eda.sw.siemens.com/en-US/eldo/)
+* [Spectre (cadence)](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-simulation/spectre-simulation-platform.html)
+* [PrimeSim HSPICE (SYNOPSIS)](https://www.synopsys.com/implementation-and-signoff/ams-simulation/primesim-hspice.html)
 
 <!-- !split -->
-### Design Project
+## Design Project
 *Design and Characterization of a Universal Filter (Biquad).* 
 
 * Use different descriptions
   * System Level (Math, e.g. Matlab/Simulink, Python)
   * Circuit Level (SPICE)
 
-* Characterisation with Red Pitaya (remote)
+* Characterisation with Red Pitaya STEMLab
   * Circuit will be built on ASLK Pro
 
 * Technical/Design Report
@@ -152,14 +141,14 @@ $$
 
 
 <!-- !split -->
-### Data Science
+## Data Science
 * Store data in work folder as table (ASCII file, CSV format)
 * Store data in Excel like sheet (.xlsx, .ods)
 * Store data in specific format, e.g. mat-files (HDF5)
 * Store data in [databases](https://db-engines.com), e.g. SQlite
 
 <!-- !split -->
-### OS Tools
+## OS Tools
   * [Shells (bash, zsh, PowerShell, CMD)](https://en.wikipedia.org/wiki/Shell_%28computing%29)
     * [oh-my-zsh](https://ohmyz.sh),
     * [bash-it](https://bash-it.readthedocs.io/en/latest/)
@@ -171,7 +160,7 @@ $$
 
 
 <!-- !split -->
-### Code Editors
+## Code Editors
   * [Emacs](https://www.gnu.org/software/emacs/)
   * [Vim](https://www.vim.org)
   * [Notepad++](https://notepad-plus-plus.org)
@@ -180,13 +169,13 @@ $$
   * [PyCharm](https://www.jetbrains.com/pycharm/)
 
 <!-- !split -->
-### Are your writing or TeXing?
+## Are your writing or TeXing?
   * [MikTeX (Windows, MacOS, Linux)](https://miktex.org/)
   * [MacTeX (MacOS)](https://www.tug.org/mactex/)
   * [TeXLive (Linux)](http://tug.org/texlive/)
 
 <!-- !split -->
-### LaTeX Editors
+## LaTeX Editors
   * IDE's
     * [TeXStudio](http://www.texstudio.org)
     * [TeXMaker](http://www.xm1math.net/texmaker/)
@@ -198,7 +187,7 @@ $$
 
 
 <!-- !split -->
-### Bibliography and LaTeX
+## Bibliography and LaTeX
   * [Citavi im Detail > Titel exportieren > Export nach BibTeX](https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html)
   * [RefWorks - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734\&p=3912294)
   * [Benutzerdefinierte BibTex-Keys mit Zotero | nerdpause](https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/)
@@ -206,7 +195,7 @@ $$
   * [EndNote - Library Guide Univ. Melbourne](https://unimelb.libguides.com/latexbibtex/endnote)
 
 <!-- !split -->
-### Design Project Flow
+## Design Project Flow
 * Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library 
   * Set-up literature database
 
@@ -223,7 +212,7 @@ $$
 
 
 <!-- !split -->
-### Assignments
+## Assignments
 *Design Project.* 
 * **System Modell** Matlab/Python
 * **Circuit Design** SPICE
@@ -233,7 +222,7 @@ $$
 
 
 <!-- !split -->
-### Course Prerequisites
+## Course Prerequisites
 * Fundamentals of linux operating systems 
 * Fundamentals of microelectronics
   * Device physics and models
@@ -245,7 +234,7 @@ $$
 * Please talk to me if you are not sure if you have the required background
 
 <!-- !split -->
-### Course Topics
+## Course Topics
 * Design of Operational Transconductance Ampilfiers (OTAs)
   * Analysis and design
   * OTAs as integrators
@@ -262,42 +251,38 @@ $$
 
 
 <!-- !split -->
-### Brave New World
+## Brave New World
 <!-- !bslidecell 00 0.9 -->
-
 <!-- <img src="./fig/lec01-AMD@16nm@Jaguar.jpg" width="600"> -->
 ![](./fig/lec01-AMD@16nm@Jaguar.jpg)
 <!-- !eslidecell -->
 
 <!-- !split -->
-### Processing (Infineon, Dresden)
+## From Sand to Silicon (Infineon, Dresden)
 <!-- !bslidecell 00 0.9 -->
 
-
-<iframe width="854" height="480" src="https://www.youtube.com/embed/_Kj58yQ67KI" frameborder="0" allowfullscreen></iframe>
+<iframe width="793" height="446" src="https://www.youtube.com/embed/bor0qLifjz4?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
 
 <!-- !eslidecell -->
 
 <!-- !split -->
-### FinFET (Intel)
+## FinFET (Intel)
 <!-- !bslidecell 00 0.9 -->
 
-
-<iframe width="854" height="480" src="https://www.youtube.com/embed/_VMYPLXnd7E" frameborder="0" allowfullscreen></iframe>
+<iframe width="793" height="446" src="https://www.youtube.com/embed/_VMYPLXnd7E" frameborder="0" allowfullscreen></iframe>
 
 <!-- !eslidecell -->
 
 <!-- !split -->
-### TSMC Fab (Next Gen 7/5 nm)
+## TSMC Fab (Next Gen 7/5 nm)
 <!-- !bslidecell 00 0.9 -->
 
-
-<iframe width="854" height="480" src="https://www.youtube.com/embed/Hb1WDxSoSec" frameborder="0" allowfullscreen></iframe>
+<iframe width="793" height="446" src="https://www.youtube.com/embed/Hb1WDxSoSec" frameborder="0" allowfullscreen></iframe>
 
 <!-- !eslidecell -->
 
 <!-- !split -->
-### Once upon a time ...
+## Once upon a time ...
 
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="fig/lec01-vacuum_tube.png" width="400"><p><em>1906 Electron Tube</em></p> -->
@@ -310,7 +295,7 @@ $$
 <!-- !eslidecell -->
 
 <!-- !split -->
-### First IC and today's chips
+## First IC and today's chips
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="fig/lec01-1st_ic_kilby.png" width="400"><p><em>1958 Jack Kilby's 1st IC</em></p> -->
 ![<p><em>1958 Jack Kilby's 1st IC</em></p>](fig/lec01-1st_ic_kilby.png)
@@ -322,19 +307,30 @@ $$
 <!-- !eslidecell -->
 
 <!-- !split -->
-### Design and Manufacturing
+## Design and Manufacturing
 
 <!-- <img src="fig/lec01-design_manufacturing.png" width="200"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-design_manufacturing.png)
 
 <!-- !split -->
-### Technology Shrink
+## Technology Shrink
 
 <!-- <img src="fig/lec01-technology_shrink.png" width="200"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-technology_shrink.png)
 
 <!-- !split -->
-### Evolution of Products
+## Moore's Law
+<!-- !bslidecell 00 0.9 -->
+
+
+<embed src="https://players.brightcove.net/734546229001/default_default/index.html?videoId=4144803153001" width="793" height="446" autoplay="false" loop="true"></embed>
+<p><em></em></p>
+
+
+<!-- !eslidecell -->
+
+<!-- !split -->
+## Evolution of Products
 * Driven by technology improvement
   * Costs (larger chips, smaller feature size, better yield)
   * Performance  (new devices, higher speed, less power)
@@ -351,7 +347,7 @@ $$
 
 
 <!-- !split -->
-### EDA Competence
+## EDA Competence
 * EDA Vendors (tool developers)
   * Identification fo design tasks, demand for tools
   * Development of strategies and algorithms
@@ -369,49 +365,49 @@ $$
 
 
 <!-- !split -->
-### View on Hardware (I)
+## View on Hardware (I)
 
 <!-- <img src="fig/lec01-views_on_hardware_1.png" width="400"> -->
 ![](fig/lec01-views_on_hardware_1.png)
 
 <!-- !split -->
-### View on Hardware (II)
+## View on Hardware (II)
 
 <!-- <img src="fig/lec01-views_on_hardware_2.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-views_on_hardware_2.png)
 
 <!-- !split -->
-### Abstraction Layers
+## Abstraction Layers
 
 <!-- <img src="fig/lec01-abstraction_layer.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-abstraction_layer.png)
 
 <!-- !split -->
-### Design Flow
+## Design Flow
 
 <!-- <img src="fig/lec01-design_flow.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-design_flow.png)
 
 <!-- !split -->
-### Continuous Verification
+## Continuous Verification
 
 <!-- <img src="fig/lec01-verification.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-verification.png)
 
 <!-- !split -->
-### Front End vs. Back End (analog)
+## Front End vs. Back End (analog)
 
 <!-- <img src="fig/lec01-front-end_back-end_analog.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-front-end_back-end_analog.png)
 
 <!-- !split -->
-### Front End vs. Back End (digital)
+## Front End vs. Back End (digital)
 
 <!-- <img src="fig/lec01-front-end_back-end_digital.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
 ![<p><em>(c) M. Ortmanns, Univ. Ulm</em></p>](fig/lec01-front-end_back-end_digital.png)
 
 <!-- !split -->
-### Design Methodology
+## Design Methodology
 * Full Custom – fully manual: ASIC
   * Mostly analog circuits
   * Basic digital gates
@@ -429,44 +425,89 @@ $$
 
 
 <!-- !split -->
-### Analog Design Entry
+## Analog Design Entry
 
 <!-- <img src="fig/lec01-design_entry_analog.png" width="400"> -->
 ![](fig/lec01-design_entry_analog.png)
 
 <!-- !split -->
-### Netlist
+## Netlist
 
 <!-- <img src="fig/lec01-netlist.png" width="400"> -->
 ![](fig/lec01-netlist.png)
 
 <!-- !split -->
-### Layout
+## Layout
 
 <!-- <img src="fig/lec01-inverter_layout.png" width="400"> -->
 ![](fig/lec01-inverter_layout.png)
 
 <!-- !split -->
-### Digital Design Entry
+## Digital Design Entry
 
 <!-- <img src="fig/lec01-design_entry_digital.png" width="400"> -->
 ![](fig/lec01-design_entry_digital.png)
 
 <!-- !split -->
-### Hardware Description Language
+## Hardware Description Language
 
 <!-- <img src="fig/lec01-hdl_inv.png" width="400"> -->
 ![](fig/lec01-hdl_inv.png)
 
 <!-- !split -->
-### Technology-Gates and Netlisting
+## Technology-Gates and Netlisting
 
 <!-- <img src="fig/lec01-technology_gate_netlist.png" width="400"> -->
 ![](fig/lec01-technology_gate_netlist.png)
 
 <!-- !split -->
-### Standard Cell Layout
+## Standard Cell Layout
 
 <!-- <img src="fig/lec01-standard_cell_layout.png" width="400"> -->
 ![](fig/lec01-standard_cell_layout.png)
 
+<!-- !split -->
+<!-- ======= Filter Design ======= -->
+<!-- # #include "lec-02-filter-design.do.txt" -->
+
+<!-- !split -->
+<!-- ======= Biquads ======= -->
+<!-- # #include "lec-03-biquads.do.txt" -->
+
+<!-- !split -->
+<!-- ======= Ladders ======= -->
+<!-- # #include "lec-04-ladders.do.txt" -->
+
+<!-- !split -->
+<!-- ======= Noise ======= -->
+<!-- # #include "lec-05-noise.do.txt" -->
+
+<!-- !split -->
+<!-- ===== gm/ID ===== -->
+<!-- # #include "lec-06-gm-ID.do.txt" -->
+
+<!-- !split -->
+<!-- ======= OTA Design for Integrators ======= -->
+<!-- # #include "lec-07-ota-design.do.txt" -->
+
+<!-- !split -->
+<!-- ======= OTA Settling ======= -->
+<!-- # #include "lec-08-ota-settling.do.txt" -->
+
+<!-- !split -->
+<!-- ======= Integrators ======= -->
+<!-- # #include "lec-09-integrators.do.txt" -->
+
+<!-- !split -->
+<!-- ======= SC Filter ======= -->
+<!-- # #include "lec-10-sc_filter.do.txt" -->
+
+<!-- !split -->
+<!-- ======= ADC/DAC Introduction ======= -->
+<!-- # #include "lec-11-adc_dac_intro.do.txt" -->
+
+<!-- !split -->
+<!-- ======= ADC Metrics ======= -->
+<!-- # #include "lec-12-adc_metrics.do.txt" -->
+
+<!-- !split -->

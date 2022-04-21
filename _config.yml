@@ -58,7 +58,7 @@ latex:
 sphinx:
   config:
     html_show_copyright: false
-#    html_extra_path: ['files']
+    html_extra_path: ['files']
     bibtex_reference_style: author_year
     myst_enable_extensions: 
     - amsmath
@@ -69,3 +69,33 @@ sphinx:
     - linkify
     - replacements
     - substitution
+
+    myst_substitutions:
+      INSTRUCTOR: "Prof. Dr.-Ing. Mirco Meiners (he/his/him)"
+      PRONOUNCE: ""
+      OFFICE: "E 508"
+      PHONE: "N/A"
+      COURSE_CODE: "M 2.9"
+      SECTION: ""
+      CREDITS: "6"
+      TITLE: "Analog and Mixed-Signal Circuit Design (AMCD)"
+      PREREQS: "One of Electronics and Analog Circuit Design."
+      COREQS: ""
+      TERM: "2022 Summer"
+      ROOM: "E 407 / E 507"
+      MEETING_TIMES: "Wednesday from 8-11:15 AM"
+      GRACE_PERIOD: ""
+      W_DATE_1: ""
+      W_DATE_2: ""
+      W_DATE_3: ""
+      EXAM_PERIOD: "Friday December 10th - Wednesday, December 22"
+      CANVAS_ID: ""
+      CANVAS_LINK: ""
+      ZOOM_LINK: ""
+      ANNOUNCEMENTS_LINK: ""
+      COURSE_LINK: ""
+      FORUM_LINK: ""
+      ANALYTICS_OPTOUT: ""
+      FORMAT: "Lectures and Labs"
+      ASSOCIATE_HEAD: "Tim Ziemann [tim.ziemann@hs-bremen.de](mailto:tim.ziemann@hs-bremen.de)"
+      ANON_FEEDBACK: ""
