@@ -2,9 +2,9 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)
-author: M. Meiners 
+author: M. Meiners (HSB) 
 copyright: ""
-logo: hsb-logo.png
+logo: images/hsb-logo.png
 exclude_patterns: ["LICENSE.md", "README.md"]
 only_build_toc_files: true
 # Short description about the book
@@ -42,7 +42,7 @@ launch_buttons:
   thebe: true
   
 repository:
-  url: https://github.com/mimeiners/ans
+  url: https://github.com/mimeiners/amcd
   path_to_book: ""
   branch: master
 
@@ -53,7 +53,7 @@ bibtex_bibfiles:
 latex:
   latex_engine: "xelatex"
   latex_documents:
-    targetname: ans.tex
+    targetname: amcd.tex
 
 sphinx:
   config:
