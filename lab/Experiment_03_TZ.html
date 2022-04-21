@@ -367,10 +367,10 @@ Integrators gegenüber zustellen.<a class="footnote-reference brackets" href="#i
 <div class="section" id="mathematische-herleitung">
 <h3>Mathematische Herleitung<a class="headerlink" href="#mathematische-herleitung" title="Permalink to this headline">¶</a></h3>
 <p>In diesem Kapitel betrachten wir nun die mathematische Herleitung der Ausgangsspannung <span class="math notranslate nohighlight">\(V_2\)</span> des invertierenden
-Integrators, dessen Schaltungsschema in <a class="reference internal" href="#fig-01"><span class="std std-numref">Fig. 22</span></a> dargestellt ist.</p>
+Integrators, dessen Schaltungsschema in <a class="reference internal" href="#fig-01"><span class="std std-numref">Fig. 20</span></a> dargestellt ist.</p>
 <div class="figure align-default" id="fig-01">
 <img alt="../_images/Abbildung012.png" src="../_images/Abbildung012.png" />
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Aufbau invertierender Integrator<a class="footnote-reference brackets" href="#id10" id="id3">3</a>.</span><a class="headerlink" href="#fig-01" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Aufbau invertierender Integrator<a class="footnote-reference brackets" href="#id10" id="id3">3</a>.</span><a class="headerlink" href="#fig-01" title="Permalink to this image">¶</a></p>
 </div>
 <p>Wie in der Abbildung zu erkennen ist, liegt das Eingangssignal <span class="math notranslate nohighlight">\(V_1\)</span> am invertierenden Eingang des Operationsverstärkers
 an. Somit kann man darauf schließen, dass es sich um eine invertierende Schaltung handelt. Für die Herleitung treffen
@@ -378,12 +378,12 @@ wir nun folgende Annahmen: Wir gehen davon aus, dass es sich um einen idealen Op
 der Eingangswiderstand geht gegen ∞ Ω, der Ausgangswiderstand beträgt 0Ω und die (Leerlauf-) Differenzverstärkung geht
 ebenfalls gegen Unendlich. Da die Differenzverstärkung ∞ beträgt können wir darauf schließen, dass die Spannung, welche
 zwischen dem nicht-invertierendem und dem invertierenden Eingang anliegt, 0V beträgt (<span class="math notranslate nohighlight">\(V_d = V_+ − V_− = 0V\)</span>). Im
-Folgenden werden wir die Herleitung über Maschengleichungen lösen (siehe <a class="reference internal" href="#fig-02"><span class="std std-numref">Fig. 23</span></a>). Hierbei ist der
+Folgenden werden wir die Herleitung über Maschengleichungen lösen (siehe <a class="reference internal" href="#fig-02"><span class="std std-numref">Fig. 21</span></a>). Hierbei ist der
 Operationsverstärker als eine Art Blackbox zu betrachten, welche intern eigene Maschen besitzt. Deshalb muss darauf
 geachtet werden, dass man keine Maschen durch den Operationsverstärker legt.</p>
 <div class="figure align-default" id="fig-02">
 <img alt="../_images/Abbildung021.png" src="../_images/Abbildung021.png" />
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Invertierender Integrator mit Maschen</span><a class="headerlink" href="#fig-02" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Invertierender Integrator mit Maschen</span><a class="headerlink" href="#fig-02" title="Permalink to this image">¶</a></p>
 </div>
 <p>Die erste Masche M1 lautet somit:</p>
 <div class="math notranslate nohighlight" id="equation-03-eq-01">
@@ -488,9 +488,9 @@ Sättigungsspannung am Ausgang). Ein Einheitssprung von 0V auf 1V wäre zwar gee
 Integrators zu illustrieren, ist diese Messung ausreichend.</p>
 <div class="figure align-default" id="fig-03">
 <img alt="../_images/Abbildung032.png" src="../_images/Abbildung032.png" />
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Sprungantwort des Integrators</span><a class="headerlink" href="#fig-03" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Sprungantwort des Integrators</span><a class="headerlink" href="#fig-03" title="Permalink to this image">¶</a></p>
 </div>
-<p>Die Messung (unterer Graph) und die Simulation (oberer Graph) sind in Abbildung <a class="reference internal" href="#fig-03"><span class="std std-numref">Fig. 24</span></a> zu sehen. Hier fängt
+<p>Die Messung (unterer Graph) und die Simulation (oberer Graph) sind in Abbildung <a class="reference internal" href="#fig-03"><span class="std std-numref">Fig. 22</span></a> zu sehen. Hier fängt
 der Integrator bei der positiven Sättigungsspannung an und aufgrund dessen, dass die Eingangsspannung negativ ist,
 ändert sich dieses Verhalten auch nicht. Anschließend wird die Polarität des Eingangssignals schlagartig geändert und
 die Ausgangsspannung des Integrators sinkt gleichmäßig, bis zur negativen Sättigungsspannung hin ab. Ab diesem Punkt
@@ -505,10 +505,10 @@ Ergebnis abweicht und den Ursachen für diese Abweichung auf den Grund zu gehen.
 <h3>Rechtecksignal<a class="headerlink" href="#rechtecksignal" title="Permalink to this headline">¶</a></h3>
 <p>Als Nächstes wird erneut eine rechteckförmige Wechselspannung mit einer Frequenz von 1kHz und einer Amplitude von 0,5V
 als Eingangssignal angelegt und das resultierte Signal über mehrere Perioden untersucht. Die gemessenen Signale, sowie
-die simulierten Signale sind in Abbildung <a class="reference internal" href="#fig-04"><span class="std std-numref">Fig. 25</span></a> zu sehen.</p>
+die simulierten Signale sind in Abbildung <a class="reference internal" href="#fig-04"><span class="std std-numref">Fig. 23</span></a> zu sehen.</p>
 <div class="figure align-default" id="fig-04">
 <img alt="../_images/Abbildung041.png" src="../_images/Abbildung041.png" />
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Sprungantwort des Integrators</span><a class="headerlink" href="#fig-04" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Sprungantwort des Integrators</span><a class="headerlink" href="#fig-04" title="Permalink to this image">¶</a></p>
 </div>
 <p>Hier stimmt die Messung (im unteren Graphen) sehr gut mit dem simulierten Signal (im oberen Graphen) überein. Genauso
 wie bei der mathematischen Integration wird auch hier ein integriertes Rechtecksignal zu einem Dreiecksignal. Das
@@ -535,9 +535,9 @@ zusätzlich phasenverschoben und da es sich hier um die invertierende Variante h
 ohnehin schon invertiert. Die Phasenverschiebung bzw. der Phasengang wird hier jedoch nicht näher betrachtet.</p>
 <div class="figure align-default" id="fig-05">
 <img alt="../_images/Abbildung052.png" src="../_images/Abbildung052.png" />
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Amplitudengang des Integrators</span><a class="headerlink" href="#fig-05" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Amplitudengang des Integrators</span><a class="headerlink" href="#fig-05" title="Permalink to this image">¶</a></p>
 </div>
-<p>In Abbildung <a class="reference internal" href="#fig-05"><span class="std std-numref">Fig. 26</span></a> wird das Verhältnis der Amplitude an Aus- und Eingang in dB in Abhängigkeit zur
+<p>In Abbildung <a class="reference internal" href="#fig-05"><span class="std std-numref">Fig. 24</span></a> wird das Verhältnis der Amplitude an Aus- und Eingang in dB in Abhängigkeit zur
 Frequenz grafisch dargestellt. In der Mitte des Messbereichs stimmt die Messung relativ gut mit den simulierten Daten
 überein. Vorwiegend im unteren Frequenzbereich sind große Abweichungen zu sehen. Abgesehen von ein paar Ausreißern
 verläuft das Signal flach im Vergleich zur Simulation. Wie wir in Abschnitt “Rechtecksignal” gesehen haben, erreicht der
@@ -562,19 +562,19 @@ weniger Zufall ist, ob die Spitzen der Sinuswelle erwischt werden oder nicht, sp
 <div class="section" id="id4">
 <h2>Mathematische Herleitung<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>Wie beim Integrator beginnen wir auch hier zuerst mit der mathematischen Herleitung der Ausgangsspannung des
-invertierenden Differenzierers. Die Schaltung des invertierenden Differenzierers ist in Abbildung <a class="reference internal" href="#fig-06"><span class="std std-numref">Fig. 27</span></a> zu
+invertierenden Differenzierers. Die Schaltung des invertierenden Differenzierers ist in Abbildung <a class="reference internal" href="#fig-06"><span class="std std-numref">Fig. 25</span></a> zu
 sehen. Vergleicht man nun diese Schaltung mit der des Integrators, so erkennt man, dass Widerstand und Kondensator
 vertauscht sind.</p>
 <div class="figure align-default" id="fig-06">
 <img alt="../_images/Abbildung061.png" src="../_images/Abbildung061.png" />
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Aufbau invertierender Differenzierer<a class="footnote-reference brackets" href="#id10" id="id5">3</a></span><a class="headerlink" href="#fig-06" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Aufbau invertierender Differenzierer<a class="footnote-reference brackets" href="#id10" id="id5">3</a></span><a class="headerlink" href="#fig-06" title="Permalink to this image">¶</a></p>
 </div>
 <p>Bei dieser Herleitung gehen wir wieder davon aus, dass es sich um einen idealen Operationsverstärker handelt. Somit
 gelten die gleichen Annahmen wie aus der mathematischen Herleitung des Integrators. Die eingetragenen Maschen sind in
-Abbildung <a class="reference internal" href="#fig-07"><span class="std std-numref">Fig. 28</span></a> zu sehen.</p>
+Abbildung <a class="reference internal" href="#fig-07"><span class="std std-numref">Fig. 26</span></a> zu sehen.</p>
 <div class="figure align-default" id="fig-07">
 <img alt="../_images/Abbildung072.png" src="../_images/Abbildung072.png" />
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Invertierender Differenzierer mit Maschen</span><a class="headerlink" href="#fig-07" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Invertierender Differenzierer mit Maschen</span><a class="headerlink" href="#fig-07" title="Permalink to this image">¶</a></p>
 </div>
 <p>Die erste Masche M1 lautet somit:</p>
 <div class="math notranslate nohighlight" id="equation-03-eq-12">
@@ -603,10 +603,10 @@ ist. Bei dem Integrator wurde gezeigt, dass aus einer Rechteckwelle, wie zu erwa
 Dreieckwelle wird. Bei dem Differenzierer würde man demzufolge erwarten, dass aus einer Dreieckwelle eine Rechteckwelle
 wird. Um dies zu überprüfen, wurde eine dreieckförmige Wechselspannung mit einer Frequenz von 300 Hz und einer Amplitude
 von 0,5 V in den Differenzierer gespeist und das dadurch resultierende Ausgangssignal aufgenommen. Das Ergebnis der
-Messung, sowie die simulierten Werte sind in Abbildung <a class="reference internal" href="#fig-08"><span class="std std-numref">Fig. 29</span></a> zu sehen.</p>
+Messung, sowie die simulierten Werte sind in Abbildung <a class="reference internal" href="#fig-08"><span class="std std-numref">Fig. 27</span></a> zu sehen.</p>
 <div class="figure align-default" id="fig-08">
 <img alt="../_images/Abbildung081.png" src="../_images/Abbildung081.png" />
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Dreiecksignal</span><a class="headerlink" href="#fig-08" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Dreiecksignal</span><a class="headerlink" href="#fig-08" title="Permalink to this image">¶</a></p>
 </div>
 <p>Grundsätzlich lässt sich hier zwar ein Rechtecksignal erkennen. Allerdings zeigt sich sowohl in der Messung wie auch in
 der Simulation eine relativ starke Oszillation des Ausgangssignals nach jeder Spitze des Dreiecksignals. Dies stellt
@@ -628,12 +628,12 @@ führt, dass ebenfalls die Rechteckwelle abgerundete Ecken bekommt. Ansonsten f�
 den gemessenen Daten wesentlich langsamer ist und langsamer ausklingt als bei der Simulation. Das Verhalten des
 gemessenen Differenzierers entspricht einem Differenzierer mit einem etwa 1000 mal größerem Kondensator, einem etwa 1000
 mal größerem Widerstand oder einer Kombination der beiden, die einen Unterschied um einen Faktor von etwa 1000
-bewirkt. Zum Vergleich ist in Abbildung <a class="reference internal" href="#fig-09"><span class="std std-numref">Fig. 30</span></a> wieder die Simulation und Messung zu sehen, mit dem
+bewirkt. Zum Vergleich ist in Abbildung <a class="reference internal" href="#fig-09"><span class="std std-numref">Fig. 28</span></a> wieder die Simulation und Messung zu sehen, mit dem
 Unterschied, dass bei der Simulation von einem Widerstand von <span class="math notranslate nohighlight">\(1M\Omega\)</span> statt <span class="math notranslate nohighlight">\(1k\Omega\)</span> ausgegangen wurde. Der
 gemessene Verlauf ist dabei unverändert.</p>
 <div class="figure align-default" id="fig-09">
 <img alt="../_images/Abbildung091.png" src="../_images/Abbildung091.png" />
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Dreiecksignal (veränderte Widerstände)</span><a class="headerlink" href="#fig-09" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Dreiecksignal (veränderte Widerstände)</span><a class="headerlink" href="#fig-09" title="Permalink to this image">¶</a></p>
 </div>
 <p>Wie zu sehen ist, stimmt die Simulation hier wesentlich genauer mit den gemessenen Werten überein. Kondensatoren und
 Widerstände haben natürlich eine gewisse Toleranz und das Ganze ist mit relativ dünnen Leitungen verkabelt, die
@@ -654,17 +654,17 @@ Differenzierer gespeist. Ein Rechtecksignal bleibt die meiste Zeit über gleich 
 Polaritätswechsel. Bei einer perfekten Rechteckwelle haben diese Sprünge für eine unendlich kurze Dauer eine unendlich
 hohe Steigung. Alle anderen Bereiche haben eine Steigung von 0. Der Differenzierer kann natürlich weder eine unendlich
 hohe Steigung noch eine unendlich kurze Dauer darstellen. Was die Messung und die Simulation ergeben haben, ist in
-Abbildung <a class="reference internal" href="#fig-10"><span class="std std-numref">Fig. 31</span></a> zu sehen.</p>
+Abbildung <a class="reference internal" href="#fig-10"><span class="std std-numref">Fig. 29</span></a> zu sehen.</p>
 <div class="figure align-default" id="fig-10">
 <img alt="../_images/Abbildung101.png" src="../_images/Abbildung101.png" />
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Rechtecksignal</span><a class="headerlink" href="#fig-10" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Rechtecksignal</span><a class="headerlink" href="#fig-10" title="Permalink to this image">¶</a></p>
 </div>
 <p>Auch hier verhält sich der gemessene Differenzierer ähnlich wie einer mit einem Faktor 1000 größerem Kondensator oder
-Widerstand. Zum Vergleich sind in Abbildung  <a class="reference internal" href="#fig-11"><span class="std std-numref">Fig. 32</span></a> wieder eine Simulation (mit <span class="math notranslate nohighlight">\(1M\Omega\)</span> statt
+Widerstand. Zum Vergleich sind in Abbildung  <a class="reference internal" href="#fig-11"><span class="std std-numref">Fig. 30</span></a> wieder eine Simulation (mit <span class="math notranslate nohighlight">\(1M\Omega\)</span> statt
 <span class="math notranslate nohighlight">\(1k\Omega\)</span>) und die Messung zu sehen.</p>
 <div class="figure align-default" id="fig-11">
 <img alt="../_images/Abbildung111.png" src="../_images/Abbildung111.png" />
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Rechtecksignal (veränderte Widerstände)</span><a class="headerlink" href="#fig-11" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Reaktion des invertierenden Differenzierer auf ein Rechtecksignal (veränderte Widerstände)</span><a class="headerlink" href="#fig-11" title="Permalink to this image">¶</a></p>
 </div>
 <p>Hier klingt die Messung zwar schneller ab als bei der Simulation mit 1000 fachem Widerstand, aber die Schwingfrequenz
 ist sehr ähnlich. Während man mathematisch gesehen eine flache Linie (0V) mit kurzen (unendlich hohen) vertikalen
@@ -684,10 +684,10 @@ Hochpassfilter verhalten. Denn je höher die Frequenz einer Sinuswelle, desto sc
 und desto höher ist dessen Steigung. Allerdings kommt man früher oder später an einen Punkt, an dem der OP nicht schnell
 genug auf die Änderungen am Eingangssignal reagiert und die Amplitude am Ausgang bei steigender Frequenz wieder
 abfällt. Wenn man sich also einen ausreichend großen Frequenzbereich anschaut, verhält sich der Differenzierer eher wie
-ein Bandpassfilter. Der gemessene und simulierte Amplitudengang ist in Abbildung <a class="reference internal" href="#fig-12"><span class="std std-numref">Fig. 33</span></a> zu sehen.</p>
+ein Bandpassfilter. Der gemessene und simulierte Amplitudengang ist in Abbildung <a class="reference internal" href="#fig-12"><span class="std std-numref">Fig. 31</span></a> zu sehen.</p>
 <div class="figure align-default" id="fig-12">
 <img alt="../_images/Abbildung121.png" src="../_images/Abbildung121.png" />
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Amplitudengang des invertierenden Differenzierers</span><a class="headerlink" href="#fig-12" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Amplitudengang des invertierenden Differenzierers</span><a class="headerlink" href="#fig-12" title="Permalink to this image">¶</a></p>
 </div>
 <p>Wie man sieht, stimmen die gemessenen Daten nicht sonderlich gut mit der Messung überein. Dies hat mehrere Gründe. Um
 die Amplitude in dB zu bestimmen wurde für jede Frequenz das Ein- und Ausgangssignal gemessenen und jeweils der höchste
@@ -723,7 +723,7 @@ teilweise am Anfang oder am Ende Sprünge hatten. Dies könnte daran liegen, das
 nicht viele „delays“ eingesetzt wurden, um die Messdauer zu minimieren. Möglicherweise konnte der Red Pitaya die
 Einstellung gelegentlich nicht schnell genug übernehmen bevor die Messung gestartet wurde. Um dieses Problem zu beheben
 wurde nachträglich ein Teil der Messdaten am Anfang und am Ende verworfen. Zur Erstellung des Graphen in Abbildung
-<a class="reference internal" href="#fig-12"><span class="std std-numref">Fig. 33</span></a> wurde lediglich, wie bereits beschrieben, am Anfang und am Ende der Messdaten jeweils ein Teil
+<a class="reference internal" href="#fig-12"><span class="std std-numref">Fig. 31</span></a> wurde lediglich, wie bereits beschrieben, am Anfang und am Ende der Messdaten jeweils ein Teil
 abgeschnitten, um die Sprünge zu vermeiden. Somit sind die Daten relativ unbearbeitet. Der so bestimmte Amplitudengang
 wurde einmal direkt und einmal in geglätteter Form geplottet, dies hilft in dem rauschigen Bereichen den Mittelwert zu
 erkennen. Zum Glätten des Amplitudengangs wurde ein moving average Filter mit einer Weite von 20 Samples (von insgesamt
