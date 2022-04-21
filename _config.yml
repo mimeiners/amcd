@@ -22,12 +22,12 @@ html:
   use_repository_button: true
   use_edit_page_button: true
   navbar_number_sections: false
-  baseurl: "https://mimeiners.github.io/ans/"
+  baseurl: "https://mimeiners.github.io/amcd/"
 # google_analytics_id: UA-11111111 # add your Google Analytics Tracking Code
   comments:
     hypothesis: false
     utterances:
-      repo: "mimeiners/ans"
+      repo: "mimeiners/amcd"
     dokieli: true
   extra_footer : |
       <div>
