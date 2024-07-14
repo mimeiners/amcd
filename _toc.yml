@@ -13,3 +13,8 @@ parts:
   chapters:
     - file: lab/01_lab
       title: Design of Analog Filters
+- caption: Appendix
+  chapters:
+    - file: _bibliography/references
+      title: References
+
