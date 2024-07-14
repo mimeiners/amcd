@@ -1,47 +1,58 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Introduction and Survey &#8212; M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=f78ba3b0" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link media="all" rel="stylesheet" type="text/css" href="https://dokie.li/media/css/dokieli.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
-
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script async="async" kind="dokieli" src="https://dokie.li/scripts/dokieli.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=e637711f"></script>
+    <script src="../_static/copybutton.js?v=56c01ce6"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -76,461 +87,437 @@ var addUtterances = () => {
 }
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'class/01_lec';</script>
     <link rel="canonical" href="https://mimeiners.github.io/amcd/class/01_lec.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="References" href="02_lec.html" />
     <link rel="prev" title="Unsyllabus" href="../about/unsyllabus.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../about/unsyllabus.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/hsb-logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../about/unsyllabus.html">
-   Unsyllabus
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Lecture
- </span>
-</p>
+    
+    
+    <img src="../_static/hsb-logo.png" class="logo__image only-light" alt="M 2.9 Analog and Mixed-Signal Circuit Design (AMCD) - Home"/>
+    <script>document.write(`<img src="../_static/hsb-logo.png" class="logo__image only-dark" alt="M 2.9 Analog and Mixed-Signal Circuit Design (AMCD) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../about/unsyllabus.html">
+                    Unsyllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction and Survey
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02_lec.html">
-   References
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction and Survey</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lec.html">References</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Lab / Design Project
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../lab/Experiment_01.html">
-   Grundschaltungen des OPV
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lab/Experiment_02_TZ.html">
-   Schmitt-Trigger
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lab/Experiment_03_TZ.html">
-   Charakteristik von Integrator und Differenzierer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lab/Experiment_04.html">
-   Analoge Filter
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../lab/01_lab.html">Design of Analog Filters</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/class/01_lec.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/amcd" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/amcd/edit/master/class/01_lec.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/amcd/issues/new?title=Issue%20on%20page%20%2Fclass/01_lec.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mimeiners/amcd"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/mimeiners/amcd/issues/new?title=Issue%20on%20page%20%2Fclass/01_lec.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/mimeiners/amcd/edit/master/class/01_lec.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/class/01_lec.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction and Survey</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analysis-vs-design">
-   Analysis vs. Design
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#signal-conditioning">
-   Signal Conditioning
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#meeting-a-system">
-   Meeting a System
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#low-noise-amplifier-lna">
-   Low-Noise Amplifier (LNA)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixers">
-   Mixers
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cross-coupled-oscillators">
-   Cross-Coupled Oscillators
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-locked-loop-pll">
-   Phase-Locked Loop (PLL)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#biquads-active-filter">
-   Biquads (Active Filter)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adc-dac">
-   ADC / DAC
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-objectives">
-   Course Objectives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#scientific-computing-data-science">
-   Scientific Computing / Data Science
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analog-circuit-simulation-spice">
-   Analog Circuit Simulation (SPICE)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-project">
-   Design Project
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-science">
-   Data Science
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#os-tools">
-   OS Tools
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-editors">
-   Code Editors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#are-your-writing-or-texing">
-   Are your writing or TeXing?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#latex-editors">
-   LaTeX Editors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bibliography-and-latex">
-   Bibliography and LaTeX
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-project-flow">
-   Design Project Flow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignments">
-   Assignments
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-prerequisites">
-   Course Prerequisites
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-topics">
-   Course Topics
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#brave-new-world">
-   Brave New World
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#from-sand-to-silicon-infineon-dresden">
-   From Sand to Silicon (Infineon, Dresden)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finfet-intel">
-   FinFET (Intel)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tsmc-fab-next-gen-7-5-nm">
-   TSMC Fab (Next Gen 7/5 nm)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#once-upon-a-time">
-   Once upon a time …
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-ic-and-today-s-chips">
-   First IC and today’s chips
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-and-manufacturing">
-   Design and Manufacturing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#technology-shrink">
-   Technology Shrink
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#moore-s-law">
-   Moore’s Law
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evolution-of-products">
-   Evolution of Products
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eda-competence">
-   EDA Competence
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#view-on-hardware-i">
-   View on Hardware (I)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#view-on-hardware-ii">
-   View on Hardware (II)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstraction-layers">
-   Abstraction Layers
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-flow">
-   Design Flow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#continuous-verification">
-   Continuous Verification
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#front-end-vs-back-end-analog">
-   Front End vs. Back End (analog)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#front-end-vs-back-end-digital">
-   Front End vs. Back End (digital)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-methodology">
-   Design Methodology
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analog-design-entry">
-   Analog Design Entry
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#netlist">
-   Netlist
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#layout">
-   Layout
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#digital-design-entry">
-   Digital Design Entry
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hardware-description-language">
-   Hardware Description Language
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#technology-gates-and-netlisting">
-   Technology-Gates and Netlisting
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#standard-cell-layout">
-   Standard Cell Layout
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-vs-design">Analysis vs. Design</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-conditioning">Signal Conditioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meeting-a-system">Meeting a System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-noise-amplifier-lna">Low-Noise Amplifier (LNA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixers">Mixers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-coupled-oscillators">Cross-Coupled Oscillators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-locked-loop-pll">Phase-Locked Loop (PLL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biquads-active-filter">Biquads (Active Filter)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adc-dac">ADC / DAC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-objectives">Course Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-computing-data-science">Scientific Computing / Data Science</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-circuit-simulation-spice">Analog Circuit Simulation (SPICE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-project">Design Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science">Data Science</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#os-tools">OS Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-editors">Code Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#are-your-writing-or-texing">Are your writing or TeXing?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-editors">LaTeX Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography-and-latex">Bibliography and LaTeX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-project-flow">Design Project Flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-prerequisites">Course Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-topics">Course Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brave-new-world">Brave New World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-sand-to-silicon-infineon-dresden">From Sand to Silicon (Infineon, Dresden)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finfet-intel">FinFET (Intel)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmc-fab-next-gen-7-5-nm">TSMC Fab (Next Gen 7/5 nm)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-upon-a-time">Once upon a time …</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-ic-and-today-s-chips">First IC and today’s chips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-and-manufacturing">Design and Manufacturing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technology-shrink">Technology Shrink</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moore-s-law">Moore’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-products">Evolution of Products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-competence">EDA Competence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-on-hardware-i">View on Hardware (I)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-on-hardware-ii">View on Hardware (II)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraction-layers">Abstraction Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-flow">Design Flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-verification">Continuous Verification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#front-end-vs-back-end-analog">Front End vs. Back End (analog)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#front-end-vs-back-end-digital">Front End vs. Back End (digital)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-methodology">Design Methodology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-design-entry">Analog Design Entry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#netlist">Netlist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-design-entry">Digital Design Entry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-description-language">Hardware Description Language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technology-gates-and-netlisting">Technology-Gates and Netlisting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-cell-layout">Standard Cell Layout</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <!-- !split -->
 <!-- jupyter-book 01_lec.md -->
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction-and-survey">
-<h1>Introduction and Survey<a class="headerlink" href="#introduction-and-survey" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-and-survey">
+<h1>Introduction and Survey<a class="headerlink" href="#introduction-and-survey" title="Link to this heading">#</a></h1>
 <p><em>Risks and Side Effects and/or Discomforts.</em>
 A script is a keyword selection. It is characterized by my ideas and prejudices about electronics and circuit design
 strongly but not completely. And as common, this script has been written with a lot of time constraints, hence, it is
 not fully proof read and contains errors. Therefore, you should never rely solely on this script. Consult other sources
 like books, papers and application notes, also.</p>
 <!-- !split -->
-<div class="section" id="analysis-vs-design">
-<h2>Analysis vs. Design<a class="headerlink" href="#analysis-vs-design" title="Permalink to this headline">¶</a></h2>
+<section id="analysis-vs-design">
+<h2>Analysis vs. Design<a class="headerlink" href="#analysis-vs-design" title="Link to this heading">#</a></h2>
 <p>Unlike common perception, analog circuit analysis and design is not “black magic”
 <em>Circuit analysis.</em></p>
 <ul class="simple">
@@ -553,73 +540,73 @@ like books, papers and application notes, also.</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="signal-conditioning">
-<h2>Signal Conditioning<a class="headerlink" href="#signal-conditioning" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="signal-conditioning">
+<h2>Signal Conditioning<a class="headerlink" href="#signal-conditioning" title="Link to this heading">#</a></h2>
 <p><em>Wikipedia.</em>
 “In electronics, signal conditioning means manipulating an analog signal in such a way that
 it meets the requirements of the next stage for further processing.”</p>
 <p>“Signal conditioning can include amplification, filtering, converting, range matching, isolation and
 any other processes required to make sensor output suitable for processing after conditioning.”</p>
 <!-- !split -->
-</div>
-<div class="section" id="meeting-a-system">
-<h2>Meeting a System<a class="headerlink" href="#meeting-a-system" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="meeting-a-system">
+<h2>Meeting a System<a class="headerlink" href="#meeting-a-system" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-wireless_comm.png" width="400"><p><em>Block diagram of a wireless communication system. <div id="fig:wireless_comm"></div></em></p> -->
-<p><img alt="Block diagram of a wireless communication system. " src="../_images/lec01-wireless_comm.png" /></p>
+<p><img alt="Block diagram of a wireless communication system. " src="class/fig/lec01-wireless_comm.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="low-noise-amplifier-lna">
-<h2>Low-Noise Amplifier (LNA)<a class="headerlink" href="#low-noise-amplifier-lna" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="low-noise-amplifier-lna">
+<h2>Low-Noise Amplifier (LNA)<a class="headerlink" href="#low-noise-amplifier-lna" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-lna_cs_stage.png" width="400"><p><em>Low noise amplifier (LNA). <div id="fig:lna_cs"></div></em></p> -->
-<p><img alt="Low noise amplifier (LNA). " src="../_images/lec01-lna_cs_stage.png" /></p>
+<p><img alt="Low noise amplifier (LNA). " src="class/fig/lec01-lna_cs_stage.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="mixers">
-<h2>Mixers<a class="headerlink" href="#mixers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mixers">
+<h2>Mixers<a class="headerlink" href="#mixers" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.3 -->
 <!-- <img src="fig/lec01-mixer_single_balanced_block.png" width="400"><p><em>Block diagram. <div id="fig:mixer"></div></em></p> -->
-<p><img alt="Block diagram. " src="../_images/lec01-mixer_single_balanced_block.png" /></p>
+<p><img alt="Block diagram. " src="class/fig/lec01-mixer_single_balanced_block.png" /></p>
 <!-- !eslidecell -->
 <!-- !bslidecell 01 0.6 -->
 <!-- <img src="fig/lec01-mixer_single_balanced_circuit.png" width="400"><p><em>Circuit. <div id="fig:mixer_cir"></div></em></p> -->
-<p><img alt="Circuit. " src="../_images/lec01-mixer_single_balanced_circuit.png" /></p>
+<p><img alt="Circuit. " src="class/fig/lec01-mixer_single_balanced_circuit.png" /></p>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="cross-coupled-oscillators">
-<h2>Cross-Coupled Oscillators<a class="headerlink" href="#cross-coupled-oscillators" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cross-coupled-oscillators">
+<h2>Cross-Coupled Oscillators<a class="headerlink" href="#cross-coupled-oscillators" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-oscillator_circuit.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-oscillator_circuit.png" /></p>
+<p><img alt="" src="class/fig/lec01-oscillator_circuit.png" /></p>
 <p><em>Frequency of oscillation.</em>
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77725ddb-4a9c-4c22-bb05-09b9128f051c">
-<span class="eqno">(1)<a class="headerlink" href="#equation-77725ddb-4a9c-4c22-bb05-09b9128f051c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37fd57a2-c66c-42e1-a05a-7b5bf49f1434">
+<span class="eqno">(1)<a class="headerlink" href="#equation-37fd57a2-c66c-42e1-a05a-7b5bf49f1434" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \omega_{osc} = \frac{1}{\sqrt{L_1(C_{GS2}+C_{DB1}+4C_{GD}+C_1)}}
 \end{equation}\]</div>
 <p>$$</p>
 <!-- !split -->
-</div>
-<div class="section" id="phase-locked-loop-pll">
-<h2>Phase-Locked Loop (PLL)<a class="headerlink" href="#phase-locked-loop-pll" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="phase-locked-loop-pll">
+<h2>Phase-Locked Loop (PLL)<a class="headerlink" href="#phase-locked-loop-pll" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-pll_circuit.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-pll_circuit.png" /></p>
+<p><img alt="" src="class/fig/lec01-pll_circuit.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="biquads-active-filter">
-<h2>Biquads (Active Filter)<a class="headerlink" href="#biquads-active-filter" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="biquads-active-filter">
+<h2>Biquads (Active Filter)<a class="headerlink" href="#biquads-active-filter" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-biquad_circuit.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-biquad_circuit.png" /></p>
+<p><img alt="" src="class/fig/lec01-biquad_circuit.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="adc-dac">
-<h2>ADC / DAC<a class="headerlink" href="#adc-dac" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="adc-dac">
+<h2>ADC / DAC<a class="headerlink" href="#adc-dac" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-sdm_circuit.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-sdm_circuit.png" /></p>
+<p><img alt="" src="class/fig/lec01-sdm_circuit.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="course-objectives">
-<h2>Course Objectives<a class="headerlink" href="#course-objectives" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="course-objectives">
+<h2>Course Objectives<a class="headerlink" href="#course-objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Acquire a thorough understanding of the basic principles, challenges and limitations in analog/mixed-signal (AMS) circuit design</p>
 <ul>
@@ -635,9 +622,9 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="scientific-computing-data-science">
-<h2>Scientific Computing / Data Science<a class="headerlink" href="#scientific-computing-data-science" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="scientific-computing-data-science">
+<h2>Scientific Computing / Data Science<a class="headerlink" href="#scientific-computing-data-science" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.anaconda.com/download/">Python</a></p></li>
 <li><p><a class="reference external" href="https://www.r-project.org">R Project</a></p></li>
@@ -646,9 +633,9 @@ $$</p>
 <li><p><a class="reference external" href="http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html">Command-line tools</a></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="analog-circuit-simulation-spice">
-<h2>Analog Circuit Simulation (SPICE)<a class="headerlink" href="#analog-circuit-simulation-spice" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="analog-circuit-simulation-spice">
+<h2>Analog Circuit Simulation (SPICE)<a class="headerlink" href="#analog-circuit-simulation-spice" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTspice (Analog Devices)</a></p></li>
 <li><p><a class="reference external" href="https://www.ti.com/tool/TINA-TI">TINA-TI (Texas Instruments)</a></p></li>
@@ -658,9 +645,9 @@ $$</p>
 <li><p><a class="reference external" href="https://www.synopsys.com/implementation-and-signoff/ams-simulation/primesim-hspice.html">PrimeSim HSPICE (SYNOPSIS)</a></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="design-project">
-<h2>Design Project<a class="headerlink" href="#design-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-project">
+<h2>Design Project<a class="headerlink" href="#design-project" title="Link to this heading">#</a></h2>
 <p><em>Design and Characterization of a Universal Filter (Biquad).</em></p>
 <ul class="simple">
 <li><p>Use different descriptions</p>
@@ -683,9 +670,9 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="data-science">
-<h2>Data Science<a class="headerlink" href="#data-science" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-science">
+<h2>Data Science<a class="headerlink" href="#data-science" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Store data in work folder as table (ASCII file, CSV format)</p></li>
 <li><p>Store data in Excel like sheet (.xlsx, .ods)</p></li>
@@ -693,9 +680,9 @@ $$</p>
 <li><p>Store data in <a class="reference external" href="https://db-engines.com">databases</a>, e.g. SQlite</p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="os-tools">
-<h2>OS Tools<a class="headerlink" href="#os-tools" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="os-tools">
+<h2>OS Tools<a class="headerlink" href="#os-tools" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Shell_%28computing%29">Shells (bash, zsh, PowerShell, CMD)</a></p>
 <ul>
@@ -712,9 +699,9 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="code-editors">
-<h2>Code Editors<a class="headerlink" href="#code-editors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="code-editors">
+<h2>Code Editors<a class="headerlink" href="#code-editors" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a></p></li>
 <li><p><a class="reference external" href="https://www.vim.org">Vim</a></p></li>
@@ -724,18 +711,18 @@ $$</p>
 <li><p><a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="are-your-writing-or-texing">
-<h2>Are your writing or TeXing?<a class="headerlink" href="#are-your-writing-or-texing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="are-your-writing-or-texing">
+<h2>Are your writing or TeXing?<a class="headerlink" href="#are-your-writing-or-texing" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://miktex.org/">MikTeX (Windows, MacOS, Linux)</a></p></li>
 <li><p><a class="reference external" href="https://www.tug.org/mactex/">MacTeX (MacOS)</a></p></li>
 <li><p><a class="reference external" href="http://tug.org/texlive/">TeXLive (Linux)</a></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="latex-editors">
-<h2>LaTeX Editors<a class="headerlink" href="#latex-editors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="latex-editors">
+<h2>LaTeX Editors<a class="headerlink" href="#latex-editors" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>IDE’s</p>
 <ul>
@@ -752,20 +739,20 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="bibliography-and-latex">
-<h2>Bibliography and LaTeX<a class="headerlink" href="#bibliography-and-latex" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bibliography-and-latex">
+<h2>Bibliography and LaTeX<a class="headerlink" href="#bibliography-and-latex" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html">Citavi im Detail &gt; Titel exportieren &gt; Export nach BibTeX</a></p></li>
-<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734%5C&amp;p=3912294">RefWorks - Library Guide Univ. Melbourne</a></p></li>
+<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734&amp;amp;p=3912294">RefWorks - Library Guide Univ. Melbourne</a></p></li>
 <li><p><a class="reference external" href="https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/">Benutzerdefinierte BibTex-Keys mit Zotero | nerdpause</a></p></li>
-<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734%5C&amp;p=3897117">JabRef - Library Guide Univ. Melbourne</a></p></li>
+<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734&amp;amp;p=3897117">JabRef - Library Guide Univ. Melbourne</a></p></li>
 <li><p><a class="reference external" href="https://unimelb.libguides.com/latexbibtex/endnote">EndNote - Library Guide Univ. Melbourne</a></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="design-project-flow">
-<h2>Design Project Flow<a class="headerlink" href="#design-project-flow" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-project-flow">
+<h2>Design Project Flow<a class="headerlink" href="#design-project-flow" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library</p>
 <ul>
@@ -789,9 +776,9 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="assignments">
-<h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="assignments">
+<h2>Assignments<a class="headerlink" href="#assignments" title="Link to this heading">#</a></h2>
 <p><em>Design Project.</em></p>
 <ul class="simple">
 <li><p><strong>System Modell</strong> Matlab/Python</p></li>
@@ -800,9 +787,9 @@ $$</p>
 <li><p><strong>Technical/Design Report</strong></p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="course-prerequisites">
-<h2>Course Prerequisites<a class="headerlink" href="#course-prerequisites" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="course-prerequisites">
+<h2>Course Prerequisites<a class="headerlink" href="#course-prerequisites" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Fundamentals of linux operating systems</p></li>
 <li><p>Fundamentals of microelectronics</p>
@@ -817,9 +804,9 @@ $$</p>
 <li><p>Please talk to me if you are not sure if you have the required background</p></li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="course-topics">
-<h2>Course Topics<a class="headerlink" href="#course-topics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="course-topics">
+<h2>Course Topics<a class="headerlink" href="#course-topics" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Design of Operational Transconductance Ampilfiers (OTAs)</p>
 <ul>
@@ -843,82 +830,82 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="brave-new-world">
-<h2>Brave New World<a class="headerlink" href="#brave-new-world" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="brave-new-world">
+<h2>Brave New World<a class="headerlink" href="#brave-new-world" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <!-- <img src="./fig/lec01-AMD@16nm@Jaguar.jpg" width="600"> -->
-<p><img alt="" src="../_images/lec01-AMD&#64;16nm&#64;Jaguar.jpg" /></p>
+<p><img alt="" src="class/fig/lec01-AMD&#64;16nm&#64;Jaguar.jpg" /></p>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="from-sand-to-silicon-infineon-dresden">
-<h2>From Sand to Silicon (Infineon, Dresden)<a class="headerlink" href="#from-sand-to-silicon-infineon-dresden" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="from-sand-to-silicon-infineon-dresden">
+<h2>From Sand to Silicon (Infineon, Dresden)<a class="headerlink" href="#from-sand-to-silicon-infineon-dresden" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/bor0qLifjz4?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="finfet-intel">
-<h2>FinFET (Intel)<a class="headerlink" href="#finfet-intel" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="finfet-intel">
+<h2>FinFET (Intel)<a class="headerlink" href="#finfet-intel" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/_VMYPLXnd7E" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="tsmc-fab-next-gen-7-5-nm">
-<h2>TSMC Fab (Next Gen 7/5 nm)<a class="headerlink" href="#tsmc-fab-next-gen-7-5-nm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tsmc-fab-next-gen-7-5-nm">
+<h2>TSMC Fab (Next Gen 7/5 nm)<a class="headerlink" href="#tsmc-fab-next-gen-7-5-nm" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/Hb1WDxSoSec" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="once-upon-a-time">
-<h2>Once upon a time …<a class="headerlink" href="#once-upon-a-time" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="once-upon-a-time">
+<h2>Once upon a time …<a class="headerlink" href="#once-upon-a-time" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="fig/lec01-vacuum_tube.png" width="400"><p><em>1906 Electron Tube</em></p> -->
-<p><img alt="1906 Electron Tube" src="../_images/lec01-vacuum_tube.png" /></p>
+<p><img alt="1906 Electron Tube" src="class/fig/lec01-vacuum_tube.png" /></p>
 <!-- !eslidecell -->
 <!-- !bslidecell 01 0.45 -->
 <!-- <img src="fig/lec01-1st_transistor.png" width="400"><p><em>1947 1st Transistor, Bell Labs</em></p> -->
-<p><img alt="1947 1st Transistor, Bell Labs" src="../_images/lec01-1st_transistor.png" /></p>
+<p><img alt="1947 1st Transistor, Bell Labs" src="class/fig/lec01-1st_transistor.png" /></p>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="first-ic-and-today-s-chips">
-<h2>First IC and today’s chips<a class="headerlink" href="#first-ic-and-today-s-chips" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="first-ic-and-today-s-chips">
+<h2>First IC and today’s chips<a class="headerlink" href="#first-ic-and-today-s-chips" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="fig/lec01-1st_ic_kilby.png" width="400"><p><em>1958 Jack Kilby's 1st IC</em></p> -->
-<p><img alt="1958 Jack Kilby's 1st IC" src="../_images/lec01-1st_ic_kilby.png" /></p>
+<p><img alt="1958 Jack Kilby's 1st IC" src="class/fig/lec01-1st_ic_kilby.png" /></p>
 <!-- !eslidecell -->
 <!-- !bslidecell 01 0.45 -->
 <!-- <img src="fig/lec01-modern_ic.png" width="400"><p><em>Moderner IC</em></p> -->
-<p><img alt="Moderner IC" src="../_images/lec01-modern_ic.png" /></p>
+<p><img alt="Moderner IC" src="class/fig/lec01-modern_ic.png" /></p>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="design-and-manufacturing">
-<h2>Design and Manufacturing<a class="headerlink" href="#design-and-manufacturing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-and-manufacturing">
+<h2>Design and Manufacturing<a class="headerlink" href="#design-and-manufacturing" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-design_manufacturing.png" width="200"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-design_manufacturing.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-design_manufacturing.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="technology-shrink">
-<h2>Technology Shrink<a class="headerlink" href="#technology-shrink" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="technology-shrink">
+<h2>Technology Shrink<a class="headerlink" href="#technology-shrink" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-technology_shrink.png" width="200"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-technology_shrink.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-technology_shrink.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="moore-s-law">
-<h2>Moore’s Law<a class="headerlink" href="#moore-s-law" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="moore-s-law">
+<h2>Moore’s Law<a class="headerlink" href="#moore-s-law" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <p><embed src="https://players.brightcove.net/734546229001/default_default/index.html?videoId=4144803153001" width="793" height="446" autoplay="false" loop="true"></embed></p>
 <p><em></em></p>
 <!-- !eslidecell -->
 <!-- !split -->
-</div>
-<div class="section" id="evolution-of-products">
-<h2>Evolution of Products<a class="headerlink" href="#evolution-of-products" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="evolution-of-products">
+<h2>Evolution of Products<a class="headerlink" href="#evolution-of-products" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Driven by technology improvement</p>
 <ul>
@@ -942,9 +929,9 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="eda-competence">
-<h2>EDA Competence<a class="headerlink" href="#eda-competence" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="eda-competence">
+<h2>EDA Competence<a class="headerlink" href="#eda-competence" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>EDA Vendors (tool developers)</p>
 <ul>
@@ -969,51 +956,51 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="view-on-hardware-i">
-<h2>View on Hardware (I)<a class="headerlink" href="#view-on-hardware-i" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="view-on-hardware-i">
+<h2>View on Hardware (I)<a class="headerlink" href="#view-on-hardware-i" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-views_on_hardware_1.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-views_on_hardware_1.png" /></p>
+<p><img alt="" src="class/fig/lec01-views_on_hardware_1.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="view-on-hardware-ii">
-<h2>View on Hardware (II)<a class="headerlink" href="#view-on-hardware-ii" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="view-on-hardware-ii">
+<h2>View on Hardware (II)<a class="headerlink" href="#view-on-hardware-ii" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-views_on_hardware_2.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-views_on_hardware_2.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-views_on_hardware_2.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="abstraction-layers">
-<h2>Abstraction Layers<a class="headerlink" href="#abstraction-layers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="abstraction-layers">
+<h2>Abstraction Layers<a class="headerlink" href="#abstraction-layers" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-abstraction_layer.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-abstraction_layer.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-abstraction_layer.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="design-flow">
-<h2>Design Flow<a class="headerlink" href="#design-flow" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-flow">
+<h2>Design Flow<a class="headerlink" href="#design-flow" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-design_flow.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-design_flow.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-design_flow.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="continuous-verification">
-<h2>Continuous Verification<a class="headerlink" href="#continuous-verification" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="continuous-verification">
+<h2>Continuous Verification<a class="headerlink" href="#continuous-verification" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-verification.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-verification.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-verification.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="front-end-vs-back-end-analog">
-<h2>Front End vs. Back End (analog)<a class="headerlink" href="#front-end-vs-back-end-analog" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="front-end-vs-back-end-analog">
+<h2>Front End vs. Back End (analog)<a class="headerlink" href="#front-end-vs-back-end-analog" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-front-end_back-end_analog.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-front-end_back-end_analog.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-front-end_back-end_analog.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="front-end-vs-back-end-digital">
-<h2>Front End vs. Back End (digital)<a class="headerlink" href="#front-end-vs-back-end-digital" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="front-end-vs-back-end-digital">
+<h2>Front End vs. Back End (digital)<a class="headerlink" href="#front-end-vs-back-end-digital" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-front-end_back-end_digital.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm</em></p> -->
-<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="../_images/lec01-front-end_back-end_digital.png" /></p>
+<p><img alt="(c) M. Ortmanns, Univ. Ulm" src="class/fig/lec01-front-end_back-end_digital.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="design-methodology">
-<h2>Design Methodology<a class="headerlink" href="#design-methodology" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-methodology">
+<h2>Design Methodology<a class="headerlink" href="#design-methodology" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Full Custom – fully manual: ASIC</p>
 <ul>
@@ -1038,47 +1025,47 @@ $$</p>
 </li>
 </ul>
 <!-- !split -->
-</div>
-<div class="section" id="analog-design-entry">
-<h2>Analog Design Entry<a class="headerlink" href="#analog-design-entry" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="analog-design-entry">
+<h2>Analog Design Entry<a class="headerlink" href="#analog-design-entry" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-design_entry_analog.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-design_entry_analog.png" /></p>
+<p><img alt="" src="class/fig/lec01-design_entry_analog.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="netlist">
-<h2>Netlist<a class="headerlink" href="#netlist" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="netlist">
+<h2>Netlist<a class="headerlink" href="#netlist" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-netlist.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-netlist.png" /></p>
+<p><img alt="" src="class/fig/lec01-netlist.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="layout">
-<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-inverter_layout.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-inverter_layout.png" /></p>
+<p><img alt="" src="class/fig/lec01-inverter_layout.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="digital-design-entry">
-<h2>Digital Design Entry<a class="headerlink" href="#digital-design-entry" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="digital-design-entry">
+<h2>Digital Design Entry<a class="headerlink" href="#digital-design-entry" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-design_entry_digital.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-design_entry_digital.png" /></p>
+<p><img alt="" src="class/fig/lec01-design_entry_digital.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="hardware-description-language">
-<h2>Hardware Description Language<a class="headerlink" href="#hardware-description-language" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hardware-description-language">
+<h2>Hardware Description Language<a class="headerlink" href="#hardware-description-language" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-hdl_inv.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-hdl_inv.png" /></p>
+<p><img alt="" src="class/fig/lec01-hdl_inv.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="technology-gates-and-netlisting">
-<h2>Technology-Gates and Netlisting<a class="headerlink" href="#technology-gates-and-netlisting" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="technology-gates-and-netlisting">
+<h2>Technology-Gates and Netlisting<a class="headerlink" href="#technology-gates-and-netlisting" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-technology_gate_netlist.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-technology_gate_netlist.png" /></p>
+<p><img alt="" src="class/fig/lec01-technology_gate_netlist.png" /></p>
 <!-- !split -->
-</div>
-<div class="section" id="standard-cell-layout">
-<h2>Standard Cell Layout<a class="headerlink" href="#standard-cell-layout" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="standard-cell-layout">
+<h2>Standard Cell Layout<a class="headerlink" href="#standard-cell-layout" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec01-standard_cell_layout.png" width="400"> -->
-<p><img alt="" src="../_images/lec01-standard_cell_layout.png" /></p>
+<p><img alt="" src="class/fig/lec01-standard_cell_layout.png" /></p>
 <!-- !split -->
 <!-- ======= Filter Design ======= -->
 <!-- # #include "lec-02-filter-design.do.txt" -->
@@ -1113,14 +1100,14 @@ $$</p>
 <!-- ======= ADC Metrics ======= -->
 <!-- # #include "lec-12-adc_metrics.do.txt" -->
 <!-- !split -->
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "mimeiners/amcd",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1128,7 +1115,7 @@ $$</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./class"
         },
         predefinedOutput: true
@@ -1136,62 +1123,153 @@ $$</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../about/unsyllabus.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Unsyllabus</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="02_lec.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">References</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By M. Meiners (HSB)<br/>
-        
-          <div class="extra_footer">
-            <div>
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
-    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
-</div>
-
-          </div>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../about/unsyllabus.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unsyllabus</p>
       </div>
-    </div>
-  
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="02_lec.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-vs-design">Analysis vs. Design</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-conditioning">Signal Conditioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meeting-a-system">Meeting a System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-noise-amplifier-lna">Low-Noise Amplifier (LNA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixers">Mixers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-coupled-oscillators">Cross-Coupled Oscillators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-locked-loop-pll">Phase-Locked Loop (PLL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biquads-active-filter">Biquads (Active Filter)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adc-dac">ADC / DAC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-objectives">Course Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-computing-data-science">Scientific Computing / Data Science</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-circuit-simulation-spice">Analog Circuit Simulation (SPICE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-project">Design Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science">Data Science</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#os-tools">OS Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-editors">Code Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#are-your-writing-or-texing">Are your writing or TeXing?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-editors">LaTeX Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography-and-latex">Bibliography and LaTeX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-project-flow">Design Project Flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-prerequisites">Course Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-topics">Course Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brave-new-world">Brave New World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-sand-to-silicon-infineon-dresden">From Sand to Silicon (Infineon, Dresden)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finfet-intel">FinFET (Intel)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tsmc-fab-next-gen-7-5-nm">TSMC Fab (Next Gen 7/5 nm)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#once-upon-a-time">Once upon a time …</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-ic-and-today-s-chips">First IC and today’s chips</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-and-manufacturing">Design and Manufacturing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technology-shrink">Technology Shrink</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moore-s-law">Moore’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-products">Evolution of Products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-competence">EDA Competence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-on-hardware-i">View on Hardware (I)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-on-hardware-ii">View on Hardware (II)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraction-layers">Abstraction Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-flow">Design Flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-verification">Continuous Verification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#front-end-vs-back-end-analog">Front End vs. Back End (analog)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#front-end-vs-back-end-digital">Front End vs. Back End (digital)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-methodology">Design Methodology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-design-entry">Analog Design Entry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#netlist">Netlist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-design-entry">Digital Design Entry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-description-language">Hardware Description Language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technology-gates-and-netlisting">Technology-Gates and Netlisting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-cell-layout">Standard Cell Layout</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Meiners (HSB)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <div>
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the 
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
