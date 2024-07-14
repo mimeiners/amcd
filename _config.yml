@@ -21,50 +21,53 @@ html:
   use_issues_button: true
   use_repository_button: true
   use_edit_page_button: true
-  navbar_number_sections: false
+  navbar_number_sections: true
   baseurl: "https://mimeiners.github.io/amcd/"
-# google_analytics_id: UA-11111111 # add your Google Analytics Tracking Code
+
   comments:
-    hypothesis: false
+    hypothesis: true
     utterances:
       repo: "mimeiners/amcd"
-    dokieli: true
+      dokieli: true
   extra_footer : |
-      <div>
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
-          All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
-      </div>
-      
-# Launch button settings
-launch_buttons:
-  notebook_interface: "jupyterlab"
-  binderhub_url: "https://mybinder.org"
-  thebe: true
-  
-repository:
-  url: https://github.com/mimeiners/amcd
-  path_to_book: ""
-  branch: master
+    <div>
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+      <img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+      All content on this site (unless otherwise specified) is licensed under the 
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+    </div>
 
 
 # LaTeX settings
 bibtex_bibfiles:
-   - _bibliography/references.bib
+  - _bibliography/references.bib
 latex:
-  latex_engine: "xelatex"
   latex_documents:
     targetname: amcd.tex
 
+# Launch button settings
+launch_buttons:
+  notebook_interface: "jupyterlab"
+  
+repository:
+  url: https://github.com/mimeiners/amcd
+
+# Advanced and power-user settings
 sphinx:
+  extra_extensions:
+    - sphinx_proof
   config:
-    html_show_copyright: false
+    html_show_copyright: true
     html_extra_path: ['files']
+    language: en
     bibtex_reference_style: author_year
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
     myst_enable_extensions: 
     - amsmath
+    - dollarmath
     - colon_fence
     - deflist
-    - dollarmath
     - html_image
     - linkify
     - replacements
@@ -81,14 +84,14 @@ sphinx:
       TITLE: "Analog and Mixed-Signal Circuit Design (AMCD)"
       PREREQS: "One of Electronics and Analog Circuit Design."
       COREQS: ""
-      TERM: "2022 Summer"
-      ROOM: "E 407 / E 507"
+      TERM: "Summer"
+      ROOM: "E 507"
       MEETING_TIMES: "Wednesday from 8-11:15 AM"
       GRACE_PERIOD: ""
       W_DATE_1: ""
       W_DATE_2: ""
       W_DATE_3: ""
-      EXAM_PERIOD: "Friday December 10th - Wednesday, December 22"
+      EXAM_PERIOD: ""
       CANVAS_ID: ""
       CANVAS_LINK: ""
       ZOOM_LINK: ""
