@@ -9,5 +9,7 @@ parts:
       title: Introduction and Survey
     - file: class/02_lec
       title: References
-- caption: Lab / Filter Design
+- caption: Lab 
   chapters:
+    - file: lab/01_lab
+      title: Design of Analog Filters
