@@ -1,17 +1,106 @@
 # Introduction and Survey
 
-## Course Objectives
+*Risks and Side Effects and/or Discomforts.* 
+A script is a keyword selection. It is characterized by my ideas and prejudices about electronics and circuit design 
+strongly but not completely. And as common, this script has been written with a lot of time constraints, hence, it is
+not fully proof read and contains errors. Therefore, you should never rely solely on this script. Consult other sources
+like books, papers and application notes, also.
 
--   Interfacing Microsystems
-    -   Mixed-technology systems (System-on-Chip, SoC)
-    -   System analysis
-    -   System specification
--   Design Methodology
-    -   Seamlessly modeling and design over all physical domains
--   PCB (System) and IC Design
-    -   Architecture
-    -   Partitioning
-    -   Layout
+
+## Analysis vs. Design
+
+Unlike common perception, analog circuit analysis and design is not "black magic"
+*Circuit analysis.* 
+* The art of decomposing a circuit into manageable pieces.
+* Based on the simple, but sufficiently accurate models.
+  * "Just-in-time" modeling &ndash; Do not use a complex model unless you know why it's needed!
+
+* One circuit $\Rightarrow$ one solution
+
+*Circuit design.* 
+* The art of synthesizing circuits based on experience from extensive analysis
+* One set of specifications $\Rightarrow$ Many solutions
+* Design skills are best acquired through *learning by doing*
+  * This is why we'll have a design project.
+
+
+## Signal Conditioning
+
+*Wikipedia.* 
+"In electronics, signal conditioning means manipulating an analog signal in such a way that
+it meets the requirements of the next stage for further processing."
+
+"Signal conditioning can include amplification, filtering, converting, range matching, isolation and
+any other processes required to make sensor output suitable for processing after conditioning."
+
+
+## Meeting a System
+
+![Block diagram of a wireless communication system.](../images/lec-01-wireless_comm.png)
+
+
+## Low-Noise Amplifier (LNA)
+
+![Low noise amplifier (LNA).](../images/lec-01-lna_cs_stage.png)
+
+
+## Mixers
+
+![Block diagram.](../images/lec-01-mixer_single_balanced_block.png)
+
+![Circuit.](../images/lec-01-mixer_single_balanced_circuit.png)
+
+
+## Cross-Coupled Oscillators
+
+![](../images/lec-01-oscillator_circuit.png)
+
+*Frequency of oscillation.* 
+$$
+\begin{equation}
+\omega_{osc} = \frac{1}{\sqrt{L_1(C_{GS2}+C_{DB1}+4C_{GD}+C_1)}}
+\end{equation}
+$$
+
+
+## Phase-Locked Loop (PLL)
+
+![](../images/lec-01-pll_circuit.png)
+
+
+## Biquads (Active Filter)
+
+![](../images/lec-01-biquad_circuit.png)
+
+
+## ADC / DAC
+
+![](../images/lec-01-sdm_circuit.png)
+
+
+## Course Objectives
+* Acquire a thorough understanding of the basic principles, challenges and limitations in analog/mixed-signal (AMS) circuit design
+  * Focus on concepts that are unlikely to expire
+  * Preparation for further study of state-of-the-art "fine-tuned" realizations 
+
+* Strategy
+  * Acquire basic intuition by studying a selection of commonly used circuit and design techniques
+  * Acquire depth through a design project that entails design, optimization and thorough characterization of a filter circuit
+
+## Design Project
+*Design and Characterization of a Universal Filter (Biquad).* 
+
+* Use different descriptions
+  * System Level (Math, e.g. Matlab/Simulink, Python)
+  * Circuit Level (SPICE)
+
+* Characterisation with Red Pitaya STEMLab
+  * Circuit will be built on ASLK Pro
+
+* Technical/Design Report
+  * [IEEE templates](https://www.ieee.org/conferences/publishing/templates.html)
+  * max. 8 pages
+  * Teams of 2-3 students
 
 ## Scientific Computing
 
@@ -108,45 +197,59 @@
 
 -   [EndNote - Library Guide Univ. Melbourne](https://unimelb.libguides.com/latexbibtex/endnote)
 
-## Design Project
 
-*Model-Based Systems Engineering of an Inertial Sensor System (MBSE).*
+## Design Project Flow
 
--   System level, behavioural model
+* Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor
+  companies) and library
+  * Set-up literature database
 
-    -   Matlab/Simulink,
-    -   Python
-    -   HDL (Verilog-ams, VHDL-AMS)
+* Concept of your system
+  * Partitioning
+  * Functions
+  * Work packages
 
--   Circuit level, SPICE with behavioural blocks, e.g. OTA and comparator
+* Design, implementation and validation
+  * Mathmatical description
+  * SPICE modeling and simulation
+  * Data analysis and validation
+  * Design report
 
--   PCB level
 
-    -   [ESP8266 NodeMCU](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/),
-    -   [TIs ADS1115](https://www.ti.com/product/ADS1115),
-    -   [ADs ADXL335](https://www.analog.com/en/products/adxl335.html)
+## Assignments
+*Design Project.* 
+* **System Modell** Matlab/Python
+* **Circuit Design** SPICE
+* **Characterisation/Measurement** Red Pitaya
+* **Technical/Design Report**
 
--   IC level
-
--   **Final Oral Exam/Project Presentation**
 
 ## Course Prerequisites
+* Fundamentals of linux operating systems 
+* Fundamentals of microelectronics
+  * Device physics and models
+  * Transistor level analog circuits, elementary gain stages
+  * Control theory (requency response, feedback, stability)
+  * System theory (Laplace and Z-transform)
 
--   Fundamentals of linux operating systems
+* Prior exposure to SPICE, Matlab/Simulink, Python (NumPy, SciPy) or equivalent
+* Please talk to me if you are not sure if you have the required background
 
--   Fundamentals of microelectronics
 
-    -   Device physics and models
-    -   Transistor level analog circuits, elementary gain stages
+## Course Topics
+* Design of Operational Transconductance Ampilfiers (OTAs)
+  * Analysis and design
+  * OTAs as integrators
+  * Noise analysis
 
--   Fundamentals of analog circuit design
+* Continuous time filters
+  * Biquad designs
+  * Approximation errors
+  * Circuit simulation
 
-    -   Operational amplifier
-    -   Active filter design
-    -   Noise analysis
-    -   Switched-capacitor techniques
-
--   Prior exposure to SPICE, Matlab, Python or equivalent.
+* Switched capacitor filters
+  * Sampling
+  * Bilinear transform s-domain to z-domain
 
 ## Brave New World
 
