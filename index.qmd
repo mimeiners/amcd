@@ -1,0 +1,9 @@
+# Unsyllabus {.unnumbered}
+
+| Name       | Description                                               |
+|------------|-----------------------------------------------------------|
+| Course     | M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)       |
+| Term       | Summer 2025                                               |
+| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
+| Lectures   | Thu., 9:45 h - 13:00 h                                    |
+| Room       | E 507 ELIE Lab                                            |

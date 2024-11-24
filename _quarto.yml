@@ -1,0 +1,67 @@
+project:
+  type: book
+  output-dir: _book
+  
+
+book:
+  title: "M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)"
+  author: "M. Meiners"
+  date: "11-23-2024"
+
+  reader-mode: true
+
+  page-footer:
+    left: |
+      M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+#  cover-image: images/hsb-logo.png
+  favicon: images/hsb-logo.png
+  site-url: https://mimeiners.github.io/cems/
+  repo-url: https://github.com/mimeiners/cems/
+  repo-branch: main
+  repo-actions: [edit, issue]
+
+  chapters:
+    - index.qmd
+
+    - part: Lecture
+      chapters:
+        - class/lec-01-intro.qmd
+#        - class/references.qmd
+    
+    - part: Lab
+      chapters:
+        - lab/lab-01-analog_filter.qmd
+          
+bibliography: _bibliography/references.bib
+
+format:
+  html:
+    theme: flatly
+  pdf:
+    documentclass: scrbook
+    lof: true
+    lot: true
+    toc: true    
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    hyperrefoptions:
+      - linktoc=all
+    colorlinks: true
+    linkcolor: "blue"
+    biblio-style: apalike
+    #    keep-tex: true
+    output-file: cems
+  epub:
+    theme: flatly
+    output-file: cems
+
+latex-auto-install: true
+
+execute:
+  freeze: auto
+
+editor: visual

@@ -1,0 +1,301 @@
+# Introduction and Survey
+
+## Course Objectives
+
+-   Interfacing Microsystems
+    -   Mixed-technology systems (System-on-Chip, SoC)
+    -   System analysis
+    -   System specification
+-   Design Methodology
+    -   Seamlessly modeling and design over all physical domains
+-   PCB (System) and IC Design
+    -   Architecture
+    -   Partitioning
+    -   Layout
+
+## Scientific Computing
+
+-   [Python (Anaconda)](https://www.anaconda.com/download/)
+
+-   [Matlab (Campus Lizenz)](https://de.mathworks.com/academia/tah-portal/hochschule-bremen-31463273.html)
+
+-   [Command-line tools](https://jeroenjanssens.com/seven/)
+
+## EDA Tools
+
+-   PCB / System Design
+    -   [LTspice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)
+    -   [KiCad EDA](https://www.kicad.org/)
+    -   [Altium Designer](https://www.altium.com/de/altium-designer)
+    -   [SiemensEDA PCB tools](https://eda.sw.siemens.com/en-US/pcb/products/)
+    -   [cadence System Design & Analysis](https://www.cadence.com/en_US/home/tools/system-design-and-analysis.html)
+-   IC / Silicon Design
+    -   [IIC-OSIC-TOOLS (open-source)](https://github.com/iic-jku/IIC-OSIC-TOOLS)
+    -   [SiemensEDA IC tools](https://eda.sw.siemens.com/en-US/ic/products/)
+    -   [cadence IC Design & Verification](https://www.cadence.com/en_US/home/tools/design-excellence.html)
+    -   [synopsys silicon design (IC)](https://www.synopsys.com/silicon-design.html)
+
+## OS-Tools
+
+-   [Microsoft-Terminal](https://github.com/microsoft/terminal)
+
+-   [Microsoft-PowerShell](https://learn.microsoft.com/de-de/powershell/scripting/learn/ps101/01-getting-started)
+
+-   [MacOS-Terminal](https://iterm2.com)
+
+-   [Linux/MacOS Shell zsh-tools](https://ohmyz.sh),
+
+-   [git (Versionskontrolle)](https://git-scm.com)
+
+## Code Editors
+
+-   [Visual Studio Code](https://code.visualstudio.com)
+
+-   [Spyder IDE](https://www.spyder-ide.org)
+
+-   [Thonny (Micro-)Python IDE](https://thonny.org)
+
+-   [Emacs](https://www.gnu.org/software/emacs/)
+
+-   [Vim](https://www.vim.org)
+
+## Data Science
+
+-   File system: Files and directories
+
+-   Tabular data: Comma/Tab-Separated-Values (CSV/TSV), Spreadsheet (.xlsx, .ods)
+
+-   Special formats, e.g. MATLAB mat, HDF5
+
+-   Embedded [Databases](https://db-engines.com)
+
+    -   [SQL](https://en.wikipedia.org/wiki/SQL), z.B. [SQlite](https://en.wikipedia.org/wiki/SQLite)
+    -   [OLAP](https://en.wikipedia.org/wiki/Online_analytical_processing), z.B. [DuckDB](https://duckdb.org/why_duckdb)
+
+## Publish Computational Content
+
+-   [Jupyter-Book](https://jupyterbook.org/en/stable/intro.html)
+
+-   [quarto](https://quarto.org)
+    -   [Manuscripts](https://quarto.org/docs/manuscripts/)
+
+## Are you writing or TeXing?
+
+-   [MikTeX (Windows, MacOS, Linux)](https://miktex.org/)
+
+-   [MacTeX (MacOS)](https://www.tug.org/mactex/)
+
+-   [TeXLive (Linux)](http://tug.org/texlive/)
+
+## LaTeX Editors
+
+-   IDE's
+    -   [TeXStudio](http://www.texstudio.org)
+    -   [TeXMaker](http://www.xm1math.net/texmaker/)
+-   Collaborative Frameworks
+    -   [Overleaf, Online LaTeX](https://www.overleaf.com/)
+    -   [CoCalc - Online LaTeX](https://cocalc.com/doc/latex-editor.html)
+
+## Bibliography and LaTeX
+
+-   [Citavi im Detail \> Titel exportieren \> Export nach BibTeX](https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html)
+
+-   [RefWorks - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734&p=3912294)
+
+-   [Benutzerdefinierte BibTex-Keys mit Zotero \| nerdpause](https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/)
+
+-   [JabRef - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734&p=3897117)
+
+-   [EndNote - Library Guide Univ. Melbourne](https://unimelb.libguides.com/latexbibtex/endnote)
+
+## Design Project
+
+*Model-Based Systems Engineering of an Inertial Sensor System (MBSE).*
+
+-   System level, behavioural model
+
+    -   Matlab/Simulink,
+    -   Python
+    -   HDL (Verilog-ams, VHDL-AMS)
+
+-   Circuit level, SPICE with behavioural blocks, e.g. OTA and comparator
+
+-   PCB level
+
+    -   [ESP8266 NodeMCU](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/),
+    -   [TIs ADS1115](https://www.ti.com/product/ADS1115),
+    -   [ADs ADXL335](https://www.analog.com/en/products/adxl335.html)
+
+-   IC level
+
+-   **Final Oral Exam/Project Presentation**
+
+## Course Prerequisites
+
+-   Fundamentals of linux operating systems
+
+-   Fundamentals of microelectronics
+
+    -   Device physics and models
+    -   Transistor level analog circuits, elementary gain stages
+
+-   Fundamentals of analog circuit design
+
+    -   Operational amplifier
+    -   Active filter design
+    -   Noise analysis
+    -   Switched-capacitor techniques
+
+-   Prior exposure to SPICE, Matlab, Python or equivalent.
+
+## Brave New World
+
+![AMD Jaguar APU (CPU/GPU), 16 nm, 325 sqmm, 2016](../images/lec-01-AMD@16nm@Jaguar.jpg)
+
+## From Sand to Silicon (Infineon, Dresden)
+
+{{< video "https://youtu.be/bor0qLifjz4?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" width="793" height="446">}}
+
+## Sand to Silicon (GlobalFoundries, Desden)
+
+{{< video "https://www.youtube.com/embed/UvluuAIiA50?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" width="793" height="446">}}
+
+## FinFET (Intel)
+
+{{< video "https://www.youtube.com/embed/_VMYPLXnd7E" width="793" height="446">}}
+
+## TSMC Fab (Next Gen 7/5 nm)
+
+{{< video "https://www.youtube.com/embed/Hb1WDxSoSec" width="793" height="446">}}
+
+## Once upon a time ...
+
+![1906 Electron Tube](../images/lec-01-vacuum_tube.png)
+
+![1947 1st Transistor, Bell Labs](../images/lec-01-1st_transistor.png)
+
+## First IC and today's chips
+
+![1958 Jack Kilby's 1st IC](../images/lec-01-1st_ic_kilby.png)
+
+![Modern IC](../images/lec-01-modern_ic.png)
+
+## Packaging Densities
+
+![Wafer generations](../images/lec-01-wafers.png)
+
+## Moore's Law
+
+{{< video "https://www.youtube.com/embed/basGrfRDqts?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" width="793" height="446" title="50 Years of Moore's Law Intel" >}}
+
+## System Hierarchy
+
+![Blocks of an electronic system.](../images/lec-01-system_hierarchy.png)
+
+-   Use hierarchy to describe complex systems
+
+-   Devide and conquer
+
+## System Assembly
+
+![Bottom-up Prozess, Integration.](../images/lec-01-system_assembly.png)
+
+## Interfacing
+
+![Interfacing.](../images/lec-01-real_world_interface.png)
+
+## Meeting a System (1)
+
+![Wireless Communication System.](../images/lec-01-smartphone.png)
+
+## System in a Package (SiP)
+
+![Accelerometer.](../images/lec-01-system_in_package.png)
+
+## You will become an expert
+
+*Indicators.*
+
+-   Background Knowledge
+
+    -   System Knowledge, Architecture, Processing, Implementation
+
+-   Subconscious Knowledge
+
+    -   Memorized experiences of success stories and dead ends
+
+-   Special Knowledge
+
+    -   Dicipline related knowledge, e.g. physics, hardware, software
+
+-   Teamwork
+
+    -   Communication abilities, reporting and presentation
+
+-   Creativity
+
+-   Tool-Knowlege
+
+## Views on Hardware
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-views_on_hardware_2.png)
+
+## Abstraction Layer
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-abstraction_layer.png)
+
+## Design Flow
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-design_flow.png)
+
+## Verification
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-verification.png)
+
+## Frontend vs. Backend (analog)
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_analog.png)
+
+## Frontend vs. Backend (digital)
+
+![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_digital.png)
+
+## Analog Design Entry
+
+![](../images/lec-01-design_entry_analog.png)
+
+## Netlist
+
+![](../images/lec-01-netlist.png)
+
+## Layout
+
+![](../images/lec-01-inverter_layout.png)
+
+## Digital Design Entry
+
+![](../images/lec-01-design_entry_digital.png)
+
+## Hardware Desciption Language
+
+![](../images/lec-01-hdl_inv.png)
+
+## Technology-Gates and Netlisting
+
+![](../images/lec-01-technology_gate_netlist.png)
+
+## Standard Cell Layout
+
+![](../images/lec-01-standard_cell_layout.png)
+
+## Sustainable Electronics ...
+
+{{< video "https://www.youtube.com/embed/7S5IuaKiZIY" width="859" height="483" title="Geekchester" >}}
+
+## Why it is worth ...
+
+{{< video "https://www.youtube.com/embed/SwPGxwBZw6I" width="859" height="483" title="Circuit Song" >}}
+
+## Let's go to the beach ...
+
+{{< video "https://www.youtube.com/embed/ekkJlQf-K4I" width="859" height="483" title="Viva la Electronica" >}}
