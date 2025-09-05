@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nilina Rose Sony">
+<meta name="author" content="Ian Gabriel">
+
+<title>6&nbsp; Design and Implementation of a Universal Biquad Filter – M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../prj/elie5/index.html" rel="next">
+<link href="../../prj/elie3/index.html" rel="prev">
+<link href="../../images/hsb-logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Design Projects</a></li><li class="breadcrumb-item"><a href="../../prj/elie4/index.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mimeiners/amcd/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lec/lec-01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../prj/elie1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../prj/elie2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../prj/elie3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../prj/elie4/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../prj/elie5/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Design and Implementation of Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7</span> Introduction</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">8</span> Motivation</a></li>
+  <li><a href="#basics-of-filter-design" id="toc-basics-of-filter-design" class="nav-link" data-scroll-target="#basics-of-filter-design"><span class="header-section-number">9</span> Basics of Filter Design</a>
+  <ul class="collapse">
+  <li><a href="#types-of-filters" id="toc-types-of-filters" class="nav-link" data-scroll-target="#types-of-filters"><span class="header-section-number">9.1</span> Types of Filters</a></li>
+  <li><a href="#defining-standard-design-specifications" id="toc-defining-standard-design-specifications" class="nav-link" data-scroll-target="#defining-standard-design-specifications"><span class="header-section-number">9.2</span> Defining Standard Design Specifications</a>
+  <ul class="collapse">
+  <li><a href="#cut-off-frequency" id="toc-cut-off-frequency" class="nav-link" data-scroll-target="#cut-off-frequency"><span class="header-section-number">9.2.1</span> Cut-off frequency</a></li>
+  <li><a href="#roll-off" id="toc-roll-off" class="nav-link" data-scroll-target="#roll-off"><span class="header-section-number">9.2.2</span> Roll-off</a></li>
+  <li><a href="#order-of-filter" id="toc-order-of-filter" class="nav-link" data-scroll-target="#order-of-filter"><span class="header-section-number">9.2.3</span> Order of Filter</a></li>
+  <li><a href="#bandwidth" id="toc-bandwidth" class="nav-link" data-scroll-target="#bandwidth"><span class="header-section-number">9.2.4</span> Bandwidth</a></li>
+  <li><a href="#q-factor" id="toc-q-factor" class="nav-link" data-scroll-target="#q-factor"><span class="header-section-number">9.2.5</span> Q Factor</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#biquads" id="toc-biquads" class="nav-link" data-scroll-target="#biquads"><span class="header-section-number">10</span> Biquads</a>
+  <ul class="collapse">
+  <li><a href="#topology" id="toc-topology" class="nav-link" data-scroll-target="#topology"><span class="header-section-number">10.1</span> Topology</a></li>
+  <li><a href="#transfer-function" id="toc-transfer-function" class="nav-link" data-scroll-target="#transfer-function"><span class="header-section-number">10.2</span> Transfer Function</a></li>
+  </ul></li>
+  <li><a href="#mathematical-modelling" id="toc-mathematical-modelling" class="nav-link" data-scroll-target="#mathematical-modelling"><span class="header-section-number">11</span> Mathematical Modelling</a></li>
+  <li><a href="#filter-design" id="toc-filter-design" class="nav-link" data-scroll-target="#filter-design"><span class="header-section-number">12</span> Filter Design</a></li>
+  <li><a href="#signals-and-systems-analysis" id="toc-signals-and-systems-analysis" class="nav-link" data-scroll-target="#signals-and-systems-analysis"><span class="header-section-number">13</span> Signals and Systems Analysis</a>
+  <ul class="collapse">
+  <li><a href="#frequency-domain-behavior" id="toc-frequency-domain-behavior" class="nav-link" data-scroll-target="#frequency-domain-behavior"><span class="header-section-number">13.1</span> Frequency Domain Behavior</a></li>
+  <li><a href="#poles-zeros-and-filter-shape" id="toc-poles-zeros-and-filter-shape" class="nav-link" data-scroll-target="#poles-zeros-and-filter-shape"><span class="header-section-number">13.2</span> Poles, Zeros, and Filter Shape</a></li>
+  <li><a href="#time-domain-steady-state-vs-transient-response" id="toc-time-domain-steady-state-vs-transient-response" class="nav-link" data-scroll-target="#time-domain-steady-state-vs-transient-response"><span class="header-section-number">13.3</span> Time Domain: Steady-State vs Transient Response</a></li>
+  <li><a href="#interpretation-in-practice" id="toc-interpretation-in-practice" class="nav-link" data-scroll-target="#interpretation-in-practice"><span class="header-section-number">13.4</span> Interpretation in Practice</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">13.5</span> Visualization</a></li>
+  </ul></li>
+  <li><a href="#op-amp-theory" id="toc-op-amp-theory" class="nav-link" data-scroll-target="#op-amp-theory"><span class="header-section-number">14</span> Op-amp Theory</a>
+  <ul class="collapse">
+  <li><a href="#basic-op--amp-theory" id="toc-basic-op--amp-theory" class="nav-link" data-scroll-target="#basic-op--amp-theory"><span class="header-section-number">14.1</span> Basic Op- amp theory</a>
+  <ul class="collapse">
+  <li><a href="#rules-of-op-amp" id="toc-rules-of-op-amp" class="nav-link" data-scroll-target="#rules-of-op-amp"><span class="header-section-number">14.1.1</span> Rules of Op-amp:</a></li>
+  <li><a href="#different-op-amp-configurations" id="toc-different-op-amp-configurations" class="nav-link" data-scroll-target="#different-op-amp-configurations"><span class="header-section-number">14.1.2</span> Different op-amp configurations</a></li>
+  </ul></li>
+  <li><a href="#tl082-specifications" id="toc-tl082-specifications" class="nav-link" data-scroll-target="#tl082-specifications"><span class="header-section-number">14.2</span> TL082 Specifications</a></li>
+  </ul></li>
+  <li><a href="#circuit-design-and-layout" id="toc-circuit-design-and-layout" class="nav-link" data-scroll-target="#circuit-design-and-layout"><span class="header-section-number">15</span> Circuit Design and Layout</a>
+  <ul class="collapse">
+  <li><a href="#schematic-capture" id="toc-schematic-capture" class="nav-link" data-scroll-target="#schematic-capture"><span class="header-section-number">15.1</span> Schematic Capture</a></li>
+  <li><a href="#pcb-layout" id="toc-pcb-layout" class="nav-link" data-scroll-target="#pcb-layout"><span class="header-section-number">15.2</span> PCB Layout</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">16</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#experimental-setup" id="toc-experimental-setup" class="nav-link" data-scroll-target="#experimental-setup"><span class="header-section-number">16.1</span> Experimental Setup</a></li>
+  <li><a href="#frequency-analysis" id="toc-frequency-analysis" class="nav-link" data-scroll-target="#frequency-analysis"><span class="header-section-number">16.2</span> Frequency Analysis</a>
+  <ul class="collapse">
+  <li><a href="#lpf" id="toc-lpf" class="nav-link" data-scroll-target="#lpf"><span class="header-section-number">16.2.1</span> LPF</a></li>
+  <li><a href="#hpf" id="toc-hpf" class="nav-link" data-scroll-target="#hpf"><span class="header-section-number">16.2.2</span> HPF</a></li>
+  <li><a href="#bpf" id="toc-bpf" class="nav-link" data-scroll-target="#bpf"><span class="header-section-number">16.2.3</span> BPF</a></li>
+  <li><a href="#bsf" id="toc-bsf" class="nav-link" data-scroll-target="#bsf"><span class="header-section-number">16.2.4</span> BSF</a></li>
+  </ul></li>
+  <li><a href="#transient-analysis" id="toc-transient-analysis" class="nav-link" data-scroll-target="#transient-analysis"><span class="header-section-number">16.3</span> Transient Analysis</a>
+  <ul class="collapse">
+  <li><a href="#lpf-1" id="toc-lpf-1" class="nav-link" data-scroll-target="#lpf-1"><span class="header-section-number">16.3.1</span> LPF</a></li>
+  <li><a href="#hpf-1" id="toc-hpf-1" class="nav-link" data-scroll-target="#hpf-1"><span class="header-section-number">16.3.2</span> HPF</a></li>
+  <li><a href="#bpf-1" id="toc-bpf-1" class="nav-link" data-scroll-target="#bpf-1"><span class="header-section-number">16.3.3</span> BPF</a></li>
+  <li><a href="#bsf-1" id="toc-bsf-1" class="nav-link" data-scroll-target="#bsf-1"><span class="header-section-number">16.3.4</span> BSF</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#trouble-shooting-and-mistakes" id="toc-trouble-shooting-and-mistakes" class="nav-link" data-scroll-target="#trouble-shooting-and-mistakes"><span class="header-section-number">17</span> Trouble Shooting and Mistakes</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">18</span> Discussion</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/amcd/edit/main/prj/elie4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/amcd/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Design Projects</a></li><li class="breadcrumb-item"><a href="../../prj/elie4/index.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Nilina Rose Sony <a href="mailto:rosesonynilina@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.hs-bremen.de">
+            Hochschule Bremen - City University of Applied Sciences (HSB)
+            </a>
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Ian Gabriel <a href="mailto:911iangab44@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>This project explores the design and implementation of a second-order universal active (biquad) filter supporting low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain, phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results in analog filter design.</p>
+  </div>
+</div>
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Introduction</h1>
+<p>This project aims to design an analog universal biquad filter for a corner frequency of 1 kilohertz and a quality factor of 10. This was implemented from specification to simulation and finally to physical layout. This includes schematic design and simulation, functional modeling, and full PCB design. The utilisation of modern simulation tools and open-source platforms was immense for the developement of this project.</p>
+<p>The key feature of this project is to focus on simulation-based design using KICAD for schematic capture and analysis of the circuit and analysing the performance in frequency and time domain. For PCB implementation and layout, the same open-source tool is used and the functional modelling of the circuit is done using Analog System Lab Kit (ASLK) and Red Pitaya. The use of Red Pitaya is mentionable as it provides a cost-effective and adaptable platform for measuring the frequency response of ALSK tool kit circuit. The design workflow also includes documentation and analysis using Quarto, Jupyter Notebooks, and supporting tools such as Python, Numpy, and Matplotlib. All components of this project are managed using Git and documented in reproducible formats.</p>
+<p>NOTE: All design files, source code, and documentation are shared publicaly under our GITHUB repository.</p>
+</section>
+<section id="motivation" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Motivation</h1>
+<p>For many real life applications like audio processing, sensor signal conditioning and instrumentation, the signals can be corrupt due to unwanted noise and interference of the signals. One of the most important solution would be the use of filters especially analog filters with which it can be used to clean and shape signals before they are digitized or processed further.</p>
+<p>The use of analog filter are advantageous over digital filters, even though it is way more flexible and programmable, because it has better power consumption, size, or cost constraints. Among analog filters, the biquad filter gets highlighted for its Second-order response which allows a precise control over frequency characteristics, flexibility to configure it as a low-pass, high-pass, band-pass or band-stop filters and its stability when implemented using op-amps and passive components.</p>
+<p>This project focuses on designing, simulating, and implementing a biquad filter, using KiCad for schematic design, simulation, and PCB layout and ALSK tool kit for practical filter implementation and behavioral response testing using Red Pitaya. This whole projects motivates to have an understanding of how analog filters are practically implemented using op-amps, learn PCB design basics and fabrication, learn the usage of KICAD tool as well as integrating tools like ALSK and Red Pitaya into the design loop. Finally it gives a complete analog design experience, from concept to functional hardware, reinforcing both theoretical understanding and practical skills in analog electronics and system prototyping.</p>
+</section>
+<section id="basics-of-filter-design" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Basics of Filter Design</h1>
+<p>Filters, as the name suggests, is used to filter out the unwanted signals. Based on different fields, its usage is also different like in analog electronics, they can be used to shape certain signals while attenuating other. Other applications of filters are to remove noise to improve the signals quality in certain fields like audio processing, biomedical instrumentation, communication systems, or sensor signal conditioning.</p>
+<section id="types-of-filters" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="types-of-filters"><span class="header-section-number">9.1</span> Types of Filters</h2>
+<p>There are four types of filters which are low pass filter, high pass filter, band pass filter and band stop filter or notch filter. Filters are classified based on allowing or blocking different band of frequencies. They treat different frequencies of the spectrum in various ways <span class="citation" data-cites="Cktdesign"><a href="../../references.html#ref-Cktdesign" role="doc-biblioref">[1]</a></span>. The low pass filter allows the low frequency signals to pass through the filter and attenuates the higher frequency signals. Whereas high pass filter works just the opposite of this by allowing the high frequency signals to pass through the filter and attenuates the low frequency signals. Band pass filter passes a specific range of frequencies and attenuates the rest and the band stop cuts off a specific range of signals and allows the rest to pass through the filter. The frequency response of each filters are <a href="#fig-freqrespideal" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> for a better understanding of the types of filters:</p>
+<div id="fig-freqrespideal" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Ideal Frequency Response Graph" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-freqrespideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section3/freqrespideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal Frequency Response Graph">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqrespideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Ideal Frequency Response Graph
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="defining-standard-design-specifications" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="defining-standard-design-specifications"><span class="header-section-number">9.2</span> Defining Standard Design Specifications</h2>
+<p>There are some terminologies to keep in mind when taking about filter designing, namely cutoff frequency, order of the circuit and roll off which is defined below.</p>
+<section id="cut-off-frequency" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="cut-off-frequency"><span class="header-section-number">9.2.1</span> Cut-off frequency</h3>
+<p>It is the frequency at which the filter starts to significantly reduce the signal strength. It is also known as corner frequency or break frequency <span class="citation" data-cites="Cutofffreq"><a href="../../references.html#ref-Cutofffreq" role="doc-biblioref">[2]</a></span> and can be determined by the formula:</p>
+<p><span class="math display">\[
+f_c = \frac{1}{2 \pi R C}
+\]</span></p>
+<p>where:<br> - <span class="math inline">\(f_c\)</span> is the cutoff frequency (in Hz),<br> - <span class="math inline">\(R\)</span> is the resistance (in ohms),<br> - <span class="math inline">\(C\)</span> is the capacitance (in farads).</p>
+<p>The cut-off frequency is a key parameter in filter design and determines the point at which the output signal falls to 70.7% of the input or from the frequency response curve or bode plot, it is -3dB (20 log (Vout/Vin)) of the input <a href="#fig-folp" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>.</p>
+</section>
+<section id="roll-off" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="roll-off"><span class="header-section-number">9.2.2</span> Roll-off</h3>
+<p>It is determined to measure the rate at which the filter attenuated the signal after the cut-off frequency <span class="citation" data-cites="rolloff"><a href="../../references.html#ref-rolloff" role="doc-biblioref">[3]</a></span>. More steeper the roll-off factor more better the filter works. So in order to increase this factor we need to look into other parameter called the order of the filter.</p>
+<div id="fig-folp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response Characteristics" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-folp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section3/Firstorderlowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Frequency Response Characteristics">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Filter Response Characteristics
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="order-of-filter" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="order-of-filter"><span class="header-section-number">9.2.3</span> Order of Filter</h3>
+<p>The order of a filter is determined by the number of reactive elements in the circuit like capacitance or inductance <span class="citation" data-cites="Filterbasic"><a href="../../references.html#ref-Filterbasic" role="doc-biblioref">[4]</a></span>. As we add one reactive element more, we increase the maximum roll-off by 20 db/decade. So the key point here is to add more reactive elements in order to increase the order of the filter but this increase affects other parameter like phase shifting, as order increases phase shift increases. So we can’t increase it as much as we can.</p>
+</section>
+<section id="bandwidth" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="bandwidth"><span class="header-section-number">9.2.4</span> Bandwidth</h3>
+<p>It is the range of frequencies that passes through the filter without attenuation <span class="citation" data-cites="Cktdesign"><a href="../../references.html#ref-Cktdesign" role="doc-biblioref">[1]</a></span>. The bandwidth can be calculated by taking the difference of the frequnecies at -3db gain as shown in <a href="#fig-qbw" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> <span class="math display">\[
+BW = f_2 - f_1
+\]</span> The bandwidth of low pass filter can be frequnecy at 3db and for band pass it is as shown above while it is not defined for band stop and high pass filters.</p>
+<div id="fig-qbw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Q Factor and Bandwidth" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section3/qfactorandbw.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Q Factor and Bandwidth">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Q Factor and Bandwidth
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="q-factor" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="q-factor"><span class="header-section-number">9.2.5</span> Q Factor</h3>
+<p>It is used to measure how well a filter isolates a desired frequency band while attenuating other frequency ranges. This factor affects the bandpass and bandstop filters. As the bandwidth becomes narrower the Q-factor increases which denotes a higher selection of frequency to pass or stop. This can be calculated by</p>
+<p><span class="math display">\[
+Q = \frac {f_0} {BW}
+\]</span></p>
+<p>where,<br> <span class="math inline">\(Q\)</span> is the quality factor<br> <span class="math inline">\(f_0\)</span> is the cut-off frequency<br> <span class="math inline">\(BW\)</span> is the bandwith</p>
+<p>But the increase in quality factor can show undesirable oscillation and bring more instability to the circuit. Also the values of passive components like resistor and capacitors affect the performance. Practically acheiving high Q-factor is difficult due to the limited component quality and manufacturing tolerances.</p>
+</section>
+</section>
+</section>
+<section id="biquads" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Biquads</h1>
+<p>A biquad filter is a second-order active filter commonly used for building all the four types of filters LPF, HPF, BPF, and BSF. The term “biquad” comes from bi-quadratic, meaning the transfer function contains up to <span class="math inline">\(s^2\)</span> in both numerator and denominator. It provides better control over gain, Q (quality factor), and center/cutoff frequency than first-order filters. Moreover as we increase the order by one, we increase the maximum roll off by 20 db/decade. The general transfer function can be written as: <span class="math display">\[
+H(s) = \frac{b_0 + b_1 s + b_2 s^2}{a_0 + a_1 s + a_2 s^2}
+\]</span></p>
+<p>The structure of the transfer function tells us how the frequency components of the input signal are modified, how poles and zeros determine the frequency response, how component values (R, C) and op-amp behavior affect real-world performance.</p>
+<section id="topology" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="topology"><span class="header-section-number">10.1</span> Topology</h2>
+<p>There are mainly two types of topologies for designing a second order analog filter, they are Sallen-Key topology and Multiple feedback biquad topology. MFB is generally used to design high Q factor and high gain circuits and in our project we aim to design a biquad filter with quality factor 10. The need for a high quality factor in our design led us to select Multiple Feedback Biquad (MFB) topology developed by Texas Instruments <span class="citation" data-cites="aslkpro2020"><a href="../../references.html#ref-aslkpro2020" role="doc-biblioref">[5]</a></span>.</p>
+</section>
+<section id="transfer-function" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="transfer-function"><span class="header-section-number">10.2</span> Transfer Function</h2>
+<p>Let us take transfer function into consideration as it helps to analyse the filter performance based on the component values used in the circuit. Transfer function in general can be defined as: <span class="math display">\[
+H(s)= \frac{V_{\text{out}} (s)}{V_{\text{in}} (s)}
+\]</span></p>
+<p>Consider the circuit diagram for second order low pass filter <a href="#fig-mfblp" class="quarto-xref">Figure&nbsp;<span>10.1</span></a></p>
+<div id="fig-mfblp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Second order MFB low pass filter" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mfblp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section4/mfblowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Second order MFB low pass filter">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mfblp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Second order MFB low pass filter
+</figcaption>
+</figure>
+</div>
+<p>In this MFB low pass filter, we use the op-amp in inverting configuration. <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_3\)</span> are input and feedback resistors and <span class="math inline">\(R_2\)</span> is part of feedback loop. <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are frequency controlling capacitors <span class="citation" data-cites="timfb"><a href="../../references.html#ref-timfb" role="doc-biblioref">[6]</a></span>. We can use nodal analysis for finding the transfer function. According to Kirchhoff’s Current Law (KCL), we can write the eqaution as :</p>
+<p><span class="math display">\[
+\frac{V_{in} - 0}{R_1} + s C_2 (V_{in} - 0) + \frac{V_{out} - 0}{R_2} + s C_1 (V_{out}-V_-) = \frac{V_- - 0}{R_3} \approx 0
+\]</span></p>
+<p>Or simply:</p>
+<p><span class="math display">\[
+\frac{V_{in}}{R_1} + s C_2 V_{in} + \frac{V_{out}}{R_2} + s C_1 V_{out} = \frac{0}{R_3} \approx 0
+\]</span> In ideal op-amp we assume that <span class="math inline">\(V_-\)</span> and <span class="math inline">\(V_+\)</span> are 0. So when solving this equation we come up with the transfer function for MFB low pass filter with a gain <span class="math inline">\(H_0\)</span>,</p>
+<p><span class="math display">\[
+\frac{V_{out}(s)}{V_{in}(s)} = H_0 \cdot \frac{\omega_0^2}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
+\]</span> So the transfer function of a low pass circuit would be: <span class="math display">\[
+H(s) = \frac{H_0 \cdot \omega_0^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+<p>Similarly we can derive for high pass, bandpass and band stop which are:</p>
+<p>High pass: <span class="math display">\[
+H(s) = \frac{H_0 \cdot s^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+<p>Band pass: <span class="math display">\[
+H(s) = \frac{H_0 \cdot \frac{\omega_0}{Q} \cdot s}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+<p>Band stop: <span class="math display">\[
+H(s) = H_0 \cdot \frac{s^2 + \omega_0^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+</section>
+</section>
+<section id="mathematical-modelling" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Mathematical Modelling</h1>
+<p>This section models the behavior of a second-order band-pass filter using the transfer function derived from a general second-order circuit. Since the filter was designed with zero gain (i.e., <span class="math inline">\(H_0 = 1\)</span>), the focus is on the shape of the response rather than amplification.</p>
+<p>The band-pass filter transfer function is given by:</p>
+<p><span class="math display">\[
+H(s) = \frac{H_0 \cdot \frac{\omega_0}{Q} \cdot s}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+<p>To normalize and simplify the simulation, we divide numerator and denominator by <span class="math inline">\(\omega_0^2\)</span>:</p>
+<p><span class="math display">\[
+H(s) = H_0 \cdot \frac{s / Q}{s^2 + s / Q + 1}
+\]</span></p>
+<p>With <span class="math inline">\(H_0 = 1\)</span>, the final simulation model becomes:</p>
+<p><span class="math display">\[
+H(s) = \frac{s / Q}{s^2 + s / Q + 1}
+\]</span></p>
+<p>This normalized second-order band-pass filter exhibits a peak at the resonant frequency <span class="math inline">\(\omega_0\)</span>, with sharpness controlled by <span class="math inline">\(Q\)</span> <a href="#fig-frequencyrespmath" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>.</p>
+<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response of Second-Order BPF" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section5/frequencyresponsemath.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Frequency Response of Second-Order BPF
+</figcaption>
+</figure>
+</div>
+<div id="fig-stepresponse" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Step Response of Second-Order BPF" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stepresponse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section5/stepresponse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Step Response of Second-Order BPF">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stepresponse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Step Response of Second-Order BPF
+</figcaption>
+</figure>
+</div>
+<p>The filter has unity gain, as expected from the design. The Bode plot shows a peak at 1000 Hz, confirming the resonant frequency. The accompanying phase response reveals how the phase of the output signal shifts relative to the input across different frequencies. In band-pass filters, this phase shift is steepest near the resonant frequency, indicating a rapid change in the system’s reactive behavior. This characteristic is crucial in applications involving signal timing, modulation, or phase-sensitive detection. The step response <a href="#fig-stepresponse" class="quarto-xref">Figure&nbsp;<span>11.2</span></a> shows damped oscillations typical of underdamped second-order systems with high Q.</p>
+<p>This behavioral model validates the expected frequency and time-domain characteristics of a second-order band-pass filter. It helps verify that the circuit design aligns with theoretical predictions before practical implementation.</p>
+</section>
+<section id="filter-design" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Filter Design</h1>
+<p>A second-order band-pass filter was chosen for its frequency-selective properties, making it ideal for isolating a narrow frequency band around a target center frequency. The topology used was MFB (Multiple Feedback Biquad). It allows simultaneous extraction of LPF, HPF, BPF, and BSF outputs from a single op-amp-based structure.</p>
+<p>The filter was designed to achieve a center frequency of 1000 Hz, with a quality factor <span class="math inline">\(𝑄 = 10\)</span> to emphasize selectivity. A unity gain was selected to focus the design on shaping the frequency response rather than amplification. The resistance and capacitance values were determined using the following equation.</p>
+<p><span class="math display">\[
+\omega_0 = 2\pi f_0, \quad  \omega_0 = \frac{1}{RC}
+\]</span></p>
+<p>The TL082 dual JFET-input op-amp was selected for its high slew rate and wide bandwidth, making it suitable for audio- and low-frequency analog filtering. Its availability in the ASLK PRO kit further streamlined practical implementation.</p>
+<p>The following code can also be used to calculate the required capacitor value given a desired resistance, center frequency, and quality factor.</p>
+<div id="e52bc8a6" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_resistances(f0, Q, C):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculate required resistor values (R2 and R3) for the given</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    center frequency (f0), quality factor (Q), and capacitances C1, C2.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    w0 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi<span class="op">*</span>f0</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> <span class="dv">1</span><span class="op">/</span> (w0 <span class="op">*</span> C)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Example values</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> <span class="dv">1000</span>     <span class="co"># Hz</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="dv">10</span>        <span class="co"># Quality factor</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fl">0.01e-6</span>  <span class="co"># Farads</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> calculate_resistances(f0, Q, C)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Calculated R: </span><span class="sc">{</span>R<span class="sc">:.0f}</span><span class="ss"> Ω"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Calculated R: 15915 Ω</code></pre>
+</div>
+</div>
+<p>This utility provides practical flexibility in component selection by enabling capacitance tuning based on resistor availability.</p>
+</section>
+<section id="signals-and-systems-analysis" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Signals and Systems Analysis</h1>
+<p>This section discusses the signal behavior of second-order filters in both the time and frequency domains. The analysis is essential to understanding how filters affect different frequency components of an input signal, as well as how their internal characteristics—such as pole and zero placement—impact signal shaping.</p>
+<section id="frequency-domain-behavior" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="frequency-domain-behavior"><span class="header-section-number">13.1</span> Frequency Domain Behavior</h2>
+<p>In the frequency domain, filters modify both the <strong>amplitude</strong> and <strong>phase</strong> of signals.</p>
+<ul>
+<li><strong>Amplitude Response</strong> (Magnitude): Describes how much of each frequency component is passed or attenuated by the filter. For instance, a low-pass filter significantly attenuates frequencies above the cutoff.</li>
+<li><strong>Phase Response</strong>: Indicates the phase shift introduced at each frequency. This is crucial in systems involving synchronization, feedback, or modulation.</li>
+</ul>
+<p>A general second-order filter can be described by the transfer function:</p>
+<p><span class="math display">\[
+H(s) = \frac{a_2 s^2 + a_1 s + a_0}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\omega_0 = 2\pi f_0\)</span>: natural (resonant) angular frequency</li>
+<li><span class="math inline">\(Q\)</span>: quality factor, controls sharpness of resonance</li>
+<li><span class="math inline">\(s\)</span>: Laplace variable</li>
+</ul>
+<p>These responses are typically visualized using a <strong>Bode plot</strong>, which shows:</p>
+<ul>
+<li>Magnitude (in dB) vs Frequency (on a logarithmic scale)</li>
+<li>Phase (in degrees) vs Frequency</li>
+</ul>
+<p>These characteristics help identify the filter’s behavior around its <strong>cutoff frequency</strong> (or resonant frequency in the case of BPF/BSF), and how sharply it attenuates beyond that point (roll-off).</p>
+</section>
+<section id="poles-zeros-and-filter-shape" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="poles-zeros-and-filter-shape"><span class="header-section-number">13.2</span> Poles, Zeros, and Filter Shape</h2>
+<p>Every transfer function <span class="math inline">\(H(s)\)</span> has poles and zeros:</p>
+<ul>
+<li><strong>Poles</strong>: Frequencies where the system naturally resonates. These are found where the denominator of <span class="math inline">\(H(s)\)</span> becomes zero. A pole near the imaginary axis in the s-plane contributes to peaking in frequency response. They define stability, resonant peaks, and bandwidth.</li>
+<li><strong>Zeros</strong>: Frequencies that the system inherently blocks. Found where the numerator of <span class="math inline">\(H(s)\)</span> is zero or they can be defined as frequencies where gain drops to zero.</li>
+</ul>
+<p>The placement of poles and zeros determines:</p>
+<ul>
+<li>The <strong>bandwidth</strong> (spread of frequencies passed or attenuated)</li>
+<li>The <strong>sharpness</strong> of transitions (defined by the Q factor)</li>
+<li>The <strong>stability</strong> of the system</li>
+</ul>
+<p>Higher-order filters (more poles) exhibit steeper roll-offs but may introduce more phase distortion.</p>
+</section>
+<section id="time-domain-steady-state-vs-transient-response" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="time-domain-steady-state-vs-transient-response"><span class="header-section-number">13.3</span> Time Domain: Steady-State vs Transient Response</h2>
+<ul>
+<li><p><strong>Transient Response</strong> is how the filter initially reacts to an input signal like a step or pulse. It’s important for understanding startup behavior and stability.</p>
+<ul>
+<li>For example, a high-Q band-pass filter may exhibit <strong>ringing</strong>—a decaying oscillation—when subjected to a step input.</li>
+</ul></li>
+<li><p><strong>Steady-State Response</strong> is the long-term behavior once transients have settled. This represents the filter’s typical operating condition.</p></li>
+</ul>
+<p>The time-domain behavior is often evaluated using:</p>
+<ul>
+<li><strong>Step Response</strong>: Output when a step input is applied</li>
+<li><strong>Impulse Response</strong>: Output when a very short signal is applied</li>
+</ul>
+<p>These help validate how energy is stored and released in reactive components (capacitors and inductors).</p>
+</section>
+<section id="interpretation-in-practice" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="interpretation-in-practice"><span class="header-section-number">13.4</span> Interpretation in Practice</h2>
+<ul>
+<li>For <strong>LPF</strong>: Signals below cutoff pass with minimal phase shift; high frequencies are both attenuated and phase-shifted.</li>
+<li>For <strong>HPF</strong>: High frequencies pass clearly, but low-frequency components are delayed and attenuated.</li>
+<li><strong>BPF</strong> emphasizes a narrow band; shows a sharp peak and steep drop outside the passband.</li>
+<li><strong>BSF</strong> suppresses a narrow frequency band while passing others, with a dip in gain around the notch frequency.</li>
+</ul>
+<p>Both <strong>gain</strong> and <strong>phase</strong> responses are vital in system design, especially in:</p>
+<ul>
+<li>Audio filtering</li>
+<li>Signal conditioning</li>
+<li>Modulation/demodulation circuits</li>
+<li>Feedback and control systems</li>
+</ul>
+</section>
+<section id="visualization" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="visualization"><span class="header-section-number">13.5</span> Visualization</h2>
+<p>Below is a sample image used to visualize gain and phase responses for different filter types based on their transfer functions.</p>
+<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response of Second-Order BPF" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section7/ideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Bode Magnitude and Phase Response for Second-Order Filters
+</figcaption>
+</figure>
+</div>
+<p>This analysis connects theoretical filter modeling to practical signal behavior, reinforcing both design accuracy and signal integrity across platforms.</p>
+</section>
+</section>
+<section id="op-amp-theory" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Op-amp Theory</h1>
+<section id="basic-op--amp-theory" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="basic-op--amp-theory"><span class="header-section-number">14.1</span> Basic Op- amp theory</h2>
+<p>Op-amp or operational amplifiers are voltage amplifying devices designed to be used with external feedback components like resistors, capacitors based on its need. These are three terminal devices with an output and two inputs, one inverting (marked with a negative sign) and one non-inverting (marked with a positive sign)<span class="citation" data-cites="Filterbasic"><a href="../../references.html#ref-Filterbasic" role="doc-biblioref">[4]</a></span>.</p>
+<section id="rules-of-op-amp" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="rules-of-op-amp"><span class="header-section-number">14.1.1</span> Rules of Op-amp:</h3>
+<ul>
+<li><p>RULE 1: No current flows in or out of the op-amp. Whatever input we give through the inverting or non-inverting terminals, it doesnot go inside of the op-amp for it to work. But works with the other voltage input we give into it.</p></li>
+<li><p>RULE 2: The output of the op-amp always tries to make the voltage difference between the two input pin to 0V.</p></li>
+</ul>
+<p>We usually won’t use op-amp alone without any elements connected because by nature its amplification property is so high that we need some other elements to reduce it. It can amplify both analog and digital signals making it usable for multiple applications.</p>
+</section>
+<section id="different-op-amp-configurations" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="different-op-amp-configurations"><span class="header-section-number">14.1.2</span> Different op-amp configurations</h3>
+<p>There are multiple configurations for op-amp. Here we are only listing two of them as we only use these configurations in the biquad circuit we design.</p>
+<section id="inverting-op-amp" class="level4" data-number="14.1.2.1">
+<h4 data-number="14.1.2.1" class="anchored" data-anchor-id="inverting-op-amp"><span class="header-section-number">14.1.2.1</span> Inverting op-amp:</h4>
+<p>We give input to the inverting input terminal of the op-amp, thus the name inverting op-amp configuration. We also give feedback from the output to this same input terminal as given in <a href="#fig-invertor" class="quarto-xref">Figure&nbsp;<span>14.1</span></a></p>
+<div id="fig-invertor" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Inverting Op-Amp Circuit" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-invertor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section9/invertoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Inverting Op-Amp Circuit">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-invertor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: Inverting Op-Amp Circuit
+</figcaption>
+</figure>
+</div>
+<p>According to rule 2, output volatge always tries ot make the two inputs the same or the difefernce between them as 0V. That means <span class="math inline">\(V_2\)</span> here would can be called as virtual ground since <span class="math inline">\(V_1\)</span> is connected to the ground.</p>
+<p>Lets see how this gives us an amplification with an example. Say, <span class="math inline">\(R_{\text{in}}\)</span> is 1V as its values is <span class="math inline">\(1\,\text{k}\Omega\)</span> and <span class="math inline">\(R_F\)</span> is 10V as this has a value of <span class="math inline">\(10\,\text{k}\Omega\)</span>. Now we give an input of 1V, so 1A current flows across <span class="math inline">\(R_{\text{in}}\)</span>. Now based on rule 1, current does not flow inside the op-amp so it has to flow to <span class="math inline">\(R_F\)</span>. Thus the voltage drop across it would be 10V. With repsct to the groung it enters with a +10V and so we get -10V in the other terminal, resulting in a -10V output.</p>
+<p>When deriving this with equations: <span class="math display">\[
+I_{{R_{\text{in}}}}= I_{{R_F}}
+\]</span> <span class="math display">\[
+\frac{V_{\text{in}} - V_2}{R_{\text{in}}} = \frac{V_2 - V_{\text{out}}}{R_F}
+\]</span></p>
+<p><span class="math display">\[
+\frac{V_{\text{in}} - 0}{R_{\text{in}}} = \frac{0 - V_{\text{out}}}{R_F}
+\]</span> Since x is virtual ground, we can give 0V to it.</p>
+<p><span class="math display">\[
+\frac{V_{\text{out}}}{V_{\text{in}}} = \frac{-R_F}{R_{\text{in}}}
+\]</span> <span class="math display">\[
+A = \frac{-R_F}{R_{\text{in}}}
+\]</span></p>
+</section>
+<section id="integrator" class="level4" data-number="14.1.2.2">
+<h4 data-number="14.1.2.2" class="anchored" data-anchor-id="integrator"><span class="header-section-number">14.1.2.2</span> Integrator</h4>
+<p>This op-amp gives us an integrated value of the input as output for the circuit. For acheiving this we just replaced the <span class="math inline">\(R_F\)</span> resistor with a capacitor as given in <a href="#fig-integrator" class="quarto-xref">Figure&nbsp;<span>14.2</span></a></p>
+<div id="fig-integrator" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Op-Amp as Integrator" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section9/integratoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Op-Amp as Integrator">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: Op-Amp as Integrator
+</figcaption>
+</figure>
+</div>
+<p>Here also we can give a 1V input and the current flowing across the <span class="math inline">\(R_{\text{in}}\)</span> is 1A as its value is <span class="math inline">\(1\,\text{k}\Omega\)</span>. Because of rule 1, current flows in through the capacitor and it tries to charge. As we give a positive input capacitor charges negatively and vise versa. Meaning when we give a square wave in the input we get a triangular wave which is the integrated output for a square wave. When calculated using the equations, we get:</p>
+<p><span class="math display">\[
+I_{{R_{\text{in}}}}= I_{C}
+\]</span></p>
+<p><span class="math display">\[
+\frac{V_{\text{in}} - 0}{R} = C{\frac{d(0-V_{\text{out}})}{dt}}
+\]</span> <span class="math display">\[
+\frac{V_{\text{in}}}{R} = -C{\frac{d(V_{\text{out}})}{dt}}
+\]</span> <span class="math display">\[
+V_{\text{out}}= -\frac{1}{{R}{C}} \int V_{\text{in}} \, dt
+\]</span></p>
+</section>
+</section>
+</section>
+<section id="tl082-specifications" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="tl082-specifications"><span class="header-section-number">14.2</span> TL082 Specifications</h2>
+<p>In the simulation we are using TL082 op-amp for designing the biquad. The TL082 is a widely used JFET-input operational amplifier known for its low input bias current and wide bandwidth. However, when designing analog filters, we need to think about its specifications:</p>
+<ul>
+<li><p>Slew Rate: It detemines the fastness of change in output voltage which can affect the performance of high frequency signals.The TL082 has a typical slew rate of 13 V/µs.</p></li>
+<li><p>Gain Bandwidth Product (GBW): The product of gain and frequency is a constant. For example, if the op-amp is used in a configuration with gain = 10, the bandwidth drops to 300 kHz.</p></li>
+<li><p>Input Offset Voltage: It can slightly shift DC operating points in precision circuits. It is around 3 mV.</p></li>
+<li><p>Input Bias Current: It is lower than typical BJT-input op-amps because of the JFET inputs. Its value is 65 nA.</p></li>
+<li><p>Output Voltage Swing: The output doesn’t swing fully to the rails. Usually, it can swing from about ±12V when powered with ±15V.</p></li>
+<li><p>Power Supply Range:It operates from ±3V to ±18V, or a single supply from 6V to 36V <span class="citation" data-cites="texas"><a href="../../references.html#ref-texas" role="doc-biblioref">[7]</a></span>.</p></li>
+</ul>
+<p>In this project, the design of a biquad filter requires the use of an operational amplifier (op-amp) as a fundamental component. Passive components alone (resistors and capacitors) cannot achieve the desired performance when sharp frequency selectivity and amplification are involved. The op-amp provides the necessary gain and feedback to construct second-order filter behavior, enabling sharper transitions and resonance at the target frequency. Without an op-amp, it would be difficult to achieve a stable, high-Q response, especially with the narrow bandwidth required in this design. For the implementation we are using TL082 beacuse of its balance in performance, availability, and compatibility with analog filter requirements.</p>
+<p>Overall, the TL082 offers a great performance and moreover easiness to use. It meets all the necessary design constraints for designing an analog active filter biquad on PCB while remaining simple to work with in both simulation (KiCAD) and practical experiments (Red Pitaya, ASLK Pro).</p>
+</section>
+</section>
+<section id="circuit-design-and-layout" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Circuit Design and Layout</h1>
+<p>This section illustrates the hardware implementation of the biquad filter using KiCad and includes schematic capture, PCB layout (top and bottom), and relevant design constraints.</p>
+<section id="schematic-capture" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="schematic-capture"><span class="header-section-number">15.1</span> Schematic Capture</h2>
+<p>Below is the schematic created in KiCad for the implementation of the biquad filter circuit.</p>
+<div id="fig-biquadschematic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Biquad Kicad Schematic" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-biquadschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/biquadschematic.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Biquad Kicad Schematic">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biquadschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Biquad Kicad Schematic
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="pcb-layout" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="pcb-layout"><span class="header-section-number">15.2</span> PCB Layout</h2>
+<p>The following images <a href="#fig-pcblayout" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>, <a href="#fig-pcbtop" class="quarto-xref">Figure&nbsp;<span>15.3</span></a>, <a href="#fig-pcbbottom" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> show the PCB layout used in the design, including the top and bottom routing diagrams. We used surface mount resistors and capacitors(SMD) while for other components, through hole technology(THT) was selected for integration.</p>
+<div id="fig-pcblayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Biquad PCB Layout" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pcblayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/pcblayout.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-fig-cap="Biquad PCB Layout">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcblayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.2: Biquad PCB Layout
+</figcaption>
+</figure>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-pcbtop" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Top Layer Routing">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pcbtop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/pcbtop.svg" class="img-fluid figure-img" data-fig-cap="Top Layer Routing">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbtop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.3: Biquad PCB Top layer Routing
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-pcbbottom" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Bottom Layer Routing">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pcbbottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/pcbbottom.svg" class="img-fluid figure-img" data-fig-cap="Bottom Layer Routing">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbbottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.4: Biquad PCB Bottom layer Routing
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The PCB design follows the following specifications:<br> - Minimum trace width: <code>0.635 mm</code><br> - Placement of decoupling capacitors close to op-amps</p>
+<p>To validate the circuit’s performance, we tested the same design using the <strong>ASLK Pro kit</strong> and <strong>Red Pitaya</strong> as signal source and oscilloscope. The following picture <a href="#fig-alsk_layout" class="quarto-xref">Figure&nbsp;<span>15.5</span></a> shows the portion of the ASLK Pro board used to construct the biquad filter circuit.</p>
+<div id="fig-alsk_layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="ASLK Pro Setup" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-alsk_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/alsk_layout.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="ASLK Pro Setup">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alsk_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.5: ASLK Pro Setup
+</figcaption>
+</figure>
+</div>
+<p>Red Pitaya was used to inject signals and monitor the filter output. The board acted as both a function generator and an oscilloscope. A basic block setup is given in the illustraion <a href="#fig-alsksetup" class="quarto-xref">Figure&nbsp;<span>15.6</span></a> below for better understanding.</p>
+<div id="fig-alsksetup" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Red Pitaya Setup" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-alsksetup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section8/alsksetup.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Red Pitaya Setup">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alsksetup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.6: Red Pitaya Setup
+</figcaption>
+</figure>
+</div>
+<p>We tested the circuit using:<br> - Input waveforms: sine waves at frequncies ranging from 500 to 2000Hz.<br> - Amplitude: 1 V peak-to-peak (OUT1)<br> - Visualization: Red Pitaya’s web scope and exported <code>.csv</code> data</p>
+</section>
+</section>
+<section id="results" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Results</h1>
+<section id="experimental-setup" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="experimental-setup"><span class="header-section-number">16.1</span> Experimental Setup</h2>
+<p>In this section, we describe the methods used for testing the biquad filter across different platforms:</p>
+<ul>
+<li><p><strong>Simulation:</strong></p>
+<ul>
+<li>Implemented using KiCad and simulated via ngspice.</li>
+<li>Frequency response obtained using <code>.ac dec</code> directive.</li>
+<li>Output exported and analyzed using Python for frequency and phase plots.</li>
+</ul></li>
+<li><p><strong>ASLK Pro Kit:</strong></p>
+<ul>
+<li>Assembled filter on ASLK Pro board with TL082 op-amps.</li>
+<li>Function generator output set to sine wave (0.9 V peak-to-peak).</li>
+<li>Measurements captured from the LPF, HPF, BPF, and BSF outputs.</li>
+<li>Output analysis performed with Red Pitaya and graphs were generated using python.</li>
+</ul></li>
+</ul>
+</section>
+<section id="frequency-analysis" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="frequency-analysis"><span class="header-section-number">16.2</span> Frequency Analysis</h2>
+<section id="lpf" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="lpf"><span class="header-section-number">16.2.1</span> LPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (LPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/LPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (LPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.1: Simulation Frequency Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response (LPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/LPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response (LPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.2: Kit Frequency Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hpf" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="hpf"><span class="header-section-number">16.2.2</span> HPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (HPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/HPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (HPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.3: Simulation Frequency Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(HPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/HPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(HPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.4: Kit Frequency Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bpf" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="bpf"><span class="header-section-number">16.2.3</span> BPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (BPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/BPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (BPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.5: Simulation Frequency Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(BPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/BPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(BPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.6: Kit Frequency Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="padding: 1em; border: 1px solid #ccc; border-radius: 8px;">
+<p>From the csv file we can get - <strong>Center frequency (f₀)</strong>: 1000 Hz - <strong>Peak amplitude</strong>: 20.1755 dB</p>
+<p>For calculating the bandwidth, we need to find the frequencies where the response is 3dB below the peak. Upper -3dB point would be 1056.6 Hz and lower -3dB point would be 954.8 Hz. So bandwidth is the difference between them. It is: <span class="math display">\[
+BW = |f_{upper} - f_{lower}|
+\]</span> BW= 1056.6-954.8 = 101.80 Hz</p>
+<p>Now to find the quality factor (Q)</p>
+<p><span class="math display">\[
+Q = \frac {f_0} {BW}
+\]</span> <span class="math display">\[
+Q = \frac {1000}{101.80}
+\]</span> Q = 9.8</p>
+</div><div class="column" style="padding: 1em; border: 1px solid #ccc; border-radius: 8px;">
+<p>From the csv file we can get - <strong>Center frequency (f₀)</strong>: 977.01 Hz - <strong>Peak amplitude</strong>: 19.17 dB</p>
+<p>For calculating the bandwidth, we need to find the frequencies where the response is 3dB below the peak. Upper -3dB point would be 1076.837 Hz and lower -3dB point would be 921.75 Hz. So bandwidth is the difference between them. It is: <span class="math display">\[
+BW = |f_{upper} - f_{lower}|
+\]</span> BW= 1076.837-921.75 = 154.96 Hz</p>
+<p>Now to find the quality factor (Q)</p>
+<p><span class="math display">\[
+Q = \frac {f_0} {BW}
+\]</span> <span class="math display">\[
+Q = \frac {977.01}{154.96}
+\]</span> Q = 6.30</p>
+</div>
+</div>
+<p>The possible causes would be: - KiCad uses ideal components, while real resistors/capacitors have tolerances (e.g., ±5%–10%). - PCB traces add stray capacitance (1–5 pF) and inductance, altering filter response. - KiCad assumes perfect power; real supplies have ripple.</p>
+</section>
+<section id="bsf" class="level3" data-number="16.2.4">
+<h3 data-number="16.2.4" class="anchored" data-anchor-id="bsf"><span class="header-section-number">16.2.4</span> BSF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (BSF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/BSF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (BSF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.7: Simulation Frequency Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(BSF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/FreqAnalysis/BSF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(BSF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.8: Kit Frequency Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The frequency response of the biquad filter across simulation and ASLK Pro implementation shows expected filter behaviors for all configurations (LPF, HPF, BPF, BSF). In practice, both the LPF and HPF exhibited steeper slopes compared to simulation, likely due to parasitic effects and non-ideal op-amp behavior. The BPF and BSF responses confirmed correct center and notch frequencies around 1 kHz, with minor deviations in amplitude and phase caused by component tolerances and real-world limitations.</p>
+</section>
+</section>
+<section id="transient-analysis" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="transient-analysis"><span class="header-section-number">16.3</span> Transient Analysis</h2>
+<section id="lpf-1" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="lpf-1"><span class="header-section-number">16.3.1</span> LPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (LPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/LPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (LPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.9: Simulation Transient Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (LPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/LPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (LPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.10: Kit Transient Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hpf-1" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="hpf-1"><span class="header-section-number">16.3.2</span> HPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (HPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/HPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (HPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.11: Simulation Transient Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (HPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/HPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (HPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.12: Kit Transient Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bpf-1" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="bpf-1"><span class="header-section-number">16.3.3</span> BPF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (BPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/BPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (BPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.13: Simulation Transient Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (BPF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/BPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (BPF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.14: Kit Transient Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bsf-1" class="level3" data-number="16.3.4">
+<h3 data-number="16.3.4" class="anchored" data-anchor-id="bsf-1"><span class="header-section-number">16.3.4</span> BSF</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (BSF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/BSF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (BSF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.15: Simulation Transient Response
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (BSF)" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/section10/Result/TransAnalysis/BSF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (BSF)">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.16: Kit Transient Response
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Transient analysis for each filter type demonstrated good alignment between simulation and physical implementation. LPF and HPF showed clean responses with minor differences in rise time and settling due to hardware constraints. The BPF displayed underdamped oscillations as expected, while the BSF combined characteristics of LPF and HPF with slightly altered phase behavior in the practical setup. Overall, the filters behaved as intended with predictable real-world variations.</p>
+</section>
+</section>
+</section>
+<section id="trouble-shooting-and-mistakes" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Trouble Shooting and Mistakes</h1>
+<p>During our course of the project work, we have faced a few issues while implementing the biquad filter in ALSK as well as in KiCAD while designing the schematic diagram and the PCB. Some of them are listed below.</p>
+<p>Initially, while implementing the circuit in ALSK pro kit, the output we could get in using the red pitaya was just some noises for all the filter types. When observed closely we found out the need to connect a wire physically in the board from non-inverting terminal of the op-amp to the ground for the two op-amps in op-amp type II full section of the ALSK pro board. Whereas the other two op-amp were internally connected to ground.</p>
+<p>Both the PCBs that have designed didn’t give us any output as the we try to measure it using the red pitaya.</p>
+<p>On observation it was found that the PIN no 5 and PIN 6 got interchanged in KiCAD as shown in <a href="#fig-pcbfault" class="quarto-xref">Figure&nbsp;<span>17.1</span></a> even after importing the netlist from the schematic which was working.</p>
+<div id="fig-pcbfault" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Pin interchange" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pcbfault-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../images/section12/pcbfault.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" data-fig-cap="Pin interchange">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbfault-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: Pin interchange
+</figcaption>
+</figure>
+</div>
+<p>Another mistake that occured was while designing the schematic diagram in PCB, the op-amp imported had the inverting terminal connected to the ground. Even after connecting the whole circuit with that configuration, the schematic diagram in KiCAD gave the output and so didn’t cross checked for any mistakes. Thus ending up downloading the same netlist and designed a PCB with changed pins. Even then tried to obtain the output by giving externals connection vai a bread board, still no results were obtained.</p>
+</section>
+<section id="discussion" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Discussion</h1>
+<p>The design and implementation of the second-order universal biquad filter provided critical insights into analog signal processing, specifically in how component selection and topology influence filter behavior. Through both simulation and hardware implementation, it became clear how closely the theoretical transfer functions—derived using Laplace and frequency-domain analysis—align with real-world performance. However, discrepancies due to parasitic effects, op-amp limitations, and component tolerances were evident in the practical responses, highlighting the importance of accounting for non-idealities in real-world systems.</p>
+<p>During the project, several mistakes were made, particularly in calculating component values to achieve the target quality factor (Q = 10). Early designs also neglected phase behavior, which became apparent during Red Pitaya measurements. These issues required redesign and additional simulation runs. These challenges, while initially frustrating, were ultimately educational—they deepened our understanding of pole-zero placement, transient response, and filter sensitivity. The iterative process reinforced the importance of simulation-validation cycles and careful documentation throughout the design workflow.</p>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Cktdesign" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">AnalogCircuitDesign.com, <span>“Introduction-to-analog-filters.”</span> Website, 2024. Available: <a href="https://analogcircuitdesign.com/introduction-to-analog-filters/">https://analogcircuitdesign.com/introduction-to-analog-filters/</a></div>
+</div>
+<div id="ref-Cutofffreq" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Electrical4U, <span>“What is cutoff frequency?”</span> Website, 2023. Available: <a href="https://www.electrical4u.com/cutoff-frequency/">https://www.electrical4u.com/cutoff-frequency/</a></div>
+</div>
+<div id="ref-rolloff" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">everythingRF, <span>“What is roll-off in RF filters?”</span> Website, 2023. Available: <a href="https://www.everythingrf.com/community/what-is-roll-off-in-rf-filters">https://www.everythingrf.com/community/what-is-roll-off-in-rf-filters</a></div>
+</div>
+<div id="ref-Filterbasic" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">W. Storr, <span>“Passive filter basics.”</span> Website, 2023. Available: <a href="https://www.electronics-tutorials.ws/filter/filter_2.html">https://www.electronics-tutorials.ws/filter/filter_2.html</a></div>
+</div>
+<div id="ref-aslkpro2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Texas Instruments, <em>Analog system lab kit pro manual</em>. Online Manual, 2020. Available: <a href="https://www.digikey.com/en/pdf/t/texas-instruments/analog-system-lab-kit-aslk-pro-manual">https://www.digikey.com/en/pdf/t/texas-instruments/analog-system-lab-kit-aslk-pro-manual</a></div>
+</div>
+<div id="ref-timfb" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Texas Instruments / GWU ECE121, <span>“Active filter design techniques.”</span> PDF lecture/chapter, 2002. Available: <a href="https://www2.seas.gwu.edu/~ece121/Spring-11/filterdesign.pdf">https://www2.seas.gwu.edu/~ece121/Spring-11/filterdesign.pdf</a></div>
+</div>
+<div id="ref-texas" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">T. Instruments, <span>“<span>TL082 Wide Bandwidth JFET-Input Operational Amplifier Datasheet</span>.”</span> Datasheet, 2020. Available: <a href="https://www.ti.com/lit/ds/symlink/tl082.pdf">https://www.ti.com/lit/ds/symlink/tl082.pdf</a></div>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mimeiners\.github\.io\/amcd\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../prj/elie3/index.html" class="pagination-link" aria-label="IC Design of a Universal Biquad Filter">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../prj/elie5/index.html" class="pagination-link" aria-label="Design and Implementation of Universal Biquad Filter">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Design and Implementation of Universal Biquad Filter</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Design and Implementation of a Universal Biquad Filter"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Nilina Rose Sony</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    email: rosesonynilina@gmail.com</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: Hochschule Bremen - City University of Applied Sciences (HSB)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">        city: Bremen</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        state: Germany</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">        url: https://www.hs-bremen.de  </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Ian Gabriel</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    email: 911iangab44@gmail.com</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author" </span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="an">keyword:</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - Filter Design </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - PCB</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> | </span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">    This project explores the design and implementation of a second-order universal active (biquad) filter supporting</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">    low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">    PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain,</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">    phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    in analog filter design.</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_1.sec_introduction.qmd &gt;}}</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_2.sec_motivation.qmd &gt;}}</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_3.sec_basicsoffilterdesign.qmd &gt;}}</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_4.sec_biquads.qmd &gt;}}</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_5.sec_behaviouralmodelling.qmd &gt;}}</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_6.sec_filterdesign.qmd &gt;}}</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_7.sec_signalsandsystemanalysis.qmd &gt;}}</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_8.sec_basicopamptheory.qmd &gt;}}</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_9.sec_circuitdesignandlayout.qmd &gt;}}</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_10.sec_result.qmd &gt;}}</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_11.sec_troubleshooting.qmd &gt;}}</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_12.sec_discussion.qmd &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mimeiners/amcd/edit/main/prj/elie4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/amcd/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

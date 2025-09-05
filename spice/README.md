@@ -1,2 +1,0 @@
-# SPICE Modelle der Experimente
-
