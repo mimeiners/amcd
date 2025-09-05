@@ -34,7 +34,7 @@ abstract: |
   simulation environments, the ASLK PRO kit, and PCB hardware. Its performance is analyzed in both the frequency and
   time domains, with particular attention to gain, phase, and transient characteristics. The study emphasizes the
   comparison between theoretical predictions and practical outcomes, highlighting key trade-offs in analog filter
-  design.
+  design. [**GitHub Repo**](https://github.com/ryanromeodev/hsb-amcd-sose2025-5)
 ---
 
 {{< include content/_sec_introduction.qmd >}}

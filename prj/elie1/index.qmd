@@ -41,7 +41,7 @@ abstract: |
   models were incorporated into implementing the universal biquad filter and compared with simulations to the
   theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required
   behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a
-  physical design with the help of KLayout.
+  physical design with the help of KLayout. [**GitHub Repo**](https://github.com/avahlen/AMCD_Group1)
 ---
 
 {{< include content/_sec_introduction.qmd >}}

@@ -28,6 +28,7 @@ abstract: |
     This led to a revised design utilizing a more robust Gm-C biquad topology driven by a high-performance, fully
     differential OTA. While facing challenges in reaching the desired OTA gain, the final Gm-C filter's simulated
     low-pass response indicated areas for further optimization in the design approach for mixed-signal applications.
+    [**GitHub Repo**](https://github.com/amcd-elie3/amcd-lab)
 ---
 
 {{< include content/_sec_introduction.qmd >}}

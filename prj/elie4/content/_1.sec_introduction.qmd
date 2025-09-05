@@ -4,4 +4,4 @@ This project aims to design an analog universal biquad filter for a corner frequ
 
 The key feature of this project is to focus on simulation-based design using KICAD for schematic capture and analysis of the circuit and analysing the performance in frequency and time domain. For PCB implementation and layout, the same open-source tool is used and the functional modelling of the circuit is done using Analog System Lab Kit (ASLK) and Red Pitaya. The use of Red Pitaya is mentionable as it provides a cost-effective and adaptable platform for measuring the frequency response of ALSK tool kit circuit. The design workflow also includes documentation and analysis using Quarto, Jupyter Notebooks, and supporting tools such as Python, Numpy, and Matplotlib. All components of this project are managed using Git and documented in reproducible formats.
 
-NOTE: All design files, source code, and documentation are shared publicaly under our [GitHub repository](nilina-rose/AMCD-Group-4: To create a PCB design for Biquad filter).
+NOTE: All design files, source code, and documentation are shared publicaly under our [GitHub repository](https://github.com/nilina-rose/AMCD-Group-4).

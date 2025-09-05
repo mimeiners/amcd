@@ -28,7 +28,7 @@ abstract: |
     low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and
     PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain,
     phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results
-    in analog filter design.
+    in analog filter design. [**GitHub Repo**](https://github.com/nilina-rose/AMCD-Group-4)
 ---
 
 {{< include content/_1.sec_introduction.qmd >}}

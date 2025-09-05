@@ -39,7 +39,7 @@ abstract: |
   development report is the design of an universal biquad filter, including the filter characterization and several
   steps of circuit design. Furthermore, the layout process is also part of this documentation. Additionally, the
   experiences with the open source development environment are shared as well. The filter was designed by the use of the
-  IHP sg13g2 PDK.
+  IHP sg13g2 PDK. [**GitHub Repo**](https://github.com/Svensam/AMCD_Group2_IC_Design)
 ---
 
 {{< include content/_sec_introduction.qmd >}}
