@@ -1,0 +1,395 @@
+# Lecture 19.1 OTA Feedback CircuitsCascode Stages
+
+# Poor Man’s OTA Circuit With Cascodes
+
+Objective: increase low frequency loop gain  precision
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# AC Equivalent Model
+
+Cascodes help increase low frequency loop gain roughly by the intrinsic device gain
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Impact of Cgdn
+
+
+
+* Zc ~ 1/gm’ if Rop < ron
+  * But this is not the case here
+* Using the result from lecture 10
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# K versus Frequency
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Resulting Model
+
+
+
+* High frequencies
+  * K ~ \-0\.4
+  * Not a problem
+* Low frequencies
+  * K ~ \-Gm\(2ron||rop\) ~\-50
+  * Can reduce T0 significantly\!
+* Solutions
+  * Try to maintain\(1\-K\)Cgdn< \{Cf\, Cs\}
+  * Neutralization
+    * Fully differential circuits only
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Neutralization
+
+![](img/lec-08-ota_cascode_ic_1.png)
+
+![](img/lec-08-ota_cascode_ic_2.png)
+
+![](img/lec-08-ota_cascode_ic_3.png)
+
+![](img/lec-08-ota_cascode_ic_4.png)
+
+Gray et al\.\, 4th Ed\.\, p\. 849
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# High Frequency Loop Gain
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Phase margin ~ 80 degrees
+  * Non\-dominant pole p2 is not an issue in this case
+* Since ωp2 ~ωT/2\, this means that ωc \(and hence closed\-loop BW\) cannot be higher than ~ωT/10 in this scenario
+
+
+![](img/lec-08-ota_cascode_ic_5.png)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+![](img/lec-08-ota_cascode_ic_6.png)
+
+
+
+* Phase margin ~ 28 degrees
+  * Not acceptable in practice
+* How much phase margin should we design for?
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Domain Perspective
+
+![](img/lec-08-ota_cascode_ic_7.png)
+
+Gray et al\.\, 4th Ed\.\, p\. 632
+
+Typically want phase margin ≅ 60 degrees
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Time Domain Perspective (1)
+
+![](img/lec-08-ota_cascode_ic_8.png)
+
+![](img/lec-08-ota_cascode_ic_9.png)
+
+\[Yang & Allstott\, IEEE TCAS 3/90\]
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+Typically want to shoot for phase margin ~70\-75 degrees
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Phase Margin as a Function of ωp2
+
+At the crossover frequency\, the dominant pole has shifted the phase by about \-90 deg\.
+
+The non\-dominant pole's phase at ωc is given by \-tan\-1\(ωc/ωp2\)
+
+| ωp2/ωc | Approximate PM |
+| :-: | :-: |
+| 1 | 45 deg\. |
+| 2 | 63 deg\. |
+| 3 | 72 deg\. |
+| 4 | 76 deg\. |
+| 5 | 79 deg\. |
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# “Load Compensation”
+
+Nondominant pole is fixed at roughly ωT/2
+
+The loop crossover frequency is given by
+
+
+
+* Increasing CL will lower ωc and increase ωp2/ωc\, which translates into larger phase margin
+* A feedback circuit in which adding additional load capacitance improves stability is often called “load compensated”
+  * Meaning that the load compensates or reduces the impact of phase shift from p2
+* Next lecture we’ll see an example of an OTA in which the phase margin degrades when additional load capacitance is added
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Complete “Telescopic” OTA
+
+
+
+* For stability\, need to worry about
+  * Nondominant pole from NMOS cascodes
+  * Nondominant pole from PMOS cascodes
+  * Pole\-zero doublet from current mirror
+* One major disadvantage of a telescopic OTA is its limited output range
+  * Especially when desired input common mode is relatively high
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Folded Cascode OTA
+
+
+
+* High\- and low\-frequency behavior similar to telescopic OTA
+* Advantage
+  * Input common mode can be chosen without taking away output signal range
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Current Mirror OTA
+
+
+
+* No Miller effect issues
+* Gm = M gm
+  * But non\-dominant pole due to mirror scales as 1/M
+* Useful for applications that don’t demand bandwidths close to process limits
+* Example
+  * Yao\, IEEE JSSC 11/2004
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Lecture 19.2OTA Feedback CircuitsTwo Stages
+
+# (Basic) Two-Stage OTA
+
+
+
+* High gain ~ 0\.5\(gmro\)2
+* Large output range
+* Possible extensions
+  * Cascodes in stage 1
+    * Gain becomes ~0\.5\(gmro\)3 \(\!\)
+  * Current mirror in stage 1
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# AC Model with Capacitive Feedback
+
+\(ignoring Cgd2 for the time being\)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Loop Gain
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Bode Plot of Loop Gain
+
+If ωp1 and ωp2 are close to each other\, the loop will have a very small phase margin
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Introducing a Dominant Pole
+
+
+
+* The problem is solved if we somehow manage to make ωp1<< ωp2 or ωp2<< ωp1
+* The loop then behaves close to first order system around crossover frequency
+  * Phase margin follows from expression on slide 14 of lecture 25
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Creating a Dominant Pole
+
+Numerical example:
+
+
+
+* Two issues
+  * Very low fc\, which means low closed\-loop bandwidth
+  * Huge capacitor
+    * Get roughly 1fF/μm2 in CMOS technology
+    * C1 would occupy about 4mm x 4mm \!
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Miller Compensation
+
+
+
+* Purposely connect an additional capacitor between gate and drain of M2 \(Cc = "Compensation capacitor"\)
+* Two interesting things happen
+  * Low frequency input capacitance of second stage becomes large – exactly what we need for low ωp1
+  * At high frequencies\, Cc turns M2 into a diode connected device – low impedance\, i\.e\. large ωp2 \!
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# “Pole Splitting”
+
+Gray et al\.\, 4th Ed\.\, p\. 643
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Intuitive Perspective
+
+
+
+* Feedback due to Cc forces transfer function onto 1/f\(s\) in regions where |a\(s\)f\(s\)| >> 1
+  * This reduces ωp1 and increases ωp2
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Detailed Analytical Result
+
+Very messy; need to simplify
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Dominant Pole Approximation
+
+We can write the denominator as
+
+Since in a practical design outcome we'll have |p1|<<|p2|\, we can approximate
+
+With this simplification\, we can now easily identify p1 and p2 by comparing the coefficients with the expression from the previous slide
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Result
+
+Right half plane \(RHP\) zero
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# RHP vs. LHP Zero
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Potential Issue with RHP Zero (1)
+
+RHP zero can significantly reduce the phase margin if it occurs before the crossover frequency
+
+Gray et al\.\, 4th Ed\.\, p\. 645
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+What does it take to push RHP zero beyond wc?
+
+Compare wc to wz
+
+
+
+* Pushing RHP zero beyond crossover requires gm2 > βGm1
+  * Not always possible or desired
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Mitigating the Impact of RHP Zero
+
+
+
+* Somehow create unilateral feedback through Cc
+  * Source follower from output to drive Cc
+    * Additional power & swing issues
+  * Cascode compensation
+    * Ahuja\, IEEE JSSC\, 12/1983
+    * Ribner\, IEEE JSSC\, 12/1984
+    * Turns design into complicated three\-pole problem
+* Most popular method: Use a “nulling resistor"
+  * Pushes zero to infinity
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Nulling Resistor (1)
+
+New transfer function becomes
+
+p1 and p2 unchanged\, new pole p3\, and a knob to tune the zero
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+Gray et al\.\, 4th Ed\.\, p\. 649
+
+
+
+* Rz=1/gm2 pushes the zero to \+∞
+* Can use a transistor in triode region to implement resistor
+  * Helps track process variations
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Rz=\(1\+C2/Cc\)/gm places zero on top of ωp2\!
+  * Cancels p2
+  * Good in theory\, may be troublesome in practice
+  * If the pole and zero don't fall exactly on top of each other\, we get a pole\-zero doublet
+    * Can lead to poor transient response
+* Does the third pole matter?
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Summary – Two-Stage OTA
+
+
+
+* Using Miller compensation and nulling resistor turns the design of a two\-stage OTA into a “well\-behaved” design problem
+  * Loop crossover set by Cc
+  * Non\-dominant pole location depends on CLtot
+* Important to note that increasing CL moves wp2 to lower frequencies and hence reduces the phase margin
+  * Big difference compared to single stage OTAs\, which become “more stable” when the load capacitance is increased
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Topics We Haven’t Covered
+
+
+
+* Architectural variations
+  * Gain boosting
+  * Class\-AB output stages
+  * Fully differential implementation\, common mode feedback
+* Alternate compensation techniques
+  * E\.g\. feed\-forward techniques
+* Frequency dependent feedback networks\, resistive loads
+* Large signal and transient analysis
+  * Detailed signal range considerations
+  * Transient settling\, slewing
+* Noise analysis
+* PSRR\, CMRR analysis
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+

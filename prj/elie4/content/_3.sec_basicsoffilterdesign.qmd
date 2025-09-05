@@ -1,0 +1,57 @@
+# Basics of Filter Design
+
+Filters, as the name suggests, is used to filter out the unwanted signals. Based on different fields, its usage is also different like in analog electronics, they can be used to shape certain signals while attenuating other. Other applications of filters are to remove noise to improve the signals quality in certain fields like audio processing, biomedical instrumentation, communication systems, or sensor signal conditioning. 
+
+## Types of Filters
+There are four types of filters which are low pass filter, high pass filter, band pass filter and band stop filter or notch filter. Filters are classified based on allowing or blocking different band of frequencies. They treat different frequencies of the spectrum in various ways [@Cktdesign]. The low pass filter allows the low frequency signals to pass through the filter and attenuates the higher frequency signals. Whereas high pass filter works just the opposite of this by allowing the high frequency signals to pass through the filter and attenuates the low frequency signals. Band pass filter passes a specific range of frequencies and attenuates the rest and the band stop cuts off a specific range of signals and allows the rest to pass through the filter. The frequency response of each filters are @fig-freqrespideal for a better understanding of the types of filters:
+
+![Ideal Frequency Response Graph](images/section3/freqrespideal.png){#fig-freqrespideal fig-align="center" fig-cap="Ideal Frequency Response Graph"}
+
+## Defining Standard Design Specifications
+
+There are some terminologies to keep in mind when taking about filter designing, namely cutoff frequency, order of the circuit and roll off which is defined below.
+
+### Cut-off frequency 
+It is the frequency at which the filter starts to significantly reduce the signal strength. It is also known as corner frequency or break frequency [@Cutofffreq] and can be determined by the formula: 
+
+$$
+f_c = \frac{1}{2 \pi R C}
+$$
+
+where:<br>
+- $f_c$ is the cutoff frequency (in Hz),<br>
+- $R$ is the resistance (in ohms),<br>
+- $C$ is the capacitance (in farads).
+
+The cut-off frequency is a key parameter in filter design and determines the point at which the output signal falls to 70.7% of the input or from the frequency response curve or bode plot, it is -3dB (20 log (Vout/Vin)) of the input @fig-folp.
+
+### Roll-off 
+It is determined to measure the rate at which the filter attenuated the signal after the cut-off frequency [@rolloff]. More steeper the roll-off factor more better the filter works. So in order to increase this factor we need to look into other parameter called the order of the filter.
+
+![Filter Response Characteristics](images/section3/Firstorderlowpass.png){#fig-folp fig-align="center" width=70% fig-cap="Frequency Response Characteristics"} 
+
+### Order of Filter
+The order of a filter is determined by the number of reactive elements in the circuit like capacitance or inductance [@Filterbasic]. As we add one reactive element more, we increase the maximum roll-off by 20 db/decade. So the key point here is to add more reactive elements in order to increase the order of the filter but this increase affects other parameter like phase shifting, as order increases phase shift increases. So we can't increase it as much as we can.
+
+### Bandwidth
+It is the range of frequencies that passes through the filter without attenuation [@Cktdesign]. The bandwidth can be calculated by taking the difference of the frequnecies at -3db gain as shown in @fig-qbw
+$$
+BW = f_2 - f_1
+$$
+The bandwidth of low pass filter can be frequnecy at 3db and for band pass it is as shown above while it is not defined for band stop and high pass filters.
+
+![Q Factor and Bandwidth](images/section3/qfactorandbw.png){#fig-qbw fig-align="center" width=70% fig-cap="Q Factor and Bandwidth"}
+ 
+### Q Factor
+It is used to measure how well a filter isolates a desired frequency band while attenuating other frequency ranges. This factor affects the bandpass and bandstop filters. As the bandwidth becomes narrower the Q-factor increases which denotes a higher selection of frequency to pass or stop. This can be calculated by
+
+$$
+Q = \frac {f_0} {BW}
+$$
+
+where,<br>
+$Q$ is the quality factor<br>
+$f_0$ is the cut-off frequency<br>
+$BW$ is the bandwith
+
+But the increase in quality factor can show undesirable oscillation and bring more instability to the circuit. Also the values of passive components like resistor and capacitors affect the performance. Practically acheiving high Q-factor is difficult due to the limited component quality and manufacturing tolerances.

@@ -1,0 +1,59 @@
+# Filter Design Fundamentals
+
+## Second order universal active filter
+
+![Second order universal active filter](images/Second order universal active filter.png)
+
+The circuit diagram shows a **universal active filter** capable of producing four different types of outputs simultaneously. It is constructed from four operational transcundactance amplifiers - two inverting intergrators, 2 inverting adders, resistors, and capacitors.
+
+* **BPF Output**: First Integrator (top-left op-amp) processes the input signal.
+* **LPF Output**: Second Integrator (top-middle op-amp) takes the BPF output as its input.
+* **HPF Output**: Inverting Adder 1 (top-right op-amp) sums the LPF output, the BPF output, and the original input signal.
+* **BSF Output**: Inverting Adder 2 (bottom op-amp) sums the LPF and HPF outputs.
+
+
+## The Inverting Adder
+
+An inverting adder (or summing amplifier) outputs a voltage that is the inverted, weighted sum of its input voltages.
+
+### Output Voltage Equation
+
+For an inverting adder with three inputs ($V_a, V_b, V_c$), input resistors ($R_a, R_b, R_c$), and a feedback resistor ($R_f$), the output voltage $V_o$ is:
+
+$$
+V_o = - \left( \frac{R_f}{R_a}V_a + \frac{R_f}{R_b}V_b + \frac{R_f}{R_c}V_c \right)
+$$
+
+## The Inverting Integrator
+
+An inverting integrator is an operational amplifier circuit that produces an output voltage proportional to the time integral of its input voltage, with an inverted sign. It's fundamentally an inverting amplifier with a capacitor in the feedback path.
+
+### Output Voltage Equation
+
+For an inverting integrator with an input voltage ($V_i$), an input resistor ($R_1$), and a feedback capacitor ($C_f$), the output voltage $V_o$ is:
+
+$$V_o = - \frac{1}{R_1 C_f} \int V_i \, dt + V_o(0)$$
+
+## Transfer function
+
+The biquadratic filter, or "biquad," is a second-order filter widely used in analog filter design. Its general transfer function is given by:
+$$H(s)=\frac{a_{1}s^{2}+b_{1}s+c_{1}}{a_{2}s^{2}+b_{2}s+c_{2}}$$
+
+The numerator coefficients can be chosen to achieve low-pass, band-pass, or high-pass responses. For example, setting $a_{1}=b_{1}=0$ leads to a low-pass filter (LPF). Higher-order filters can be constructed by cascading biquad sections.
+
+Second-order filters can realize four types of filters, with their transfer functions typically shown below. 
+
+Here are the transfer functions for common second-order active filters:
+
+* **Low Pass Filter (LPF)**:
+    $$\frac{V_{03}}{V_{i}}=\frac{+H_{0}}{(1+\frac{s}{\omega_{0}Q}+\frac{s^{2}}{\omega_{0}^{2}})}$$
+
+* **High Pass Filter (HPF)**:
+    $$\frac{V_{01}}{V_{i}}=\frac{(H_{0}\cdot\frac{S^{2}}{G_{i}^{2}})}{(1+\frac{S}{a_{0}Q}+\frac{S^{2}}{a_{0}^{2}})}$$
+
+* **Band Pass Filter (BPF)**:
+    $$\frac{V_{02}}{V_{i}}=\frac{(-H_{0}\cdot\frac{S}{Q_{0}})}{(1+\frac{S}{Q_{0}Q}+\frac{S^{2}}{Q_{0}^{2}})}$$
+
+* **Band Stop Filter (BSF)**:
+    $$\frac{V_{o4}}{V_{i}}=\frac{(1+\frac{s^{2}}{Q_{o}^{2}})\cdot H_{0}}{(1+\frac{s}{Q_{o}Q}+\frac{s^{2}}{Q_{o}^{2}})}$$
+

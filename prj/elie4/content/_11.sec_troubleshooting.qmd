@@ -1,0 +1,13 @@
+# Trouble Shooting and Mistakes
+
+During our course of the project work, we have faced a few issues while implementing the biquad filter in ALSK as well as in KiCAD while designing the schematic diagram and the PCB. Some of them are listed below.
+
+Initially, while implementing the circuit in ALSK pro kit, the output we could get in using the red pitaya was just some noises for all the filter types. When observed closely we found out the need to connect a wire physically in the board from non-inverting terminal of the op-amp to the ground for the two op-amps in op-amp type II full section of the ALSK pro board. Whereas the other two op-amp were internally connected to ground.
+
+Both the PCBs that have designed didn't give us any output as the we try to measure it using the red pitaya. 
+
+On observation it was found that the PIN no 5 and PIN 6 got interchanged in KiCAD as shown in @fig-pcbfault even after importing the netlist from the schematic which was working. 
+
+![Pin interchange](images/section12/pcbfault.png){#fig-pcbfault fig-align="center" width="50%" fig-cap="Pin interchange"}
+
+Another mistake that occured was while designing the schematic diagram in PCB, the op-amp imported had the inverting terminal connected to the ground. Even after connecting the whole circuit with that configuration, the schematic diagram in KiCAD gave the output and so didn't cross checked for any mistakes. Thus ending up downloading the same netlist and designed a PCB with changed pins. Even then tried to obtain the output by giving externals connection vai a bread board, still no results were obtained.

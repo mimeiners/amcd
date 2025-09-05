@@ -1,0 +1,38 @@
+# Layout {#sec-layout}
+
+In @sec-circuit-design the circuit for the biquad filter is designed. As we have seen, there are some differences between the ideal circuit and the real circuit. After matching the filter response of both circuits, we need to layout the circuit. Since the step from ideal circuit to the real circuit took more time than expected due to the challenges described in @sec-challenges, it was not feasible to do a layout of the described filter. Additionally, the real circuit did not work as expected with the OTA and the improved OTA from [@pretlGitHubRepositoryIICOSICTOOLS2025], a full layout will not be functional, since the OTAs are overloaded. From this outcome we decided to layout the 5T-OTA from [@pretlGitHubRepositoryIICOSICTOOLS2025] to follow the whole design process and gain some experience in the layout process as well.
+
+The layout was done in *KLayout* with the use of the *IHP sg13g2* PDK. In contrast to the layout from the bachelor course ANS, where the same biquad circuit was realized as a discrete PCB with casual `TL082` OPAMPs, layouting integrated circuits is different to the PCB design.
+
+## Workflow in KLayout
+In this section the layouting process using *KLayout* is described. In the first place the different layers will be described, afterward a connection to the discrete layouting process will be drawn. The schematic import from @sec-circuit-design is not directly possible. From this follows, every component need to be added to the layout manually. Later on, from the layout a netlist will be derived and compared to the netlist given by the schematic. This step is called Layout Versus Schematic (LVS).
+
+![Drain, Source and Gate of pMOS in KLayout](images/pmos_parts.png){fig-align="center" fig-cap="Representation of Drain, Source and Gate of a pMOS in KLayout" #fig-pmos-parts}
+
+In @fig-pmos-parts a part of a pMOS is shown. The drain and source contact of this pMOS are blue-colored areas, which represent the Metal1 layer. The drain and source nodes are connected through the green layer, which is the Active layer. The gate is red-colored and represents the GatPoly. All the contacts and the physical construction of the pMOS from @fig-pmos-parts are covered in NWell- and pSD-layers. This can be seen in @fig-pmos-full.
+
+![Complete pMOS in KLayout](images/pmos_full.png){fig-align="center" fig-cap="Representation of complete pMOS in KLayout" #fig-pmos-full}
+
+When inserting a pMOS in the layout the pMOS will look like the pMOS shown in @fig-pmos-full. To connect the different ports of a pMOS, drawings on the respective layer need to be done. Connections on the same layer can be done directly by drawing a box, overlapping with the box of the pMOS contact. In @fig-pmos-con the gates of two pMOS are illustrated.
+
+![Connected gates of pMOS in KLayout](images/pmos_gate_con.png){fig-align="center" fig-cap="Connected gates of two pMOS cells" #fig-pmos-con}
+
+In order to connect two different layers, a via layer needs to be inserted to provide a vertical connection between them. To make pins accessible from the outside of the IC, a contact layer needs to be inserted. This can be observed in @fig-pmos-parts, where the drain and source Metal1 pads are shadowed with a cyan pad, which represents the contact layer.
+
+Another aspect which needs to be mentioned is the size of different components. According to the 5T-OTA from [@pretlGitHubRepositoryIICOSICTOOLS2025] the transistors have different $\frac{g_m}{i_d}$ values and therefore different lengths $L$ and widths $W$. Unlike discrete components, where the housing is the same, e.g. a resistor can have different values with the same dimensions, the dimensions in discrete design vary. In discrete design the behavior is determined by the sizing and therefore the physical space this component will allocate controls the behavior.
+
+![5T-OTA in KLayout [@pretlGitHubRepositoryIICOSICTOOLS2025]](images/ota_full.png){fig-align="center" fig-cap="5T-OTA in KLayout [@pretlGitHubRepositoryIICOSICTOOLS2025]" #fig-5tota-klayout}
+
+
+In @fig-5tota-klayout the layout of the 5T-OTA from [@pretlGitHubRepositoryIICOSICTOOLS2025] can be observed. It can be seen, that the components M3 and M4 are the largest components. This is caused by the higher $\frac{g_m}{i_d}$ and the fact, that these are pMOS transistors. On the other hand, the biasing transistors M9 and M10 are very small compared to M3 and M4. The difference in the size is caused by the different purpose and behavior.
+
+To ensure the layout is aligned with the schematic, the LVS needs to be performed. In this course the in @sec-env described tools were used. The LVS could not be performed as expected, the reason for this will be discussed in @sec-challenges.
+
+
+## Differences to discrete layout process
+The design processes for discrete and integrated circuit design differ in certain aspects, especially when it comes to layouting. However, there are also similarities. In the following comparison the differences and equalities are outlined.
+
+In the discrete layout, performed in KiCad, the first step was to draw the schematic and wire it. Afterward the footprints for the components have been chosen. After drawing and assigning the footprints, the components needed to be placed on the PCB and the connections were routed. In the discrete case this means connecting the pins of each component according to the schematic.
+Selecting the footprints in the discrete case is in some kind comparable to choosing the PDK in the integrated case. After choosing the PDK, the base components, e.g. pMOS and nMOS, are available. Following this step the base components will be placed in the drawing space. Since in integrated circuit design the components are more fundamental and the operation points and the behavior is defined by the geometry, for each component the geometry is specified with the derived values from the sizing in @sec-circuit-design. Another difference can be found when connecting the components. As described previously, in case of discrete design these connections were just wire-like connections between the pins (soldering pads). For the integrated layout every port of a component is on a different layer, which follows in connecting these different layers through e.g. vias.
+
+For the discrete and integrated circuit design it is necessary to do a design rule check (DRC). The design rule check is in some manner the same. In case of the integrated design the DRC is more detailed, since the layouting process is more complex due to the drawing of the different layers and geometries. Furthermore, the design rules are determined by the chosen PDK, while for the discrete design the design rules are specified by the manufacturer.

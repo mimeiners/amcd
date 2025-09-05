@@ -1,0 +1,156 @@
+# Circuit Design {#sec-circuit-design}
+To implement the desired behavior of the biquad circuit described in the previous chapter @sec-filter into an integrated circuit design, an ideal biquad (@fig-ideal_Circuit_v1) is first created in @sec-aslk-design. This serves to validate the expected behavior. Once this validation is successful, the ideal operational amplifiers (op-amps) can be replaced with real op-amps or Operational-Transconductance-Amplifiers (OTAs). In our case, the ideal op-amps were initially replaced with the "improved OTAs" (@fig-real_Circuit_v1) developed by Prof. Pretl [@pretlGitHubRepositoryIICOSICTOOLS2025]. However, since these did not reproduce the desired behavior after several attempts (@sec-challenges), a new biquad structure based on Baker [@baker2008] in @sec-baker-design was developed. Again, an ideal circuit using ideal OTAs was first implemented (@fig-ideal_Circuit_V2). After successfully validating the desired behavior, the ideal OTAs were replaced with a real transistor-level circuit (@fig-real_Circuit_V2). This biquad was then further adjusted to qualitatively achieve the desired behavior.
+
+Due to the complexity of implementing a biquad in the integrated circuit design, the parameters of the circuits provided were rather tested in the simulation process and attempts were made to adapt them so that our requirements could be met. The correct approach would be to mathematically determine the various parameters based on the desired characterization of the filter and then adjust them with small changes towards the end. This includes, for example, the pre-calculation of capacitor sizes as well as the determination of the individual gains of the OTAs and the corresponding design of the W/L ratios of the transistors etc.. In addition, we limit ourselves to the AC simulation in order to be able to better compare our filter behavior. To validate the system correctly, a transient and noise simulation would also have to be carried out.
+
+## ASLK Pro Experiment 4 Implementation {#sec-aslk-design} 
+In the following sections the design following ASLK Pro Experiment 4 [@AnalogSystemLabKitPROMANUAL] is described.
+
+### Ideal Circuit Design (ASLK)
+As an initial step in the development of the universal biquad filter, an ideal version of the circuit was implemented based on "ALSK Pro Experiment 4", as described in [@AnalogSystemLabKitPROMANUAL]. The objective was to validate the theoretical filter behavior before moving on to a transistor-level implementation.
+
+The circuit was built using Xschem and employs an ideal operational amplifier, provided as a .subckt SPICE model by Prof. Meiners. This model is named opamp1 and was integrated into the project directory under 2_ideal_cir. To include the model in Xschem, a .lib directive was used to reference the netlist, and care was taken to ensure the symbol pin configuration matched the subcircuit definition.
+
+![Ideal circuit of the ASLK biquad filter in Xschem (2_ideal_cir/toplevel.sch)](images/ideal_cir_image.png){fig-align="center" fig-cap="Ideal circuit of second order Biquad Filter in Xschem" #fig-ideal_Circuit_v1}
+
+The topology of the circuit "toplevel.sch" includes all four standard biquad filter responses:
+
+- **BPF**: Band-Pass Filter
+- **LPF**: Low-Pass Filter
+- **HPF**: High-Pass Filter
+- **BSF**: Band-Stop Filter
+
+Each stage is realized using a dedicated instance of the ideal op-amp. The resistor and capacitor values are defined in a SPICE-compatible .param statement in params.txt, which was loaded within the schematic environment. These parameters were derived from the characterization goals described in @tbl-design_specs:
+
+   - **Center frequency**: $f_0 = 1~\mathrm{kHz}$
+   - **Quality factor**: $Q=10$
+   - **Gain**: $H_0=1$
+
+**Choice of Capacitor**
+
+First, the capacitance is assumed with $C = 100~\text{nF}$.
+This needs to be done, calculating the resistances in the next step:
+
+
+**Choice of Resistors**
+
+Based on the corner-frequency relation:
+
+$$
+f_0 = \frac{1}{2\pi\,R\,C}
+$$
+
+Solving for $R$ gives:
+
+$$
+R = \frac{1}{2\pi\,f_0\,C}.
+$$
+
+For the chosen values
+
+$$
+f_0 = 1\ \text{kHz},
+\quad
+C = 100\ \text{nF},
+$$
+
+we get:
+
+
+
+```{python}
+#| echo: true
+#| code-fold: show
+import numpy as np
+
+f0 = 1e3      # Hz
+C  = 100e-9   # F
+R  = 1/(2*np.pi*f0*C)
+# output
+print(f"R = {R/1e3} kΩ")
+print(f"Rounded: R = {R/1e3:.2f} kΩ")
+
+```
+
+
+This yields:
+
+- $R=1.59~\mathrm{k\Omega}$
+- $C=100~\mathrm{nF}$
+- $R_Q=10~\mathrm{k\Omega}~$ (to set $Q$)
+- $R_H=1~\mathrm{k\Omega}~$ (to set $H_0$)
+
+To simulate the frequency response, the schematic includes a simulation block with ngspice commands such as:
+
+```default
+.control
+ac lin 1000 1 3k
+write toplevel.raw
+plot db(lpf) db(bpf) db(bsf) db(hpf)
+.endc
+```
+This runs a frequency sweep (ac lin) and stores the output voltages at the HPF, BPF, LPF, and BSF nodes. The graphical configuration in Xschem is handled via embedded .graph directives, which are automatically visualized in the GUI. In this project, all results were visualized in Python with the corresponding raw data file.
+
+![Results of the ideal ALSK biquad filter](images/Plot_EvalDesign_V1_ideal.png){#fig-ideal_biquad_V1_results}
+
+The @fig-ideal_biquad_V1_results above shows the simulated behavior of the ideal biquad and the previously calculated theoretical curve. It can be seen that the ideal simulated biquad (red dashed line) corresponds well with the theory in the frequency responses of the four filter types. The peaks are somewhat weaker in the simulation than in theory. There are also differences in the phase response, for example the phase in the BSF, it's shifted by $180°$.
+
+### Real Circuit Design (ASLK)
+
+As the ideal circuit has already been validated, it can now be implemented in the real circuit. To do this, the ideal OPAMPs were first replaced by the 5T-OTA from Pretl, but as their behavior was not convincing, we switched to the improved OTAs from Prof Pretl's repository [@pretlGitHubRepositoryIICOSICTOOLS2025]. It's shown in the @fig-real_Circuit_v1 below.
+
+![Real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad.sch)](images/real_cir_biquad_image.png){fig-align="center" fig-cap="Real circuit of second order Biquad Filter in Xschem" #fig-real_Circuit_v1}
+
+Compared to the ideal circuit (@fig-ideal_Circuit_v1), it is noticeable that the OTAs now have the voltage inputs vdd, vss, d_ena and the current input ibias.
+
+The following transistor circuit in @fig-real_Circuit_ota_v1 is located in the respective improved OTAs. These transistors then had to be adapted accordingly to our desired filter behavior. The “sizing tool” for the improved OTA from Prof. Pretl's Analog Circuit Design lecture material [@pretl2024] was used for this. It quickly became apparent that the current becomes very high with high capacitive loads. The capacitance of the capacitors was therefore reduced from $100~\mathrm{nF}$ to $100~\mathrm{pF}$. In order to remain at a center frequency of $f_0=1~\mathrm{kHz}$, the resistance value had to be increased accordingly from $1.59~\mathrm{k\Omega}$ to $1.59~\mathrm{M\Omega}$. The sizing carried out can be found in the project directory (3_real_cir/sizing/sizing_improved_ota.ipynb).
+
+![Improved OTA of Prof. Pretl in Xschem (3_real_cir/ota_improved.sch)](images/ota-improved.png){fig-align="center" fig-cap="Transistor circuit of Pretl's improved OTA in Xschem, (ota_improved.sch)" #fig-real_Circuit_ota_v1}
+
+The individual transistors are IHP's SG13G2 130nm CMOS Technology. A bias current of $25~\micro\mathrm{A}$ was determined by sizing. In addition, the voltages $vdd = 1.5~\mathrm{V}$, $vss = 0~\mathrm{V}$ and $ena = 1.5~\mathrm{V}$ are required.
+
+To simplify the setting of the input variables, a test bench was also created for the entire circuit, which is seen in @fig-real_Circuit_tb_v1.
+
+![Testbench for the real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad_tb.sch)](images/real_cir_tb_image.png){fig-align="center" fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_tb.sch)" #fig-real_Circuit_tb_v1}
+
+This circuit was then tested with an AC simulation. The result (blue dashed line) can be seen in the @fig-real_biquad_V1_results below.
+
+![Results of the real ALSK biquad filter](images/Plot_EvalDesign_V1_real.png){#fig-real_biquad_V1_results}
+
+It can be seen that the desired behavior could not be reproduced. One of the reasons for this is that this type of OTA cannot drive the required current.
+
+## Baker Implementation {#sec-baker-design}
+As the desired behavior could not be reproduced, a new variant of a biquad was tried out. In this case, we cosntructed a biquad circuit according to Baker [@baker2008] in the following sections. The design process remains the same as the previous one.
+
+### Ideal Circuit Design (Baker)
+Here, too, an ideal circuit, which is seen in @fig-ideal_Circuit_V2, was first constructed according to figure 3.53 in Baker's bool [@baker2008, p.115].
+
+![Ideal circuit of the Baker biquad filter in Xschem (2_ideal_cir/biquad_gm_c.sch)](images/biquad_gm_c_V2_ideal.png){fig-align="center" fig-cap="Ideal circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)" #fig-ideal_Circuit_V2}
+
+The OTAs used have the ideal internal circuit shown in the following @fig-ideal_Circuit_ota_V2, which was provided by Prof Meiners.
+
+![Ideal OTA provided by Prof. Meiners in Xschem (2_ideal_cir/ota_gm_100u.sch)](images/ota_gm_100u_V2_ideal.png){fig-align="center" fig-cap="Ideal OTA from Prof. Meiners (REF) in Xschem, (ota_gm_100u.sch)" #fig-ideal_Circuit_ota_V2}
+
+The @fig-ideal_biquad_V2_results below show that the desired behavior from the AC simulation could be qualitatively reproduced (red dashed line). Compared to the theoretical behavior (green line), the peaks are very weak, but for now it's okay. This ideal circuit can therefore be transferred to the real circuit.
+
+![Results of the ideal Baker biquad filter](images/Plot_EvalDesign_V2_ideal.png){#fig-ideal_biquad_V2_results}
+
+### Real Circuit Design (Baker)
+
+For the real circuit, this means that the ideal OTAs are first replaced with the real OTAs. This has been done in the @fig-real_Circuit_V2. It should be recognised that the real OTAs also have a voltage input for vdd and a current input for the bias current i_bias.
+
+![Real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c.sch)](images/biquad_gm_c_V2_real.png){fig-align="center" fig-cap="Real circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)" #fig-real_Circuit_V2}
+
+It can be seen that these are differential OTAs. These require a positive (vinp) and a negative (vinn) input voltage. As well as a common-mode voltage (vcm). The output of the circuit results from $\mathrm{vout} = \mathrm{outp} - \mathrm{outn}$. 
+
+![Real OTA of the Baker biquad filter in Xschem (3_real_cir/ota_gm_c.sch)](images/ota_gm_c_V2_real.png){fig-align="center" fig-cap="Transistor circuit of Baker's OTA (REF) in Xschem, (ota_gm_c.sch)" #fig-real_Circuit_ota_V2}
+
+The transistors in the @fig-real_Circuit_ota_V2 above have also been sized. These were determined according to the formulas of the individual gains from Baker's document.
+
+Here too, a test bench was created for better adjustment. The capacitor sizes were also specified in this. As mentioned at the beginning of this chapter, these values were determined by testing.
+
+![Testbench for the real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c_tb.sch)](images/biquad_gm_c_tb_V2_real.png){fig-align="center" fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_gm_c_tb.sch)" #fig-real_Circuit_tb_V2}
+
+The @fig-real_biquad_V2_results below shows the result of the AC simulation (blue dashed line). It can be seen that we have reached our design frequency around $f_0 = 1~\mathrm{kHz}$. However, the amplification and attenuation are not as pronounced as in the ideal (red dashed line) or theoretical (green line) case.
+
+![Results of the real Baker biquad filter](images/Plot_EvalDesign_V2_real.png){#fig-real_biquad_V2_results}

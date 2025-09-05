@@ -1,0 +1,325 @@
+# Lecture 4Ladders
+
+# Sensitivity Problem with Cascaded Biquads
+
+
+
+* Passband response is sensitive to shifts in the pole positions
+  * Especially for high Q
+* Typically\, integrated continuous time filters use biquads to realize filters only up to ~5th order
+
+
+Source: U\. Moon\, Stanford Univ\.
+
+# Conceptual View of a Biquad Cascade
+
+
+
+* Individual sections are actively decoupled
+  * Variations in individual components affect only one pair of poles \(and/or zeros\)\.
+* Ideally\, we would like all the poles \(and zeros\) to “move together”
+  * This would at least preserve the  <span style="color:#008000">shape</span>  of the filter response\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Doubly Terminated LC Ladder Filters
+
+
+
+* The  _passband_  response of ladder filters is much less sensitive to component variations when compared to a biquad cascade
+  * Poles “tend” to move together
+* For a sensitivity analysis\, see e\.g\.
+  * G\. C\. Temes and H\. J\. Orchard\, “First order sensitivity and worst\-case analysis of doubly terminated reactance two\-ports\,” IEEE Trans\. Circuit Theory\, 20 \(5\)\, pp\. 567–571\, 1973\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Basic Intuition
+
+In the passband\, the gain from Vin to Vout is maximum \(0\.5\)\.
+
+Any detuning of L and C can only reduce the passband gain\.
+
+Therefore\, the passband gain is convex in L and C\, and the sensitivity is zero around the nominal design point\!
+
+Sensitivity = 0 \(\!\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Analysis Example (1)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* E\.g\. for
+* it follows that
+* A third order lowpass filter\.
+* Zeros can be realized by utilizing parallel and series combinations of inductors and capacitors\.
+* Analysis is doable
+  * But very tedious\!
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# LC Ladder Synthesis
+
+
+
+* Filter design tables
+  * A\. Zverev\,  _Handbook of Filter Synthesis_ \, Wiley\, 1967
+  * A\. B\. Williams and F\. J\. Taylor\,  _Electronic Filter Design_ \, 4th ed\.\, McGraw\-Hill\, 2006
+  * R\. Schaumann et al\.\,  _Design of Analog Filters_ \, 2nd ed\.\, Oxford Univ\. Press\, 2010
+* CAD tools
+  * [https://github\.com/chipmuenk/pyfda](https://github.com/chipmuenk/pyfda)
+    * Python Filter Design Analysis Tool
+  * [http://www\.circuitsage\.com/filter\.html](http://www.circuitsage.com/filter.html)
+    * Comprehensive list of available tools
+  * [http://tonnesoftware\.com/elsie\.html](http://tonnesoftware.com/elsie.html)
+    * Free version of Elsie supports ladder synthesis up to 7th order
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Butterworth Filter Table
+
+![](img/lec-04-ladders_0.png)
+
+R is the desired value of the source and termination resistor
+
+Schaumann et al\.\,  _Design of Analog Filters_ \, 2010
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+---
+
+Typically choose topology with minimum inductors.
+
+# A Design Example
+
+![](img/lec-04-ladders_1.png)
+
+
+
+* Channel select filters \(CSF\)
+  * 640 kHz passband\, lowpass
+  * 0\.5 dB passband ripple
+  * > 40 dB stopband attenuation at 900 kHz
+* 5th order elliptical filter
+
+
+Lim et al\.\, “A Fully Integrated Direct\-Conversion Receiver for CDMA and GPS Applications\,” IEEE JSSC\, Nov\. 2006
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Synthesis Result
+
+![](img/lec-04-ladders_2.png)
+
+Termination resistors arbitrarily set to 10kΩ\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Spice Simulation Result
+
+
+
+* 6 dB passband attenuation due to resistive termination
+  * Easy to change to 0dB in an active realization\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# 20% Variation in L2
+
+
+
+* Only a very small change in the passband response; moderate degradation in the stopband\.
+  * Smaller \(i\.e\. more realistic\) variations than 20% can be easily handled through overdesign\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# State-Space Description for C1
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Implementation of C1 Integrator
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Remaining Integrators
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Complete Realization
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Signal Inversion
+
+Realization in a single\-ended circuit\(need only one shared circuit per state\)
+
+Realization in a differential circuit
+
+In a first\-cut \(single\-ended\) simulation\, signal inversion can also be achieved using negative resistors and capacitors\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# SPICE Simulation Setup
+
+
+
+* AC analysis with 1V applied at the input
+* Amplifiers are ideal\, with an open loop gain of 106
+* Set Rx2=Rx4=R=10kΩ
+  * Somewhat arbitrary at this point
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response
+
+|V1|max =  0\.8505 V
+
+|V2|max =  1\.5585 V
+
+|V3|max =  0\.9039 V
+
+|V4|max =  1\.7072 V
+
+|Vout|max =  0\.5000 V
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Node Voltage Scaling
+
+
+
+* To scale the peak output voltage of an integrator by a factor of k\, scale all resistors and capacitors connected to the input and output node as shown below\.
+* Feedback R and C remain unchanged:
+  * Will be scaled together with all other components to adjust the thermal noise \(more later\) \.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response After 0dB Scaling
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Component Values After 0dB Scaling
+
+
+
+* Resistors
+  * Rmin = 2\.93 kΩ
+  * Rmax = 34\.1 kΩ
+* Capacitors
+  * Cmin = 6\.47 pF
+  * Cmax = 48\.7 pF
+* Component spread ~10
+  * Manageable in practice
+  * May be able to reduce spread by scaling integration capacitors\, subject to noise constraints\.
+  * A very complex optimization problem\!
+
+
+% feedback R \[Ω\] and C \[F\]
+
+ci1 =   4\.3711e\-011
+
+ri1 =   10000
+
+ci2 =  2\.5416e\-011
+
+ci3 =  7\.4108e\-011
+
+ci4 =  1\.7567e\-011
+
+ci5 =  4\.8692e\-011
+
+ri5 =  10000
+
+% coupling R \[Ω\]
+
+rin = \-8\.5052e\+003
+
+r12 = \-1\.8324e\+004
+
+r21 =  5\.4573e\+003
+
+r23 = \-5\.7997e\+003
+
+r32 =  1\.7242e\+004
+
+r34 = \-1\.8888e\+004
+
+r43 =  5\.2944e\+003
+
+r45 = \-2\.9287e\+003
+
+r54 =  3\.4145e\+004
+
+% zero C \[F\]
+
+c13 = \-6\.4665e\-012
+
+c31 = \-7\.3035e\-012
+
+c35 = \-3\.6888e\-011
+
+c53 = \-1\.1287e\-011
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Schematic
+
+![](img/lec-04-ladders_9.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# 20% Variation in Ci2
+
+![](img/lec-04-ladders_10.png)
+
+![](img/lec-04-ladders_11.png)
+
+Only small passband variations despite large component variation\.
+
+Active realization of ladder retains low sensitivity of passive prototype\.
+
+More analysis is needed to determine the actual precision requirements for all components\, e\.g\. through a Monte\-Carlo \(MC\) simulation\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Summary
+
+
+
+* Higher\-order filter realization:
+* Cascade of biquads
+  * High sensitivity often problematic for order ≥ 5
+* Ladder filters
+  * Based on LC prototypes
+  * Low sensitivity
+  * Active RC simulation retains low sensitivity
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# 5th Order Elliptic Filter Table (1)
+
+![](img/lec-04-ladders_12.png)
+
+0\.17dB passband ripple
+
+![](img/lec-04-ladders_13.png)
+
+![](img/lec-04-ladders_14.png)
+
+Williams\, Electronic Filter Design Handbook\, 4th Ed\.\, Tab\. 11\-56
+
+![](img/lec-04-ladders_15.png)
+

@@ -1,0 +1,53 @@
+---
+title: "IC Design of a Universal Biquad Filter"
+author: 
+  - name: Julian Höpe
+    orcid: 
+    email: jhoepe@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+    affiliation:
+      - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+        city: Bremen
+        state: Germany
+        url: https://www.hs-bremen.de/en/  
+  - name: Sven Samland
+    orcid: 
+    email: ssamland@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+  - name: Julian Scheeler
+    orcid: 
+    email: jscheeler@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+
+keyword:
+  - Filter Design 
+  - PCB
+  - IIC-Tools
+  - Biquad
+  - Integrated Circuit Design
+  - xSchem
+  - KLayout
+
+bibliography: references.bib
+  
+abstract: |
+  In this development report the design process of an integrated universal biquad filter is described. The development
+  was done in a docker image for integrated circuit design, which is part of an open source kit. Subject of this
+  development report is the design of an universal biquad filter, including the filter characterization and several
+  steps of circuit design. Furthermore, the layout process is also part of this documentation. Additionally, the
+  experiences with the open source development environment are shared as well. The filter was designed by the use of the
+  IHP sg13g2 PDK.
+---
+
+{{< include content/_sec_introduction.qmd >}}
+{{< include content/_sec_preparation.qmd >}}
+{{< include content/_sec_schematic.qmd >}}
+{{< include content/_sec_filter-design.qmd >}}
+{{< include content/_sec_circuit-design.qmd >}}
+{{< include content/_sec_layout.qmd >}}
+{{< include content/_sec_challenges.qmd >}}
+{{< include content/_sec_conclusion.qmd >}}
+<!-- {{< include content/references.qmd >}} -->

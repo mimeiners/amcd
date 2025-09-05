@@ -1,0 +1,5 @@
+* cmosedu/LTspice_CMOSedu/Ch3_MSD_LTspice/Ideal_op_amp.asc
+.subckt Ideal_op_amp vinp vinm out
+G1 0 Out Vinp Vinm 1Meg
+R1 Out 0 1
+.ends

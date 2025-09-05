@@ -1,0 +1,31 @@
+# Mathematical Modelling
+This section models the behavior of a second-order band-pass filter using the transfer function derived from a general second-order circuit. Since the filter was designed with zero gain (i.e., $H_0 = 1$), the focus is on the shape of the response rather than amplification.
+
+The band-pass filter transfer function is given by:
+
+$$
+H(s) = \frac{H_0 \cdot \frac{\omega_0}{Q} \cdot s}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$
+
+To normalize and simplify the simulation, we divide numerator and denominator by $\omega_0^2$:
+
+$$
+H(s) = H_0 \cdot \frac{s / Q}{s^2 + s / Q + 1}
+$$
+
+With $H_0 = 1$, the final simulation model becomes:
+
+$$
+H(s) = \frac{s / Q}{s^2 + s / Q + 1}
+$$
+
+This normalized second-order band-pass filter exhibits a peak at the resonant frequency $\omega_0$, with sharpness controlled by $Q$ @fig-frequencyrespmath.
+
+![Frequency Response of Second-Order BPF](images/section5/frequencyresponsemath.png){#fig-frequencyrespmath fig-align="center" fig-cap="Frequency Response of Second-Order BPF"}
+
+![Step Response of Second-Order BPF](images/section5/stepresponse.png){#fig-stepresponse fig-align="center" fig-cap="Step Response of Second-Order BPF"}
+
+
+The filter has unity gain, as expected from the design. The Bode plot shows a peak at 1000 Hz, confirming the resonant frequency. The accompanying phase response reveals how the phase of the output signal shifts relative to the input across different frequencies. In band-pass filters, this phase shift is steepest near the resonant frequency, indicating a rapid change in the system's reactive behavior. This characteristic is crucial in applications involving signal timing, modulation, or phase-sensitive detection. The step response @fig-stepresponse shows damped oscillations typical of underdamped second-order systems with high Q.
+
+This behavioral model validates the expected frequency and time-domain characteristics of a second-order band-pass filter. It helps verify that the circuit design aligns with theoretical predictions before practical implementation.

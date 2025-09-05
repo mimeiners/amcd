@@ -1,0 +1,243 @@
+# Lecture 7OTA Feedback CircuitsSimple Stage
+
+# Classification of OpAmps (1)
+
+
+
+* Type
+  * Operational Amplifier
+    * Ideally a voltage\-controlled voltage source
+    * Typically contains an output stage that can drive “arbitrary” loads\, including small resistances
+    * Predominantly used for board\-level circuitry
+  * <span style="color:#c00000">Operational Transconductance Amplifier \(OTA\)</span>
+    * Ideally a voltage controlled current source
+    * Typically restricted to capacitive \(or moderate resistive\) loads
+    * Primarily used in integrated circuits
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Output configuration
+  * <span style="color:#c00000">Single ended</span>
+  * Differential
+    * Predominantly used for integrated high\-performance or high\-precision amplifiers
+    * Requires common mode feedback circuit
+  * <span style="color:#c00000">Class\-A</span>
+    * Output cannot source/sink currents larger than quiescent point bias current
+  * Class\-AB
+    * Output can provide large drive currents “on demand”
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Topics
+
+
+
+* ANS
+  * Class\-A OTAs with single ended outputs
+  * Overview of commonly used architectures
+    * Telescopic OTA\, Folded Cascode OTA\, Current Mirror OTA\, Two\-stage OTA
+  * Frequency response and stability in capacitive feedback configuration
+* AMCD\, CEMS
+  * Continuous\-time and switched\-capacitor filters using fully differential OTAs
+  * Analysis of noise performance
+  * Analysis of transient behavior
+  * Design methodology for short\-channel technologies
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Preview: Switched Capacitors
+
+Can emulate resistors with "switched capacitors"
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Preview: SC Circuits
+
+SC low\-pass filter \(passive\)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+Assuming ideal amplifier:
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Poor Man’s OTA
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# OTA Model
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Circuit with Feedback Network and Load
+
+
+
+* Questions
+  * What is the phase margin of the loop?
+  * What is the closed\-loop transfer function?
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Return Ratio Analysis
+
+“Feedback factor”
+
+Low frequency “open\-loop gain” of the OTA
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response of T(s)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Key Observation #1
+
+# Ro is (usually) irrelevant for the circuit’s behavior around high frequencies where |T(jω)|=1
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Phase Margin
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Key Observation #2
+
+# The phase margin of a single-pole OTA with constant feedback factor is close to 90 degrees
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Closed Loop Transfer Function
+
+
+
+* Need to find A∞ and d
+  * Let’s start with A∞
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Finding d at Low Frequencies
+
+Capacitors are open circuits
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Low-Frequency Closed-Loop Gain
+
+Error in low\-frequency closed\-loop gain
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Key Observation #3
+
+# The error in the closed-loop gain at low frequencies is inversely proportional to the circuit’s loop gain
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# d at High Frequencies
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# High-Frequency Closed-Loop Gain (1)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Key Observation #4
+
+# The closed-loop pole frequency coincides with the unity crossover frequency of the loop (ωc). This frequency also corresponds to the open-loop pole frequency (ωpo) times the low-frequency loop gain (T0).
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# High-Frequency Closed-Loop Gain (2)
+
+Therefore\, the closed\-loop \-3dB frequency is approximately
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Putting it All Together
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Poor Man’s OTA Circuit
+
+
+
+* Two deficiencies
+  * Low loop gain
+  * Inefficient use of transconductance \(factor ½\)
+
+
+Low frequency loop gain\( precision\)
+
+Closed\-loop bandwidth
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Current Mirror Load
+
+\(at low frequencies\)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# OTA Output Current
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Pole-Zero Doublet
+
+Gray et al\.\, 4th Ed\.\, p\. 534
+
+![](img/lec-07c-ota_simple_ic_0.png)
+
+![](img/lec-07c-ota_simple_ic_1.png)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Impact on Loop Gain
+
+For the OTA without current mirror we had
+
+For the OTA with current mirror we have
+
+At low frequencies\, the current mirror helps double the loop gain
+
+At high frequencies\, the behavior depends on the location of the pole\-zero\-doublet
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+![](img/lec-07c-ota_simple_ic_2.png)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+![](img/lec-07c-ota_simple_ic_3.png)
+
+
+
+* Essentially same ωc as in OTA circuit without mirror
+  * May as well not use a mirror unless 2x increase in T0 is important
+* Phase margin ~80 degrees
+* Aside: Placing the doublet at low frequencies can result in poor transient settling performance
+  * B\.Y\.T\. Kamath\, R\.G\. Meyer and P\.R\. Gray\, "Relationship between frequency response and settling time of operational amplifiers\," IEEE JSSC\, Vol\. 9\, No\. 6\, pp\.347–352\, Dec\. 1974\.
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Conclusion
+
+
+
+* Using a current mirror to “recycle” the ac current from the second half circuit is useful and practical mostly when the mirror doublet can be placed beyond ωc
+* This is the case mostly in circuits that are not being pushed toward process limits\, i\.e\. ωc << ωT
+* Note that fully differential circuits do not require current mirrors to utilize the transconductance in both half circuits
+  * Fully differential circuits  typically higher performance
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+

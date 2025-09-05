@@ -1,0 +1,87 @@
+# Op-amp Theory
+
+## Basic Op- amp theory
+
+Op-amp or operational amplifiers are voltage amplifying devices designed to be used with external feedback components like resistors, capacitors based on its need. These are three terminal devices with an output and two inputs, one inverting (marked with a negative sign) and one non-inverting (marked with a positive sign)[@Filterbasic].
+
+### Rules of Op-amp:
+- RULE 1: No current flows in or out of the op-amp. 
+Whatever input we give through the inverting or non-inverting terminals, it doesnot go inside of the op-amp for it to work. But works with the other voltage input we give into it.
+
+- RULE 2: The output of the op-amp always tries to make the voltage difference between the two input pin to 0V.
+
+We usually won't use op-amp alone without any elements connected because by nature its amplification property is so high that we need some other elements to reduce it. It can amplify both analog and digital signals making it usable for multiple applications.
+
+### Different op-amp configurations
+There are multiple configurations for op-amp. Here we are only listing two of them as we only use these configurations in the biquad circuit we design.
+
+#### Inverting op-amp:
+We give input to the inverting input terminal of the op-amp, thus the name inverting op-amp configuration. We also give feedback from the output to this same input terminal as given in @fig-invertor 
+
+![Inverting Op-Amp Circuit](images/section9/invertoropamp.png){#fig-invertor fig-align="center" fig-cap="Inverting Op-Amp Circuit"}
+
+According to rule 2, output volatge always tries ot make the two inputs the same or the difefernce between them as 0V. That means $V_2$ here would can be called as virtual ground since $V_1$ is connected to the ground.
+
+Lets see how this gives us an amplification with an example. Say, $R_{\text{in}}$ is 1V as its values is $1\,\text{k}\Omega$ and $R_F$ is 10V as this has a value of $10\,\text{k}\Omega$. Now we give an input of 1V, so 1A current flows across $R_{\text{in}}$. Now based on rule 1, current does not flow inside the op-amp so it has to flow to $R_F$. Thus the voltage drop across it would be 10V. With repsct to the groung it enters with a +10V and so we get -10V in the other terminal, resulting in a -10V output.
+
+When deriving this with equations:
+$$
+I_{{R_{\text{in}}}}= I_{{R_F}}
+$$
+$$
+\frac{V_{\text{in}} - V_2}{R_{\text{in}}} = \frac{V_2 - V_{\text{out}}}{R_F}
+$$
+
+$$
+\frac{V_{\text{in}} - 0}{R_{\text{in}}} = \frac{0 - V_{\text{out}}}{R_F}
+$$ 
+Since x is virtual ground, we can give 0V to it.
+
+$$
+\frac{V_{\text{out}}}{V_{\text{in}}} = \frac{-R_F}{R_{\text{in}}}
+$$ 
+$$
+A = \frac{-R_F}{R_{\text{in}}}
+$$
+
+#### Integrator
+This op-amp gives us an integrated value of the input as output for the circuit. For acheiving this we just replaced the $R_F$ resistor with a capacitor as given in @fig-integrator
+
+ ![Op-Amp as Integrator](images/section9/integratoropamp.png){#fig-integrator fig-align="center" fig-cap="Op-Amp as Integrator"}
+
+ Here also we can give a 1V input and the current flowing across the $R_{\text{in}}$ is 1A as its value is $1\,\text{k}\Omega$. Because of rule 1, current flows in through the capacitor and it tries to charge. As we give a positive input capacitor charges negatively and vise versa. Meaning when we give a square wave in the input we get a triangular wave which is the integrated output for a square wave. When calculated using the equations, we get:
+
+$$
+I_{{R_{\text{in}}}}= I_{C}
+$$
+
+$$
+\frac{V_{\text{in}} - 0}{R} = C{\frac{d(0-V_{\text{out}})}{dt}}
+$$
+$$
+\frac{V_{\text{in}}}{R} = -C{\frac{d(V_{\text{out}})}{dt}}
+$$
+$$
+V_{\text{out}}= -\frac{1}{{R}{C}} \int V_{\text{in}} \, dt
+$$
+
+
+##	TL082 Specifications
+
+In the simulation we are using TL082 op-amp for designing the biquad. The TL082 is a widely used JFET-input operational amplifier known for its low input bias current and wide bandwidth. However, when designing analog filters, we need to think about  its specifications: 
+
+- Slew Rate: It detemines the fastness of change in output voltage which can affect the performance of high frequency signals.The TL082 has a typical slew rate of 13 V/µs.  
+
+- Gain Bandwidth Product (GBW): The product of gain and frequency is a constant. For example, if the op-amp is used in a configuration with gain = 10, the bandwidth drops to 300 kHz.
+
+- Input Offset Voltage: It can slightly shift DC operating points in precision circuits. It is around 3 mV.
+
+- Input Bias Current: It is lower than typical BJT-input op-amps because of the JFET inputs. Its value is 65 nA.
+
+- Output Voltage Swing: The output doesn’t swing fully to the rails. Usually, it can swing from about ±12V when powered with ±15V.
+
+- Power Supply Range:It operates from ±3V to ±18V, or a single supply from 6V to 36V [@texas].
+
+In this project, the design of a biquad filter requires the use of an operational amplifier (op-amp) as a fundamental component. Passive components alone (resistors and capacitors) cannot achieve the desired performance when sharp frequency selectivity and amplification are involved. The op-amp provides the necessary gain and feedback to construct second-order filter behavior, enabling sharper transitions and resonance at the target frequency. Without an op-amp, it would be difficult to achieve a stable, high-Q response, especially with the narrow bandwidth required in this design. For the implementation we are using TL082 beacuse of its balance in performance, availability, and compatibility with analog filter requirements.
+
+Overall, the TL082 offers a great performance and moreover easiness to use. It meets all the necessary design constraints for designing an analog active filter biquad on PCB while remaining simple to work with in both simulation (KiCAD) and practical experiments (Red Pitaya, ASLK Pro).

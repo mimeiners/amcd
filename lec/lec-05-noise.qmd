@@ -1,0 +1,83 @@
+# Lecture 5Noise
+
+# Noise
+
+![](img/lec-05-noise_0.png)
+
+![](img/lec-05-noise_1.png)
+
+![](img/lec-05-noise_2.png)
+
+![](img/lec-05-noise_3.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# LTI System
+
+Parseval’s Theorem
+
+Wiener\-Khintchine Theorem \(autocorrelation\)
+
+Linear mean value
+
+Wiener\-Lee relation \(autocorrelation\)
+
+# Total Integrated Noise
+
+From PSD to Tot Int Noise
+
+Signal\-to\-Noise ratio
+
+# RC Lowpass Filter
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Total Integrated Noise
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# LC Lowpass Filter
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Total Integrated Noise
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# The Nyquist Theorem
+
+![](img/lec-05-noise_7.png)
+
+Christian C\. Enz and Eric A\. Vittoz\, Charge\-Based MOS Transistor Modeling: The EKV Model for Low\-Power and RF IC Design\, Wiley\, 2006 \(p\. 106\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# The Bode Theorem
+
+![](img/lec-05-noise_8.png)
+
+Christian C\. Enz and Eric A\. Vittoz\, Charge\-Based MOS Transistor Modeling: The EKV Model for Low\-Power and RF IC Design\, Wiley\, 2006 \(p\. 107\)
+
+Let’s you calculate the total integrated noise of passive networks without sweating through integrals\!
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Useful Integrals
+
+A\. Dastgheib and B\. Murmann\, "Calculation of total integrated noise in analog circuits\,"  _IEEE Trans\. on Circuits and Systems I\, _ Vol\. 55\, pp\. 2988\-2993\, Nov\. 2008\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Summary
+
+
+
+* The total integrated thermal noise of filter circuits is related to capacitor size
+  * Usually a multiple of kT/C
+* In filters\, noise is proportional to the filter order\, QP\, and strongly dependent on the implementation\.
+* Amplifiers can contribute significantly to \(if not dominate\) the overall filter noise:
+  * Minimizing the amplifier noise contribution costs power\,which needs small Rnoise\, i\.e\. large gm \(IBIAS\)\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+

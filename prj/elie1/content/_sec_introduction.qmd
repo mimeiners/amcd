@@ -1,0 +1,90 @@
+# Introduction
+
+This chapter provides a short motivation and overview for the IC design process done during the lecture "Analogue and
+Mixed-Signal Circuit Design" that Prof. Dr.-Ing. M. Meiners gives in the graduate course Electronic Engineering M.Sc. at
+City University of Applied Sciences Bremen.
+
+The chapter will start with the motivation behind the biquad IC filter design, outline the scope of work of the project,
+and ends with giving concrete specifications for the implemented filter.
+
+## Motivation
+
+The design and implementation of analog filters is a cornerstone in signal processing, with applications ranging from
+audio processing to communication systems. Among these, second order filters, like the biquad filter, are versatile
+building blocks due to its ability to realize four types of second order filters - low pass, high pass, band pass, and
+band stop. This project focuses on the integrated circuit (IC) design of a biquad filter, to get insight into the
+theoretical and practical engineering considerations behind IC design.
+
+For a deeper understanding of IC design, this project does not rely on off-the-shelf operational amplifiers for the
+filter design, but aims to implement the entire filter architecture at the transistor level. This approach not only
+deepens the understanding of analog filter behavior but also introduces the challenges and intricacies of IC design,
+such as layout constraints, power efficiency, and stability.
+
+This project demonstrates the design process of IC design from theorectical modelling, over simulation and design
+constraints to prototyping and to learn hands-on experience with tools used during the design process.
+
+## Scope of the project
+
+The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the
+specified filter and - in the best case - end in a tape-out of a prototype. If that stage is reached the prototype can
+be compared to the theorectical and simulation results obtained during the design process and checked for functionality.
+
+As a tape-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with
+templates for operational amplifiers and base the IC layout on these templates.
+
+All in all, this project includes a systems analysis if the specified filter, simulation results with ideal components
+and real components, taken from provided templates, and a physical layout prototype.
+
+## Specifications
+
+The main objective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board
+Manual from Texas Instruments [@aslkpro2012]. The biquad filter shall have the following specifications:
+
+$$
+f_0 = 1\,kHz
+$$
+
+$$
+Q = 10
+$$
+
+The circuit design is done in **Xschem** and the simulation in **ngspice**. For the design on transistor level the 130nm
+CMOS technology **SG13G2** is used. All these tools and PDk are integrated into a docker image **IIC-OSIC-TOOLS**
+[@pretl_git2025] provided by Prof. Dr. Harald Pretl from Johannes Keplar University, Linz, Austria 
+
+This documentation provides a development report, which documents the design process with the taken steps and decisions
+made.
+
+## Open-Source
+
+All the results of this report and development approach to design a Biquad will be publicly available on GitHub.
+Everyone is invited and should feel free to use, change, and share this work. This whole course and project wouldn't be
+possible without the great Open-Source tools provided by the amazing community of layout designers, enthusiasts, and
+developers. Here is a list with just a few of these programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `Linux`, `Docker`,
+`Xschem`, `ngspice`,  `KLayout`, `Quarto`, `Vim`, `Pandoc`, `LaTeX`, `TeXLive`, `Python`, `Git`, `CoCalc`,
+`LibreOffice`.
+
+
+### Anthem
+
+In realms where code is free to fly,
+
+We build and share, our hearts reach high.
+
+No walls, no locks, our wisdom streams,
+
+In open light, we chase our dreams.
+
+
+
+So sing the joy, the thrill, the spark,
+
+In open source, we find our arc.
+
+Together strong, we rise, explore—
+
+In lines of code, forevermore.
+
+
+
+

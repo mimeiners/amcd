@@ -1,0 +1,7 @@
+* cmosedu/LTspice_CMOSedu/Ch3_MSD_LTspice/OTA_gm_100u.asc
+.subckt OTA_gm_100u inp inn outp outn cm
+E3 CMb 0 CM 0 1
+G1 Outn Outp inp inn 100u
+R1 CMb Outp 1G
+R2 Outm CMb 1G
+.ends

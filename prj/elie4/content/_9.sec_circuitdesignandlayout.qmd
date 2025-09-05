@@ -1,0 +1,49 @@
+# Circuit Design and Layout
+
+This section illustrates the hardware implementation of the biquad filter using KiCad and includes schematic capture, PCB layout (top and bottom), and relevant design constraints.
+
+## Schematic Capture
+
+Below is the schematic created in KiCad for the implementation of the biquad filter circuit.
+
+![Biquad Kicad Schematic](images/section8/biquadschematic.svg){#fig-biquadschematic fig-align="center" fig-cap="Biquad Kicad Schematic"}
+
+## PCB Layout
+
+The following images @fig-pcblayout, @fig-pcbtop, @fig-pcbbottom show the PCB layout used in the design, including the top and bottom routing diagrams. We used surface mount resistors and capacitors(SMD) while for other components, through hole technology(THT) was selected for integration.
+
+
+![Biquad PCB Layout](images/section8/pcblayout.svg){#fig-pcblayout fig-align="center" fig-cap="Biquad PCB Layout" width=80%}
+
+:::{.columns}
+
+::: {.column width="50%"}
+![Biquad PCB Top layer Routing](images/section8/pcbtop.svg){#fig-pcbtop fig-cap="Top Layer Routing"}
+:::
+
+::: {.column width="50%"}
+![Biquad PCB Bottom layer Routing](images/section8/pcbbottom.svg){#fig-pcbbottom fig-cap="Bottom Layer Routing"}
+:::
+
+:::
+
+
+
+The PCB design follows the following specifications:<br>
+- Minimum trace width: `0.635 mm`<br>
+- Placement of decoupling capacitors close to op-amps
+
+To validate the circuit's performance, we tested the same design using the **ASLK Pro kit** and **Red Pitaya** as signal source and oscilloscope. The following picture @fig-alsk_layout shows the portion of the ASLK Pro board used to construct the biquad filter circuit.
+
+![ASLK Pro Setup](images/section8/alsk_layout.jpg){#fig-alsk_layout fig-align="center" fig-cap="ASLK Pro Setup"}
+
+Red Pitaya was used to inject signals and monitor the filter output. The board acted as both a function generator and an oscilloscope. A basic block setup is given in the illustraion @fig-alsksetup below for better understanding.
+
+![Red Pitaya Setup](images/section8/alsksetup.svg){#fig-alsksetup fig-align="center" fig-cap="Red Pitaya Setup"}
+
+
+We tested the circuit using:<br>
+- Input waveforms: sine waves at frequncies ranging from 500 to 2000Hz.<br>
+- Amplitude: 1 V peak-to-peak (OUT1)<br>
+- Visualization: Red Pitaya's web scope and exported `.csv` data
+

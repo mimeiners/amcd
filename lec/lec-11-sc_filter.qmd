@@ -1,0 +1,1113 @@
+# Lecture 12SC Filter
+
+# History: 1873
+
+
+
+* Maxwell recognized that a switched capacitor behaves like a resistor in terms of average current
+  * James C\. Maxwell\,  _A treatise on electricity and magnetism\._  Oxford: Clarendon Press\, 1873\, vol\. 2\, pp\. 374\-375
+    * [http://www\.archive\.org/stream/electricandmag02maxwrich\#page/n405/mode/2up](http://www.archive.org/stream/electricandmag02maxwrich)
+
+
+![](img/lec-11-sc_filter_0.png)
+
+![](img/lec-11-sc_filter_1.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# History: 1968
+
+![](img/lec-11-sc_filter_2.png)
+
+![](img/lec-11-sc_filter_3.png)
+
+W\. Kuntz\, "A new sample\-and\-hold device and its application to the realization of digital filters\,"  _Proc\. IEEE_  \, vol\.56\, no\.11\, pp\. 2092\- 2093\, Nov\. 1968\.
+
+![](img/lec-11-sc_filter_4.png)
+
+# History: 1972
+
+![](img/lec-11-sc_filter_5.png)
+
+![](img/lec-11-sc_filter_6.png)
+
+D\.L\. Fried\, "Analog sample\-data filters\," IEEE J\. Solid\-State Circuits\, vol\.7\, no\.4\, pp\. 302\- 304\, Aug\. 1972\.
+
+![](img/lec-11-sc_filter_7.png)
+
+![](img/lec-11-sc_filter_8.png)
+
+B\. J\. Hosticka\, R\. W\. Brodersen\, and P\. R\. Gray\, “MOS sampled data recursive filters using switched capacitor integrators\,” IEEE Journal of Solid\-State Circuits\, vol\. 12\, no\. 6\, pp\. 600\-608\, Dec\. 1977\.
+
+![](img/lec-11-sc_filter_9.png)
+
+# Emulating a Resistor
+
+Note: Current flows in “bursts”
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# “Parasitic Sensitive” Configurations
+
+Ravg is affected by parasitic capacitances \(e\.g\. wire capacitance\, junction capacitance\, etc\.\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Switched Capacitor Circuits
+
+SC low\-pass filter \(passiv\)
+
+SC integrator
+
+SC gain stage
+
+\(Actual implementations are differential\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Discussion
+
+
+
+* One of the most significant inventions in the history of ICs
+* Predominant approach for precision signal processing in CMOS
+  * CMOS technology provides good switches & capacitors
+* SC circuits have many advantages over RC implementations
+  * Transfer function set by  _ratio_  of capacitors
+    * RC product suffers from large process variations
+  * Corner frequencies \(of filters\) can be adjusted by changing clock frequency
+  * Can make large time constants without using large resistors
+    * RC lowpass\, 100Hz: R=16MΩ\, C=100pF
+    * SC lowpass\, 100Hz: f=10kHz\, C1=6\.25pF\, C2=100pF
+  * Ref\. R\. Gregorian et al\.\, “Switched\-Capacitor Circuit Design\,” Proceedings of the IEEE\, Vol\. 71\, No\. 8\, Aug\. 1983
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Configuration
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# RC and SC Filter (1)
+
+Transient analysis
+
+fs = 1MHz\, fc = 50kHz\, fin=3kHz
+
+\* RC SC filter
+
+\* LIBRARIES
+
+\.inc \. <span style="color:#666666">/</span> misc <span style="color:#666666">/</span> utilities\.cir
+
+\* MAIN CIRCUIT
+
+Vin vin  <span style="color:#666666">0</span>  dc  <span style="color:#666666">0</span>  SINE\( <span style="color:#666666">0</span>   <span style="color:#666666">1</span>   <span style="color:#666666">1</span> k\)
+
+Vvdd vdd  <span style="color:#666666">0</span>  dc  <span style="color:#666666">3\.3</span>
+
+\* CLOCKS
+
+Xclk p1 p1b p1e p1eb p2 p2b p2e p2eb vdd clocks1 fclk <span style="color:#666666">=1e6</span>  tnov <span style="color:#666666">=100</span> n
+
+R0 vin vrc  <span style="color:#666666">3\.1831</span> Meg
+
+C0 vrc  <span style="color:#666666">0</span>   <span style="color:#666666">1</span> p ic <span style="color:#666666">=0</span>
+
+C2 vsc  <span style="color:#666666">0</span>   <span style="color:#666666">1</span> p ic <span style="color:#666666">=0</span>
+
+C1 vc1  <span style="color:#666666">0</span>   <span style="color:#666666">314\.6f</span>  ic <span style="color:#666666">=0</span>
+
+<span style="color:#666666">\*</span>  SWITCHES
+
+S1 vin vc1 p1  <span style="color:#666666">0</span>  sw1
+
+S2 vc1 vsc p2  <span style="color:#666666">0</span>  sw1
+
+\* TRANSIENT ANALYSIS
+
+\.tran  <span style="color:#666666">1u</span>   <span style="color:#666666">1</span> m
+
+\.end
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* SC output is a “staircase approximation” of the RC filtered signal
+  * Slightly delayed
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Waveform Details
+
+![](img/lec-11-sc_filter_23.png)
+
+VC1 tracks input
+
+New output value
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Waveforms with Larger Ron
+
+![](img/lec-11-sc_filter_24.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response ?
+
+
+
+* Looking at the transient waveforms is fun\, but what can we say about the frequency response of the SC circuit?
+* Looks like a tough question since the output signal looks “complicated”
+  * Not just a sine wave with shifted phase and altered magnitude\, as in the RC case
+  * Instead we have a staircase waveform with “rounded” edges \(due to finite switch resistance\)
+* Part of the problem is that SC circuits are time variant
+  * The configuration is periodically switched between two states
+* Time variant circuits\, in principle\, introduce new frequencies
+  * Think about spectral components caused by the voltage “steps” at the output
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# First Pass Analysis
+
+![](img/lec-11-sc_filter_25.png)
+
+
+
+* Let’s try to find the relationship between Vin\(t1\) and Vout\(t2\)
+  * This means we are looking at the relationship between “discrete time samples” of the voltages and ignore the fact that the output is really a continuous time signal
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Circuit Analysis (1)
+
+During       \, VC1 tracks Vin
+
+If we assume that the tracking is reasonably fast\, such that there is only a negligible difference between the input and VC1\, we can write
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+During      \, the output voltage and VC1 are equalized
+
+Again\, assuming that the circuit settles precisely\, we can write
+
+The sum of the charges must be equal to the charges that were previously on C1 and C2\, before the      switch turned on\, i\.e\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Laplace Transform
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Let’s plot this frequency response and compare to the simple RC filter\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response
+
+Close only for f << fs
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# First Order Approximation
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# fs = 5 MHz (previously 1 MHz)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Linear Frequency Axis
+
+The transfer function is periodic with period fs\.
+
+Why?
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Aliasing (1)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Aliasing (2)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Aliasing (3)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Consequence
+
+The frequencies fsig and N·fs ± fsig \(N integer\)\, are indistinguishable in the discrete time domain\.
+
+# Spectrum of Continuous Time Output
+
+The previous analysis allows us to reason about the output values at discrete time instances \(falling edge of phi2\)
+
+What can we say about the spectrum of the continuous time waveform?
+
+Let’s first simplify this question by assuming a very “sharp” staircase waveform\, i\.e\. assume Ron  0
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+The previous analysis allows us to reason about the output values at discrete time instances \(falling edge of phi2\)
+
+What can we say about the spectrum of the continuous time waveform?
+
+Let’s first simplify this question by assuming a very “sharp” staircase waveform\, i\.e\. assume Ron  0
+
+![](img/lec-11-sc_filter_37.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Zero-Order Hold Signal
+
+
+
+* A basic way to think about this is to assume that the discrete time values are held for one cycle to generate a continuous time staircase
+  * For simplicity\, we’ll ignore details relating to the “phase” position of the hold pulse relative to the discrete time sample and focus on the magnitude response
+* What will the spectrum of the continuous time signal look like?
+* We'll analyze this in two steps
+  * First look at infinitely narrow pulses in continuous time
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Dirac Pulses
+
+
+
+* Vdirac\(t\) is zero between pulses
+  * Note that the discrete time sequence is undefined at these times
+* Multiplication in time means convolution in frequency
+  * Resulting spectrum
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Spectrum
+
+Spectrum of Dirac Signal contains replicas of Vin\(f\) at integer multiples of the sampling frequency
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Effect of Finite Hold Pulse
+
+Consider the general case with a rectangular pulse 0 < Tp leq Ts
+
+The time domain signal follows from convolving the Dirac sequence with a rectangular unit pulse\.
+
+The spectrum follows from multiplication with the Fourier transform of the pulse\.
+
+Amplitude Envelope
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Sinc Envelope with Tp=Ts
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Overall Filter Magnitude Response
+
+Discrete Time Output
+
+ZOH Output \(Continuous Time\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Logarithmic Frequency Axis (1)
+
+<span style="color:#ff0000">Note: </span> These magnitude plots must be looked at with a “grain of salt” \(since the system we’re looking at is not LTI\)\. They are not really “transfer functions” in the traditional sense\.
+
+<span style="color:#0070c0">Example 1: </span> When you apply an input tone at 2kHz\, you get the same frequency at the output \(scaled by the shown magnitude\)\, PLUS other tones around multiples of fs \(due to the ZOH operation\)\. These additional tones will have amplitudes scaled by the sinc envelope \(as shown in the plot to the left\)\.
+
+ZOH Output \(Continuous Time\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+<span style="color:#0070c0">Example 2: </span> When you apply an input tone at 1010kHz\, the signal aliases down to 10kHz upon sampling\. The “main” tone at the output is therefore at 10kHz\, scaled by the magnitude at that frequency\. Of course\, you will also get the additional tones  around multiples of fs \(as per the previous examples\. Note that one of these additional tones will be at 1010kHz; i\.e\. the frequency you actually applied at the input\.
+
+_We will usually not apply signals at high frequencies\. In fact\, we will try to remove such frequencies prior to sampling using an anti\-alias filter \(AAF\) …_
+
+ZOH Output \(Continuous Time\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Periodic AC Analysis
+
+
+
+* Can we simulate this frequency response using a circuit simulator?
+* Spice
+  * \.op \(operating point\)  \.ac \(ac analysis\)
+  * Works only for time invariant circuits
+* Spectre RF / ELDO RF / HSPICE RF
+  * PSS \(periodic operating point\)  PAC \(periodic ac analysis\)
+  * Works for periodically varying circuits
+* Reference
+  * [http://www\.designers\-guide\.org/Analysis/sc\-filters\.pdf](http://www.designers-guide.org/Analysis/sc-filters.pdf)
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Setup for PAC Analysis (1)
+
+\.PSS nbharms=10 T0=1u\.PAC 100 1k 10Meg
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# PAC Magnitude Response
+
+![](img/lec-11-sc_filter_43.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# R3 Changed
+
+From 1Ohm to 300kOhms
+
+![](img/lec-11-sc_filter_44.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Transient Waveforms
+
+![](img/lec-11-sc_filter_45.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Response After Output Sampler
+
+![](img/lec-11-sc_filter_46.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Sampled Input (“Dummy” Sinc)
+
+![](img/lec-11-sc_filter_47.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Sinc Corrected Response
+
+![](img/lec-11-sc_filter_48.png)
+
+vsc\_samp/vi\_samp
+
+
+
+* Matches Matlab result exactly
+  * But\, of course\, in e\.g\. Spectre/ELDO/HSPICE RF we can now study non\-idealities at the circuit level …
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Anatomy of a Complete SC Filter
+
+![](img/lec-11-sc_filter_49.png)
+
+
+
+* All signals in this processing chain are continuous in time \(as all physical signals\)
+* However\, the core of the filter \( “sampled data filter” block\) can typically be modeled as a “discrete time” system  z\-transform
+  * The core takes voltage samples at the input and produces samples at the output
+  * The internal transients that generate these samples are irrelevant\, as long as they have settled at the time the sample is taken
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Signal Nomenclature
+
+Continuous Time Signal
+
+Discrete Time Signal
+
+Clock Signal
+
+Track and Hold \(T/H\) Signal“Sampled Data Signal”
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simple SC Filter
+
+z\-Domain Representation
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noninverting Integrator Analysis (1)
+
+Output held at end valuefrom previous half cycle
+
+Output can be sampled during either phi1 or phi2
+
+Sampling at phi1 means that there will be an additional half clock cycle delay \(z\-1/2\)
+
+Chargeredistribution\(output ready at end of this phase\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+| __t/T__  __s__ | __Q__  __s__ | __Q__  __I__ |
+| :-: | :-: | :-: |
+| n\-1 | Cs·Vi\(n\-1\) | CI·Vo\(n\-1\)=CI·Vo\(n\-3/2\) |
+| n\-1/2 | 0 | CI·Vo\(n\-1/2\) = CI·Vo\(n\-3/2\) \+ Cs·Vi\(n\-1\) |
+| n | Cs·Vi\(n\) | CI·Vo\(n\) = CI·Vo\(n\-1\) \+ Cs·Vi\(n\-1\) |
+| n\+1/2 | … | … |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* At output Vo1: DDI \(Direct Digital Integrator\)
+* At output Vo2: LDI \(Lossless Digital Integrator\)
+* What is the frequency response of this integrator?
+  * First look at H2\(z\)\, LDI
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response LDI
+
+
+
+* Behaves like an RC integrator for low frequencies \(f << fs\)
+  * R replaced by 1/\(fsCs\)\, as before
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Magnitude error as before\, but now there’s also a phase error
+  * Bad news if we are looking to build a high Q filter
+* Numerical example for f=fs/32
+  * Magnitude error = 0\.16%  may not be a problem
+  * Phase error = \-5\.6 degrees  big problem\!
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Integrator
+
+Input induces charge change \(output ready at the end of this phase\)
+
+At Vo1: Inverting Integrator
+
+Reset Cs
+
+\(output heldat previous value\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# General Building Block
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Let’s Build a Biquad
+
+
+
+* Key objective
+  * Avoid integrator phase errors
+* Conceptually two possible solutions
+  * Try to use only LDI
+  * Combine delaying \(DDI\) and non\-delaying integrator to achieve LDI behavior
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Martin-Sedra Biquad
+
+![](img/lec-11-sc_filter_56.png)
+
+![](img/lec-11-sc_filter_57.png)
+
+K\. Martin and A\. S\. Sedra\, “Strays\-insensitive switched\-capacitor filters based on the bilinear z transform\,” Electron\. Lett\.\, vol\. 19\, pp\. 365\-6\, June 1979\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# “Low-Q” Biquad
+
+![](img/lec-11-sc_filter_58.png)
+
+R\. Gregorian\, K\.W\. Martin\, and G\.C\. Temes\, “Switched\-Capacitor Circuit Design\,” Proceedings of the IEEE\, vol\. 71\, no\. 8\, pp\. 941\-966\, Aug\. 1983\.
+
+![](img/lec-11-sc_filter_59.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# “Hi-Q” Biquad
+
+![](img/lec-11-sc_filter_60.png)
+
+R\. Gregorian\, K\.W\. Martin\, and G\.C\. Temes\, “Switched\-Capacitor Circuit Design\,” Proceedings of the IEEE\, vol\. 71\, no\. 8\, pp\. 941\-966\, Aug\. 1983\.
+
+![](img/lec-11-sc_filter_61.png)
+
+![](img/lec-11-sc_filter_62.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Realization
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Component Values
+
+Target:
+
+Pick:
+
+LC component values:
+
+SC component values:
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# PAC Output
+
+![](img/lec-11-sc_filter_63.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Linear Frequency Axis
+
+![](img/lec-11-sc_filter_64.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# High Frequency Behavior
+
+
+
+* Our RLC prototype filter has two zeros at infinity
+  * Where did these go in the SC realization?
+* It would be great to have some zeros at high frequencies
+  * E\.g\. fs/2 would be a great place\!
+  * This can help improve the stopband attenuation\, especially when we’re trying to minimize fs
+* Need to think about how exactly frequencies are mapped from the continuous time prototype to the switched capacitor realization\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# CT – SC Integrator Comparison
+
+RC and SC \(LDI\) integrator transfer functions
+
+In our LDI\-based design\, we set the RC time\-constant equal to the approximate SC time\-constant\, i\.e\.
+
+Setting HRC\(fRC\) = HSC\(fSC\) therefore gives:
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Warping (LDI)
+
+Frequency mapping is accurate only for fRC<< fs
+
+RC frequencies up to fs/p map to “physical SC” frequencies
+
+Mapping is symmetric about fs/2 \(aliasing\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# A Closer Look at Integration Methods
+
+LDI apply a “midpoint integration”
+
+A much more accurate way to integrate is using a trapezoidal \(“bilinear”\) integration rule
+
+Many others exist\, e\.g\. Euler\, Runge\-Kutta\, Gear\, etc\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Bilinear Integrator
+
+Bilinear transform
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Warping (Bilinear)
+
+
+
+* No frequencies are lost
+  * E\.g\. zeros at infinity will be mapped to fs/2
+* Can show that bilinear transform maps jw axis ins\-plane onto unit circle in z\-plane
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Possible Design Procedure
+
+Pre\-warp “important” frequencies\, e\.g\. passband edge and/or stopband edge using
+
+Note that pre\-warping is important mostly for filters that try to aggressively push toward minimum fs
+
+Determine continuous time prototype filter function H\(s\) using pre\-warped frequency specifications
+
+Substitute
+
+Implement z\- transfer function using a known \(and well\-understood\) Biquad realization\, ladder\, etc\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Alternative
+
+
+
+* Let Matlab do all of this …
+* Design filter in z\-domain\, e\.g\. \[b\, a\] = butter\(N\, fc\_fs\)
+* Matlab will then automatically
+  * Pre\-warp the frequency specifications
+  * Carry out a bilinear transform \(using function “bilinear”\)
+  * Give you the z\-transfer function of the filter
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Lowpass Example Using Bilinear Transform
+
+Specs: fPBL=10kHz\, QP=5\, fs=1MHz
+
+Pre\-warping \(not all that significant in this example…\)
+
+Compute H\(z\)
+
+Implement using Biquad
+
+Simulate\, plot frequency response …
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Linear Frequency Axis
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# LDI vs. Bilinear Transform
+
+
+
+* LDI transform
+  * Realized by “standard” SC integrators
+  * High frequency zeros are lost
+  * Simple filter synthesis
+    * Replace RC integrators with SC integrators\, ensuring proper delays around integrator loops \(z\-1/2 per integrator\)
+* Bilinear transform
+  * Does not lose high frequency zeros
+  * Biquad\-based synthesis
+    * Direct coefficient comparison with known realizations
+  * Ladders
+    * See e\.g\. R\.B\. Datar and A\.S\. Sedra\, “Exact design of strays\-insensitive switched capacitor high\-pass ladder filters\,” Electronics Letters\, vol\. 19\, no\. 29\, pp\. 1010\-1012\, Nov\. 1983\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# SC Filter Nonidealities
+
+![](img/lec-11-sc_filter_69.png)
+
+Sufficient to understand errors in the discrete time signal samples
+
+ Focus mostly on this aspect in the following discussion
+
+Must look at errors in the continuous time domain
+
+ Much more complicated; signals are sums of reconstruction pulses\, continuous time feedthrough signals\, etc\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Recall: Intrinsic MOS Capacitor Summary
+
+|  | __Subthreshold__ | __Triode__ | __Saturation__ |
+| :-: | :-: | :-: | :-: |
+| __C__  __gs__ | 0 | _½ WLC_  _ox_ | _2_  _/_  _3_  _ WLC_  _ox_ |
+| __C__  __gd__ | 0 | _½ _  _WLC_  _ox_ | 0 |
+| __C__  __gb__ |  | 0 | 0 |
+
+xd is the width of the depletion region at the silicon surface
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Recall: MOS Capacitor Summary
+
+|  | __Subthreshold__ | __Triode__ | __Saturation__ |
+| :-: | :-: | :-: | :-: |
+| __C__  __gs__ | _C_  _ov_ | _½ WLC_  _ox_  _\+ C_  _ov_ | _2_  _/_  _3_  _ WLC_  _ox _  _\+ C_  _ov_ |
+| __C__  __gd__ | _C_  _ov_ | _½ WLC_  _ox_  _\+C_  _ov_ | _C_  _ov_ |
+| __C__  __gb__ |  | 0 | 0 |
+| __C__  __sb__ | _C_  _jsb_ | _C_  _jsb_  _\+ C_  _CB_  _/2_ | _C_  _jsb_  _\+ _  _2_  _/_  _3_  _C_  _CB_ |
+| __C__  __db__ | _C_  _jdb_ | _C_  _jdb_  _\+ C_  _CB_  _/2_ | _C_  _jdb_ |
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Recall: Small Signal Model with Extrinsic Caps
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Nonidealities in Switched Capacitor Filters
+
+
+
+* Finite amplifier gain
+* Finite amplifier bandwidth and slew rate
+* Thermal noise
+  * From SC resistor emulation
+  * From amplifiers
+* Parasitic capacitance
+  * Use parasitic insensitive configurations
+* Amplifier offset voltage and flicker noise
+  * Often not an issue
+  * If problematic use “correlated double sampling”
+    * Covered later in this course
+* Switch charge injection and clock feedthrough
+  * Use “bottom plate sampling”
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+---
+
+Train of pulses is the classic example of the need for constant delay and good attenuation.
+
+# Finite Gain (1)
+
+| __t/T__  __s__ | __Q__  __s__ | __Q__  __I__ |
+| :-: | :-: | :-: |
+| n\-1/2 | Cs·Vi\(n\-1/2\) | CI·Vo2\(n\-1\) <span style="color:#4f81bd">·\[1\+1/a</span>  <span style="color:#4f81bd">0</span>  <span style="color:#4f81bd">\] </span> |
+| n | _C_  _s_  _·_  _V_  _o2_  _\(n\)/_  _a_  _0_ | CI·Vo2\(n\) <span style="color:#4f81bd">·\[1\+1/a</span>  <span style="color:#4f81bd">0</span>  <span style="color:#4f81bd">\]</span>  <span style="color:#4f81bd"> </span> = CI·Vo2\(n\-1\) <span style="color:#4f81bd">·\[1\+1/a</span>  <span style="color:#4f81bd">0</span>  <span style="color:#4f81bd">\]</span>  <span style="color:#4f81bd"> </span> \+ Cs·Vi\(n\-1/2\) \-  <span style="color:#4f81bd">C</span>  <span style="color:#4f81bd">s</span>  <span style="color:#4f81bd">·</span>  <span style="color:#4f81bd">V</span>  <span style="color:#4f81bd">o2</span>  <span style="color:#4f81bd">\(n\)/</span>  <span style="color:#4f81bd">a</span>  <span style="color:#4f81bd">0</span> |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Compare to active RC integrator with finite a0:
+
+Bottom line: approximately same gain requirements as active RC
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Finite Bandwidth (1)
+
+![](img/lec-11-sc_filter_71.png)
+
+
+
+* First order result
+  * SC filters have much smaller amplifier bandwidth requirements than active RC counterparts
+
+
+K\. Martin and A\. Sedra\, "Effects of the op amp finite gain and bandwidth on the performance of switched\-capacitor filters\,"  _IEEE Trans\. Circuits and Systems\, _ vol\. 28\, no\. 8\, pp\. 822\-829\, Aug\. 1981\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Unfortunately\, this first order result relies on perfectly linear behavior in the amplifiers
+
+As we will see later\, the amplifiers do not settle linearly when large signals are present
+
+As a result\, it turns out that the bandwidth must be overdesigned significantly to meet typical linearity requirements
+
+We will revisit this question once we have a better handle on the amplifier settling behavior \(at the transistor level\)
+
+Everything considered\, it turns out that the bandwidth requirements in SC filters are comparable to those in active RC realizations
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise Analysis Example
+
+
+
+* Partition this problem into several steps
+  * First understand noise in samples acquired during phi1
+  * Next look at phi2
+    * Average current into infinitely large C2
+    * Noise spectrum and total noise of phi2 samples with finite C2
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Sampling Circuit
+
+
+
+* Questions
+  * What is the rms noise in the VC1 samples?
+  * What is the spectrum of the discrete time sequence representing these samples?
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise Samples
+
+The sample values VC1\(n\) correspond to the instantaneous values of the noise process in
+
+From Parseval's theorem\, we know that the time\-domain power of this process is equal to its power spectral density integrated over all frequencies
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Spectrum of Noise Samples
+
+
+
+* Strategy
+  * Realize that discrete time noise samples are essentially instantaneous values \(mTs apart\) of the continuous time noise process during phi1
+  * Spectrum follows from Fourier transform of the process' autocorrelation function \(Wiener\-Khintchin theorem\)
+    * Samples show no correlation  white spectrum
+    * Samples are correlated  colored spectrum
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Analysis (1)
+
+Calculate autocorrelation function
+
+Covariance of samples separated by n clock cycles
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Analysis (2)
+
+Apply discrete time Fourier transform
+
+“number of time constants in mTs”
+
+Spectrum of noise samples is essentially “white” for M>3
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Example Waveforms
+
+![](img/lec-11-sc_filter_77.png)
+
+Large M \(small RC1\) means that the waveform “settles” accurately to the present input; the previous state is lost
+
+Means that noise from cycle to cycle is uncorrelated  white spectrum
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise Folding (1)
+
+The noise PSD of the samples is approximately
+
+The noise PSD of the resistor that causes the noise is
+
+The ratio of the two PSDs is
+
+This increase in the noise PSD is due to aliasing or “folding” of noise from higher frequencies into the band from 0…fs/2
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# “Noise Folding” (2)
+
+![](img/lec-11-sc_filter_78.png)
+
+Ken Kundert\, “Simulating Switched\-Capacitor Filters with SpectreRF\,” http://www\.designers\-guide\.org/Analysis/sc\-filters\.pdf
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Schematic
+
+C1 = 1pF
+
+Ts = 1us
+
+M = 1\, 3\, 5\, 7
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Result
+
+![](img/lec-11-sc_filter_79.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Back to Lowpass Example
+
+
+
+* Circuit in non\-overlap phase between phi1 and phi2:
+* During f2\, the following will happen
+  * Noise charge on C1 will redistribute
+  * Noise from previous cycle stored on C2 will redistribute
+  * Noise generated by R will move charge back and forth between C1 and C2
+
+
+Noise from previous cycle
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simplified Analysis (1)
+
+
+
+* Goal: Calculate rms noise current into C2\, assuming C2  infinity
+  * Vout is essentially a “virtual ground”
+* At the end of f2 \, C1 will be completely discharged\, and therefore
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* The noise from R induces a noise charge of kTC1 on C1
+  * This noise is separate and independent of the noise that was already stored on C1 \(from f1 \)
+
+
+Noise PSD in fs/2 is the same as that of a physical resistor\!
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Elaborate Analysis (1)
+
+
+
+* The previous result indicates that \(at least for C2 infinity\) a switched capacitor behaves roughly like a resistor in terms of the average noise current
+* In order to compute the spectrum of the noise samples taken at f2 more work is needed
+* First\, take a closer look at the f1 noise and realize that we can directly refer its PSD to the input
+  * Allows us to re\-use the transfer function that we already know
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+At the output\, the noise from f1 is lowpass filtered and contributes a total output noise of approximately ½ kT/C2
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Next look at noise introduced during f2
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+The final noise charge qx can be referred to an equivalent f1 noise charge on C1\, and subsequently referred to the input
+
+Colored output PSD
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Lowpass Simulation Circuit
+
+C1 = 68\.83 fF
+
+C2 = 1 pF
+
+fs  = 1 MHz
+
+f\-3dB = 10 kHz
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Result
+
+![](img/lec-11-sc_filter_80.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Experiment: Reset Output During f1
+
+
+
+* Expecting to see:
+  * White noise spectrum
+  * Total integrated noise power equal to
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Result
+
+![](img/lec-11-sc_filter_81.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# SC Filter Summary
+
+
+
+* Pole and zero frequencies are proportional to sampling frequency and capacitor ratios
+  * High accuracy and stability in response
+  * Large time constants realizable without large R\, C
+* Compatible with operational transconductance amplifiers; no need to drive resistive loads
+* Amplifier gain and BW requirements comparable to active RC
+* Noise
+  * SC resistor emulation has same noise as an actual resistor
+  * Arguing about amplifier noise requires detailed analysis
+    * Special issue in SC circuits: noise aliasing
+* SC filters typically require continuous time anti\-aliasing and reconstruction filters
+  * Sometimes first order RC will suffice\, particularly for large fs
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# References (1)
+
+__R\. Gregorian\, K\.W\. Martin\, and G\.C\. Temes\, “Switched\-Capacitor Circuit Design\,” Proceedings of the IEEE\, vol\. 71\, no\. 8\, pp\. 941\-966\, Aug\. 1983__
+
+D\.L\. Fried\, "Analog sample\-data filters\," IEEE J\. Solid\-State Circuits\, vol\. 7\, no\. 4\, pp\. 302\-304\, Aug\. 1972
+
+D\. Senderowicz et al\.\, “A Family of Differential NMOS Analog Circuits for PCM Codec Filter Chip\,” IEEE J\. Solid\-State Circuits\, pp\.1014\-1023\, Dec\. 1982
+
+T\.C\. Choi\, "High\-Frequency CMOS Switched\-Capacitor Filters\," UC Berkeley\, Ph\.D\. Thesis\, May 1983 \(ERL Memorandum No\. UCB/ERL M83/31\)
+
+B\.\-S\. Song and P\.R\. Gray "Switched\-Capacitor High\-Q Bandpass Filters for IF Applications\," IEEE J\. Solid\-State Circuits\, pp\. 924\-933\, Dec\. 1986
+
+K\. Martin and A\. Sedra\, "Effects of the op amp finite gain and bandwidth on the performance of switched\-capacitor filters\," IEEE Trans\. Circuits and Systems\, vol\. 28\, no\. 8\, pp\. 822\-829\, Aug\. 1981
+
+K\.L\. Lee\, “Low Distortion Switched\-Capacitor Filters\," UC Berkeley\, Ph\.D\. Thesis\, Feb\. 1986 \(ERL Memorandum No\. UCB/ERL M86/12\)
+
+K\. Martin and A\.S\. Sedra\, “Stray\-insensitive switched\-capacitor filters based on the bilinear z transform\,” Electronics Letters\, vol\. 19\, pp\. 365\-366\, June 1979
+
+R\. Castello\, and P\.R\. Gray\, "A high\-performance micropower switched\-capacitor filter\," IEEE J\. Solid\-State Circuits\, vol\. 20\, no\. 6\, pp\. 1122\-1132\, Dec\. 1985
+
+J\. H\. Fischer\, "Noise sources and calculation techniques for switched capacitor filters\," IEEE J\. Solid\-State Circuits\, vol\. 17\, no\. 4\, pp\. 742\-752\, Aug\. 1982
+
+C\.\-A\. Gobet and A\. Knob\, "Noise analysis of switched capacitor networks\," IEEE Trans\. Circuits and Systems\, vol\. 30\, no\. 1\, pp\. 37\-43\, Jan 1983
+
+J\. Goette and C\.\-A\. Gobet\, "Exact noise analysis of SC circuits and an approximate computer implementation\," IEEE Trans\. Circuits and Systems\, vol\. 36\, no\. 4\, pp\.508\-521\, Apr\. 1989\.
+
+R\. Schreier\, et al\.\, "Design\-oriented estimation of thermal noise in switched\-capacitor circuits\," IEEE Trans\. Circuits and Systems I\, vol\. 52\, no\. 11\, pp\. 2358\-2368\, Nov\. 2005
+
+K\. Kundert\, “Simulating Switched\-Capacitor Filters with SpectreRF\,” http://www\.designers\-guide\.org/Analysis/sc\-filters\.pdf
+
+# Appendix
+
+# Waveform Details
+
+![](img/lec-11-sc_filter_82.png)
+
+VC1 tracks input
+
+New output value
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Component Values
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Setup for PAC Analysis (2)
+
+![](img/lec-11-sc_filter_83.png)
+
+![](img/lec-11-sc_filter_84.png)
+
+# PNOISE Setup
+
+![](img/lec-11-sc_filter_85.png)
+
+
+
+  * “Number of sidebands” – typically ~20…200 to handle noise folding properly\.  Fast switches  more sidebands needed\. Be sure to set “maxacfrequency” in the PSS analysis options to a correspondingly large value\.
+
+
+“timedomain” means simulator computes spectrum of discrete time noise samples \(no need to correct for “sinc”\)
+
+sampling instant
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+

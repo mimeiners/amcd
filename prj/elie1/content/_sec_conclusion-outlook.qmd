@@ -1,0 +1,36 @@
+## Conclusion
+
+This project took us from a theoretical modelling of the filter with transfer functions, to the first five-transistor
+prototype through two reference designs by Prof. Pretl and, finally, to a “advanced” OTA driving a gm-C biquad filter.
+On the way several problems were encountered:
+
+* **Prototype OTA** - The first try of implementing an OTA resulted in a schematic which was very error prone and took a
+  long time in the debug process. During this time valueable insights were gained regarding transistor usage,
+  hierarchical netlisting and transient and ac testing. In the end the prototype OTA was abandoned for a design from
+  Prof. Pretl, as the required specifications could not be achieved with the prototype.
+
+* **Pretl’s 5T-OTAs** – Using the design for the 5T-OTA provided a good starting point for implementing the universal
+  biquad filter. The width and length of the transistor channels were sized using the $g_m/I_D$ method. Analysing this
+  filter in the frequency domain revealed that the behaviour expected from the filter was not being simulated. The
+  hypothesis here is that the OTAs could not provide enough gain for the circuit to work correctly.
+
+* **Gm-C biquad** – With that insight experience the next step was sizing a new OTA, embedded four copies in a
+  Baker-style biquad, and verified low-pass behaviour in Ngspice.  Although the filter has yet to reach textbook
+  performance, the design flow until the AC analysis ran without critical errors.
+
+Beyond the circuits themselves other issues were tackled in the IC design flow:
+Absolute path handling inside Docker, strict symbol classification, plain-text netlist debugging, and (just as
+important) team communication. Working through those issues was as valuable as the schematics that were produced.
+
+## Outlook
+
+At the current status of the project the expected behaviour of an universal biquad could not be reproduced with self-build OTAs and the Gm-c differential OTA setup is also not producing an expected low pass filter. If the schematics are capable of producing an expected AC behaviour, those simulation could be compared to modelled behaviour to ensure correct operation behauviour. Additionally, the component stabiltiy analysis would be redone with the used sizing of the transistors to verify that the circuit is not prone to oszillations. All these checks are important to be done before tape-out, as the actual process of manufacturing an IC is time and ressource consuming and it is important to be sure, that the behaviour of the IC is what is wanted. 
+
+As the layout of the 5T-OTA is finished, the next steps are the import of the 5T-OTA Cell into the top-level layout.
+This can easily be achieved, as KLayout provides and import function, that was already tested. The design of the
+top-level should include the resistors and capacitors needed for the biquad. In addition, bonding pads need to be placed
+to connect the layout to a pin of the chosen package. LVS in the top-level will be a challenge, as the exported netlist
+must account for the hierarchy of the schematic. This will also extend the time needed to run the LVS-script. When the
+top-level is layouted, the remaining density DRC-violations need to be addressed. As the layout should be
+complete at this point this can be done by the fill tool provided in KLayout. In total only a little more work needs to
+be done on the layout, to get ready for an eventual tape out.

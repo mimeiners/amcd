@@ -1,0 +1,974 @@
+# Lecture 13ADC/DAC Introduction
+
+Copyright © 2011 by Bernhard Boser\, UC Berkeley
+
+Copyright © 2013 by Boris Murmann\, Stanford University
+
+Copyright © 2018 by Mirco Meiners\, HSB
+
+# Motivation
+
+
+
+* Benefits of digital signal processing
+  * Reduced sensitivity to "analog" noise
+  * Enhanced functionality and flexibility
+  * Amenable to automated design & test
+  * Direct benefit from the scaling of VLSI technology
+  * "Arbitrary" precision
+* Issues
+  * Data converters are difficult to design
+    * Especially due to ever\-increasing performance requirements
+  * Data converters often present a performance bottleneck
+    * Speed\, resolution or power dissipation of the A/D or D/A converter can limit overall system performance
+
+
+# A/D Converter ca. 1954
+
+![](img/lec-12-adc_dac_0.png)
+
+[http://www\.analog\.com/library/analogDialogue/archives/39\-06/data\_conversion\_handbook\.html](http://www.analog.com/library/analogDialogue/archives/39-06/data_conversion_handbook.html)
+
+# Data Converter Applications (1)
+
+![](img/lec-12-adc_dac_1.jpg)
+
+
+
+* Consumer electronics
+  * Audio\, TV\, Video
+  * Digital Cameras
+  * Automotive control
+  * Appliances
+  * Toys
+* Communications
+  * Mobile Phones
+  * Personal Data Assistants
+  * Wireless Transceivers
+  * Routers\, Modems
+
+
+![](img/lec-12-adc_dac_2.jpg)
+
+![](img/lec-12-adc_dac_3.jpg)
+
+![](img/lec-12-adc_dac_4.jpg)
+
+![](img/lec-12-adc_dac_5.jpg)
+
+![](img/lec-12-adc_dac_6.jpg)
+
+![](img/lec-12-adc_dac_7.jpg)
+
+![](img/lec-12-adc_dac_8.jpg)
+
+![](img/lec-12-adc_dac_9.jpg)
+
+
+
+* Computing and Control
+  * Storage media
+  * Sound Cards
+  * Data acquisition cards
+* Instrumentation
+  * Lab bench equipment
+  * Semiconductor test equipment
+  * Scientific equipment
+  * Medical equipment
+
+
+![](img/lec-12-adc_dac_10.jpg)
+
+![](img/lec-12-adc_dac_11.png)
+
+![](img/lec-12-adc_dac_12.jpg)
+
+![](img/lec-12-adc_dac_13.jpg)
+
+# Example 1
+
+![](img/lec-12-adc_dac_14.png)
+
+![](img/lec-12-adc_dac_15.png)
+
+\[Poulton\, ISSCC 2003\]
+
+
+
+* High performance digital oscilloscopes rely on extremely high performance ADCs
+* Example
+  * 20 GSample/s\, 8\-bit ADC
+  * 10 W Power dissipation
+
+
+![](img/lec-12-adc_dac_16.jpg)
+
+# Example 2
+
+![](img/lec-12-adc_dac_17.png)
+
+![](img/lec-12-adc_dac_18.png)
+
+Schvan\, ISSCC 2008
+
+Time interleaved architecture using 160 \(\!\) SAR ADCs for optical networks
+
+# Example 3
+
+
+
+* A typical cell phone contains:
+  * 4 Rx ADCs
+  * 4 Tx DACs
+  * 3 Auxiliary ADCs
+  * 8 Auxiliary DACs
+* A total of 19 data converters\!
+
+
+Dual Standard\, I/Q
+
+![](img/lec-12-adc_dac_19.jpg)
+
+Audio\, Tx/Rx power
+
+control\, Battery charge
+
+control\, display\, \.\.\.
+
+# Example 4
+
+![](img/lec-12-adc_dac_20.jpg)
+
+![](img/lec-12-adc_dac_21.png)
+
+\[Mehta\, ISSCC2005\]
+
+
+
+* Low\-cost\, single chip solutions require embedded data conversion
+* Example: 802\.11g Wireless LAN chip
+  * 2x 11\-bit DAC\, 176 MSamples/s
+  * 2x 9\-bit ADC\, 80 MSamples/s
+
+
+# Reference Books
+
+M\. Pelgrom\, Analog\-to\-Digital Conversion\, Springer\, 2010
+
+Gustavsson\, Wikner\, Tan\, CMOS Data Converters for Communications\, Kluwer\, 2000
+
+W\. Kester\, The Data Conversion Handbook\, Newnes\, 2005
+
+B\. Razavi\, Data Conversion System Design\, IEEE Press\, 1995
+
+R\. Schreier\, G\. Temes\, Understanding Delta\-Sigma Data Converters\, Wiley\-IEEE Press\, 2004
+
+# The Data Conversion Problem
+
+
+
+* Real world signals
+  * Continuous time\, continuous amplitude
+* Digital abstraction
+  * Discrete time\, discrete amplitude
+* Two problems
+  * How to discretize in time and amplitude
+    * A/D conversion
+  * How to "undescretize" in time and amplitude
+    * D/A conversion
+
+
+# Overview
+
+
+
+* We'll fist look at these building blocks from a functional\, "black box" perspective
+  * Refine later and look at implementations
+
+
+# Uniform Sampling and Quantization
+
+
+
+* Most common way of performing A/D conversion
+  * Sample signal uniformly in time
+  * Quantize signal uniformly in amplitude
+* Key questions
+  * How much "noise" is added due to amplitude quantization?
+  * How can we reconstruct the signal back into analog form?
+  * How fast do we need to sample?
+    * Must avoid "aliasing"
+
+
+# Recall from SC: Aliasing (1)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Consequence
+
+The frequencies fsig and N·fs ± fsig \(N integer\)\, are indistinguishable in the discrete time domain\.
+
+# Sampling Theorem
+
+In order to prevent aliasing\, we need
+
+
+
+* The sampling rate fs=2·fsig\,max is called the Nyquist rate
+* Two possibilities
+  * Sample fast enough to cover all spectral components\, including "parasitic" ones outside band of interest
+  * Limit fsig\,max through filtering
+
+
+# Brick Wall Anti-Alias Filter
+
+# Practical Anti-Alias Filter
+
+
+
+* Need to sample faster than Nyquist rate to get good attenuation
+  * "Oversampling"
+
+
+# How much Oversampling?
+
+\[Ref\.: v\.d\. Plassche\, p\.41\]
+
+
+
+* Can tradeoff sampling speed against filter order
+* In high speed converters\, making fs/fsig\,max>10 is usually impossible or too costly
+  * Means that we need fairly high order filters
+
+
+# Classes of Sampling
+
+
+
+* Nyquist\-rate sampling \(fs > 2·fsig\,max\)
+  * Nyquist data converters
+  * In practice always slightly oversampled
+* Oversampling \(fs >> 2·fsig\,max\)
+  * Oversampled data converters
+  * Anti\-alias filtering is often trivial
+  * Oversampling also helps reduce "quantization noise"
+    * More later
+* Undersampling\, subsampling \(fs < 2·fsig\,max\)
+  * Exploit aliasing to mix RF/IF signals down to baseband
+  * See e\.g\. Pekau & Haslett\, JSSC 11/2005
+
+
+# Subsampling
+
+
+
+* Aliasing is "non\-destructive" if signal is band limited around some carrier frequency
+* Downfolding of noise is a severe issue in practical subsampling mixers
+  * Typically achieve noise figure no better than 20 dB \(\!\)
+
+
+# The Reconstruction Problem
+
+
+
+* As long as we sample fast enough\, x\(n\) contains all information about x\(t\)
+  * fs > 2·fsig\,max
+* How to reconstruct x\(t\) from x\(n\)?
+* Ideal interpolation formula
+
+
+Very hard to build an analog circuit that does this…
+
+# Zero-Order Hold Reconstruction
+
+
+
+* The most practical way of reconstructing the continuous time signal is to simply "hold" the discrete time values
+  * Either for full period Ts or a fraction thereof
+  * Other schemes exist\, e\.g\. “partial\-order hold”
+    * See \[Jha\, TCAS II\, 11/2008\]
+* What does this do to the signal spectrum?
+* We'll analyze this in two steps
+  * First look at infinitely narrow reconstruction pulses
+
+
+# Dirac Pulses
+
+
+
+* xd\(t\) is zero between pulses
+  * Note that x\(n\) is undefined at these times
+* Multiplication in time means convolution in frequency
+  * Resulting spectrum
+
+
+# Spectrum
+
+Spectrum of Dirac signal contains replicas of Vin\(f\) at integer multiples of the sampling frequency
+
+# Finite Hold Pulse
+
+Consider the general case with a rectangular pulse 0 < Tp leq Ts
+
+The time domain signal on the left follows from convolving the Dirac sequence with a rectangular unit pulse
+
+Spectrum follows from multiplication with Fourier transform of the pulse
+
+Amplitude Envelope
+
+# Envelope with Hold Pulse Tp=Ts
+
+# Example
+
+__Spectrum of Continuous Time Pulse Train \(Arbitrary Example\)__
+
+__ZOH Transfer Function__  __\("__  __Sinc__  __ Distortion"\)__
+
+__ZOH output\, Spectrum of Staircase Approximation__
+
+original spectrum
+
+# Reconstruction Filter
+
+
+
+* Also called smoothing filter
+* Same situation as with anti\-alias filter
+  * A brick wall filter would be nice
+  * Oversampling helps reduce filter order
+
+
+# Summary
+
+
+
+* Must obey sampling theorem fs > 2·fsig\,max\,
+  * Usually dictates anti\-aliasing filter
+* If sampling theorem is met\, continuous time signal can be recovered from discrete time sequence without loss of information
+* A zero order hold in conjunction with a smoothing filter is the most common way to reconstruct
+  * May need to add pre\- or post\-emphasis to cancel droop due to sinc envelope
+* Oversampling helps reduce order of anti\-aliasing and reconstruction filters
+
+
+# Recap
+
+![](img/lec-12-adc_dac_30.png)
+
+![](img/lec-12-adc_dac_31.png)
+
+![](img/lec-12-adc_dac_32.png)
+
+![](img/lec-12-adc_dac_33.png)
+
+
+
+* Next\, look at
+  * Transfer functions of quantizer and DAC
+  * Impact of quantization error
+
+
+<span style="color:#000000">Transfer Function</span>
+
+<span style="color:#000000">V</span>  <span style="color:#000000">q</span>  <span style="color:#000000"> \(quantized output\)</span>
+
+# Quantization of an Analog Signal
+
+
+
+* Quantization step D
+* Quantization error has sawtooth shape
+  * Bounded by
+* Ideally
+  * Infinite input range and infinite number of quantization levels
+* In practice
+  * Finite input range and finite number of quantization levels
+  * Output is a digital word \(not an analog voltage\)
+
+
+# Conceptual Model of a Quantizer
+
+
+
+* Encoding block determines how quantized levels are mapped into digital codes
+* Note that this model is not meant to represent an actual hardware implementation
+  * Its purpose is to show that quantization and encoding are conceptually separate operations
+  * Changing the encoding of a quantizer has no interesting implications on its function or performance
+
+
+# Encoding Example for a B-Bit Quantizer
+
+
+
+* Example: B=3
+  * 23=8 distinct output codes
+  * Diagram on the left shows "straight\-binary encoding"
+  * See e\.g\. Analog Devices "MT\-009: Data Converter Codes" for other encoding schemes
+* Quantization error grows out of bounds beyond code boundaries
+* We define the full scale range \(FSR\) as the maximum input range that satisfiesImplies that
+
+
+# Nomenclature
+
+
+
+* __Overloading__  \- Occurs when an input outside the FSR is applied
+* __Transition level __ – Input value at the transition between two codes\. By standard convention\, the transition level T\(k\) lies between codes k\-1 and k
+* __Code width__  – The difference between adjacent transition levels\. By standard convention\, the code width W\(k\)=T\(k\+1\)\-T\(k\)
+  * Note that the code width of the first and last code \(000 and 111 on previous slide\) is undefined
+* __LSB size \(or width\) __ – synonymous with code width D
+
+
+![](img/lec-12-adc_dac_37.png)
+
+\[IEEE Standard 1241\-2000\]
+
+# Implementation Specific Technicalities
+
+
+
+* So far\, we avoided specifying the absolute location of the code range with respect to "zero" input
+* The zero input location depends on the particular implementation of the quantizer
+  * Bipolar input\, mid\-rise or mid\-tread quantizer
+  * Unipolar input
+* The next slide shows the case with
+  * Bipolar input
+    * The quantizer accepts positive and negative inputs
+      * Represents the common case of a differential circuit
+  * Mid\-rise characteristic
+    * The center of the transfer function \(zero\)\, coincides with a transition level
+
+
+# Bipolar Mid-Rise Quantizer
+
+Nothing new here…
+
+# Bipolar Mid-Tread Quantizer
+
+
+
+* In theory\, less sensitive to infinitesimal disturbance around zero
+  * In practice\, offsets larger than D/2 \(due to device mismatch\) often make this argument irrelevant
+* Asymmetric full\-scale range\, unless we use odd number of codes
+
+
+# Unipolar Quantizer
+
+
+
+* Usually define origin where first code and straight line fit intersect
+  * Otherwise\, there would be a systematic offset
+* Usable range is reduced by D/2 below zero
+
+
+# Effect of Quantization Error on Signal
+
+
+
+* Two aspects
+  * How much noise power does quantization add to samples?
+  * How is this noise power distributed in frequency?
+* Quantization error is a deterministic function of the signal
+  * Should be able answer above questions using a deterministic analysis
+  * But\, unfortunately\, such an analysis strongly depends on the chosen signal and can be very complex
+* Strategy
+  * Build basic intuition using simple deterministic signals
+  * Next\, abandon idea of deterministic representation and revert to a "general" statistical model \(to be used with caution\!\)
+
+
+# Ramp Input
+
+Applying a ramp signal \(periodic sawtooth\) at the input of the quantizer gives the following time domain waveform for eq
+
+What is the average power of this waveform?
+
+Integrate over one period
+
+# Sine Wave Input
+
+Integration is not straightforward…
+
+# Quantization Error Histogram
+
+Sinusoidal input signal with fsig=101Hz\, sampled at fs=1000Hz
+
+8\-bit quantizer
+
+Distribution is “almost” uniform
+
+Can approximate average power by integrating uniform distribution
+
+# Statistical Model of Quantization Error
+
+
+
+* Assumption: eq\(x\) has a uniform probability density
+* This approximation holds reasonably well in practice when
+  * Signal spans large number of quantization steps
+  * Signal is "sufficiently active"
+  * Quantizer does not overload
+
+
+# Reality Check (1)
+
+Input sequence consists of 1000 samples drawn from Gaussian distribution\, 4s=FSR
+
+Error power close to that of uniform approximation
+
+Another sine wave example\, but now fsig/fs=100/1000
+
+What's going on here?
+
+# Analysis (1)
+
+fsig/fs=100/1000
+
+
+
+* Sampled signal is repetitive and has only a few distinct values
+  * This also means that the quantizer generates only a few distinct values of eq; not a uniform distribution
+
+
+# Analysis (2)
+
+Signal repeats every m samples\, where m is the smallest integer that satisfies
+
+This means that eq\(n\) has at best 10 distinct values\, even if we take many more samples
+
+# Signal-to-Quantization-Noise Ratio
+
+Assuming uniform distribution of eq and a full\-scale sinusoidal input\, bipolar mid\-rise quantizer\, we have
+
+| __B \(Number of Bits\)__ | __SQNR__ |
+| :-: | :-: |
+| 8 | 50 dB |
+| 12 | 74 dB |
+| 16 | 98 dB |
+| 20 | 122 dB |
+
+# Quantization Noise Spectrum (1)
+
+
+
+* How is the quantization noise power distributed in frequency?
+  * First think about applying a sine wave to a quantizer\, without sampling \(output is continuous time\)
+
+
+\+ many more harmonics
+
+Quantization results in an "infinite" number of harmonics
+
+\[Ref\. Y\. Tsividis\, ICASSP 2004\]
+
+
+
+* Now sample the signal at the output
+  * All harmonics \(an "infinite" number of them\) will alias into band from 0 to fs/2
+  * Quantization noise spectrum becomes "white"
+
+
+Interchanging sampling and quantization won’t change this situation
+
+\[Ref\. Y\. Tsividis\, ICASSP 2004[\] ](http://ieeexplore.ieee.org/xpl/RecentCon.jsp?punumber=9248)
+
+
+
+* Can show that the quantization noise power is indeed distributed \(approximately\) uniformly in frequency
+  * Again\, this is provided that the quantization error is "sufficiently random"
+* References
+  * W\. R\. Bennett\, "Spectra of quantized signals\," Bell Syst\. Tech\. J\.\, pp\. 446\-72\, July 1948\.
+  * B\. Widrow\, "A study of rough amplitude quantization by means of Nyquist sampling theory\," IRE Trans\. Circuit Theory\, vol\. CT\-3\, pp\. 266\-76\, 1956\.
+  * A\. Sripad and D\. A\. Snyder\, "A necessary and sufficient condition for quantization errors to be uniform and white\," IEEE Trans\. Acoustics\, Speech\, and Signal Processing\, pp\. 442\-448\, Oct 1977\.
+
+
+# Ideal DAC
+
+
+
+* Essentially a digitally controlled voltage\, current or charge source
+  * Example below is for unipolar DAC
+* Ideal DAC does not introduce quantization error\!
+
+
+# Static Nonidealities
+
+
+
+* Static deviations of transfer characteristics from ideality
+  * Offset
+  * Gain error
+  * Differential Nonlinearity \(DNL\)
+  * Integral Nonlinearity \(INL\)
+* Useful references
+  * “The Importance of Data Converter Static Specifications”\, Analog Devices MT\-010
+  * “Understanding Data Converters”\, Texas Instriuments Application Report SLAA013\, 1995
+
+
+# Offset and Gain Error
+
+
+
+* Conceptually simple\, but lots of \(uninteresting\) subtleties in how exactly these errors should be defined
+  * Unipolar versus bipolar\, endpoint versus midpoint specification
+  * Definition in presence of nonlinearities
+* General idea \(neglecting staircase nature of transfer functions\):
+
+
+# ADC Offset and Gain Error
+
+
+
+* Definitions based on bottom and top endpoints of transfer characteristic
+  * ½ LSB before first transition and ½ LSB after last transition
+  * Offset is the deviation of bottom endpoint from its ideal location
+  * Gain error is the deviation of top endpoint from its ideal location with offset removed
+* Both quantities are measured in LSB or as percentage of full\-scale range
+
+
+Same idea\, except that endpoints are directly defined by analog output values at minimum and maximum digital input
+
+Also note that errors are specified along the vertical axis
+
+# Comments on Offset and Gain Errors
+
+
+
+* Definitions on the previous slides are the ones typically used in industry
+  * IEEE Standard suggest somewhat more sophisticated definitions based on least square curve fitting
+    * Technically more suitable metric when the transfer characteristics are significantly non\-uniform or nonlinear
+* Generally\, it is non\-trivial to build a converter with very good gain/offset specifications
+  * Nevertheless\, since gain and offset affect all codes uniformly\, these errors tend to be easy to correct
+    * E\.g\. using a digital pre\- or post\-processing operation
+  * Also\, many applications are insensitive to a certain level of gain and offset errors
+    * E\.g\. audio signals\, communication\-type signals\, \.\.\.
+* More interesting aspect: linearity
+  * DNL and INL
+
+
+# Differential Nonlinearity (DNL)
+
+
+
+* In an ideal world\, all ADC codes would have equal width; all DAC output increments would have same size
+* DNL\(k\) is a vector that quantifies for each code k the deviation of this width from the "average" width \(step size\)
+* DNL\(k\) is a measure of uniformity\, it does not depend on gain and offset errors
+  * Scaling and shifting a transfer characteristic does not alter its uniformity and hence DNL\(k\)
+* Let's look at an example
+
+
+# ADC DNL Example (1)
+
+| Code \(k\) | W \[V\] |
+| :-: | :-: |
+| 0 | undefined |
+| 1 | 1 |
+| 2 | 0\.5 |
+| 3 | 1 |
+| 4 | 1\.5 |
+| 5 | 0 |
+| 6 | 1\.5 |
+| 7 | undefined |
+
+
+
+* What is the average code width?
+  * ADC with perfect uniformity would divide the range between first and last transition into 6 equal pieces
+  * Hence calculate average code width \(i\.e\. LSB size\) as
+
+
+Now calculate DNL\(k\) for each code k using
+
+# Result
+
+| Code \(k\) | DNL \[LSB\] |
+| :-: | :-: |
+| 1 | 0\.09 |
+| 2 | \-0\.45 |
+| 3 | 0\.09 |
+| 4 | 0\.64 |
+| 5 | \-1\.00 |
+| 6 | 0\.64 |
+
+
+
+* Positive/negative DNL implies wide/narrow code\, respectively
+* DNL = \-1 LSB implies missing code
+* Impossible to have DNL < \-1 LSB for an ADC
+  * But possible to have DNL > \+1 LSB
+* Can show that sum over all DNL\(k\) is equal to zero
+
+
+# A Typical ADC DNL Plot
+
+![](img/lec-12-adc_dac_53.png)
+
+\[Ref\. Ahmed\, JSSC 12/2005\]
+
+
+
+* People speak about DNL often only in terms of min/max number across all codes
+  * E\.g\. DNL = \+0\.63/\-0\.91 LSB
+* Might argue in some cases that any code with DNL < \-0\.9 LSB is essentially a missing code
+  * Why ?
+
+
+# Impact of Noise
+
+![](img/lec-12-adc_dac_54.jpg)
+
+\[W\. Kester\, "ADC Input Noise: The Good\, The Bad\, and The Ugly\. Is No Noise Good Noise?" Analogue Dialogue\, Feb\. 2006\]
+
+
+
+* In essentially all moderate to high\-resolution ADCs\, the transition levels carry noise that is somewhat comparable to the size of an LSB
+  * Noise "smears out" DNL\, can hide missing codes
+* Especially for converters whose input referred \(thermal\) noise is larger than an LSB\, DNL is a "fairly useless" metric
+
+
+# DAC DNL
+
+
+
+* Same idea applies
+  * Find output increments for each digital code
+  * Find increment that divides range into equal steps
+  * Calculate DNL for each code k using
+* One difference between ADC and DAC is that DAC DNL can be less than \-1 LSB
+  * How ?
+
+
+# Non-Monotonic DAC
+
+In a DAC\, DNL < \-1LSB implies non\-monotinicity
+
+How about a non\-monotonic ADC?
+
+
+
+* Code 2 has two transition levels  W\(2\) is ill defined
+  * DNL is ill\-defined\!
+* Not a very big issue\, because a non\-monotonic ADC is usually not what we'll design for in practice…
+
+
+# Integral Nonlinearity (INL)
+
+
+
+* General idea
+  * For each "relevant point" of the transfer characteristic\, quantify distance from a straight line drawn through the endpoints
+    * An alternative\, less common definition uses a least square fit line as a reference
+  * Just as with DNL\, the INL of a converter is by definition independent of gain and offset errors
+
+
+# ADC INL Example (1)
+
+"Straight line" reference is uniform staircase between first and last transition
+
+INL for each code is
+
+Obviously INL\(1\) = 0 and INL\(7\) = 0
+
+INL\(0\) is undefined
+
+Means that once we computed DNL\, we can easily find INL using a cumulative sum operation on the DNL vector
+
+Using DNL values from last lecture\, we find
+
+| Code \(k\) | DNL \[LSB\] | INL \[LSB\] |
+| :-: | :-: | :-: |
+| 1 | 0\.09 | 0 |
+| 2 | \-0\.45 | 0\.09 |
+| 3 | 0\.09 | \-0\.36 |
+| 4 | 0\.64 | \-0\.27 |
+| 5 | \-1\.00 | 0\.36 |
+| 6 | 0\.64 | \-0\.64 |
+| 7 | undefined | 0 |
+
+# Result
+
+# A Typical ADC DNL/INL Plot
+
+![](img/lec-12-adc_dac_56.png)
+
+\[Ishii\, Custom Integrated Circuits Conference\, 2005\]
+
+
+
+* DNL/INL signature often reveals architectural details
+  * E\.g\. major transitions
+  * We'll see more examples in the context of DACs
+* Since INL is a cumulative measure\, it turns out to be less sensitive than DNL to thermal noise "smearing"
+
+
+# DAC INL
+
+
+
+* Same idea applies
+  * Find ideal output values that lie on a straight line between endpoints
+  * Calculate INL for each code k using
+* Interesting property related to DAC INL
+  * If for all codes |INL| < 0\.5 LSB\, it follows that all |DNL| < 1 LSB
+  * A sufficient \(but not necessary\) condition for monotonicity
+
+
+# How to Measure DNL/INL in the Lab?
+
+
+
+* DAC
+  * Apply all input codes\, measure output with a precision voltmeter
+* ADC
+  * A little more tricky
+  * One option is to build a servo loop that finds the code transitions
+    * See e\.g\. Kester\, page 5\.36
+  * A more popular approach is histogram testing
+
+
+# Basic Histogram Test Setup
+
+# Histogram Example
+
+# Sinusoidal Input
+
+Preferred over ramp or triangular test signals
+
+It is easier much easier to generate a “high fidelity” sinusoid
+
+The histogram now takes on a bathtub shape\, which can be mathematically inverted to find the DNL
+
+# Correction for Sinusoidal pdf
+
+
+
+* References
+  * M\. V\. Bossche\, J\. Schoukens\, and J\. Renneboog\, “Dynamic Testing and Diagnostics of A/D Converters\,” IEEE TCAS\, Aug\. 1986
+  * IEEE Standard 1057
+  * Kester\, Section 5\.4
+* It turns out that it is not necessary to know the exact amplitude and offset of the sine wave input
+  * There exists some confusion about this…
+* The code on the next slide does all the required math to undo the bathtub shape
+
+
+# Limitations of ADC Histogram Testing
+
+
+
+* Cannot detect non\-monotonicity
+  * The histogram does not capture in which order the codes occurred
+* Cannot detect erratic dynamics
+  * E\.g\. 123\, 123\, …\, 123\, 0\, 124\, 124\, …
+  * Must look directly at ADC output to detect these
+* Similarly\, random noise is not detected and  _improves_  DNL
+  * E\.g\. 9\, 9\, 9\, 10\, 9\, 9\, 9\, 10\, 9\, 10\, 10\, 10\, …
+* Reference
+  * B\. Ginetti and P\. Jespers\, “Reliability of Code Density Test for High Resolution ADCs\,” Electronics Letters\, pp\. 2231\-2233\, Nov\. 1991
+
+
+# Hiding DNL Problems in the Noise
+
+INL suggests that there may be missing codes
+
+But\, DNL is "smeared out" by noise and does not show this
+
+Always look at both DNL/INL
+
+INL usually does not lie
+
+\[Source: David Robertson\, Analog Devices\]
+
+# Appendix
+
+# DNL/INL Code
+
+__% transition levels__
+
+<span style="color:#ec3800"> __T = \-__ </span>  <span style="color:#ec3800"> __cos__ </span>  <span style="color:#ec3800"> __\(pi\*__ </span>  <span style="color:#ec3800"> __ch__ </span>  <span style="color:#ec3800"> __/sum\(h\)\);__ </span>
+
+__% linearized histogram__
+
+__hlin__  __ = T\(2:end\) \- T\(1:end\-1\);__
+
+__% truncate at least first and last __
+
+__% bin\, more if input did not clip ADC__
+
+__trunc__  __=2;__
+
+__hlin\_trunc__  __ = __  __hlin__  __\(1\+trunc:end\-trunc\);__
+
+__% calculate __  __lsb__  __ size and __  __dnl__
+
+__lsb__  __= sum\(__  __hlin\_trunc__  __\) / \(length\(__  __hlin\_trunc__  __\)\);__
+
+__dnl__  __= \[0 __  __hlin\_trunc__  __/lsb\-1\];__
+
+__misscodes__  __ = length\(find\(__  __dnl__  __<\-0\.9\)\);__
+
+__% calculate __  __inl__
+
+__inl__  __= __  __cumsum__  __\(__  __dnl__  __\);__
+
+__function \[dnl\,inl\] = dnl\_inl\_sin\(y\);__
+
+__%DNL\_INL\_SIN__
+
+__% dnl and inl ADC output__
+
+__% input y contains the ADC output__
+
+__% vector obtained from quantizing a__
+
+__% sinusoid__
+
+__% Boris Murmann\, Aug 2002__
+
+__% Bernhard Boser\, Sept 2002__
+
+__% histogram boundaries__
+
+__minbin=min\(y\);__
+
+__maxbin=max\(y\);__
+
+__% histogram__
+
+__h = hist\(y\, minbin:maxbin\);__
+
+__% cumulative histogram__
+
+__ch = cumsum\(h\);__
+
+# DNL/INL Code Test
+
+__% converter model__
+
+__B = 6;  		 % bits__
+
+__range = 2^\(B\-1\) \- 1;__
+
+__% thresholds \(ideal converter\)__
+
+__th = \-range:range;	 % ideal thresholds__
+
+__th\(20\) = th\(20\)\+0\.7; % error__
+
+__fs = 1e6;__
+
+__fx = 494e3 \+ pi;	 % try fs/10\!__
+
+__C  = round\(100 \* 2^B / \(fs / fx\)\);__
+
+__t = 0:1/fs:C/fx;__
+
+__x = \(range\+1\) \* sin\(2\*pi\*fx\.\*t\);__
+
+__y = adc\(x\, th\) \- 2^\(B\-1\);__
+
+__hist\(y\, min\(y\):max\(y\)\);__
+
+__dnl\_inl\_sin\(y\);__
+

@@ -1,0 +1,493 @@
+# Lecture 7OTA Design for Integrators
+
+# Outline
+
+
+
+* Basic considerations
+  * Application requirements for OTAs used in filters
+  * The case for fully differential circuits
+* Single\-stage OTAs
+  * Basic differential pair
+  * Telescopic architecture
+  * Folded cascode architecture
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# OTA Application in Filters
+
+Switched Capacitor
+
+# Requirements
+
+|  | <span style="color:#003f64">Active RC</span> | <span style="color:#003f64">G</span>  <span style="color:#003f64">m</span>  <span style="color:#003f64">\-OTA\-C</span> | <span style="color:#003f64">SC</span> |
+| :-: | :-: | :-: | :-: |
+| High gain | X | X | X |
+| Low noise | X | X | X |
+| High BW | X | X | X |
+| Capacitive loads | X | X | X |
+| Resistive loads | X |  |  |
+| Fast settling |  |  | X |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Requirements (cont.)
+
+
+
+* Special requirements in active\-RC and SC circuits
+  * Tend to narrow design space\.
+* Active\-RC \(resistive loads\)
+  * Difficult to achieve sufficient gain with a single\-stage OTA\.
+* SC \(fast transient settling\)
+  * Must stay away from “tricks” such as pole\-zero cancellation\.
+    * Pole zero doublets can cause long setting tails \(more later\)\.
+  * Hard to achieve fast settling for three or more stages\.
+* We will take these issues into account as we discuss the various OTA implementation styles\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Fully Differential vs. Single Ended
+
+
+
+* Symmetrical
+  * Immune to coupling and power supply noise
+  * Easy to analyze
+* Can invert signal via wire crossing
+* Requires common mode feedback \(CMFB\)
+
+
+Lower complexity \(component count\)
+
+Can build non\-inverting unity gain buffer without using any feedback components
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Coupling Noise
+
+Similar arguments can be made regarding the rejection of supply noise\, ground bounce\, substrate noise\, etc\.
+
+Differential Signaling
+
+Single Ended Signaling
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Fully Differential vs. Single Ended
+
+
+
+* Most precision analog integrated circuits are based on fully differential stages
+  * Filters\, data converters\, etc\.
+* In contrast\, printed circuit board circuits tend to be single ended
+  * Want minimum complexity and component count
+* Since this course emphasizes integrated circuit design\, we will tailor our analyses toward fully differential implementations
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# OpAmps versus OTAs (1)
+
+__Operational __  __Transconductance__  __ Amplifier__
+
+__Operational Amplifier__
+
+
+
+* __OpAmp__
+* "General Purpose"
+* Low output impedance
+  * Ideally a voltage controlled voltage source
+* Can drive resistive and capacitive loads
+* Essentially an OTA \+ buffer
+  * Buffer increases complexity and power dissipation
+* __OTA__
+* Mostly used “on\-chip”
+* High output impedance
+  * Ideally a voltage controlled current source
+* Not well suited for resistive loads\, mostly used to drive capacitive loads
+* Usually lower \(total integrated\) noise
+
+
+# Basic Differential Pair OTA
+
+
+
+* Fundamentals of Feedback
+* Common mode feedback
+* Half circuit model
+* Return ratio analysis
+  * Loop gain
+  * Closed\-loop gain
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Negative Feedback
+
+Harold S\. Black\, “Stabilized Feed\-Back Amplifiers”\, 1934
+
+Interesting case:
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Interpretation
+
+
+
+* As long as we have  <span style="color:#008000">large</span>  gain in the forward path a\, the overall  gain will depend only on f\.
+* Since vout/vin ~1/f\, we often make f ≤ 1
+  * E\.g\. for a "closed loop" gain of two\, we need f = 0\.5
+* f ≤ 1 is easy to implement\, and ratiometric\!
+  * A  <span style="color:#008000">wire</span>  \(f=1\) or resistive or capacitive voltage divider\.
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Example
+
+Case 1: a=100
+
+Case 2: a=1000
+
+10 times variation in forward gain\, and only about 1\.8% change in closed loop gain\!
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Gain Sensitivity
+
+
+
+* Fractional change in gain is reduced by product of a and f\, which can be made arbitrarily large \(conceptually\)
+  * Loop gain T
+* We will find that loop gain is a very meaningful parameter that will also appear in bandwidth and impedance calculations
+  * More later …
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Effect of Negative Feedback on Nonlinearity
+
+Substitute \(2\) into \(1\)\, then compare coefficients to get
+
+Linear term as expected\, reduced by \(1\+T\)
+
+Cubic term reduced by \(1\+T\)4\!
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Negative Feedback and Bandwidth
+
+
+
+* Closed loop transfer function:
+* Bandwidth increases by \(1\+T\)\!
+  * But gain is reduced by \(1\+T\)
+* Product of gain and bandwidth remains constant
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Feedback Using Ideal OpAmp
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Configuration
+
+
+
+* Circuit does not map directly into generic block diagram
+  * Cannot directly identify a and f\, if we only use voltages    \(due to fact that O/A is voltage\-voltage; the feedback is current as a function of output voltage\)
+  * av ≠ g
+  * Two sample solutions \(examples = not yet methodology\)
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Sample Solution 1 - OpAmp Virtual Ground
+
+Ideal OpAmp version:
+
+KCL at virtual ground node Vin/R1= \- Vout/R2
+
+Gain Vout/Vin= \- R2/R1
+
+But\, what if it’s not an ideal OpAmp?
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Sample Solution 2 - Superposition
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Configuration
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Result
+
+It can be quite tedious to try and morph arbitrary circuits into a generic  <span style="color:#008000">af</span>  <span style="color:#008000"> </span> block diagram\, esp\. when impedances come into play \(and with MOS they certainly do\)\.
+
+Elegant alternative:  <span style="color:#008000">Return Ratio Analysis</span>
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Basic Differential Pair OTA
+
+Suppose that in the operating point Vip=Vim\, i\.e\. Vid=0
+
+What is the output common\-mode voltage Voc = \(Vom\+Vop\)/2 ?
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Operating Point Sensitivity
+
+The operating point is very sensitive to small changes in the device characteristics\.
+
+Solution: Common mode feedback \(CMFB\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# CMFB
+
+Common mode feedback loop adjusts ΔI such that VOC is very close to the desired voltage\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Idealized CMFB Implementation
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+![](img/lec-07d-ota_design_ic_3.png)
+
+# Ideal Balun
+
+Useful for separating common\-mode and differential\-mode signal components\.
+
+Bi\-directional\, preserves port impedances\.
+
+Uses ideal inductorless transformers that work down to DC\.
+
+\* BALUN MODEL SPICE
+
+\*
+
+\* IDEAL TRANSFORMER 1
+
+\.SUBCKT IT inp inm outp outm Np=1 Ns=2
+
+\* prim\. to sec\.
+
+E1 inp   inm   outp  outm  \{Np/Ns\}
+
+F1 outp  outm  E1          \{\-Np/Ns\}
+
+\.ENDS IT
+
+\* IDEAL BALUN
+
+\.subckt balun vdm vcm vp vm
+
+xt1 vp vcm vdm 0 it
+
+xt2 vcm vm vdm 0 it
+
+\.ends balun
+
+\* BALUN MODEL HSPICE/ELDO
+
+\*
+
+\* Ideal Balun
+
+\.subckt balun vdm vcm vp vm
+
+e1 vp vcm transformer vdm 0 2
+
+e2 vcm vm transformer vdm 0 2
+
+\.ends balun
+
+Source: Spectre Manual\, Cadence
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# CMFB Implementation
+
+
+
+* In practice\, we won’t be able to let GCMFB  ∞ for loop stability
+  * Nonetheless\, the loop will get us to within a few mV of where we need to be
+  * And most importantly help absorb variations in the device characteristics
+* In the first few lectures on OTA design\, we will use the idealized common mode feedback circuit \(as shown previously\) to avoid distraction from the main design task
+* Practical CMFB implementation examples \(using transistors\) will follow later in this course
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Differential Mode Small-Signal Half Circuit
+
+With the circuit at the proper operating point\, we can analyze its small\-signal behavior using a differential mode half circuit model\.
+
+Note that \(to first order\) the CMFB loop does not influence the behavior of the differential mode signals\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# OTA with Capacitive Feedback
+
+
+
+* Let’s get started by placing our simple OTA into a capacitive feedback loop \(as encountered e\.g\. in an SC circuit\)\.
+* Questions:
+  * What is the phase margin?
+  * What is the closed loop transfer function?
+  * What is the total integrated noise?
+  * How fast does this circuit settle \(in response to a step\)?
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Half Circuit Model
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Return Ratio Analysis
+
+“Feedback factor”
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Return Ratio Analysis (1)
+
+
+
+* Does not attempt to identify forward gain and feedback network transfer functions separately\.
+* Analysis aims to identify gain around feedback loop
+  * Loop gain\, loop transmission\,
+    * Different terminology for the same thing\.
+* From the loop gain of a circuit\, we can determine:
+  * Stability\, closed loop gain characteristics\, node impedances\.
+* Analysis can be applied to arbitrary feedback circuits\, independent of topology\, port structure\, etc\.
+* We will first look at the complete framework of this technique\,
+  * then identify a way to partition the analysis for our needs and reduce its algebraic overhead
+
+
+Ref\. Gray et\. al\.\,  _Analysis and Design of Analog Integrated Circuits_ \, 4th ed\.\, ch\. 8\.8
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Set all independent sources to zero
+* Identify a  _controlled source_  in the feedback loop that you want to analyze and break the loop by disconnecting the source
+  * E\.g\. VCCS\, VCVS\, …
+* Inject a test signal st at the breakpoint
+  * Current or voltage\, depending on type of removed source
+* Find the return signal sr generated by the controlled source that was disconnected from the circuit in step 2\.
+* The  _return ratio_  of the controlled source is given by  <span style="color:#cc0000"> __RR = –__ </span>  <span style="color:#cc0000"> __s__ </span>  <span style="color:#cc0000"> __r__ </span>  <span style="color:#cc0000"> __/__ </span>  <span style="color:#cc0000"> __s__ </span>  <span style="color:#cc0000"> __t__ </span>
+  * _Provided that_  we have chosen a controlled source that breaks the loop under consideration \(and no other loop\)\, the return ratio of the source is equal to the loop gain of the circuit\, i\.e\. RR = T
+  * Comment: we must have T \(not just any RR\) for the stability analysis
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response of T(s)
+
+Hence\, Ro is irrelevant for understanding high frequency behavior around ωc\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Phase Margin
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Closed Loop Transfer Function
+
+Need to find A∞ and d\, let’s start with A∞:
+
+Ref\. Gray et\. al\.\,  _Analysis and Design of Analog Integrated Circuits_ \, 4th ed\.\, ch\. 8\.8\.1
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Finding d at Low Frequencies
+
+Capacitors are open circuits
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Low-Frequency Closed-Loop Gain
+
+Error in low\-frequency closed\-loop gain
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# d at High Frequencies
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# High-Frequency Closed-Loop Gain (1)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Therefore\, the closed\-loop \-3dB frequency is approximately
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Putting it All Together
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Telescopic OTA
+
+Voltage gain ~ \(gmro\)2\, but smaller output range
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Folded Cascode OTA
+
+
+
+* High\- and low\-frequency behavior similar to telescopic OTA
+  * But noise is much worse
+* Advantage: Input common mode can be chosen without taking away output signal range
+* If slewing is not an issue\, the current in the output branches can be reduced below ITAIL/2
+
+
+\(CMFB not shown\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Loading Considerations (1)
+
+
+
+* Low load resistance will "destroy" the gain of our amplifier
+  * RL may be an explicit load or due to loading from the feedback network
+* But\, we want large \(loop\) gain for good precision
+* __Single\-ended OTA model__
+
+
+
+
+* Adding a buffer allows us to drive resistive loads and still achieve high gain
+* But
+  * Buffer can be difficult to build
+  * Is costly in terms of headroom \(e\.g\. source follower\)
+  * Adds additional area\, power
+* __Single\-ended __  __OpAmp__  __ model__
+
+
+
+
+* Resistive load "destroys" gain of second stage only
+  * First stage sees capacitive load
+* Costs additional area\, power and must sacrifice stage 2 gain
+* Can work acceptably well for moderate resistive loads
+  * More later
+
+
+__Single\-ended model of a two\-stage OTA__
+

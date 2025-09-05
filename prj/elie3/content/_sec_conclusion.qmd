@@ -1,0 +1,7 @@
+# Conclusion
+
+Our work presented the IC design of a universal biquad filter targeting at 1 kHz corner frequency with a Q-factor of 10. Our design journey began with Python-based behavioral modeling to analyze ideal filter characteristics. We then transitioned to circuit implementation and simulation in Xschem, initially exploring an op-amp based universal biquad. However, its transistor-level realization using a basic 5-transistor Operational Transconductance Amplifier (OTA) proved unsuccessful due to the OTA's inherent performance limitations, particularly its insufficient DC gain and drive current.
+
+This significant hurdle necessitated a strategic pivot to a more robust Gm-C biquad filter topology, driven by a newly designed, high-performance fully differential OTA. While the quantitative sizing analysis for this advanced OTA revealed challenges in meeting the ambitious target gain (only achieving 21.5 dB instead of 60 dB) and output swing requirements, we proceeded with its implementation to validate the design methodology.
+
+Moving forward, a production-ready design would require a re-evaluation of the filter specifications, likely involving a reduction in the OTA's transconductance to yield manageable on-chip capacitance values. This exercise underscores the intricate trade-offs inherent in mixed-signal IC design, where theoretical ideals must converge with practical fabrication constraints.

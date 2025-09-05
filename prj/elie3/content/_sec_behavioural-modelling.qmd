@@ -1,0 +1,40 @@
+
+# Behavioral Model Analysis using python
+
+This sectio presents the behavioral analysis of the designed system using Python. The analysis primarily includes the **frequency response** (magnitude and phase response) and **transient analysis**.
+
+---
+
+## 1. Objective
+
+To evaluate the performance of the behavioral model through simulation using Python, focusing on:
+
+- Magnitude response
+- Phase response
+- Transient behavior
+
+---
+
+## 2. Frequency Response Analysis
+
+### 2.1 Magnitude Response
+
+The magnitude response of the system was plotted to observe how the system amplifies or attenuates input signals across different frequencies. The Bode magnitude plot gives a clear insight into the bandwidth and gain characteristics.
+
+### 2.2 Phase Response
+
+The phase response of the system was analyzed to study the phase shift introduced at various frequencies. This is essential for understanding the signal integrity and phase margin.
+
+![Magnitude Response](images/frequency_response_1KHz_Q10.png)
+
+## 3. Transient Analysis
+
+Transient analysis was performed to examine how the system responds to a time-domain input.
+
+![Transient Response](images/transient_response_1KHz_Q10)
+
+
+## 4. Conclusion
+
+The behavioral model demonstrates expected frequency and time-domain characteristics, validating the design for further implementation. The results align with theoretical expectations, making it suitable for the next stages of circuit/system development.
+

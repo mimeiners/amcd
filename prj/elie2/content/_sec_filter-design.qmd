@@ -1,0 +1,481 @@
+# Filter Design {#sec-filter}
+
+Based on specification from @tbl-design_specs and $\omega = 2 \pi \cdot f_0$ needs to be used, therefore not needing to specify part specifications for resistors and capacitors. This will be done in @sec-circuit-design.
+
+## Bode Plot {#sec-bode}
+
+To validate the four filter types with selected values, a Bode Plot is created by showing magnitude and phase in over a bandwidth with $0 \leq f \leq 3~\text{kHz}$:
+
+```{python}
+#| echo: true
+#| code-overflow: wrap
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# converter
+def mag2db(H):
+    return 20*np.log10(np.abs(H))
+
+def phase(H):
+    return np.unwrap(np.rad2deg(np.angle(H)))    
+
+# Transfer Funktions
+def HLP(s, w0=2*np.pi*1000, Q=10, H0p=1):
+    return H0p / (1 + s/(w0*Q) + s**2 / w0**2)
+
+def HHP(s, w0=2*np.pi*1000, Q=10, H0=1):
+    return (H0 * (s**2 / w0**2)) / (1 + s/(w0*Q) + s**2 / w0**2)
+
+def HBP(s, w0=2*np.pi*1000, Q=10, H0=1):
+    return (-H0 * (s / w0)) / (1 + s/(w0*Q) + s**2 / w0**2)
+
+def HBS(s, w0=2*np.pi*1000, Q=10, H0=1):
+    return ( (1 + (s**2 / w0**2)) * H0 ) / (1 + s/(w0*Q) + s**2 / w0**2)
+
+# Specs
+Q = 10      # Q=10
+f0 = 1000   # f0 = 1 kHz
+w0 = 2 * np.pi * f0 
+H0 = 1
+
+# Sampling
+freqs = np.linspace(1, 100*f0, 10000)
+s = freqs * 1j*(2*np.pi)
+
+# Theory w0 = 2*pi*f
+hlp = HLP(s, w0, Q, H0)
+hhp = HHP(s, w0, Q, H0)
+hbp = HBP(s, w0, Q, H0)
+hbs = HBS(s, w0, Q, H0)
+
+# RC: w0 = 2*pi*f
+# R = 1.59e3
+# C = 100e-9
+
+w0RC = w0
+hlpRC = HLP(s, w0RC, Q, H0)
+hhpRC = HHP(s, w0RC, Q, H0)
+hbpRC = HBP(s, w0RC, Q, H0)
+hbsRC = HBS(s, w0RC, Q, H0)
+
+# Visualize
+fig, axes = plt.subplots(2,1, figsize=(5.5, 5.5))
+ax    = axes[0]
+#axRC  = axes[0, 1]
+axP   = axes[1]
+#axPRC = axes[1, 1]
+#f0
+ax.semilogx(freqs, mag2db(hlp), label='LP')
+ax.semilogx(freqs, mag2db(hhp), label='HP')
+ax.semilogx(freqs, mag2db(hbp), label='BPF')
+ax.semilogx(freqs, mag2db(hbs), label='BSF')
+ax.grid()
+ax.set_xlabel('f / Hz')
+ax.set_ylabel('|H| / dB')
+ax.set_ylim(-60)
+ax.set_xlim(10, max(freqs))
+# ax.set_title("Gain- and Phaseresponse for different Filters")
+# ax.legend()
+
+# Phase / fo
+axP.semilogx(freqs, phase(hlp), label='LP')
+axP.semilogx(freqs, phase(hhp), label='HP')
+axP.semilogx(freqs, phase(hbp), label='BPF')
+axP.semilogx(freqs, phase(hbs), label='BSF')
+
+axP.grid()
+axP.set_xlabel('f / Hz')
+axP.set_ylabel('Phase / deg')
+axP.set_xlim(10, max(freqs))
+axP.set_ylim(-180, 180)
+axP.set_yticks(np.arange(-180, 180+1, 60), np.arange(-180, 180+1, 60))
+
+
+# RC
+#axRC.plot(freqs, mag2db(hlpRC), label='LP')
+#axRC.plot(freqs, mag2db(hhpRC), label='HP')
+#axRC.plot(freqs, mag2db(hbpRC), label='BPF')
+#axRC.plot(freqs, mag2db(hbsRC), label='BSF')
+
+#axRC.grid()
+#axRC.set_xlabel('f / Hz')
+#axRC.set_ylabel('|H| / dBV')
+#axRC.set_ylim(-60)
+
+
+
+# Phase / RC
+#axPRC.plot(freqs, phase(hlpRC), label='LP')
+#axPRC.plot(freqs, phase(hhpRC), label='HP')
+#axPRC.plot(freqs, phase(hbpRC), label='BPF')
+#axPRC.plot(freqs, phase(hbsRC), label='BSF')
+
+#axPRC.grid()
+
+#axPRC.set_xlabel('f / Hz')
+#axPRC.set_ylabel('Phase / deg')
+
+
+
+# One shared legend below all subplots
+handles, labels = ax.get_legend_handles_labels()
+fig.legend(handles, labels, loc='lower center', ncol=4, bbox_to_anchor=(0.5, -0.02))
+fig.subplots_adjust(bottom=0.25)  # Make room below the plot
+
+plt.tight_layout(rect=[0, 0.05, 1, 1])  # leave space at bottom
+# plt.show()
+# plt.tight_layout()
+
+
+
+## Save Figure (Optional)
+# plt.savefig("1_system/Plots/Plot_filterdesign.png", format="png")
+
+#plt.show()
+
+```
+
+At $f_0$ the gain of $Q=10$ (equals $20~\text{dB}$) can be seen for LPF, BPF, HPF, and a notch for BSF. This demonstrates the desired behavior of the biquad Filter.  
+The phase shift at $f_0$ of BSF and LP are the smallest (ca. $-25°$), with BPF being at around $-110°$, and HP the highest phase shift with $155°$. 
+
+## Pole–Zero Analysis
+
+By analyzing the poles and zeroes of each, the filters can be confirmed, if locations of poles and zeroes match each Filter-type.  
+
+
+
+```{python}
+#| echo: true
+#| code-overflow: wrap
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import freqs
+
+# Given values
+f0 = 1000          # Center frequency (Hz)
+Q  = 10            # Quality factor
+H0 = 1             # DC gain
+
+# Calculate  omega_0
+w0 = 2*np.pi*f0
+
+# Denominator coefficients (a2*s^2 + a1*s + a0)
+a2 = 1 / w0**2
+a1 = 1 / (w0 * Q)
+a0 = 1
+den = [a2, a1, a0]
+
+# Numerator coefficients for each filter
+num_LP = [H0]                       # H0
+num_HP = [H0 / w0**2, 0, 0]         # H0*(s/omega_0)^2
+num_BP = [-H0 / w0, 0]              # -H0*(s/omega_0)
+num_BS = [H0 / w0**2, 0, H0]        # H0*(1 + (s/omega_0)^2)
+
+# Function to compute zeros and poles
+def compute_pz(num, den):
+    zeros = np.roots(num)
+    poles = np.roots(den)
+    return zeros, poles
+
+# Compute zeros and poles for each filter
+z_LP, p_LP = compute_pz(num_LP, den)
+z_HP, p_HP = compute_pz(num_HP, den)
+z_BP, p_BP = compute_pz(num_BP, den)
+z_BS, p_BS = compute_pz(num_BS, den)
+
+# --- Figure 1: 2x2 Pole-Zero plots ---
+fig1, axes = plt.subplots(2, 2, figsize=(6, 6))
+
+filters = [
+    ('Lowpass', z_LP, p_LP),
+    ('Highpass', z_HP, p_HP),
+    ('Bandpass', z_BP, p_BP),
+    ('Bandstop', z_BS, p_BS),
+]
+
+for ax, (title, zeros, poles) in zip(axes.flat, filters):
+    ax.scatter(np.real(zeros), np.imag(zeros),
+               marker='o', facecolors='none', edgecolors='b', label='Zeros')
+    ax.scatter(np.real(poles), np.imag(poles),
+               marker='x', color='r', label='Poles')
+    ax.set_title(f'{title} Filter')
+    ax.set_xlabel('Real')
+    ax.set_ylabel('Imag')
+    ax.grid()
+    # ax.legend()
+    ax.axis('equal')
+    # ax.legend() # Legend is too big inside subplot
+
+handles, labels = axes[0,0].get_legend_handles_labels()
+
+fig1.legend(handles, labels, loc='lower center', ncol=2, bbox_to_anchor=(0.5, -0.03))
+fig1.suptitle('Pole-Zero Maps', y=1.02)
+plt.tight_layout()
+
+# --- Figure 2: 2x2 Frequency Response plots ---
+# Frequency axis for Bode plot
+f = np.logspace(1, 5, 5000)   # 10 Hz to 100 kHz
+w = 2 * np.pi * f             # rad/s
+
+# Compute frequency responses
+_, H_LP = freqs(num_LP, den, w)
+_, H_HP = freqs(num_HP, den, w)
+_, H_BP = freqs(num_BP, den, w)
+_, H_BS = freqs(num_BS, den, w)
+
+# Convert to dB
+db_LP = 20 * np.log10(abs(H_LP))
+db_HP = 20 * np.log10(abs(H_HP))
+db_BP = 20 * np.log10(abs(H_BP))
+db_BS = 20 * np.log10(abs(H_BS))
+
+# Plot 2x2 subplots for magnitude
+fig2, axes2 = plt.subplots(2, 2, figsize=(6, 6))
+
+axes2[0,0].semilogx(f, db_LP, 'b', linewidth=1.5, color="blue")
+axes2[0,0].set_title('Lowpass Filter')
+axes2[0,0].set_xlabel('Frequency / Hz')
+axes2[0,0].set_ylabel('|H| / dB')
+axes2[0,0].grid()
+
+axes2[0,1].semilogx(f, db_HP, 'r', linewidth=1.5, color="orange")
+axes2[0,1].set_title('Highpass Filter')
+axes2[0,1].set_xlabel('Frequency / Hz')
+axes2[0,1].set_ylabel('|H| / dB')
+axes2[0,1].grid()
+
+axes2[1,0].semilogx(f, db_BP, 'm', linewidth=1.5, color="green")
+axes2[1,0].set_title('Bandpass Filter')
+axes2[1,0].set_xlabel('Frequency / Hz')
+axes2[1,0].set_ylabel('|H| / dB')
+axes2[1,0].grid()
+
+axes2[1,1].semilogx(f, db_BS, 'g', linewidth=1.5, color="red")
+axes2[1,1].set_title('Bandstop Filter')
+axes2[1,1].set_xlabel('Frequency / Hz')
+axes2[1,1].set_ylabel('|H| / dB')
+axes2[1,1].grid()
+
+fig2.suptitle('Frequency Responses', y=1.02)
+plt.tight_layout()
+
+# plt.show()
+```
+
+The script uses `freqs()` of the SciPy toolbox to convert numerator and denominator coefficient vectors into frequency responses, confirming further the Filter by analyzing poles and zeroes.  
+No finite zeros for the Low-Pass, a double zero at $s=0$ for the High-Pass, a single zero at the origin for the Band-Pass, and conjugate zeros at the left half for the band-stop.  
+This shows similar locations, comparing poles/zeroes to typical second order filters [@zumbahlenBasicLinearDesign2007].
+Also creating plots based on the numerator and denumerator creates similar magnitude responses (Second Figure) similar to @sec-bode.
+
+
+## Impulse / Step Response
+In this section time-domain simulations are created. Namely, impulse and step responses of each second-order filter are plotted so it can be observed how they react to sudden inputs.  
+Running the four transfer-function models through SciPy’s LTI routines produces following two Figures with 2x2 subplots:
+
+```{python}
+#| echo: true
+#| code-overflow: wrap
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import TransferFunction, impulse, step
+
+# Filter specs
+f0 = 1000           # Hz
+Q  = 10
+H0 = 1
+
+# Compute w0
+w0 = 2 * np.pi * f0
+
+# Denominator coefficients for normalized biquad (1/omega_o^2)
+a2 = 1 / w0**2
+a1 = 1 / (w0 * Q)
+a0 = 1
+den = [a2, a1, a0]
+
+# Numerator coefficients for each filter type
+num_LP = [0, 0, H0]
+num_HP = [H0 / w0**2, 0, 0]
+num_BP = [0, -H0 / w0, 0]
+num_BS = [H0 / w0**2, 0, H0]
+
+# Create LTI systems
+sys_LP = TransferFunction(num_LP, den)
+sys_HP = TransferFunction(num_HP, den)
+sys_BP = TransferFunction(num_BP, den)
+sys_BS = TransferFunction(num_BS, den)
+
+# print(sys_LP)
+
+# Time vector for simulation
+t = np.linspace(0, 0.01, 10000)  # 0 to 10 ms
+
+# Compute impulse responses
+t_imp, y_imp_LP = impulse(sys_LP, T=t)
+_,         y_imp_HP = impulse(sys_HP, T=t)
+_,         y_imp_BP = impulse(sys_BP, T=t)
+_,         y_imp_BS = impulse(sys_BS, T=t)
+
+# Compute step responses
+t_step, y_step_LP = step(sys_LP, T=t)
+_,         y_step_HP = step(sys_HP, T=t)
+_,         y_step_BP = step(sys_BP, T=t)
+_,         y_step_BS = step(sys_BS, T=t)
+
+# Colors for each filter
+colors = {
+    'Lowpass': 'b',
+    'Highpass': 'orange',
+    'Bandpass': 'g',
+    'Bandstop': 'red'
+}
+
+# Figure 1: Impulse Responses
+fig1, axs1 = plt.subplots(2, 2, figsize=(6, 6))
+fig1.suptitle('Impulse Responses')
+
+for ax, (title, y) in zip(axs1.flat, [
+    ('Lowpass', y_imp_LP),
+    ('Highpass', y_imp_HP),
+    ('Bandpass', y_imp_BP),
+    ('Bandstop', y_imp_BS),
+]):
+    ax.plot(t_imp * 1e3, y, color=colors[title], linewidth=1.2)
+    ax.set_title(title)
+    ax.set_xlabel('Time / ms')
+    ax.set_ylabel('|H| / V')
+    ax.grid()
+
+fig1.tight_layout()
+
+# Figure 2: Step Responses
+fig2, axs2 = plt.subplots(2, 2, figsize=(6, 6))
+fig2.suptitle('Step Responses')
+
+for ax, (title, y) in zip(axs2.flat, [
+    ('Lowpass', y_step_LP),
+    ('Highpass', y_step_HP),
+    ('Bandpass', y_step_BP),
+    ('Bandstop', y_step_BS),
+]):
+    ax.plot(t_step * 1e3, y, color=colors[title], linewidth=1.2)
+    ax.set_title(title)
+    ax.set_xlabel('Time / ms')
+    ax.set_ylabel('|H| / V')
+    ax.grid()
+
+fig2.tight_layout()
+
+# plt.show()
+
+```
+At the impulse plots, it can be seen how each filter reacts after a tiny, instant pulse (Dirac impulse). The four filters show an increased amplitude at the beginning, with each filter decaying over time, and therefore showing how sharply the filters resonate and how quickly their oscillations flattens out.
+
+The step plots show how each filter behaves when you suddenly apply a steady voltage (Sudden step of amplitude from $A=0~\text{V}$ to $A=1~\text{V}$). The low-pass filter rises and flattens at $A=1~\text{V}$ to its final level. The high-pass filter jumps at first, then falls back to zero, showing it blocks DC. The band-pass filter oscillates, and then decays down back toward zero. The band-stop starts at $A=11~\text{V}$ with decaying oscillation around $1~\text{V}$.  
+A higher $Q$ gives a longer and more noticeably ringing, but the ringing eventually fades away.
+
+
+
+<details>
+<summary><strong>Impulse- and step response with various Q</strong></summary>
+
+
+Here are lower $Q$ plotted, showing lower magnitude and faster decaying after impulse and step response, with $Q=[2, 1, 0.7071]$.
+
+
+::: {.callout-note}
+The ´:::´ displayed between this note and the plots is a bug occurring when using python-code inside a collapsable text block. Please ignore it.
+:::
+
+
+```{python}
+#| echo: true
+#| code-overflow: wrap
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import TransferFunction, impulse, step
+
+# Filter specs
+f0 = 1000           # Hz
+H0 = 1
+Q_list = [2, 1, 0.7071]
+
+# Time vector for simulation
+t = np.linspace(0, 0.005, 10000)  # 0 to 5 ms
+
+# Set up storage for responses
+imp_responses = {'Lowpass': [], 'Highpass': [], 'Bandpass': [], 'Bandstop': []}
+step_responses = {'Lowpass': [], 'Highpass': [], 'Bandpass': [], 'Bandstop': []}
+
+# Compute for each Q
+for Q in Q_list:
+    w0 = 2 * np.pi * f0
+    a2 = 1 / w0**2
+    a1 = 1 / (w0 * Q)
+    a0 = 1
+    den = [a2, a1, a0]
+
+    num_LP = [0, 0, H0]
+    num_HP = [H0 / w0**2, 0, 0]
+    num_BP = [0, -H0 / w0, 0]
+    num_BS = [H0 / w0**2, 0, H0]
+
+    systems = {
+        'Lowpass': TransferFunction(num_LP, den),
+        'Highpass': TransferFunction(num_HP, den),
+        'Bandpass': TransferFunction(num_BP, den),
+        'Bandstop': TransferFunction(num_BS, den)
+    }
+
+    for name, sys in systems.items():
+        _, y_imp = impulse(sys, T=t)
+        _, y_step = step(sys, T=t)
+        imp_responses[name].append((Q, y_imp))
+        step_responses[name].append((Q, y_step))
+
+# Colors for Qs
+color_map = {
+    10: 'blue',
+    2: 'orange',
+    1: 'green',
+    0.7071: 'red'
+}
+
+# Plot Impulse Responses
+fig1, axs1 = plt.subplots(2, 2, figsize=(6, 6))
+fig1.suptitle('Impulse Responses')
+
+for ax, filter_name in zip(axs1.flat, ['Lowpass', 'Highpass', 'Bandpass', 'Bandstop']):
+    for Q, y in imp_responses[filter_name]:
+        ax.plot(t * 1e3, y, linestyle='--', linewidth=1.2, label=f'Q = {Q}', color=color_map[Q])
+    ax.set_title(filter_name)
+    ax.set_xlabel('Time / ms')
+    ax.set_ylabel('|H| / V')
+    ax.grid()
+    ax.legend(fontsize='small')
+
+fig1.tight_layout()
+
+# Plot Step Responses
+fig2, axs2 = plt.subplots(2, 2, figsize=(6, 6))
+fig2.suptitle('Step Responses')
+
+for ax, filter_name in zip(axs2.flat, ['Lowpass', 'Highpass', 'Bandpass', 'Bandstop']):
+    for Q, y in step_responses[filter_name]:
+        ax.plot(t * 1e3, y, linestyle='--', linewidth=1.2, label=f'Q = {Q}', color=color_map[Q])
+    ax.set_title(filter_name)
+    ax.set_xlabel('Time / ms')
+    ax.set_ylabel('|H| / V')
+    ax.grid()
+    ax.legend(fontsize='small')
+
+fig2.tight_layout()
+
+```
+
+</details> 
+

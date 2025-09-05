@@ -1,0 +1,438 @@
+# Lecture 8OTA Behaviour
+
+# Settling Performance
+
+In switched capacitor circuits the amplifier is subjected to transient pulses
+
+Output must ‘settle’ within the ϕ2 clock phase\, so that a proper voltage level is sampled on CL
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Analysis
+
+Assuming a single stage OTA\, we have
+
+Note:
+
+Replace Cf with Cftot = Cf \+ Cgd in all of the following expressions if there is extra feedback capacitance \(due to Cgd\) inside the OTA
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Step Response
+
+Finite DC loop gain results in a static error
+
+Finite bandwidth results in a dynamic error      that decays with time
+
+Due to Finite Bandwidth
+
+Due to Finite DC Loop Gain
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Graphical Illustration
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Design Considerations
+
+
+
+* Need large DC loop gain for small static error
+  * |e0| ≅ 1/T0
+  * E\.g\. need T0 > 1000 for better than 0\.1% precision
+* Need small t \(large bandwidth\) for fast settling
+* Can define “settling time” based on tolerable dynamic error
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Design Considerations (cont.)
+
+Going from 1% dynamic precision to 10\-6 necessitates only ~3x increase in settling time
+
+| __ε__  __d\,tol__ | __t__  __s__  __/__  __τ__ |
+| :-: | :-: |
+| 1% | 4\.6 |
+| 0\.1% | 6\.9 |
+| 0\.01% | 9\.2 |
+| 10\-6 | 13\.8 |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+A switched capacitor circuit operates in two clock phases
+
+Fitting the required number of time constants within ½ period lets us relate fs to a minimum bandwidth requirement
+
+| __ε__  __d__ | __f__  __c__  __/f__  __s__ |
+| :-: | :-: |
+| 1% | 1\.5 |
+| 0\.1% | 2\.2 |
+| 0\.01% | 2\.9 |
+| 10\-6 | 4\.4 |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Example
+
+
+
+* Using single stage OTA
+* Parameters
+  * Cs=Cf=500fF\, CL=10pF\, b=0\.48\, Gm=1mS\, GmRo=85\, Vidstep=\-10mV
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Result
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Another Run with Reduced Load
+
+Changed CL from 10pF to 300fF
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Capacitive Feedforward
+
+In the first instant after the input step has been applied\, the output is completely determined by capacitive voltage division
+
+Half circuit during initial transient
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Analysis
+
+
+
+* Can analyze this effect in two \(equivalent\) ways
+  * Using capacitive divider to find new starting point of exponential
+  * Using inverse Laplace transform of A\(s\) with high frequency zero included
+* Recall that A\(s\) is more precisely given by
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# New Result
+
+For our example:
+
+Good agreement with simulation\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# New Settling Time
+
+
+
+* Settling time for given precision increases due to feedforward\, since the settling range is artificially enlarged
+* E\.g\.\, in our simulation example\, the time to settle within 0\.1% dynamic error increases from 6\.9τ to 7\.3τ
+  * Not all that significant\, especially when β is low and CL is at least comparable to Cf
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Another Sim. with Increased Input Step
+
+Set Vidstep=\-1V  \(CL=10pF  insignificant feedforward to output\)
+
+What causes this discrepancy ?
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Capacitive Divider at OTA Input
+
+Half circuit during initial transient:
+
+Initially \-480mV across differential pair input\!
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Differential Pair Characteristics
+
+Differential output current saturates for
+
+Beyond this point\, current will be much less than that predicted by linear model \(slope at origin\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Differential Pair Input Voltage vs. Output Current
+
+"Linear Settling"
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Slewing
+
+
+
+* During  <span style="color:#008000">slewing</span> \, the amplifier drives its output with an approximately constant current \(equal to tail bias\)\.
+* The slewing behavior ends when |Vid| has become smaller than about
+* This is the point when the differential pair re\-enters its  <span style="color:#008000">linear region</span> \.Hence\, the remaining portion of the settling is often called <span style="color:#008000">linear settling</span> \. _Note that this is not meant to say that the output changes with a constant rate during this time; it settles with a \(1\-e_  _t/_  _τ_  _\) relationship_  _\._
+* The total settling time of the amplifier in presence of slewing can be calculated as shown in the following derivation\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Slew Rate
+
+In order to find the time it takes to complete slewing\, we can first calculate the "ramp speed" at which the output changes\.
+
+This quantity is called "Slew Rate" \(SR\)\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Slewing Time
+
+The input of the differential pair changes at a rate equal to           \,where      is given by the usual capacitive feedback divider\.
+
+Hence\, the time it takes to complete slewing is given by
+
+In our example\, we have:
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Subsequent Linear Settling
+
+Once slewing is completed\, the differential output voltage is
+
+
+
+* The final settling value in our example is roughly 1V
+  * Almost half way there after slewing
+* This means that the dynamic error budget for the remaining settling portion \(Vod\,lin\) has increased
+  * E\.g\. if we wanted to settle within 0\.1% of the final value \(~1V\)\, we only need to complete the remaining transient to within 0\.1%·1V/0\.58V = 0\.17%
+  * Not a very big win\, usually a negligible change in the number of required time constants0\.1%  6\.9τ versus 0\.17%  6\.4τ
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Complete Expression for Settling Time
+
+
+
+* Note that circuits with large closed loop gain tend to slew less
+  * Since Vid\,step cannot be larger than Vod\,final/Gain
+  * E\.g\. Vod\,final=2V\, Gain =8  Vxdstep < Vidstep < 250mVThe circuit won’t slew at all as long as gm/ID < 2\.8/250mV = 11\.2 S/A
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Design Considerations
+
+
+
+* When slewing is an issue\, it can be mitigated by biasing the relevant transistors at lower gm/ID
+  * Increase ID\, keep gm constant
+  * Slewing performance improves\, because of larger ID and also because the differential pair input range increases \(2\.8/\(gm/ID\)\)
+  * Small signal performance remains virtually unchanged or improves if fT is a limiting factor \(since fT increases\)
+  * Issue
+    * Lower gm/ID means higher power consumption
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Output Swing of Simple OTA
+
+Available output swing depends on input and output common mode levels
+
+May be limited by headroom for differential pair device \(Vminn\) or active load \(Vminp\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Maximum Available Swing
+
+
+
+* Input and output common mode adjusted such that all devices operate at "edge" of active region
+  * Well defined using long channel model\, very gradual transition in short channels
+* Unfortunately\, the choice of Vic and Voc are often dictated by the circuits that interface with the amplifier
+  * E\.g\. Vic=Voc=1\.5V
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Example Vic=Voc=VDD/2
+
+Assuming that we are limited by Vminn\, and Vminn~VOV\, the available differential peak\-to\-peak swing is ~4Vt
+
+Since the transition to triode is smooth\, which criterion should we use find the "exact" output range of an amplifier?
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Gain vs. Output Swing DC Simulation
+
+In AMCD\, we arbitrarily define output range as the peak\-to\-peak swing that causes no more than 30% drop in Vod/Vid\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# How About Speed?
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# CS-CG Cascade
+
+
+
+* Cascode amplifier with capacitive feedback \(half circuit\)
+* Cgdn sees significant  Miller amplification at low frequencies
+  * Since Zc approx\. 1/gm only at high frequencies
+* Solution: Neutralization
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# A Promising Trick: Miller Theorem
+
+
+
+* Let’s us refer the coupling impedance to grounded equivalent impedances on both sides
+  * But requires the knowledge of K = V2/V1
+
+
+![](img/lec-07e-ota_behavior_ic_6.png)
+
+http://paginas\.fe\.up\.pt/~fff/eBook/MDA/Teo\_Miller\.html
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Examples for Z=1/sC (1)
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Capacitive Neutralization
+
+![](img/lec-07e-ota_behavior_ic_7.png)
+
+Ref\. Gray et\. al\.\,  _Analysis and Design of Analog Integrated Circuits_ \, 5th ed\.\, p\.837
+
+Ref\. Gray et\. al\.\,  _Analysis and Design of Analog Integrated Circuits_ \, 4th ed\.\, p\.849
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# High Frequency Loop Gain
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Example: fp2 = 5fc
+
+
+
+* Phase margin approx\. 80 deg\.
+  * Non\-dominant pole p2 is not an issue in this case
+* Since wp2 approx\. wT/3\, this means that wc \(and hence closed\-loop BW\) cannot be higher than ~wT/15 in this scenario
+
+
+![](img/lec-07e-ota_behavior_ic_8.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Example: fp2 = fc/5
+
+
+
+* Phase margin approx\. 28 deg\.
+  * Not acceptable in practice
+* How much phase margin should we design for?
+
+
+![](img/lec-07e-ota_behavior_ic_9.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Phase Margin as a Function of ωp2
+
+At the crossover frequency\, the dominant pole has shifted the phase by about \-90 deg\.
+
+The non\-dominant pole's phase at ωc is given by arctan\(ωc/ωp2\)\.
+
+Typically want to shoot for phase margin ~70\-75 degrees\.
+
+| ωp2/ωc | Approximate PM |
+| :-: | :-: |
+| 1 | 45 deg\. |
+| 2 | 63 deg\. |
+| 3 | 72 deg\. |
+| 4 | 76 deg\. |
+| 5 | 79 deg\. |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Load Compensation
+
+
+
+* Non\-dominant pole is fixed at roughly ωT/3
+* The loop crossover frequency is given by
+* Increasing CLtot will lower wc and increase ωp2/ωc\, which translates into larger phase margin\.
+* A feedback circuit in which adding additional load capacitance improves stability is often called “load compensated”
+  * Meaning that the load compensates or reduces the impact of phase shift from p2\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# How Fast Can We Go?
+
+
+
+* Let’s say we design for fc ~ 1/3 fp2 ~ 1/9 fT
+* At a reasonable bias\, the NMOS transit frequency in 0\.18um technology is roughly 20 GHz \(nominal process and temperature\)\.
+* Assume 0\.01% settling and no slewing
+* In practice\, it is hard to go any faster than 200 MHz in 0\.18um technology:
+  * Slewing
+  * Timing overhead \(have somewhat less time than Ts/2\)
+  * Margins for process variation\, wiring caps\, etc\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# How Much Gain Can We Get?
+
+Small\-signal gain \(around Vid=Vod=0\)
+
+e\.g\. a0n=a0p=50\, \(gm/ID\)n= \(gm/ID\)p   a0=25
+
+Static gain error ~1/To ~1/a0 ~1/25 = 4%
+
+Not precise enough for many applications\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise Analysis OTA
+
+Neglecting finite output resistance of the MOSFETs
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise Analysis OTA (cont.)
+
+Noise due to active load
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* For low noise:
+  * Make gmp as small as possible\, i\.e\. use small gm/ID for active load device\. _Issue: Smaller _  _g_  _m_  _/I_  _D_  _ means larger _  _V_  _dsat_  _ \, i\.e\. less available voltage swing\._
+  * Maximize feedback factor β
+
+
+Want ωt  ∞
+
+\(short channel\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noise in Differential Circuits
+
+
+
+* In differential circuits\, the noise power is doubled \(because there are two half circuits contributing to the noise\)
+* But\, the signal power increases by 4 times\. Looks like a 3\-dB win?
+* Yes\, there’s a 3\-dB win in DR\, but it comes at twice the power dissipation \(due to two half circuits\)\.
+* Can get the same DR/power in a single ended circuit by doubling all cap sizes and gm\.
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+

@@ -1,0 +1,53 @@
+---
+title: "IC Design of a Universal Biquad Filter"
+author:
+  - name: Atakan Baydogan
+    orcid: 
+    email: abaydogan@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+    affiliation:
+      - name: City University of Applied Sciences (HSB)
+        city: Bremen
+        state: Germany
+        url: https://www.hs-bremen.de
+  - name: Onno Kriens
+    orcid: 
+    email: okriens@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+  - name: Finn Ringelsiep
+    orcid: 
+    email: fringelsiep@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+  - name: Alicia von Ahlen
+    orcid: 0009-0007-3049-2455
+    email: avahlen@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+
+keyword:
+  - Filter design
+  - Biquadratic filter
+  - IC design
+  - Open-Source toolchain
+
+bibliography: references.bib
+  
+abstract: |
+  This project explores the IC design of a biquad filter from mathematical modelling over ideal circuit implementations
+  to sizing and using several differnet OTAs and a concluding physical implementation of an OTA. Two different OTA
+  models were incorporated into implementing the universal biquad filter and compared with simulations to the
+  theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required
+  behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a
+  physical design with the help of KLayout.
+---
+
+{{< include content/_sec_introduction.qmd >}}
+{{< include content/_sec_theoretical_background.qmd >}}
+{{< include content/_sec_characterisation.qmd >}}
+{{< include content/_sec_xschem.qmd >}}
+{{< include content/_sec_finns_part.qmd >}}
+{{< include content/_sec_conclusion-outlook.qmd >}}
+<!-- {{< include content/references.qmd >}} -->

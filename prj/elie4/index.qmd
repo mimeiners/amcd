@@ -1,0 +1,45 @@
+---
+title: "Design and Implementation of a Universal Biquad Filter"
+author: 
+  - name: Nilina Rose Sony
+    orcid: 
+    email: rosesonynilina@gmail.com
+    corresponding: true
+    roles: "Lead author"
+    affiliation:
+      - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+        city: Bremen
+        state: Germany
+        url: https://www.hs-bremen.de  
+  - name: Ian Gabriel
+    orcid: 
+    email: 911iangab44@gmail.com
+    corresponding: true
+    roles: "Lead author" 
+
+keyword:
+  - Filter Design 
+  - PCB
+
+bibliography: references.bib
+
+abstract: | 
+    This project explores the design and implementation of a second-order universal active (biquad) filter supporting
+    low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and
+    PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain,
+    phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results
+    in analog filter design.
+---
+
+{{< include content/_1.sec_introduction.qmd >}}
+{{< include content/_2.sec_motivation.qmd >}}
+{{< include content/_3.sec_basicsoffilterdesign.qmd >}}
+{{< include content/_4.sec_biquads.qmd >}}
+{{< include content/_5.sec_behaviouralmodelling.qmd >}}
+{{< include content/_6.sec_filterdesign.qmd >}}
+{{< include content/_7.sec_signalsandsystemanalysis.qmd >}}
+{{< include content/_8.sec_basicopamptheory.qmd >}}
+{{< include content/_9.sec_circuitdesignandlayout.qmd >}}
+{{< include content/_10.sec_result.qmd >}}
+{{< include content/_11.sec_troubleshooting.qmd >}}
+{{< include content/_12.sec_discussion.qmd >}}

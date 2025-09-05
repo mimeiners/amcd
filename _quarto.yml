@@ -1,12 +1,11 @@
 project:
   type: book
   output-dir: _book
-  
 
 book:
   title: "M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)"
   author: "M. Meiners"
-  date: "11-23-2024"
+  date: "Summer 2025"
 
   reader-mode: true
 
@@ -15,53 +14,80 @@ book:
       M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
-#  cover-image: images/hsb-logo.png
+  # cover-image: images/hsb-logo.png
   favicon: images/hsb-logo.png
-  site-url: https://mimeiners.github.io/cems/
-  repo-url: https://github.com/mimeiners/cems/
+  site-url: https://mimeiners.github.io/amcd/
+  repo-url: https://github.com/mimeiners/amcd/
   repo-branch: main
-  repo-actions: [edit, issue]
+  repo-actions: [edit,issue]
+  # downloads: [pdf,epub]
 
   chapters:
     - index.qmd
-
     - part: Lecture
       chapters:
-        - class/lec-01-intro.qmd
-#        - class/references.qmd
-    
-    - part: Lab
+        - lec/lec-01-intro.qmd
+        # - lec/lec-02a-analog_filter_design.qmd
+        # - lec/lec-03a-biquads.qmd
+        # - lec/lec-04-ladders.qmd
+        # - lec/lec-05-noise.qmd
+        # - lec/lec-06-gm-ID.qmd
+        # - lec/lec-07a-MCD6thEdChap10.qmd
+        # - lec/lec-07b-MCD6thEdChap11.qmd
+        # - lec/lec-07c-ota_simple_ic.qmd
+        # - lec/lec-07d-ota_design_ic.qmd
+        # - lec/lec-07e-ota_behavior_ic.qmd
+        # - lec/lec-07p1-modelling_ic.qmd
+        # - lec/lec-07p2-cs_amp_ic.qmd
+        # - lec/lec-07p3-op_analysis_ic.qmd
+        # - lec/lec-07p4-gain_and_ro.qmd
+        # - lec/lec-07p5-intrinsic_cap_ic.qmd
+        # - lec/lec-07p6-extrinsic_cap_ic.qmd
+        # - lec/lec-07p7-miller_ic.qmd
+        # - lec/lec-08-ota_cascode_ic.qmd
+        # - lec/lec-09-integrators.qmd
+        # - lec/lec-10-MCD6thEdChap12.qmd
+        # - lec/lec-11-sc_filter.qmd
+        # - lec/lec-12-adc_dac.qmd
+    - part: Design Projects
       chapters:
-        - lab/lab-01-analog_filter.qmd
-          
+        - prj/elie1/index.qmd
+        - prj/elie2/index.qmd
+        - prj/elie3/index.qmd
+        - prj/elie4/index.qmd
+        - prj/elie5/index.qmd
+    - references.qmd
+    
 bibliography: _bibliography/references.bib
 
 format:
   html:
     theme: flatly
-  pdf:
-    documentclass: scrbook
-    lof: true
-    lot: true
-    toc: true    
-    geometry:
-      - top=30mm
-      - left=20mm
-      - heightrounded
-    hyperrefoptions:
-      - linktoc=all
-    colorlinks: true
-    linkcolor: "blue"
-    biblio-style: apalike
-    #    keep-tex: true
-    output-file: cems
-  epub:
-    theme: flatly
-    output-file: cems
-
-latex-auto-install: true
+    code-fold: true
+    code-tools: true
+    csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/ieee.csl"
+  # pdf:
+  #   documentclass: scrbook 
+  #   # lof: true
+  #   # lot: true
+  #   toc: true    
+  #   geometry:
+  #     - top=30mm
+  #     - left=20mm
+  #     - heightrounded
+  #   hyperrefoptions:
+  #     - linktoc=all
+  #   colorlinks: true
+  #   linkcolor: "blue"
+  #   biblio-style: ieee
+  #   highlight-style: github
+  #   mainfont: "Calibri"
+  #   # keep-tex: true
+  #   output-file: amcd
+  # epub:
+  #   theme: flatly
+  #   csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/ieee.csl"
+  #   output-file: amcd
 
 execute:
   freeze: auto
-
-editor: visual

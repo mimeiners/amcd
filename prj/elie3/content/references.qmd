@@ -1,0 +1,39 @@
+# References
+
+::: {#refs}
+- Baker, R. Jacob. *CMOS: Circuit Design, Layout, and Simulation*. 3rd ed., Wiley-IEEE Press, Oct. 2010. [https://doi.org/10.1002/9780470891179](https://doi.org/10.1002/9780470891179).
+
+- Baker, R. Jacob. *CMOSedu*. 2015. [http://www.cmosedu.com](http://www.cmosedu.com).
+
+- Basso, Christophe P. *Switch-Mode Power Supplies: SPICE Simulations and Practical Designs*. McGraw-Hill, 2008.
+
+- Carter, Bruce. *Op Amps for Everyone*. 4th ed., Newnes, 2013. [https://doi.org/10.1016/B978-0-12-391495-8.00001-5](https://doi.org/10.1016/B978-0-12-391495-8.00001-5).
+
+- Fath, Patrick, Manuel Moser, Georg Zachl, and Harald Pretl. “Open-source design of integrated circuits: Ein quelloffener 1,44-MS/s 703-μW 12-bit nichtbinärer SAR-ADC mit 448-aF Kondensatoren in einem 130-nm CMOS-Prozess.” *Elektrotechnik und Informationstechnik*, vol. 141, no. 1, Jan. 2024, pp. 76–87. [https://doi.org/10.1007/s00502-023-01195-5](https://doi.org/10.1007/s00502-023-01195-5).
+
+- Flaherty, Nick. “Tiny Tapeout hit as eFabless closes.” *eeNews EUROPE*, Mar. 2025. [https://www.eenewseurope.com/en/tiny-tapeout-hit-as-efabless-closes/](https://www.eenewseurope.com/en/tiny-tapeout-hit-as-efabless-closes/).
+
+- Lienig, Jens, and Juergen Scheible. *Fundamentals of Layout Design for Electronic Circuits*. Springer International Publishing, 2020. [https://doi.org/10.1007/978-3-030-39284-0](https://doi.org/10.1007/978-3-030-39284-0).
+
+- Lienig, Jens, and Jürgen Scheible. *Grundlagen des Layoutentwurfs elektronischer Schaltungen*. Springer International Publishing, 2023. [https://doi.org/10.1007/978-3-031-15768-4](https://doi.org/10.1007/978-3-031-15768-4).
+
+- Mancini, Ron. *Op Amps for Everyone*. Texas Instruments Incorporation, Aug. 2002. [https://web.mit.edu/6.101/www/reference/op_amps_everyone.pdf](https://web.mit.edu/6.101/www/reference/op_amps_everyone.pdf).
+
+- Michel, Manfred. *Leistungselektronik: Einführung in Schaltungen und deren Verhalten*. 5th ed., Springer Berlin Heidelberg, 2011. [https://doi.org/10.1007/978-3-642-15984-8](https://doi.org/10.1007/978-3-642-15984-8).
+
+- Pretl, Harald, Michael Koefinger, and Simon Dorrer. *Analog Circuit Design*. Dec. 2024. [https://doi.org/10.5281/zenodo.14387481](https://doi.org/10.5281/zenodo.14387481). [https://iic-jku.github.io/analog-circuit-design](https://iic-jku.github.io/analog-circuit-design).
+
+- Pretl, Harald, and Georg Zachl. *GitHub repository of the IIC-OSIC-TOOLS*. Version 2025.01, Zenodo, Jan. 2025. [https://doi.org/10.5281/zenodo.14634518](https://doi.org/10.5281/zenodo.14634518). [https://github.com/iic-jku/IIC-OSIC-TOOLS](https://github.com/iic-jku/IIC-OSIC-TOOLS).
+
+- Ratschenberger, Jakob, and Harald Pretl. *From Code to Chip: Open-Source Automated Analog Layout Design*. 1st ed., Springer Cham, 2025. [https://doi.org/10.1007/978-3-031-68562-0](https://doi.org/10.1007/978-3-031-68562-0).
+
+- Schlienz, Ulrich. *Schaltnetzteile und ihre Peripherie: Dimensionierung, Einsatz, EMV*. Springer Fachmedien Wiesbaden, 2020. [https://doi.org/10.1007/978-3-658-29490-8](https://doi.org/10.1007/978-3-658-29490-8).
+
+- Schröder, Dierk, and Rainer Marquardt, editors. *Leistungselektronische Schaltungen*. Springer Berlin Heidelberg, 2019. [https://doi.org/10.1007/978-3-662-55325-1](https://doi.org/10.1007/978-3-662-55325-1).
+
+- “Spring 2024.” *IEEE Solid-State Circuits Magazine*, vol. 16, no. 2, 2024, pp. 3–4. [https://doi.org/10.1109/mssc.2024.3400568](https://doi.org/10.1109/mssc.2024.3400568).
+
+- Wicht, Bernhard. “Analog Building Blocks of dc-dc Converters: Examining Fundamental Concepts.” *IEEE Solid-State Circuits Magazine*, vol. 12, no. 3, 2020, pp. 42–47. [https://doi.org/10.1109/mssc.2020.3002141](https://doi.org/10.1109/mssc.2020.3002141).
+
+- Wicht, Bernhard. *Design of Power Management Integrated Circuits*. Wiley, May 2024. [https://doi.org/10.1002/9781119123095](https://doi.org/10.1002/9781119123095).
+:::

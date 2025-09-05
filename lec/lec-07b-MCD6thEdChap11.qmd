@@ -1,0 +1,1205 @@
+# Chapter 11Non-Ideal Operational Amplifiers and Feedback Amplifier Stability
+
+__Microelectronic Circuit Design__
+
+Richard C\. JaegerTravis N\. BlalockBenjamin J\. Blalock
+
+![](img/lec-07b-MCD6thEdChap11_0.png)
+
+\(c\) 2021 McGraw\-Hill Education\. All rights reserved
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Chapter Goals
+
+Continue study of methods to determine transfer functions of circuits containing op amps\.
+
+Study non\-ideal op amp behavior\.
+
+Demonstrate circuit analysis techniques for ideal and non\-ideal op amps\.
+
+Learns factors involved in circuit design using op amps\.
+
+Understand frequency response limitations of op amp circuits\.
+
+Model amplifier limitations due to limited bandwidth and slew rate of the op amp\.
+
+Perform SPICE simulation of non\-ideal op amp circuits\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Effects of Feedback
+
+_Gain Stability_ : Feedback reduces sensitivity of gain to variations in values of transistor parameters and other circuit elements\.
+
+_Input and Output Impedances_ : Feedback can increase or decrease input and output resistances of an amplifier\.
+
+_Bandwidth_ : Bandwidth of an amplifier can be extended using feedback\.
+
+_Nonlinear Distortion:_  Feedback reduces effects of nonlinear distortion\.  eg: removal of dead zone in class\-B amplifiers
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Classic Feedback Systems
+
+![](img/lec-07b-MCD6thEdChap11_1.jpg)
+
+T  = loop gain = A
+
+For negative feedback: T\(s\) > 0
+
+For positive feedback: T\(s\) < 0
+
+_A_  = transfer function of open\-loop amplifier or open\-loop gain\.
+
+_b_  = transfer function of feedback network\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Gain Error and Fractional Gain Error
+
+Gain Error is given by
+
+GE = \(ideal gain\) \- \(actual gain\)
+
+For non\-inverting amplifier\,
+
+Gain error is also expressed as a fractional or percentage error\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Gain Error ExampleNoninverting Amplifier
+
+__Problem__ : Find actual gain and gain error for an amplifier
+
+__Given data__ : Ideal closed\-loop gain of 200 \(46 dB\)\, open\-loop gain of op amp is 10\,000 \(80 dB\)\.
+
+__Approach__ : Amplifier is designed to give ideal gain and deviations from ideal case are determined\.
+
+_ Note: R_  _1_  and  _R_  _2_  are not normally designed to compensate for finite open\-loop gain of amplifier\.
+
+__Analysis__ :
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Operational Amplifier
+
+
+
+* Various error terms arise in practical operational amplifiers due to non\-ideal behavior\.
+* Some of the nonideal characteristics include:
+  * Finite open\-loop gain
+  * Nonzero output resistance
+  * Finite input resistance
+  * Finite common\-mode rejection ratio \(CMRR\)
+  * Common\-mode input resistance
+  * dc error sources \(offset voltage\, input bias current\, offset current\)
+  * Output voltage and current limits
+
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Op AmpsFinite Open-loop Gain – Noninverting Amplifier
+
+![](img/lec-07b-MCD6thEdChap11_2.jpg)
+
+is referred to as the  __feedback factor\.__
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_3.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Op AmpsNonzero Output Resistance
+
+![](img/lec-07b-MCD6thEdChap11_4.jpg)
+
+![](img/lec-07b-MCD6thEdChap11_5.jpg)
+
+The output terminal is driven by test source vx and current ix is calculated to determine output resistance \(all independent sources are turned off\)\. Note that the equivalent circuit is same for both inverting and non\-inverting amplifiers\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Op AmpsNonzero Output Resistance (cont.)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Op AmpsOpen-loop Gain: Design Example
+
+__Problem__ : Design non\-inverting amplifier and find the required open\-loop gain
+
+__Given Data__ :  _A_  _v _ = 35 dB\,  _R_  _out_  = 0\.2 W\,  _R_  _o_  = 250 W
+
+__Analysis:__
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Op AmpsFinite Input Resistance: Noninverting Amplifier
+
+![](img/lec-07b-MCD6thEdChap11_6.jpg)
+
+Test voltage source vx is applied to input and current ix is calculated\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_7.jpg)
+
+![](img/lec-07b-MCD6thEdChap11_8.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonideal Amplifier SummaryInverting and Noninverting Amplifier
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier CategoriesVoltage Amplifiers - Series-Shunt Feedback
+
+![](img/lec-07b-MCD6thEdChap11_10.jpg)
+
+A voltage amplifier should have a high input resistance to measure the desired voltage and a low output resistance to drive the external load\. To achieve the desired behavior\, the input ports of the amplifier and feedback network are connected in series\, and the output ports are connected in parallel \(shunt\)\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier CategoriesTransresistance Amplifiers - Shunt-Shunt Feedback
+
+![](img/lec-07b-MCD6thEdChap11_11.jpg)
+
+A transresistance amplifier converts an input current to an output voltage\. Thus it should have a low input resistance to sink the desired current and a low output resistance to drive the external load\. To achieve the desired behavior\, the input ports of the amplifier and feedback network are connected in parallel \(shunt\)\, and the output ports are connected in parallel \(shunt\)\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier CategoriesCurrent Amplifiers - Shunt-Series Feedback
+
+![](img/lec-07b-MCD6thEdChap11_12.jpg)
+
+A current amplifier should provide a low resistance current sink at the input and a high resistance current source at its output\.  The input ports of the amplifier and feedback network are connected in parallel\, and the output ports are connected in series\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier CategoriesTransconductance Amplifiers - Series-Series Feedback
+
+![](img/lec-07b-MCD6thEdChap11_13.jpg)
+
+The transconductance amplifier converts an input voltage to an output current\. This amplifier should have a high input resistance and a high output resistance\.  The input ports and the output ports of the amplifier and feedback networks are connected in series\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier Category Summary
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback AmplifiersClosed-Loop Gain Analysis
+
+AxIdeal  = ideal gain of the amp – set by the feedback network of the particular amplifier topology
+
+T  = amplifier loop gain \(A\)\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback AmplifiersBlackman’s Theorem
+
+First we select the port where the resistance is to be calculated\.
+
+Next we select a controlled source in the amplifier’s equivalent circuit and use it to disable the feedback loop and also as reference to find  _T_  _SC_  and  _T_  _OC_ \.
+
+_R_  _x_  = resistance of the closed\-loop amplifier looking into one of its ports \(any terminal pair\)
+
+resistance looking into the same pair of terminals with the feedback loop disabled\.
+
+_T_  _SC_  = Loop gain with a short\-circuit applied to selected port
+
+_T_  _OC_  = Loop gain with same port open\-circuited\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt FeedbackVoltage Amplifiers
+
+![](img/lec-07b-MCD6thEdChap11_15.jpg)
+
+A voltage amplifier generates an output voltage vo that is proportional to input voltage vi
+
+For an ideal op amp\, input voltage vi appears directly across resistor R1 producing current vi/R1 which comes from the output through R2 to produce the output voltage\.
+
+The circuit should provide both a high input resistance and a low output resistance
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt Feedback – Voltage AmplifiersVoltage Gain
+
+![](img/lec-07b-MCD6thEdChap11_16.jpg)
+
+AvIdeal was found in chapter 10\.
+
+vi is disabled for T calc\.
+
+Assume vid is 1 and then calculate the value returned to vid via feedback\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt FeedbackInput Resistance
+
+![](img/lec-07b-MCD6thEdChap11_17.jpg)
+
+TOC = 0 since no signal can develop across Rid with an open\-circuited input\.
+
+TSC is equal to T from the voltage gain calculation\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_18.jpg)
+
+TOC = T from the voltage gain calculation\.
+
+TSC = 0 when the loop is shunted by a short circuit at output\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt Feedback Amplifier Summary
+
+![](img/lec-07b-MCD6thEdChap11_19.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt Feedback AmplifierExample
+
+![](img/lec-07b-MCD6thEdChap11_20.jpg)
+
+Find Av\, Rin\, Rout
+
+Ao = 104
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt Feedback AmplifierExample (cont.)
+
+![](img/lec-07b-MCD6thEdChap11_21.jpg)
+
+vth and Rth are found from the output to v\-\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Shunt Feedback AmplifierExample (cont.): Closed-loop Calculations
+
+![](img/lec-07b-MCD6thEdChap11_22.jpg)
+
+Closed\-Loop Amplifier Results
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackTransresistance Amplifiers
+
+![](img/lec-07b-MCD6thEdChap11_23.jpg)
+
+The transresistance amplifier generates an output voltage vo that is proportional to input current ii
+
+For an ideal op amp\, input current ii must go directly though resistor RF producing an output voltage equal to –iiRF
+
+The circuit should provide low input and low output resistances
+
+Transresistance amplifiers are frequency used in optical communications to convert current from a photodiode detector to a voltage
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackTransresistance Amplifiers: Voltage Gain
+
+![](img/lec-07b-MCD6thEdChap11_24.jpg)
+
+AtrIdeal was found in chapter 10\.
+
+ii is disabled for T calc\.
+
+Assume vid is 1 and then calculate the value returned to vid
+
+Voltage division is utilized here:
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackInput Resistance
+
+![](img/lec-07b-MCD6thEdChap11_25.jpg)
+
+TOC = T from gain calculation\.
+
+TSC  = 0 since no signal will develop across Rid with input open\-circuited\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_26.jpg)
+
+TOC = T from gain calculation\.
+
+TSC = 0 since the output is shunted by a short circuit
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt Feedback AmplifierSummary
+
+![](img/lec-07b-MCD6thEdChap11_27.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackExample
+
+Find: Atr\, Rin\, Rout
+
+![](img/lec-07b-MCD6thEdChap11_28.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackExample (cont.)
+
+![](img/lec-07b-MCD6thEdChap11_29.jpg)
+
+vth and Rth are found looking toward the output from point X\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_30.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Shunt FeedbackExample (cont.): Closed-loop Amplifier Results
+
+![](img/lec-07b-MCD6thEdChap11_31.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series FeedbackTransconductance Amplifiers
+
+![](img/lec-07b-MCD6thEdChap11_32.jpg)
+
+Transconductance amplifier generates an output current io that is proportional to input voltage vi
+
+For an ideal op amp\, input voltage vi appears directly across resistor R producing current vi /R which appears at the output
+
+The circuit should provide both a high input resistance and a high output resistance
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_33.jpg)
+
+AtcIdeal was found in chapter 10\.
+
+vi is disabled for T calc\.
+
+Assume vid is 1 and then calculate the value returned to vid
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series FeedbackInput Resistance
+
+![](img/lec-07b-MCD6thEdChap11_34.jpg)
+
+TSC = is equal to T from gain calculation\.
+
+TOC  = 0 since no signal will develop across Rid with the input
+
+open\-circuited\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_35.jpg)
+
+TSC = T from gain calculation\.
+
+TOC = 0 since no current flows in the output when the output is open circuited\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series FeedbackAmplifier Summary
+
+![](img/lec-07b-MCD6thEdChap11_36.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series FeedbackExample
+
+![](img/lec-07b-MCD6thEdChap11_37.jpg)
+
+Find: Atc\, Rin\, Rout
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series FeedbackExample (cont.)
+
+![](img/lec-07b-MCD6thEdChap11_38.jpg)
+
+![](img/lec-07b-MCD6thEdChap11_39.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_40.jpg)
+
+![](img/lec-07b-MCD6thEdChap11_41.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_42.jpg)
+
+Closed\-Loop Amplifier Results
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Series-Series Feedback AmplifierExample (cont.): Comparison with Simulation
+
+![](img/lec-07b-MCD6thEdChap11_43.jpg)
+
+| Series\-Series Feedback Amplifier |  |  |
+| :-: | :-: | :-: |
+|  | Hand Calculations | SPICE Results |
+| _A_  _tc_ | 100 μS | \-99\.98 μS |
+| _R_  _in_ | 227 MΩ | 227\.3 MΩ |
+| _R_  _out_ | 55\.7 MΩ | 55\.56 MΩ |
+
+Jaeger/Blalock/Blalock
+
+__Microelectronic Circuit Design\, 4E McGraw\-Hill__
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series FeedbackCurrent Amplifiers
+
+![](img/lec-07b-MCD6thEdChap11_44.jpg)
+
+A current amplifier generates an output current io that is proportional to input current ii
+
+For an ideal op amp\, input current ii must be supplied from the output through the current divider form by R2 and R1
+
+The circuit should provide a low input resistance and a high output resistance
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_45.jpg)
+
+AiIdeal was found in chapter 11\.
+
+ii and vo are disabled for the T calculation
+
+Assume vid is 1 and then find the value returned to vid via feedback\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series FeedbackInput Resistance
+
+![](img/lec-07b-MCD6thEdChap11_46.jpg)
+
+TOC = T from gain calculation\.
+
+TSC  = 0 since no signal will develop across Rid with the input short\-circuited\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_47.jpg)
+
+TSC = T from gain calculation\.
+
+TOC = 0 since loop gain is shunted by the open\-circuit at the output\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series Feedback Amp Summary
+
+![](img/lec-07b-MCD6thEdChap11_48.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series FeedbackExample
+
+![](img/lec-07b-MCD6thEdChap11_49.jpg)
+
+Find Ai\, Rin\, Rout
+
+Note that RI has been added to the circuit so the equations must be modified\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series FeedbackExample (cont.)
+
+![](img/lec-07b-MCD6thEdChap11_50.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_51.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Shunt-Series Feedback AmplifierExample (cont.): Comparison with Simulation
+
+![](img/lec-07b-MCD6thEdChap11_52.jpg)
+
+| Shunt\-Series Feedback Amplifier |  |  |
+| :-: | :-: | :-: |
+|  | Hand Calculations | SPICE Results |
+| _A_  _i_ | \+9\.99 | \+9\.994 |
+| _R_  _in_ | 3\.70 Ω | 3\.698 Ω |
+| _R_  _out_ | 5\.78 MΩ | 5\.773 MΩ |
+
+Jaeger/Blalock/Blalock
+
+__Microelectronic Circuit Design\, 4E McGraw\-Hill__
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Loop Gain CalculationSuccessive Voltage and Current Injection
+
+Measurement of the open\-loop characteristics of very high gain op amps is virtually impossible in the laboratory
+
+SPICE simulation of the open\-loop characteristics is also problematic
+
+The successive Voltage and Current Injection method is a closed\-loop technique that can be used determine the open\-loop gain and frequency response of many amplifiers
+
+Two sets of measurements are utilized: voltage injection & current injection
+
+![](img/lec-07b-MCD6thEdChap11_53.jpg)
+
+Voltage injection: Voltage   source vX is inserted at an arbitrary point P in circuit\.
+
+Current injection: Current source iX is then inserted at P\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_54.jpg)
+
+__Voltage injection:__  Voltage source vX is inserted at an arbitrary point P in the circuit\.
+
+__Current injection:__  Current source iX is then inserted at P\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Successive Voltage and Current InjectionSimplifications
+
+![](img/lec-07b-MCD6thEdChap11_55.jpg)
+
+Technique is valid even if source resistances of  _v_  _X_  and  _i_  _X_  are included in the analysis\.
+
+If at P\,  _R_  _B_  is zero or  _R_  _A_  is infinite\,  _T _ can be found by only one measurement and  _T _  =  _T_  _v_  \. In ideal op amp circuits\, such point often exists at op amp input\.
+
+If  _R_  _A_  = 0 or  _R_  _B_  is infinite\,  _T _  =  _T_  _I_  \.
+
+In practice\, if  _R_  _B_  >>  _R_  _A_  or  _R_  _A_  >>  _R_  _B_ \, the simplified expressions can be used\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Operational Amplifier Error Sources dc Current and Output Range Limitations
+
+
+
+* dc error sources result from the need to bias the internal circuits that form an operational amplifier and from mismatches between pairs of solid state devices in these circuits\.
+* These dc error sources include:
+  * Input offset voltage VOS
+  * Input bias current IB
+  * Input offset current IOS
+* A real op amp obviously cannot deliver infinite output voltage or output current\.  Both are bounded:
+  * \-VEE ≤ vO ≤ \+VCC
+  * | iO | ≤ Imax
+
+
+![](img/lec-07b-MCD6thEdChap11_56.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesInput-Offset Voltage
+
+![](img/lec-07b-MCD6thEdChap11_57.jpg)
+
+With inputs being zero\, the amplifier output rests at some non zero dc voltage level
+
+The equivalent dc  __input offset voltage__  is
+
+The amplifier is connected as a voltage\-follower to give output voltage that is approximately equal to the offset voltage\.
+
+To model the  effects of offset voltage\,
+
+vO = A\(vID \+ VOS\)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesInput-Offset Voltage (Example)
+
+Output voltage is given by
+
+The actual sign of VOS is unknown as only an upper bound is given\.
+
+Note: The offset voltage of most IC op amps can be manually adjusted by adding a potentiometer as shown\.
+
+![](img/lec-07b-MCD6thEdChap11_58.jpg)
+
+__Problem__ : Find quiescent dc voltage at output\.
+
+__Given data: __ R1 =1\.2 kW\, R2 = 99 kW\, |VOS| ≤ 3 mV
+
+__Assumptions:__  The op amp is ideal except for nonzero offset voltage\.
+
+![](img/lec-07b-MCD6thEdChap11_59.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesPower Supply Rejection Ratio (PSRR)
+
+Power supply voltages change due to long\-term drift or noise on supplies\.
+
+Equivalent input offset voltage changes in response to power supply voltage changes\.
+
+PSRR measures the ability of amplifier to reject power supply variations\.
+
+PSRR indicates how offset voltage changes in response to change in power supply voltages\.
+
+Generally The “\+” and “–” values of PSRR are generally different\.
+
+Both CMRR and PSRR fall rapidly with frequency increase\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesInput-Bias and Offset Currents
+
+![](img/lec-07b-MCD6thEdChap11_60.jpg)
+
+![](img/lec-07b-MCD6thEdChap11_61.jpg)
+
+Bias currents IB1 and IB2 \( base currents in BJTs or gate currents in MOSFETs or JFETs\) are similar in value with directions depending on the internal amplifier circuitry\.
+
+In the inverting amplifier shown\, IB1 shorted out by the ground connection\. Since\, the inverting input is at virtual ground\, the amplifier output is forced to supply IB2 through R2 \.
+
+Sign of the offset current is unknown as only upper bound is given\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesBias Current Compensation
+
+![](img/lec-07b-MCD6thEdChap11_62.jpg)
+
+Bias current compensation resistor RB is placed in series with the non\-inverting input\. Output due to IB1 alone is
+
+Since\, the offset current is typically 5\-10 times smaller than individual bias currents\, th edc output voltage error can be reduced by using bias compensation\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# dc Error SourcesBias Currents Errors in Integrator
+
+![](img/lec-07b-MCD6thEdChap11_63.jpg)
+
+At t = 0\, the reset switch is opened\, and the circuit starts integrating its own offset voltage and bias current\. Using analysis by superposition:
+
+The output becomes a ramp with slope determined by VOS and IB2\, and eventually saturates at one of the power supplies\.
+
+At t < 0\, the reset switch is closed\, circuit becomes a voltage\-follower with
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Output Voltage and Current Limits
+
+Practical op amps have limited  output voltage and current ranges\.
+
+Voltage: Typically limited to several volts less than power supply span\.
+
+Current: Limited by additional circuits \(to limit power dissipation or protect against accidental short circuits\)\.
+
+Current limit is often specified as minimum load resistance that the amplifier can drive with a given voltage swing\.  For example\,
+
+![](img/lec-07b-MCD6thEdChap11_64.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Output Voltage and Current Limits Example
+
+__Assumptions:__  Ideal op amp except for limited output current\.
+
+__Analysis:__
+
+Choose R1 = 10 kW and R2 = 100 kW
+
+to provide an input resistance of 10 kW\.
+
+The maximum output current will be:
+
+![](img/lec-07b-MCD6thEdChap11_65.jpg)
+
+
+
+* __Problem__ : Design an inverting amp with given specifications\.
+* __Given Data__ : Av = 20 dB\,
+  * RL ≥ 5 kW\, vO ≤ 10 V\.
+  * Magnitude of output  current less than 2\.5 mA\.
+
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Finite Common-Mode Rejection Ratio (CMRR)
+
+![](img/lec-07b-MCD6thEdChap11_66.jpg)
+
+A real amplifier responds to signal common to both inputs\, called common\-mode input voltage\. In general\,
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Finite Common-Mode Rejection Ratio CMRR (cont.)
+
+![](img/lec-07b-MCD6thEdChap11_67.jpg)
+
+An ideal amplifier has Acm = 0\, but for a real amplifier\,
+
+The actual sign of CMRR is not known before hand as only a lower bound is typically provided\.
+
+_A _ \(or  _A_  _dm_ \) = differential\-mode gain
+
+_A_  _cm_  = common\-mode gain
+
+_v_  _id_  = differential\-mode input voltage
+
+_v_  _ic_  = common\-mode input voltage
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Finite CMRRExample
+
+__Problem__ : Find the error introduced by finite CMRR\.
+
+__Given Data__ :  _A _ = 2500\, CMRR = 80 dB\,  _v_ 1 = 5\.001 V\,  _v_ 2 = 4\.999 V
+
+__Assumptions:__  Op amp is ideal except for finite gain and CMRR\.  The CMRR of 80 dB corresponds to CMRR of ±104\. Assume CMRR = \+104
+
+__Analysis:__
+
+The error introduced by the common\-mode input is 25% of the differential input voltage\.
+
+Also\,
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Finite CMRRVoltage Follower Gain Error
+
+Ideal gain for voltage follower is unity\, gain error
+
+![](img/lec-07b-MCD6thEdChap11_68.jpg)
+
+Since both A and CMRR are normally >> 1\,
+
+The first term is due to finite amplifier gain; the second term shows that CMRR may introduce an even larger error\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Common-mode Input Resistance
+
+![](img/lec-07b-MCD6thEdChap11_69.jpg)
+
+Op Amp Input
+
+Equivalent Circuit
+
+When a purely common\-mode signal vic is applied to the amplifier input \(vid = 0\)\, total resistance presented to source is      2Ric||2Ric = Ric\.
+
+Where Ric is the common\-mode input resistance\.
+
+Normally\,   Ric >> Rid\.
+
+For a purely differential\-mode input signal\, input resistance is Rin = Rid||4Ric
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Frequency ResponseSingle-pole Amplifiers
+
+Op amps: General purpose op amps are typically low\-pass amplifiers with high gain at dc and a single\-pole frequency response\.
+
+wB = open loop bandwidth of the op amp\.  __w__  __T__  =  __unity gain frequency__  or  __gain bandwidth product__  \(frequency at which magnitude of gain is unity\)\.
+
+![](img/lec-07b-MCD6thEdChap11_70.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07b-MCD6thEdChap11_71.jpg)
+
+For w >> wB\, the product of magnitude of amplifier gain and frequency is a constant value equal to the unity\-gain frequency\.
+
+Hence\, wT is also called the gain\-bandwidth product\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Frequency ResponseSingle-Pole Amplifier Example
+
+![](img/lec-07b-MCD6thEdChap11_72.jpg)
+
+__Problem__ : Find transfer function describing frequency\-dependent amplifier voltage gain\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Response of Op AmpsThe Noninverting Amplifier
+
+For a closed\-loop feedback amplifier:
+
+![](img/lec-07b-MCD6thEdChap11_73.jpg)
+
+At low frequencies\, gain is set by the feedback\, but at high frequencies\, it follows the gain of the amplifier\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Response of Op Amps Noninverting Amplifier Example
+
+__Problem__ : Characterize the frequency response of a noninverting amplifier\.
+
+__Given data:__   _A_  _o_ = 105 = 100 dB\,  _f_  _T_   = 10 MHz\, desired  _A_  _v _ = 1000 or 60 dB
+
+__Assumptions:__  Amplifier is described by a single\-pole transfer function\.
+
+__Analysis:__
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Response of Op AmpsThe Inverting Amplifier
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Response of Op Amps Inverting Amplifier Example
+
+__Problem__ : Characterize frequency response of inverting amplifier\.
+
+__Given data:__   _A_  _o_  _ _ = 2x105\, fT  = 5x105 Hz\, desired  _A_  _v _ = \-100 or 40 dB
+
+__Assumptions:__  Amplifier is described by a single\-pole transfer function\.
+
+__Analysis:__
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Frequency Response Summary
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Control of Frequency Response
+
+![](img/lec-07b-MCD6thEdChap11_75.jpg)
+
+Upper and lower cutoff frequencies as well as bandwidth of amplifier are improved\, gain is stabilized at
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Large Signal LimitationsSlew Rate and Full-Power Bandwidth
+
+Slew rate: Maximum rate of change of voltage at the output of an op amp\.  Typical values range from 0\.1V/ms to 10V/ms\.
+
+For given frequency\, slew rate limits the maximum signal amplitude that can be amplified without distortion\.
+
+![](img/lec-07b-MCD6thEdChap11_76.jpg)
+
+For no signal distortion\,
+
+Full\-power bandwidth is highest frequency at which a full\-scale signal can be developed\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Operational AmplifierMacro Model for Frequency Response
+
+![](img/lec-07b-MCD6thEdChap11_77.jpg)
+
+Simplified circuit representations are available in most simulators to model the terminal behavior of op amps that include all nonideal limitations of op amps and a large number of parameters that can be adjusted to model op amp behavior\.
+
+To model a single\-pole roll\-off\, an auxiliary “dummy” loop \(voltage controlled voltage source  _v_ 1 in series with  _R _ and  _C_ \) is added to the original two\-port model\.
+
+The RC product is chosen to give the desired \-3dB point for the open\-loop amplifier\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# General Purpose Op Amp ParametersSample Values
+
+Note the four\-pole frequency response
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityUse of Nyquist Plot to Determine Stability
+
+If gain of amplifier is greater than or equal to 1 at the frequency where feedback is positive\, instability can arise\.
+
+Poles are at frequencies where  _T\(s\) _ = \-1\.
+
+In Nyquist plots\, each value of  _s_  in the  _s_ \-plane has corresponding value of  _T\(s\)\._
+
+Values of  _s _ on  _j_  _w_  axis are plotted\.
+
+If \-1 point is enclosed by boundary\, there is some value of  _s _ for which  _T\(s\) _ = \-1\, a pole exists in RHP and the amplifier is unstable\.
+
+If \-1 point lies outside the interior of the Nyquist plot\, all poles of the closed\-loop amplifier are in the LHP and the amplifier is stable\.
+
+![](img/lec-07b-MCD6thEdChap11_79.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityFirst-Order Systems
+
+![](img/lec-07b-MCD6thEdChap11_80.jpg)
+
+At dc\, T\(0\) = To \, but for w >>1\,
+
+As w increases\, the magnitude monotonically approaches zero and phase asymptotically approaches \-90o\.
+
+As b changes\, the value of T\(0\) = To is scaled\.  As T\(0\) changes\, the radius of the circle changes\, but it can never encloses the \-1 point\, so the amplifier is stable regardless of value of To\.
+
+For a simple low\-pass amplifier\,
+
+It can also represent a single\-pole op amp with resistive feedback\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilitySecond-Order Systems
+
+![](img/lec-07b-MCD6thEdChap11_81.jpg)
+
+As w increases\, the magnitude monotonically decreases from 14 towards zero and the phase asymptotically approaches \-180o\.   The transfer function can never enclose the \-1 point\, but it can come arbitrarily close to it\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityPhase Margin
+
+![](img/lec-07b-MCD6thEdChap11_82.jpg)
+
+where
+
+First we determine frequency for which magnitude of loop gain is unity\, corresponding to intersection of the Nyquist plot with unit circle\, and then determine phase shift at this frequency\. Difference between this angle and \-1800 is phase margin\.
+
+Small phase margin causes excessive peaking in closed\-loop frequency response and ringing in step response\.
+
+__Phase Margin__  is the maximum increase in phase shift that can be tolerated before the system becomes unstable\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityThird-Order Systems
+
+![](img/lec-07b-MCD6thEdChap11_83.jpg)
+
+For
+
+T\(0\) =7\, but for high frequencies
+
+As w increases\, the polar plot asymptotically approaches zero along the positive imaginary axis\.  The plot can enclose the \-1 point under many circumstances and the system is unstable\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityGain Margin
+
+![](img/lec-07b-MCD6thEdChap11_84.jpg)
+
+If the magnitude of T\(jw\) is increased by a factor equal to or exceeding the gain margin\, then the closed\-loop system becomes unstable\, because the Nyquist plot then encloses the \-1 point\.
+
+__Gain Margin__  is the reciprocal of magnitude of T\(jw\) evaluated at frequency for which the phase shift is 180o\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityBode Plots - Phase and Gain Margin
+
+![](img/lec-07b-MCD6thEdChap11_85.jpg)
+
+At 1\.2 Mrad/s\, the magnitude of the loop gain is unity and the corresponding phase shift is 145o\.   Phase margin is given by 180o \- 145o = 35o\.  The amplifier can tolerate additional phase shift of 35o before it becomes unstable\.
+
+At 3\.2 Mrad/s\, the phase shift is exactly 180o and the corresponding magnitude of the loop gain is  \-17 dB\.  Phase margin is given by 17 dB\.  The amplifier gain must increase by 17 dB before the amplifier becomes unstable\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Feedback Amplifier StabilityUse of Bode plot to Determine Stability
+
+![](img/lec-07b-MCD6thEdChap11_86.jpg)
+
+Frequency at which curves corresponding to magnitudes of open\-loop gain and reciprocal of feedback factor intersect is the point at which loop gain is unity\, phase margin is found from phase plot\.
+
+Assuming feedback is independent of frequency\,
+
+For 1/b = 80 dB\, fm= 85o\, amplifier is stable\.
+
+For 1/b = 50 dB\, fm= 15o\, amplifier is stable\, but with significant overshoot and ringing in its step response\.
+
+For 1/b = 0 dB\, fm= \-45o\, amplifier is unstable
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# End of Chapter 11
+
+![](img/lec-07b-MCD6thEdChap11_87.png)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+

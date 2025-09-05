@@ -1,0 +1,203 @@
+# Lecture 6gm/ID
+
+Copyright © 2011 by Bernhard Boser
+
+Copyright © 2013 by Boris Murmann
+
+Copyright © 2015 by Mirco Meiners
+
+# Transistor Sizing
+
+
+
+* Typical problem
+  * Want to realize a certain amount of gm
+  * Need to determine W\, L\, ITAIL
+* Classical square\-law equations are very inaccurate for modern technologies
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# The Problem
+
+Since there is a disconnect between actual transistor behavior and the simple square law model\, any square\-law driven design optimization will be far off from Spice results
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# The Solution
+
+Use pre\-computed SPICE data in hand calculations
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simulation Data
+
+__% data stored in /usr/class/ee315a/__  __matlab__
+
+__>> __  __load __  __180nch\.mat;__
+
+__>> nch__
+
+__nch__  __ __  __= __
+
+__     __  __ID: \[4\-D double\]__
+
+__     VT: \[4\-D double\]__
+
+__     GM: \[4\-D double\]__
+
+__    GMB: \[4\-D double\]__
+
+__    GDS: \[4\-D double\]__
+
+__    CGG: \[4\-D double\]__
+
+__    CGS: \[4\-D double\]__
+
+__    CGD: \[4\-D double\]__
+
+__    CGB: \[4\-D double\]__
+
+__    CDD: \[4\-D double\]__
+
+__    CSS: \[4\-D double\]__
+
+__    VGS: \[73x1 double\]__
+
+__    VDS: \[73x1 double\]__
+
+__     VS: \[11x1 double\]__
+
+__      L: \[22x1 double\]__
+
+__      W: 5__
+
+__>> size\(nch\.ID\)__
+
+__ans__  __ =__
+
+__    __  __22    73    73    11__
+
+Stored in a math application\, e\.g\. Matlab\, Gnu Octave or Python
+
+Four dimensional array
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Lookup Function (For Convenience)
+
+__>> __  __lookup\(nch\, 'ID'\, 'VGS'\, __  __0\.5\, __  __'VDS'\, __  __0\.5\)__
+
+__ans__  __ __  __=__
+
+__  __  __8\.4181e\-006__
+
+__>> __  __help __  __lookup__
+
+__The __  __function "lookup" extracts a desired subset from the __  __4\-dimensional simulation data\. The __  __function interpolates when the requested points lie off the simulation __  __grid\.__
+
+__  There are three basic usage modes:__
+
+__  \(1\) Simple lookup of parameters at given \(L\, VGS\, VDS\, VS\)__
+
+__  \(2\) Lookup of __  __arbitrary __  __ratios of parameters\, e\.g\. GM\_ID\, GM\_CGG at __  __given__  __      \(L\, VGS__  __\, VDS\, VS\)__
+
+__  \(3\) Cross\-lookup of one ratio against another\, e\.g\. GM\_CGG for some GM\_ID__
+
+__  In usage scenarios \(1\) and \(2\) the input parameters \(L\, VGS\, VDS\, VS\) can be __
+
+__  listed in any order and default to the following values when not specified__  __:__
+
+__  L = min\(__  __data\.L__  __\); \(minimum length used in simulation\)__
+
+__  VGS = data\.VGS; \(VGS vector used during simulation\)__
+
+__  VDS = max\(__  __data\.VDS__  __\)/2; \(VDD/2\)__
+
+__  VS = 0;__
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Figures of Merit for Design
+
+
+
+* Transconductance efficiency
+  * Want large gm\, for as little current as possible
+* Transit frequency
+  * Want large gm\, without large Cgg
+* Intrinsic gain
+  * Want large gm\, but no go
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Design Tradeoff: gm/ID and fT
+
+Moderate Inversion
+
+Strong Inversion
+
+Weak inversion: Large gm/ID \(>20 S/A\)\, but small fT
+
+Strong inversion: Small gm/ID \(<10 S/A\)\, but large fT
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Product of gm/ID and fT
+
+Moderate Inversion
+
+Strong Inversion
+
+
+
+* Interestingly\, the product of gm/ID and fT peaks in moderate inversion
+* Operating the transistor in moderate inversion is optimal when we value speed and power efficiency equally
+  * Not always the case
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Transit Frequency Chart
+
+![](img/lec-06-gm-ID_2.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Intrinsic Gain Chart
+
+![](img/lec-06-gm-ID_3.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Current Density Chart
+
+![](img/lec-06-gm-ID_4.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Extrinsic Capacitances
+
+Typically OK to work with estimates taken at VDD/2
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Generic Design Flow
+
+
+
+* Determine gm \(from design objectives\)
+* Pick L
+  * Short channel  high fT \(high speed\)
+  * Long channel  high intrinsic gain
+* Pick gm/ID \(or fT\)
+  * Large gm/ID  low power\, large signal swing\, low VDSsat ≅ 2/\(gm/ID\)
+  * Small gm/ID  high fT \(high speed\)
+* Determine ID \(from gm and gm/ID\)
+* Determine W \(from ID/W\)
+* Many other possibilities exist \(depending on circuit specifics\, design constraints and objectives\)
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+

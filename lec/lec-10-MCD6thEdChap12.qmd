@@ -1,0 +1,1014 @@
+# Chapter 12Operational Amplifier Applications
+
+__Microelectronic Circuit Design__
+
+Richard C\. JaegerTravis N\. BlalockBenjamin J\. Blalock
+
+![](img/lec-10-MCD6thEdChap12_0.png)
+
+\(c\) 2021 McGraw\-Hill Education\. All rights reserved
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Chapter Goals
+
+Understand multistage amplifier design and frequency response of amplifier cascades
+
+Introduce the instrumentation amplifier circuit
+
+Study basic active filters and switched capacitor circuits
+
+Explore digital\-to\-analog converter specifications and basic circuit implementations
+
+Study analog\-to\-digital converter specifications and implementations
+
+Understand the Barkhausen criteria for oscillation and oscillator circuits
+
+Explore applications of op amps in nonlinear circuits\, such as precision rectifiers
+
+Provide examples of multivibrator circuits employing positive feedback
+
+Voltage comparator circuits
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Cascaded Amplifiers
+
+![](img/lec-10-MCD6thEdChap12_1.jpg)
+
+Connecting several amplifiers in cascade \(output of one stage connected to input of the next\) can meet design specifications not met by a single amplifier
+
+Each amplifier is built by using an op amp with parameters  _A\, R_  _id_  _\, R_  _o_ \, called open\-loop parameters that describe the op amp with no external elements\.
+
+_A_  _v_  _\, _  _R_  _in_  _\, R_  _out_  are closed\-loop parameters that describe both the  closed\-loop op amp with the feedback network as well as the overall composite \(cascaded\) amplifier\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Three-stage Cascade AmplifierTwo-port Model
+
+![](img/lec-10-MCD6thEdChap12_2.jpg)
+
+Each amplifier in the 3\-stage cascaded amplifier is replaced by its 2\-port model
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Cascaded Amplifier Frequency Response
+
+![](img/lec-10-MCD6thEdChap12_3.jpg)
+
+Bandwidth of the cascade amplifier is the frequency at which gain is reduced by \-3 dB from its low frequency value\.
+
+Assuming that stages do not interact \(i\.e\. stages do not load each other\):
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Cascaded Amplifier Frequency ResponseExample
+
+__Problem__ : Calculate gain and bandwidth of a 2\-stage amplifier with
+
+__Approach: __  _A_  _v_  _ = A_  _v1_  _A_  _v2_ \.  Find  _A_  _v_  _\(_ 0 _\)\, _ apply definition of bandwidth to find _ _  _f_  _H_  _\._
+
+__Analysis:__
+
+Note that the bandwidth of a cascaded amplifier is less than that of the individual stages \(f1 = 318 Hz\, f2 = 637 Hz\)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp CircuitsThe Instrumentation Amplifier
+
+![](img/lec-10-MCD6thEdChap12_4.jpg)
+
+The Instrumentation Amplifier combines 2 non\-inverting amplifiers with a difference amplifier to provide higher gain and lower input resistance
+
+The input resistance is infinite because input current to both op amps is zero\. The output resistance is set to zero by the difference amplifier\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Instrumentation AmplifierExample
+
+__Problem__ : Determine Vo\, VA\, VB for an instrumentation amplifier
+
+__Given Data__ : R1 = 15 kW\, R2 = 150 kW\, R3 = 15 kW\, R4 = 30 kW\, V1 = 2\.5 V\, V2 = 2\.25 V
+
+__Assumptions:__  The op amp is ideal\. Hence\, V\- = V\+ and I\- = I\+= 0\.
+
+__Analysis: __ Using dc values\,
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+Op Amp Circuits
+
+<span style="color:#3366ff">Active Filters</span>
+
+![](img/lec-10-MCD6thEdChap12_5.jpg)
+
+![](img/lec-10-MCD6thEdChap12_6.jpg)
+
+Single\-pole filter                            Two\-pole filter
+
+Active filters use feedback amplifiers to realize filters without the use of inductors that are difficult to realize in integrated circuit form\.
+
+We encountered the single\-pole low\-pass filter in Chapter 10\.
+
+However\, other circuit forms are more “efficient” in the sense they can achieve two or more poles of filtering per op amp\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+Active Filters
+
+<span style="color:#0000ff">Two\-pole Low\-pass Filter</span>
+
+The transfer function is:
+
+![](img/lec-10-MCD6thEdChap12_7.jpg)
+
+In standard form\,
+
+Op amp operates as a voltage follower with unity gain over a wide range of frequencies\.
+
+Uses positive feedback through  _C_ 1 at frequencies above dc to realize complex poles without inductors\.
+
+Feedback connection provides dc path for the amplifier’s input bias currents\.
+
+Circuits are often designed with        C1 = C2 = C\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersLow-pass Filter Frequency Response
+
+![](img/lec-10-MCD6thEdChap12_8.jpg)
+
+For Q = 0\.71\, the magnitude response is maximally flat \(Butterworth Filter: Maximum bandwidth without peaking\)
+
+For Q > 0\.71\, response shows undesired peaking\.
+
+For Q < 0\.71: Filter’s bandwidth capability is wasted\.
+
+Sensitivity\,       represents fractional change in parameter P due to a given fractional change in the value of Z\.   For this filter\, the sensitivity of  ωo with respect to R and C is:
+
+For w << wo\, filter has unity gain\.
+
+For w >> wo\, the response exhibits a two\-pole roll\-off at 40dB/decade\.
+
+At w = wo\, filter gain = Q\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersTwo-pole Low-pass Filter (Example)
+
+__Problem:__  Design second\-order low\-pass filter with maximally flat response\.
+
+__Given data:__   _f_  _H_  = 5 kHz
+
+__Analysis:__  _C_ 1 = 2 _C_ 2 = 2 _C _ and _ R_ 1 =  _R_ 2 =  _R_ \.
+
+1/woC  is the reactance of C at wo\, R is 30% smaller than this value\. Thus impedance level of the filter is set by C\. If the impedance level is too low\, the op amp will not be able to supply current required to drive feedback network\.   At 5 kHz\, for a 0\.01 mF capacitor\,
+
+Final values: R1 = R2 = 2\.26 kW\, C1 = 0\.02 mF\, C2 = 0\.01 mF
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersHigh-pass Filter with Gain
+
+The transfer function is:
+
+![](img/lec-10-MCD6thEdChap12_9.jpg)
+
+For R1 = R2 = R  and C1 = C2 = C\,
+
+Voltage follower in low\-pass filter replaced by non\-inverting amplifier with gain K\, which gives an added degree of freedom in design\.
+
+dc paths exist for both op amp input bias currents through R2 and the feedback resistors\.
+
+For K = 3\, Q is infinite\, and the poles are on the jw axis causing sinusoidal oscillations\. K > 3 causes instability due to right\-half plane poles\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersHigh-pass Filter Frequency Response
+
+![](img/lec-10-MCD6thEdChap12_10.jpg)
+
+For  _Q _ = 0\.71\, the magnitude response is maximally flat \(Butterworth Filter response\)\.
+
+Amplifier gain is constant for w >> wo\, the lower cutoff frequency of the filter\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersBand-pass Filter
+
+The inverting op amp configuration requires:
+
+![](img/lec-10-MCD6thEdChap12_11.jpg)
+
+![](img/lec-10-MCD6thEdChap12_12.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersBand-pass Frequency Response
+
+![](img/lec-10-MCD6thEdChap12_13.jpg)
+
+Response peaks at  _w_  _o_  and gain at center frequency is 2 _Q_ 2\.
+
+For  _w _  _<<_  _w_  _o_  or  _w _  _>>_  _w_  _o_ \, filter response corresponds to single\-pole high\-pass or low\-pass filter changing at a rate of 20dB/decade\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersTow-Thomas Biquad
+
+The general biquadratic transfer function can represent low\-pass\, high\-pass\, band\-pass\, all\-pass and notch filters:
+
+In the Tow\-Thomas biquad\, the first op amp  is a multi\-input integrator and the third is simply an inverter\.
+
+![](img/lec-10-MCD6thEdChap12_14.jpg)
+
+Thus\, the center frequency\, Q and gain can each be adjusted independently\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersComplete Tow-Thomas Biquad
+
+![](img/lec-10-MCD6thEdChap12_15.jpg)
+
+The Tow\-Thomas Biquad can achieve all filter functions with the addition of extra passive components as shown\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersTow-Thomas Biquad (Example)
+
+__Problem:__  Design a band\-pass filter using the Tow\-Thomas circuit
+
+__Given data:__   _f_  _o_  = 2 kHz\, BW = 200 Hz\, midband gain = 20
+
+__Unknowns:__   _R\, R_ 1\,  _R_ 2\,  _R_ 3\,  _C_
+
+__Analysis:__
+
+Input resistance to the filter is set by R1\.  The first op amp must supply ac signal current to the parallel combination of R\, R2\, and C\.  The second op amp must drive the parallel combination of R3 and C\.  The third must drive R3 in parallel with R\.  After some thought about the various values\, we choose C = 2700 pF\,
+
+R3 can be chosen arbitrarily as long as it doesn’t load down second and third op amps\. R3 = 49\.9 kW
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersTow-Thomas Biquad (Circuit and Simulation Results)
+
+![](img/lec-10-MCD6thEdChap12_16.png)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersMagnitude Scaling
+
+The magnitude of the filter impedances may all be increased or decreased by a magnitude scaling factor  _K_  _M_  without changing  _w_  _o_  or  _Q_  of the filter\.
+
+To scale the magnitude of the impedance of the filter elements:
+
+Applying magnitude scaling to low\-pass filter:
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Active FiltersFrequency Scaling
+
+Cutoff or center frequencies of a filter may be scaled by a frequency scaling factor  _K_  _F_  _ _ without changing the  _Q_  of the filter if each capacitor value is divided by  _K_  _F_  and resistor values are left unchanged\.
+
+Applying frequency scaling to low\-pass filter:
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor Circuits
+
+Switched\-capacitor \(SC\) circuits eliminate resistors in filters by replacing them with capacitors and switches\.
+
+The resulting filters are discrete\-time or sampled\-data equivalents of the continuous\-time filters discussed so far\.
+
+SC filters provide additional flexibility not readily available in continuous\-time form\, such as inversion of signal polarity without using an amplifier\.
+
+SC circuits are compatible with high density MOS IC processes\.
+
+SC circuits provide filters and CMOS ICs for signal processing and communications applications\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor CircuitsInverting Integrator
+
+![](img/lec-10-MCD6thEdChap12_18.jpg)
+
+In Phase 1\, input voltage vs is sampled and the output is constant\. In Phase 2\, the output changes to reflect sampled information in phase 1\.
+
+Charge stored in Phase 1 is: Q1 = C1VS
+
+VS = vS\[\(n\-1\)T\]   Voltage stored on C1 at     	              end of sampling interval
+
+DQ2 = \-C2Dvo    Change in charge stored 		on C2 in phase 2\.
+
+![](img/lec-10-MCD6thEdChap12_19.jpg)
+
+![](img/lec-10-MCD6thEdChap12_20.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Equivalence Between SC Integrator and Continuous Time Integrator
+
+Consider total charge  _Q_  _s _ flowing from source  _v_  _s_  through resistor  _R_  during clock period  _T_ \.
+
+Equating this charge to charge stored on  _C_  _1 _
+
+_	_ where  _f_  _C_  _ _ is the clock frequency\.
+
+For a capacitance of 1 pF and switching frequency of 100 kHz\, the   equivalent resistance is 10 MW\, which is much larger than resistor values that can normally be realized in ICs\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor CircuitsNoninverting SC Integrator
+
+![](img/lec-10-MCD6thEdChap12_21.jpg)
+
+![](img/lec-10-MCD6thEdChap12_22.jpg)
+
+During Phase 1\, the input voltage is sampled and the output is constant\. In Phase 2\, the output changes to reflect sampled information in phase 1\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor CircuitsStray-Insensitive SC Circuits
+
+![](img/lec-10-MCD6thEdChap12_23.jpg)
+
+![](img/lec-10-MCD6thEdChap12_24.jpg)
+
+In Phase 1\, the source is connected to summing junction of op amp\, and charge C1Vs is delivered to C2\.  Node 1 is driven by and node 2 is kept at zero\.
+
+During Phase 2\, the source is disconnected\, the output is constant\, and C1 is totally discharged\.  Any stray capacitances at nodes 1 or 2 don’t introduce errors into charge transfer process\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor CircuitsSwitched-Capacitor Band-Pass Filter
+
+![](img/lec-10-MCD6thEdChap12_25.jpg)
+
+Center frequency is tunable just by changing clock frequency\, Q is independent of frequency\. But\, SC filters are sampled\-data systems; hence\,           due to sampling theorem:   f ≤ fC/2
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Switched-Capacitor CircuitsTow-Thomas Biquad
+
+![](img/lec-10-MCD6thEdChap12_26.jpg)
+
+The ability of SC circuits to change polarities without an amplifier eliminates one op amp in the SC implementation\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Digital-to-Analog (D/A) Converters Fundamentals
+
+![](img/lec-10-MCD6thEdChap12_27.jpg)
+
+In a DAC\, an  _n_ \-bit binary input word \( _b_ 1\, _b_ 2\,… _b_ n\) is combined with a reference voltage  _V_ REF to give the output of the DAC\.
+
+Full\-scale voltage  _V_ FS is related to  _V_ REF of the converter by K where
+
+K determines the converter gain that is commonly set to 1\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-10-MCD6thEdChap12_28.jpg)
+
+_V_ OS\, the offset voltage of the converter characterizes the DAC output when the digital input code is zero\.  The offset voltage is normally adjusted to zero\.
+
+The smallest voltage change at the DAC output occurs when the LSB  _b_ n in the digital word changes from a 0 to 1 and is also called resolution\.
+
+_b_ 1\, the MSB has a weight of one\-half  _V_ FS\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# D/A Converter SpecificationsOffset and Gain Errors
+
+Maximum output of ideal converter is always 1 LSB smaller than  _V_ FS\.
+
+For an ideal DAC characteristic\,  0\.875  _V_ FS corresponds to maximum output code of 111\.
+
+__Gain error__  of converter represents deviation of slope of converter transfer function from that of the corresponding ideal DAC\.
+
+He ideal DAC has been calibrated so that  _V_ OS = 0 and 1 LSB is  _V_ FS /8\.
+
+__Offset voltage__  is the output of converter for zero binary input code\.
+
+![](img/lec-10-MCD6thEdChap12_29.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# D/A Converter SpecificationsLinearity Errors
+
+__Integral linearity error or linearity error __ measures the deviation of an actual converter output from a straight line fitted to the converter output voltages\, specified as a fraction of LSB\.
+
+Overall linearity error is the magnitude of the largest error that occurs\.  A good converter has linearity error < 0\.5 LSB
+
+__Differential linearity error__  is the magnitude of the maximum difference between each output step of  a converter and the ideal step size of 1 LSB\.
+
+Integral linearity error for a given binary input is the sum \(integral\) of the differential linearity errors for inputs up through the given input\.
+
+![](img/lec-10-MCD6thEdChap12_30.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# D/A Converter Specifications Monotonicity
+
+If the output of the DAC fails to increase in a monotonic manner as the input code is increased\, the DAC is said to be non\-monotonic\.
+
+It is possible for a monotonic converter to have a differential linearity error > 1 LSB but\, a non\-monotonic converter always has a differential linearity error  > 1 LSB
+
+A non\-monotonic characteristic could lead to instability in feedback systems employing such a converter
+
+![](img/lec-10-MCD6thEdChap12_31.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Basic D/A Converter CircuitsWeighted-Resistor DAC
+
+![](img/lec-10-MCD6thEdChap12_32.jpg)
+
+Drawbacks:
+
+Need to have accurate resistor ratios over a wide range of resistor values\.
+
+Switches in series with resistors require zero offset voltage and low on\-resistance\.
+
+Current drawn form reference varies with input data pattern causing a change in voltage drop in the Thévenin equivalent source resistance of the reference leading to data\-dependent errors called superposition errors\.
+
+Binary input data controls the switch positions\. Successive resistors are progressively weighted by a factor of 2 producing:
+
+Linearity errors arise due to improper resistor ratios; op amp offset voltage adds to VOS of the converter\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Basic D/A Converter CircuitsR-2R Ladder
+
+![](img/lec-10-MCD6thEdChap12_33.jpg)
+
+The contribution of each bit is reduced by a factor of 2 going from MSB to LSB
+
+Drawbacks:
+
+Requires switches with low on\-resistance and zero offset voltage\.
+
+Current drawn from reference varies depending on input data pattern\.
+
+Avoids weighted\-resistor DAC problem of wide range of resistor values\.
+
+Well\-suited to IC realization as it requires matching of only two resistor values\,  _R_  and 2 _R\._
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Basic D/A Converter CircuitsInverted R-2R Ladder
+
+![](img/lec-10-MCD6thEdChap12_34.jpg)
+
+Currents in ladder and reference are independent of digital input\.
+
+Complementary currents are available at output of inverted ladder\.
+
+Switches still need to have low on\-resistance to minimize errors\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Basic D/A Converter CircuitsInherently Monotonic DAC
+
+![](img/lec-10-MCD6thEdChap12_35.jpg)
+
+Analog switch tree connects desired tap to input of an op amp operating as a voltage follower\.
+
+Each tap on resistor network is forced to produce a voltage greater than or equal to the taps below it \, forcing the output to increase monotonically as the digital input code increases\.
+
+An 8\-bit version requires 256 equal\-valued resistors\, 510 switches\, and additional decoding logic\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Basic D/A Converter CircuitsSwitched-Capacitor DACs
+
+Since the SC circuit consists only of capacitors and switches\, static power dissipation occurs only in the op amp\.
+
+Dynamic switching losses do occur\.
+
+When switch changes state\, current impulses charge/discharge network capacitors\, changing voltage on the feedback capacitor by an amount corresponding to the bit weight of the switch that changed state\.
+
+Circuits represent direct SC analogs of weighted\-resistor and R\-2R ladder DACs but consume much less power\.
+
+![](img/lec-10-MCD6thEdChap12_36.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Analog-to-Digital (A/D) Converters Fundamentals
+
+![](img/lec-10-MCD6thEdChap12_37.jpg)
+
+ADC takes unknown continuous analog input signal\, voltage  _v_  _X_ \, and converts it into an n\-bit binary number\, which is a binary fraction representing ratio between unknown input voltage and full\-scale voltage
+
+For given output code\, we know that value of input voltage lies within a 1\-LSB quantization interval\.
+
+An ideal ADC should pick bits in binary word to minimize magnitude of the quantization error  _v_  _ε_ :
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+__Quantization error__  occurs due to initial underestimation and then overestimation of input voltage by output code\.  The first code transition is normally offset by 0\.5 LSB to provide a symmetrical quantization error\.
+
+![](img/lec-10-MCD6thEdChap12_38.jpg)
+
+![](img/lec-10-MCD6thEdChap12_39.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Converter SpecificationOffset and Gain Errors
+
+__Differential linearity error__  is the difference between actual code step width and ideal step size of 1 LSB\.
+
+An ADC with differential linearity error < 1 LSB has no  __missing codes__ \.
+
+__Gain error__  is the deviation of the slope of the converter transfer function from that of a corresponding ideal ADC\.
+
+A good ADC is  __monotonic __ with linearity error < 0\.5 LSB and no missing codes over its full temperature range\.
+
+![](img/lec-10-MCD6thEdChap12_40.jpg)
+
+__Integral linearity error or linearity error __ is deviation of code transition points from their ideal positions\.  Integral linearity error is the sum of the differential linearity errors for the  individual steps\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesThe Comparator
+
+![](img/lec-10-MCD6thEdChap12_41.jpg)
+
+If  _v_  _X_  >  _v_ REF\, the output voltage is high corresponding to a logic 1\.
+
+If  _v_  _X_  <  _v_ REF\, the output voltage is high corresponding to a logic 0\.
+
+_     _  _v_ REF is a time\-dependent reference voltage\, varied until the unknown input is determined within the quantization error of the converter\.
+
+Ideally\, the ADC logic chooses  _b_  _i_  so that
+
+Converter architectures differ in the strategy utilized for varying  _v_  _REF_
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesCounting ADC
+
+![](img/lec-10-MCD6thEdChap12_42.jpg)
+
+An n\-bit DAC is used to generate any one of 2n outputs by applying appropriate digital input word\. vX is determined by sequentially comparing it to each possible DAC output\.
+
+Maximum conversion time occurs for a full\-scale input signal requiring 2n clock periods\.
+
+The binary value in counter is the smallest DAC voltage larger than unknown input\, not the DAC output closest to the unknown input\.
+
+If input varies\, binary output is accurate representation of input signal value at the instant the comparator changes state\.
+
+Requires minimum amount of hardware\, inexpensive to implement\.
+
+![](img/lec-10-MCD6thEdChap12_43.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesSuccessive Approximation ADC
+
+![](img/lec-10-MCD6thEdChap12_44.jpg)
+
+
+
+  * Binary search used by SAL to determine vX
+  * n\-bit conversion needs n clock periods\. Speed limited by time taken by DAC output to settle within a fraction of an LSB of VFS and by comparator to respond to input signals differing by small amounts\.
+* Slowly varying input signals not changing by more than 0\.5 LSB \(VFS /2n\+1 \) during conversion time \(TT = nTC\) are acceptable\.
+* For  a sinusoidal input signal with VFS p\-p amplitude\,
+* To avoid this frequency limitation\, a high speed sample\-and\-hold circuit is used ahead of the successive approximation ADC\.
+* Very popular ADC with fast conversion times\, used in 8\- to 16\- bit converters
+
+
+![](img/lec-10-MCD6thEdChap12_45.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesSingle-Ramp (Single-Slope) ADC
+
+![](img/lec-10-MCD6thEdChap12_46.jpg)
+
+Reference voltage varies linearly with a well\-defines slope from slightly below 0 to above VFS
+
+Maximum conversion time occurs for full\-scale input signal requiring 2n clock periods\.
+
+Counter output is value of vX at the time end\-of\-conversion signal occurs\.
+
+Ramp voltage can be generated using an integrator connected to a constant reference voltage\.
+
+Dependence of ramp’s slope on RC product which is susceptible to changes due to temperature variations or aging is a limitation of this ADC\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesDual-Ramp (Dual-Slope) ADC
+
+![](img/lec-10-MCD6thEdChap12_47.jpg)
+
+Absolute values of R and C don’t affect operation\.
+
+Digital output word gives average value of vX during first integration phase\.
+
+Conversion time is given by:
+
+Can be used to get resolutions above 20 bits but at low conversion rates\.
+
+![](img/lec-10-MCD6thEdChap12_48.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+Integrator in dual\-ramp ADC has the normalized transfer function at left
+
+Sinusoidal inputs with frequencies that are exact multiples of 1/ _T_ 1\, have integrals of zero and don’t appear at integrator output\. This property is called __ normal\-mode rejection\.__
+
+Recent dual\-slope ADCs include extra integration phases for automatic offset elimination\.
+
+Triple ramp ADC uses coarse and fine down ramps to improve speed by factor of 2 _n/_ 2 for n\-bit dual\-ramp converter\.
+
+![](img/lec-10-MCD6thEdChap12_49.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesParallel or Flash ADC
+
+Unknown input simultaneously compared to 2n\-1 different reference voltages ror an n\-bit converter\. Logic network encodes comparator outputs into n\-bit binary output representing quantized value of input voltage\.
+
+Very fast speed \( > 109 conversions/sec\)\, limited only by delays of comparators and logic network\.
+
+Output continuously reflects input delayed by comparator and logic network\.
+
+Requires 2n\-1 comparators and reference voltages for n\-bit conversion\. Used for resolutions up to 10 bits\.
+
+![](img/lec-10-MCD6thEdChap12_50.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesDelta Sigma ADCs
+
+Oversampled ADCs typically sample integrator output at 8 to 512 times the Nyquist rate\.  Digital filter produces higher resolution at the Nyquist rate\.
+
+Feedback loop attempts to force integrator output to zero\.
+
+If M = 2m\, N/M is average value of binary bit stream at output\.  LSB is VREF/2m\.  Effective resolution is determined by the time for which the output is averaged\.
+
+Converter operation is considerably complex for time\-varying input signals\.
+
+![](img/lec-10-MCD6thEdChap12_51.jpg)
+
+![](img/lec-10-MCD6thEdChap12_52.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# A/D Conversion TechniquesDelta Sigma ADC - SC Implementation
+
+Continuous\-time integrator can be replaced by SC integrator for low\-power operation\.
+
+Charge proportional to input is added to integrator output at each sample time and  charge given by  _CV_ REF _ _ is added or subtracted at each sample depending on control sequence applied to switches\.
+
+Single\-bit Delta\-Sigma ADCs are inherently linear due to the 1\-bit DAC\.
+
+SC integrator suffers less from jitter than continuous\-time integrator as long as the clock interval is long enough for charge transfer to be completed
+
+![](img/lec-10-MCD6thEdChap12_53.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# OscillatorsBarkhausen’s Criteria for Oscillation
+
+![](img/lec-10-MCD6thEdChap12_54.jpg)
+
+For sinusoidal oscillations\,
+
+Barkhausen’s criteria state:
+
+Phase shift around feedback loop should be zero degrees and magnitude of loop gain must be unity\.
+
+Loop gain greater than unity causes distorted oscillations
+
+For sinusoidal oscillator\, poles of the closed\-loop amplifier should be at frequency  _w_  _o_  on the  _j_  _w_  axis\.
+
+Use positive feedback through a frequency\-selective feedback network to ensure sustained oscillation at  _w_  _o_ \.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Oscillators with Frequency-Selective RC NetworksWien-Bridge Oscillator
+
+![](img/lec-10-MCD6thEdChap12_55.jpg)
+
+![](img/lec-10-MCD6thEdChap12_56.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Oscillators with Frequency-Selective RC NetworksPhase-Shift Oscillator
+
+![](img/lec-10-MCD6thEdChap12_57.jpg)
+
+![](img/lec-10-MCD6thEdChap12_58.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# OscillatorsAmplitude Stabilization
+
+The loop gain of an oscillator changes due to power supply voltage\, component value or temperature changes\.
+
+If loop gain is too small\, desired oscillation decays\, and if it is too large\, the waveform is distorted\.
+
+Amplitude stabilization or gain control is used to automatically control the loop gain and place th epoles exactly on  _j_  _w_  axis\.
+
+At power on\, loop gain is larger than that required for oscillation\.  As oscillation builds up\, gain is reduced to the minimum required to sustain oscillations\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Amplitude Stabilization in RC Oscillators  --  Method 1
+
+![](img/lec-10-MCD6thEdChap12_59.jpg)
+
+R1 is replaced by a lamp whose small\-signal resistance depends upon the temperature of bulb filament\.
+
+If the amplitude is large\, current is large\, resistance of the lamp increases\, and gain is reduced\.  If the amplitude is small\, the lamp cools\, resistance decreases\, and loop gain increases\.  The thermal time constant of the bulb averages signal current and amplitude is stabilized\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-10-MCD6thEdChap12_60.jpg)
+
+Thus\, when diodes are off\, op amp gain is slightly > 3 ensuring oscillation\, but\, when one diode is on\, gain is reduced to slightly < 3\.
+
+The same method can also be used in phase shift oscillators\.
+
+For positive signal at vo\, D1 turns on as voltage across R3 exceeds diode turn\-on voltage\.  R4 is in parallel with R3\, loop gain is reduced\.  D2 functions similarly at negative signal peak\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonlinear Circuit ApplicationsPrecision Half-Wave Rectifier
+
+![](img/lec-10-MCD6thEdChap12_61.jpg)
+
+For  _v_  _I_  > 0\,  _v_  _O_  =  _v_  _I_ \,  _i_  _ _ > 0\, diode is forward\-biased and feedback loop is closed\.  Rectification is perfect even for small input voltages\.
+
+For  _v_  _I_  < 0\, diode is cutoff\,  _i_  _ = _ 0\,  _v_  _O_  _ _ = 0\.
+
+Primary sources of error are gain error and offset error due to nonideal op amp\.
+
+For negative input voltages\, output voltage  _v_ 1 is saturated at negative limit\. Large negative voltages across input can destroy unprotected op amps\.
+
+Response time of circuit is slowed down due to slow recovery of internal circuits from saturation\.
+
+![](img/lec-10-MCD6thEdChap12_62.jpg)
+
+vO is rectified replica of vI without loss of voltage drop as in diode rectifier circuit\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonlinear Circuit ApplicationsNon-Saturating Precision Half-Wave Rectifier
+
+![](img/lec-10-MCD6thEdChap12_63.jpg)
+
+For vI > 0\, v1 is negative \(one diode\-drop below zero\)\, D2 is forward biased\, current in R2 is zero\, vO = 0\, and D1 is reverse biased\. Feedback loop is closed through D2\.
+
+For vI < 0\, v1 is one diode\-drop above output voltage\, diode D1 turns on\, and D2 is off\.  Circuit behaves as an inverting amplifier with gain \- R2 / R1\. Feedback loop is closed through D1 and R2\.
+
+![](img/lec-10-MCD6thEdChap12_64.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Nonlinear Circuit Applicationsac Voltmeter
+
+![](img/lec-10-MCD6thEdChap12_65.jpg)
+
+For a sinusoidal input of amplitude VM and frequency wo\, the output is a rectified sine wave given by its Fourier series\.  If the cutoff frequency of the low\-pass filter is wc << wo\, the output consists primarily of  the dc voltage component\.
+
+Voltmeter range can be adjusted through choice of the four resistor values\.
+
+![](img/lec-10-MCD6thEdChap12_66.jpg)
+
+A half\-wave rectifier is combined with a low\-pass filter to form the basic ac voltmeter\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Circuits with Positive FeedbackThe Comparator
+
+![](img/lec-10-MCD6thEdChap12_67.jpg)
+
+![](img/lec-10-MCD6thEdChap12_68.jpg)
+
+The comparator is a high gain amplifier operating without feedback
+
+For inputs >  _V_ REF\, output saturates at  _V_  _CC_ \.
+
+For inputs <  _V_ REF\, output saturates at \- _V_  _EE_ \.
+
+Amplifiers built for use as comparators can handle saturation at the voltage extremes  without incurring excessive internal time delays\.
+
+For noisy inputs\, multiple transitions may occur as input signal crosses reference level\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Circuits with Positive FeedbackSchmitt Trigger
+
+![](img/lec-10-MCD6thEdChap12_69.jpg)
+
+A Schmitt trigger uses positive feedback to achieve a bistable characteristic\.
+
+For positive output voltages\,  _V_ REF = b _V_  _CC_ \. For positive output voltages\,  _V_ REF = \-b _V_  _EE_ \. Reference level changes when the output changes state\.
+
+Voltage transfer characteristic exhibits hysteresis and doesn’t respond to noise voltage magnitudes smaller than the difference between the 2 threshold levels set by the reference voltage
+
+![](img/lec-10-MCD6thEdChap12_70.jpg)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Circuits with Positive FeedbackAstable Multivibrator
+
+![](img/lec-10-MCD6thEdChap12_71.jpg)
+
+![](img/lec-10-MCD6thEdChap12_72.jpg)
+
+Uses positive and negative feedback to generate rectangular output\.
+
+Output voltage switches periodically between  _V_  _CC_  _ _ and \- _V_  _EE_ \.
+
+For symmetrical power supplies\, output of circuit is square wave with period T
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-10-MCD6thEdChap12_73.jpg)
+
+Astable multivibrator can be used to generate square\, triangular and sine wave outputs as shown at frequencies up to few MHz\.
+
+Frequency is varied by changing  _R_  _3_  or  _C_  _3_ \,  _C_  _3_  is changed in decade steps\,  _R_  _3_  may be varied continuously using potentiometer\.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Circuits with Positive FeedbackMonostable Multivibrator or One Shot
+
+![](img/lec-10-MCD6thEdChap12_74.jpg)
+
+![](img/lec-10-MCD6thEdChap12_75.jpg)
+
+Operates with one stable state\, generates single pulse of known duration on application of trigger signal\.
+
+_D_  _1_  couples trigger signal into circuit\, clamping diode  _D_  _2_  limits negative voltage excursion on capacitor  _C_ \.
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Circuits with Positive FeedbackMonostable Multivibrator (Cont.)
+
+Output of circuit consists of positive pulse with fixed duration T given by
+
+For well\-defined pulse\, circuit should not be triggered till voltages on all nodes return to their quiescent steady\-state values\.
+
+Recovery time \(return of circuit to state before trigger pulse was applied\) is given by:
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Direct Digital SynthesisMixed Signal (Digital + Analog) Technology
+
+![](img/lec-10-MCD6thEdChap12_76.jpg)
+
+![](img/lec-10-MCD6thEdChap12_77.jpg)
+
+Signal waveform is constructed in the digital domain
+
+Analog output is produced using a DAC and low\-pass filter
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# End of Chapter 12
+
+![](img/lec-10-MCD6thEdChap12_78.png)
+
+Jaeger/Blalock/Blalock
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+

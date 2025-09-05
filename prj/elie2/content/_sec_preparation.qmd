@@ -1,0 +1,41 @@
+# Creating the Development Environment {#sec-env}
+
+The basic environment is accessed within a docker container. Therefore, "Docker Desktop" should be installed. In addition, "Git" is needed to download the container to the own machine. Optional "Tortoise Git" can be used for easier, and more intuitive handling of Git. For Windows Machines, installing WSL is recommended.
+
+**Used Programs on own Machine:**
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [Git](https://git-scm.com/)
+- [TortoiseGit](https://tortoisegit.org/)
+- Instance of Python (e.g. via [Anaconda](https://www.anaconda.com/download))
+- [Visual Studio Code](https://code.visualstudio.com/download)
+
+**Used Programs inside Docker Image:**
+
+- KLayout
+- NGSpice
+- Xschem
+
+
+## Installing the Container
+
+To create the Docker container, a Git repository needs to be cloned. For this purpose a dedicated folder (named: eda) needs to be created. Inside this dedicated folder the repository "[IIC-OSIC-TOOLS](https://github.com/iic-jku/IIC-OSIC-TOOLS)" with the main branch [@pretlGitHubRepositoryIICOSICTOOLS2025].
+ 
+After cloning, the folder structure is extended with our subdivision for the different development stages to:
+
+- eda/
+  - designs/
+    - AMCD_Group2_IC_Design/
+      - .magic
+      - 1_system
+      - 2_ideal_circ
+      - 3_real_circ
+      - 4_layout
+      - 5_report
+    - analog-circuit-design/
+      - ... 
+    - IHP-Open-PDK/
+      - ... 
+    - .designinit
+
+The full process for setting up the design environment is described at the Git-repository IIC-OSIC-TOOLS.

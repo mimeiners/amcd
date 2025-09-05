@@ -1,0 +1,81 @@
+# Signals and Systems Analysis
+
+This section discusses the signal behavior of second-order filters in both the time and frequency domains. The analysis is essential to understanding how filters affect different frequency components of an input signal, as well as how their internal characteristics—such as pole and zero placement—impact signal shaping.
+
+## Frequency Domain Behavior
+
+In the frequency domain, filters modify both the **amplitude** and **phase** of signals.
+
+* **Amplitude Response** (Magnitude): Describes how much of each frequency component is passed or attenuated by the filter. For instance, a low-pass filter significantly attenuates frequencies above the cutoff.
+* **Phase Response**: Indicates the phase shift introduced at each frequency. This is crucial in systems involving synchronization, feedback, or modulation.
+
+A general second-order filter can be described by the transfer function:
+
+$$
+H(s) = \frac{a_2 s^2 + a_1 s + a_0}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$
+
+Where:
+
+* $\omega_0 = 2\pi f_0$: natural (resonant) angular frequency
+* $Q$: quality factor, controls sharpness of resonance
+* $s$: Laplace variable
+
+These responses are typically visualized using a **Bode plot**, which shows:
+
+* Magnitude (in dB) vs Frequency (on a logarithmic scale)
+* Phase (in degrees) vs Frequency
+
+These characteristics help identify the filter's behavior around its **cutoff frequency** (or resonant frequency in the case of BPF/BSF), and how sharply it attenuates beyond that point (roll-off). 
+
+## Poles, Zeros, and Filter Shape
+
+Every transfer function $H(s)$ has poles and zeros:
+
+* **Poles**: Frequencies where the system naturally resonates. These are found where the denominator of $H(s)$ becomes zero. A pole near the imaginary axis in the s-plane contributes to peaking in frequency response. They define stability, resonant peaks, and bandwidth.
+* **Zeros**: Frequencies that the system inherently blocks. Found where the numerator of $H(s)$ is zero or they can be defined as frequencies where gain drops to zero.
+
+The placement of poles and zeros determines:
+
+* The **bandwidth** (spread of frequencies passed or attenuated)
+* The **sharpness** of transitions (defined by the Q factor)
+* The **stability** of the system
+
+Higher-order filters (more poles) exhibit steeper roll-offs but may introduce more phase distortion.
+
+## Time Domain: Steady-State vs Transient Response
+
+* **Transient Response** is how the filter initially reacts to an input signal like a step or pulse. It's important for understanding startup behavior and stability.
+
+  * For example, a high-Q band-pass filter may exhibit **ringing**—a decaying oscillation—when subjected to a step input.
+
+* **Steady-State Response** is the long-term behavior once transients have settled. This represents the filter's typical operating condition.
+
+The time-domain behavior is often evaluated using:
+
+* **Step Response**: Output when a step input is applied
+* **Impulse Response**: Output when a very short signal is applied
+
+These help validate how energy is stored and released in reactive components (capacitors and inductors).
+
+## Interpretation in Practice
+
+* For **LPF**: Signals below cutoff pass with minimal phase shift; high frequencies are both attenuated and phase-shifted.
+* For **HPF**: High frequencies pass clearly, but low-frequency components are delayed and attenuated.
+* **BPF** emphasizes a narrow band; shows a sharp peak and steep drop outside the passband.
+* **BSF** suppresses a narrow frequency band while passing others, with a dip in gain around the notch frequency.
+
+Both **gain** and **phase** responses are vital in system design, especially in:
+
+* Audio filtering
+* Signal conditioning
+* Modulation/demodulation circuits
+* Feedback and control systems
+
+## Visualization
+
+Below is a sample image used to visualize gain and phase responses for different filter types based on their transfer functions.
+
+![Bode Magnitude and Phase Response for Second-Order Filters](images/section7/ideal.png){#fig-frequencyrespmath fig-align="center" fig-cap="Frequency Response of Second-Order BPF"}
+
+This analysis connects theoretical filter modeling to practical signal behavior, reinforcing both design accuracy and signal integrity across platforms.

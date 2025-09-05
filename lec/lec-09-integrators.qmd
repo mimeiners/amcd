@@ -1,0 +1,339 @@
+# Lecture 9Integrators
+
+Copyright © 2011 by Bernhard Boser
+
+Copyright © 2013 by Boris Murmann
+
+# Outline
+
+
+
+* Impact of finite amplifier bandwidth and gain in active RC integrators
+* Thermal noise
+  * Passive filters
+  * Active RC filters
+* Alternative integrator realizations
+
+
+# Amplifier Model with First Order Nonidealities
+
+# RC Integrator with Nonideal Amplifier
+
+Using return ratio analysis\, we can write
+
+As long as T\(s\) is large\, the transfer function A\(s\) is close to the desired ideal transfer function \(A∞\)
+
+# a0∞, ωu=100ω0
+
+# a0=10,000, wu∞
+
+# a0=10,000, ωu=100ω0
+
+# RC Integrator with Finite ωu
+
+Ignoring finite DC gain for the time being\, i\.e\. using
+
+The equations from slide 4 yield for this case
+
+The first error term modifies only the magnitude\, and effectively alters the integration time constant \(RC = 1/ω0\)
+
+# Significance of ω0 (Biquad Example)
+
+Integrator ω0 typically not too far off from pole frequency ωP
+
+# Baseline Requirement for ωu
+
+High\-Q filters will be sensitive to variations and uncertainty in the  “effective” value of ω0
+
+In a practical design\, we therefore require ωu >> ω0\, typically ωu = 10…50 ω0
+
+Assuming that we comply with this guideline\, we are left with
+
+# Effect on Filter Response
+
+For a filter that uses ideal integrators\, we know that
+
+For the case with finite ωu
+
+and therefore
+
+# Solving for pactual (1)
+
+Equating real and imaginary parts\, we find
+
+To proceed\, it makes sense to customize the analysis for high\-Q poles\, which should represent the most critical case
+
+We can now simplify using to obtain
+
+Negligible change in the pole’s imaginary part;real part affected by finite ωu
+
+# Effect on Pole Locations
+
+Example for QPideal = 30\, <2% \(0\.17dB\) increase in QPactual
+
+# Corresponding Phase Error
+
+we can estimate the phase error of the integrator at w0 using
+
+# Pole-Zero Cancellation (1)
+
+We can achieve “ideal” operation by letting
+
+Assuming ωu >> ω0\, this is accomplished for
+
+
+
+* In high\-speed filters\, this trick typically helps reduce the amplifier bandwidth requirements by more than an order of magnitude
+  * Note that the requirements do not drop to “zero” because we still need to maintain ωu >> ω0
+* Practicality issue: How to ensure that RZ tracks variations in wu and C\, for both global variations and random mismatch errors
+
+
+# Auxiliary Amplifiers
+
+
+
+* No \(good\) way to cancel error from inverting or summing amplifiers
+  * But these amplifiers also contribute to the overall phase shift
+
+
+# “Tweaking” a Tow-Thomas Biquad
+
+
+
+* May be able to cancel the phase error from all stages by introducing a “strategically” tuned zero\.
+  * Practicality questionable
+
+
+![](img/lec-09-integrators_4.png)
+
+L\. C\. Thomas\, “The Biquad: Part I \-Some Practical Design Considerations\,” IEEE Trans\. Ckt\. Theory\, Vol\. CT\-l\, No\. 3\, May 1971\.
+
+# RC Integrator with Finite Gain
+
+# Effect on Filter Response
+
+For the case of finite gain\, we can therefore write
+
+For the case of high\-Q poles\, it can then be shown that
+
+Example for Qpideal = 30\, <2% \(0\.17dB\) decrease in QPactual
+
+# Summary
+
+
+
+* Finite amplifier bandwidth leads to QP enhancement
+  * Typically seen as excess peaking in the filter’s magnitude response
+* Finite amplifier gain leads to QP degradation
+  * Typically seen as droop in the filter’s magnitude response
+
+
+# Noise in Active RC Lowpass
+
+\(noise due to resistors only\)
+
+# Amplifier Noise Analysis (1)
+
+Solving for vout/vn yields
+
+Note: The same result can be obtained by approximating vout/vn as a single pole response before carrying out the integral\.
+
+# Total Noise for Active RC Filter
+
+
+
+* Amplifier noise contribution is large for large wu/w0
+  * But\, unfortunately\, we need ωu >> ω0 to maintain an accurate transfer function
+* Given that we need ωu >> ω0 \, the only option we have is to choose Rnoise << R to minimize amplifier noise
+  * In a transistor\-level implementation\, this requires large gm \(and large IBIAS\)\, since Rnoise ~ 1/gm
+
+
+# Frequency Response with Finite ωu
+
+# Amplifier Noise Contribution (Rnoise=0.1R)
+
+# Active Second Order Lowpass
+
+\(after some algebra\)
+
+# Analysis
+
+For high QP\, we definitely need to make R << Rx
+
+# Optimum
+
+In a properly designed filter \(and for large QP\,\) the noise will be roughly proportional to QP
+
+For a poorly designed filter\, the noise can be proportional to QP2
+
+# Summary
+
+
+
+* The total integrated thermal noise of filter circuits is related to capacitor size
+  * Usually a multiple of kT/C
+* In filters\, noise is proportional to the filter order\, QP\, and strongly dependent on the implementation
+* Amplifiers can contribute significantly to \(if not dominate the\) overall filter noise
+  * Minimizing the amplifier noise contribution costs power
+    * Need small Rnoise\, i\.e\. large gm \(IBIAS\)
+
+
+# Alternative Integrator Realizations
+
+
+
+* Thus far\, we have primarily employed active RC integrators in our filter implementations
+* Next\, we’ll consider a number of alternative implementations that have found their use in practice
+  * MOSFET\-Opamp\-C
+  * Gm\-OTA\-C
+  * Gm\-C
+
+
+# MOSFET-C Integrator
+
+
+
+* MOSFET in triode used to replace resistor
+* Advantages
+  * Continuous tuning mechanism for integratortime constant
+  * Potentially cheaper fabrication process
+* Disadvantages
+  * Large parasitics\, distributed RC along channel
+  * Bias point sensitivity
+  * Weakly nonlinear
+
+
+# Gm-Opamp-C Integrator
+
+
+
+* Transconductor replaces resistor
+  * Built e\.g\. using a differential pair
+* Advantages
+  * Main amplifier sees only capacitive loads\,can replace with “OTA”
+  * Continuous tuning mechanism for integrator time constant\, e\.g\. via IBIAS of Gm cell
+  * Potentially cheaper process
+* Disadvantages
+  * Nonlinearity of Gm cell
+  * Extra power dissipation
+
+
+# OpAmps versus OTAs (1)
+
+__Operational __  __Transconductance__  __ Amplifier__
+
+__Operational Amplifier__
+
+
+
+* __OpAmp__
+* "General Purpose"
+* Low output impedance
+  * Ideally a voltage controlled voltage source
+* Can drive resistive and capacitive loads
+* Essentially an OTA \+ buffer
+  * Buffer increases complexity and power dissipation
+* __OTA__
+* Mostly used “on\-chip”
+* High output impedance
+  * Ideally a voltage controlled current source
+* Not well suited for resistive loads\, mostly used to drive capacitive loads
+* Usually lower \(total integrated\) noise
+
+
+# Loading Considerations (1)
+
+
+
+* Low load resistance will "destroy" the gain of our amplifier
+  * RL may be an explicit load or due to loading from the feedback network
+* But\, we want large \(loop\) gain for good precision
+* __Single\-ended OTA model__
+
+
+
+
+* Adding a buffer allows us to drive resistive loads and still achieve high gain
+* But
+  * Buffer can be difficult to build
+  * Is costly in terms of headroom \(e\.g\. source follower\)
+  * Adds additional area\, power
+* __Single\-ended __  __OpAmp__  __ model__
+
+
+
+
+* Resistive load "destroys" gain of second stage only
+  * First stage sees capacitive load
+* Costs additional area\, power and must sacrifice stage 2 gain
+* Can work acceptably well for moderate resistive loads
+  * More later
+
+
+__Single\-ended model of a two\-stage OTA__
+
+# Gm-C Integrator
+
+
+
+* Advantages
+  * No OTA\, no op\-amp\!
+    * Lower power
+    * Less phase shift\!
+  * Continuous tuning mechanism for integrator time constant
+    * Via IBIAS of Gm cell
+* Disadvantages
+  * Nonlinearity of Gm cell
+  * Sensitive to finite output resistance \(Ro\)
+  * Sensitive to parasitics
+
+
+# Gm-C Biquad
+
+![](img/lec-09-integrators_7.png)
+
+![](img/lec-09-integrators_8.png)
+
+---
+
+Train of pulses is the classic example of the need for constant delay and good attenuation.
+
+# Choosing an Implementation
+
+__Discrete active__  __RC filters__
+
+__Switched\-capacitor filters__
+
+__Integrated active RC__  __ __  __filters__
+
+__Integrated active G__  __m__  __\-C filters__
+
+__Passive LC filters \(discrete\)__
+
+__Passive LC filters__  __\(integrated\)__
+
+__Distributed \(waveguide\) filters__
+
+---
+
+Switcap filters usually integrated
+Point out which ones we’ll cover in this class.
+Discrete analog – high end limited by capacitance
+Switched capacitor active filters – low end limited by cap size, high end limited by opamp bandwidth
+LC filters – low end limited by size, high end by parasitic effects
+
+# Active RC versus Gm-C
+
+
+
+* RC filters \(using op\-amps\)
+  * Superior linearity
+  * Dynamic range ~60\-90 dB
+  * Usable signal BW typically up to few tens of MHz
+* Gm\-C
+  * Linearity limited
+    * Usually have to use degeneration\, etc\.
+  * Dynamic range ~40\-70 dB
+  * Distortion performance limited to ~60 dB level
+  * Usable signal BW up to a few hundred MHz
+* Both implementations typically require some form of tuning

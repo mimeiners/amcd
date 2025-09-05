@@ -1,0 +1,178 @@
+# Circuit Schematic
+
+After the configuration of our work machines we want to create our filter design with an existing Circuit-Schematic from "Analog System Lab Kit Pro Manual". 
+
+The used Circuit is based on ALSK Pro Experiment 4. This active filter uses 4 OP-Amps [@AnalogSystemLabKitPROMANUAL]:
+
+
+<!-- ![ALSK Pro Circuit Schematic](images/ALSK_Biquad_Circuit.png) {fig-align="center" fig-cap="ALSK Pro Circuit Schematic" #fig-biquad-aslkPRO} -->
+
+![ASLK Pro Circuit Schematic](images/ALSK_Biquad_Circuit.png){fig-align="center" fig-cap="ASLK Pro Circuit Schematic" #fig-biquad-aslkPRO}
+
+
+@fig-biquad-aslkPRO shows a reference potential at the output of each of the following filters, with following meanings:
+
+- **BPF**: Band-Pass Filter
+- **LPF**: Low-Pass Filter
+- **HPF**: High-Pass Filter
+- **BSF**: Band-Stop Filter
+
+Additionally, a fixed resistance $R$ and capacitor $C$ is used for most parts. An exception can be seen at the negative input of the BSF-OP-Amp:
+First there is a resistor labeled with $Q \cdot R$, as well as a resistor labeled $R / H_0$ below. 
+For these resistors the resistance must be the value given by the mathematical relation given by each label and the fixed $R$ used in the other resistors:
+$Q \cdot R$ is used the set the quality factor $Q$, and 
+$H_0$ is used as the low frequency gain of the transfer functions.<br>
+The quality factor $Q$ controls the damping and thus the filter’s bandwidth. A higher $Q$ yields a narrower passband with a sharper peak at the resonance frequency, while a lower $Q$ produces a broader, more heavily damped response.<br>
+The parameter $H_0$ establishes the DC gain, scaling the low-frequency amplitude and thereby setting the overall output level of all four filter responses.
+
+
+```{python}
+#| echo: true
+#| code-overflow: wrap
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# converter
+def mag2db(H):
+    return 20*np.log10(np.abs(H))
+
+# Low-Pass transfer function
+def HLP(s, w0=2*np.pi*1000, Q=10, H0=1):
+    return H0 / (1 + s/(w0*Q) + (s/w0)**2)
+
+# Specs
+f0    = 1000                           # Hz
+w0    = 2*np.pi*f0                     # rad/s
+freqs = np.linspace(1, 100*f0, 10000)  # 1 Hz to 100 kHz
+s     = 1j*2*np.pi*freqs
+Qs = [0.5, 0.7071, 1, 2, 5, 10]
+H0_vals = [0.5, 1, 2]
+
+
+# Figure 1: LPF for different Qs (H0 = 1)
+
+plt.figure(figsize=(6,6))
+for Q in Qs:
+    H = HLP(s, w0, Q, H0=1)
+    style = '-' if Q==10 else '--'
+    plt.semilogx(freqs, mag2db(H), style, label=f'$Q$={Q}')
+plt.title('LPF Frequency Response for various $Q$ ($H_0$ = 1)')
+plt.xlabel('Frequency / Hz')
+plt.ylabel('|H| / dB')
+plt.grid(True)
+plt.xlim(50, 4000)
+plt.ylim(-20, 28)
+#plt.legend(loc='lower center', ncol=len(Qs), bbox_to_anchor=(0.5, -0.2))
+plt.legend()
+plt.tight_layout()
+
+# Figure 2: LPF for different H_0 (Q = 10)
+
+plt.figure(figsize=(6,6))
+for H0 in H0_vals:
+    H = HLP(s, w0, 10, H0)
+    plt.semilogx(freqs, mag2db(H), '-', label=f'$H_0$={H0}')
+plt.title('LPF Frequency Response for various $H_0$ (Q = 10)')
+plt.xlabel('Frequency / Hz')
+plt.ylabel('|H| / dB')
+plt.grid(True)
+plt.xlim(50, 4000)
+plt.ylim(-20, 28)
+#plt.legend(loc='lower center', ncol=len(H0_vals), bbox_to_anchor=(0.5, -0.2))
+plt.legend()
+plt.tight_layout()
+
+# plt.show()
+
+```
+
+This behavior can be seen by both of the previously created plots:  
+The first figure shows the low-pass response for several different $Q$ factors. As $Q$ increases, a pronounced peak appears at the cutoff frequency $f_0$ and the filter’s transition from pass-band to stop-band becomes much sharper, resulting in a very narrow region around the cutoff where signals are passed. Conversely, lower $Q$ values produce a flatter, more gently sloping response with a wider transition region and little or no resonance peak.
+For the other filter types, the role of $Q$ is similar but manifests differently:
+
+- **High-Pass**: A higher $Q$ produces a small resonance bump just above the cutoff and a steeper roll-off into the stop-band, while a lower $Q$ makes the transition more gradual and without any peaking.
+
+- **Band-Pass**: $Q$ governs the width of the passed band around the center frequency. A high $Q$ gives a very narrow pass-band with sharp skirts, whereas a low $Q$ yields a much broader pass-band and a flatter response.
+
+- **Band-Stop**: $Q$ sets the width of the notch. With high $Q$, the filter rejects only a narrow slice of frequencies around the center, while with low $Q$ it suppresses a wider range, creating a gentler attenuation curve.
+
+In each case, $Q$ determines how sharply the filter transitions around its critical frequencies (i.e. the $-3~\text{dB}$ cutoff points), defining whether the filter is highly selective or more broadly tuned.
+
+Below, in the second Figure illustrates how varying the DC pass-band gain $H_0$ simply shifts the entire magnitude response up or down without changing its center frequency or bandwidth. $H_0$ sets the absolute gain level in the pass-band. Higher, $H_0$ increases overall amplitude, lower $H_0$ attenuates it, while leaving the filter’s shape determined by $f_0$ and $Q$ intact.
+
+## Operational Amplifier
+
+The circuit of the biquad filter in @fig-biquad-aslkPRO consists of 4 OpAmps, with two integrators (BPF, LPF) and two adders (HPF, BSF). Since these aren't finished parts for the circuit (unlike at PCB-Design), the OpAmps need to be as well. For this purpose OTA (operational-transconductance amplifier) are used. These can bee seen in following Figure [@razaviDesignAnalogCMOS2017]:
+
+![Internal Stages of 5T-OTA](images/InternalOpAmp.png){fig-align="center" fig-cap="Stages inside an OpAmp" #fig-OpAmpStages}
+
+Three Stages are inside the OTA:
+
+- Current Mirror (yellow)
+- Differential Amplifier (green)
+- Current Source (red)
+
+The Current Mirror uses MOSFET Transistors to mirror one branch of the differential pair into the other, producing a single-ended output voltage at $V_{out}$.  
+At the Differential Amplifier the small input voltage difference is converted into currents.  
+Lastly the Current Source supplies a constant bias current to set the transconductance.
+
+## Transfer Functions
+
+Each of the filters can be expressed by their transfer function for further analysis.
+In the following transfer functions:
+
+- $s$ is the complex Laplace variable  
+- $V_i$ is the input voltage  
+- $V_n$ is the output voltage at the n-th port (corresponding to HPF, BPF, LPF, BSF)  
+- $\omega_0 = \tfrac{1}{RC}$ is the filter’s center frequency
+
+To model the ideal behavior of each filter we can use the following transfer functions [@AnalogSystemLabKitPROMANUAL]:
+
+
+
+**High-Pass Filter**
+$$
+\frac{V_{01}}{V_i}
+= \frac{H_0 \,\frac{s^2}{\omega_0^2}}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}}
+$$
+
+**Band-Pass Filter**
+$$
+\frac{V_{02}}{V_i}
+= \frac{-\,H_0 \,\frac{s}{\omega_0}}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}}
+$$
+
+**Low-Pass Filter**
+$$
+\frac{V_{03}}{V_i}
+= \frac{H_0}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}}
+$$
+
+**Band-Stop Filter**
+$$
+\frac{V_{04}}{V_i}
+= \frac{\bigl(1 + \frac{s^2}{\omega_0^2}\bigr)\,H_0}
+       {1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}}
+$$
+
+These transfer functions are based on the basic biquadratic filter function:
+
+
+**Biquadratic Formula**
+
+
+$$
+H(s) = H_0 \frac{b_2 \,\frac{s^2}{\omega_0^2} + b_1 \,\frac{s}{\omega_0} + b_0}
+            {1 + \frac{s}{\omega_0\,Q} + \frac{s^2}{\omega_0^2}}
+$$
+
+
+This leads to following numerator coefficients $b$:
+
+| Filter  | $b_2$                                 | $b_1$                                | $b_0$    |
+|:-------:|:-------------------------------------|:-------------------------------------|:-------:|
+| **HPF** | $H_0 / \omega_0^2$                           | 0                                  | 0     |
+| **BPF** |0                                  | $-H_0 / \omega_0$                           | 0     |
+| **LPF** | 0                                  | 0                                  | $H_0$   |
+| **BSF** | $H_0 / \omega_0^2$                          | 0                                  | $H_0$    |

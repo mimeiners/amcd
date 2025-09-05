@@ -1,0 +1,44 @@
+# Challenges {#sec-challenges}
+In the whole design process of an integrated biquad filter some challenges were present. In this chapter the most important challenges and their influence on the filter design will be described. 
+
+## Circuit Design
+The design process followed the meet-in-the-middle design style, with mostly the top-down style [@lienig2023]. When it came to the design of the 5T-OTA from [@pretlGitHubRepositoryIICOSICTOOLS2025] was supposed to be the used device in the biquad design. Following this approach, from the real circuit of the 5T-OTA a ideal version like in @fig-ideal_Circuit_ota_V2 was implemented. With the ideal description of the desired OTA the values for $R$ and $C$ (see @fig-biquad-aslkPRO) were determined, such that the filter response matched the filter response of the behavioral model of the filter.
+
+The next step following the top-down style was the step from the ideal circuit to the real circuit. As the OTA in this case followed the bottom-up design, the implementation of the real design was expected to work without any disturbances. However, the filter response of the real circuit for the ALSK Pro Design in @sec-aslk-design did not match the desired response. The responses for all four filter types were very small and about 30 dB smaller than the expected one. In addition, the outputs of all filter types did not show any pass- or stopbands, which concluded to a not working filter. The reason for the small output voltages is the 5T-OTA. The 5T-OTA is not able to drive the necessary currents for resistive loads and therefore is not suitable for the desired filter in @fig-biquad-aslkPRO. To identify the cause some time-intensive analysis was done, adding a buffer to the OTA included. In addition to the lack of current driveability the corner frequency was around 1 MHz instead of the design frequency of 1 kHz. With all these constraints the 5T-OTA is considered as not suitable for the application in the ASLK Pro biquad filter.
+
+During the design of the integrated OTA-based gm-C Biquad filter based on Baker's methodology [@baker2008], several key challenges had to be resolved to align theory and implementation. A major point of confusion was the interpretation of capacitor values in Baker’s Fig. 3.53, where the notation “$2C$” refers to the total differential capacitance—implying that the actual implemented capacitor should be half that value. Another critical clarification involved the OTA transconductance in Fig. 3.15(c), where four NMOS transistors form the differential input stage. It was determined that the effective transconductance is twice that of a single branch: $gm_{eff} = 2 \cdot gm_{single}$​. Transistor sizing had to be performed carefully using the $gm/ID$ method, considering realistic overdrive voltages and minimum dimensions for the SG13G2 130 nm CMOS process. Additionally, the distribution of bias current among the four NMOS transistors per OTA initially caused confusion, but was clarified: each transistor carries one-fourth of the total OTA bias current. Theoretically, using different bias currents for each OTA could allow fine-tuning of the transconductance and thus optimize filter gain and Q. However, implementing this in Xschem/Ngspice led to unexpected inconsistencies—parallel current sources with equal nominal values produced different node voltages, and the cause could not be clearly identified. For this reason, a single shared current source was ultimately used in the simulation, which proved sufficient to achieve the desired filter behavior respectively.
+
+## Layout
+In the layout process of the filter some challenges came up. Some of the most significant are discussed in the following sections.
+
+### Import SPICE function
+ As mentioned in @sec-layout, the complete schematic needs to be inserted manually into KLayout, since an import of a netlist is not available yet. A workaround, which makes use of magic as converter tool is known for other common PDKs like SkyWater130. The first step is to enable the *import SPICE* function, which reads in the spice netlist and generates a `.gds` file from it.
+
+ ![Import SPICE function in magic](images/magic_importSpice.png){fig-align="center" fig-cap="Import SPICE function in magic" #fig-import-magic}
+
+ In the next step of this `.gds` file, generated from magic, can be edited with the use of KLayout. The purpose of this process was to have all components added and properly sized, according to the design. After this import, the expectation was to rearrange the components and connect them according to the schematic. This method is quite similar to the process we experienced in the bachelor course with KiCad, where all components were added directly from the schematic and the layouting process consisted mainly of placing and routing. Unfortunately, the *import SPICE* functionality was not available per default for the sg13g2 PDK. With the help of Prof. Dr.-Ing. Mirco Meiners the group was able to activate the spice-import function by editing the `.magicrc` file and the corresponding paths. The edited files are available in the repository in the `4_layout/.magicrc` file. Before the *import SPICE* button appears, the directory `.magic` needs to be copied to the design directory
+
+ ```default
+ cp -r AMCD_GROUP2_IC_DESIGN/.magic /foss/designs
+ ```
+ 
+:::{.callout-important}
+RELEASE-NOTES: only a beta-version and therefore not fully functional
+:::
+
+When starting magic from the `4_layout` directory, the *import SPICE* button appears and a netlist to import can be selected. After generating the `.gds` file with magic and opening it in KLayout, the different cells appear. The resulting `.gds` file opened in KLayout can be seen in @fig-magic-layout. However, the cells are not labeled and therefore are difficult to identify. In order to connect them properly according to the schematic, all components need to be added manually. This may be due to the fact, that it is a beta-version, which is stated in the `RELEASE-NOTES`.
+
+![Layout of 5T-OTA in KLayout generated from magic](images/magicGDS.png){fig-align="center" fig-cap="Layout of 5T-OTA in KLayout generated from magic" #fig-magic-layout}
+
+Figuring out how to enable the *import SPICE* function in magic and how the layout process overall works with the use of KLayout took a considerable amount of time. Since the workaround with importing a SPICE netlist did not work as expected, the layout needed to be generated and edited with KLayout. KLayout will start per default in the non-editing mode, which do not offer the opportunity to create layouts. To enable the editing mode, the complete menu or KLayout needs to be searched for this the editing mode option.
+
+### LVS
+As mentioned in @sec-layout the layout versus schematic (LVS) worked not as expected. The problem seems to be related with the naming of the files or the paths, as the error in @fig-lvs-error points out.
+
+![Error using LVS in KLayout](images/LVS-error.png){fig-align="center" fig-cap="Error using LVS in KLayout" #fig-lvs-error}
+
+The naming of the layout files, the top cells, netlist files and schematic were checked several times. Unfortunately the problem could not be solved, which means the LVS could not be performed. 
+
+## Time Constraints
+The limited time in the course is another aspect which needs to be mentioned. The ASLK Pro biquad filter is well-known by the group, since in the bachelor course ANS the same structure was used for the discrete circuit design. In comparison to the discrete design, the integrated design was handled in the IIC-Docker from [@pretlGitHubRepositoryIICOSICTOOLS2025], which uses different tools like *ngspice* and *KLayout*. To understand the working principle of this integrated development image was not trivial. For instance the different workflow in *ngspice*, particularly the simulation commands, took considerable amount of time. The different layout process in *KLayout* and the integrated part took also a significant amount of time, which is a result of the earlier mentioned circumstances. The group spent also a lot of time to match the ideal and the real circuit, respectively. Unfortunately, the result of this investigation was to withdraw the ASLK Pro biquad filter approach and use the Baker implementation.
+

@@ -1,0 +1,59 @@
+# Biquads
+
+A biquad filter is a second-order active filter commonly used for building all the four types of filters LPF, HPF, BPF, and BSF. The term "biquad" comes from bi-quadratic, meaning the transfer function contains up to $s^2$ in both numerator and denominator. It provides better control over gain, Q (quality factor), and center/cutoff frequency than first-order filters. Moreover as we increase the order by one, we increase the maximum roll off by 20 db/decade. The general transfer function can be written as:
+$$
+H(s) = \frac{b_0 + b_1 s + b_2 s^2}{a_0 + a_1 s + a_2 s^2}
+$$
+
+The structure of the transfer function tells us how the frequency components of the input signal are modified, how poles and zeros determine the frequency response, how component values (R, C) and op-amp behavior affect real-world performance.
+
+## Topology
+There are mainly two types of topologies for designing a second order analog filter, they are Sallen-Key topology and Multiple feedback biquad topology. MFB is generally used to design high Q factor and high gain circuits and in our project we aim to design a biquad filter with quality factor 10. The need for a high quality factor in our design led us to select Multiple Feedback Biquad (MFB) topology developed by Texas Instruments [@aslkpro2020]. 
+
+## Transfer Function
+Let us take transfer function into consideration as it helps to analyse the filter performance based on the component values used in the circuit. Transfer function in general can be defined as:
+$$
+H(s)= \frac{V_{\text{out}} (s)}{V_{\text{in}} (s)}
+$$
+
+Consider the circuit diagram for second order low pass filter [@fig-mfblp]
+
+![Second order MFB low pass filter](images/section4/mfblowpass.png){#fig-mfblp fig-align="center" width=70% fig-cap="Second order MFB low pass filter"}
+
+In this MFB low pass filter, we use the op-amp in inverting configuration. $R_1$ and $R_3$ are input and feedback resistors and $R_2$ is part of feedback loop. $C_1$ and $C_2$ are frequency controlling capacitors [@timfb]. We can use nodal analysis for finding the transfer function. According to Kirchhoff's Current Law (KCL), we can write the eqaution as :
+
+$$
+\frac{V_{in} - 0}{R_1} + s C_2 (V_{in} - 0) + \frac{V_{out} - 0}{R_2} + s C_1 (V_{out}-V_-) = \frac{V_- - 0}{R_3} \approx 0
+$$
+
+Or simply:
+
+$$
+\frac{V_{in}}{R_1} + s C_2 V_{in} + \frac{V_{out}}{R_2} + s C_1 V_{out} = \frac{0}{R_3} \approx 0
+$$
+ In ideal op-amp we assume that $V_-$ and $V_+$ are 0. So when solving this equation we come up with the transfer function for MFB low pass filter with a gain $H_0$,
+
+$$
+\frac{V_{out}(s)}{V_{in}(s)} = H_0 \cdot \frac{\omega_0^2}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
+$$
+So the transfer function of a low pass circuit would be:
+$$
+H(s) = \frac{H_0 \cdot \omega_0^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$
+
+Similarly we can derive for high pass, bandpass and band stop which are:
+
+High pass:
+$$
+H(s) = \frac{H_0 \cdot s^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$
+
+Band pass:
+$$
+H(s) = \frac{H_0 \cdot \frac{\omega_0}{Q} \cdot s}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$
+
+Band stop:
+$$
+H(s) = H_0 \cdot \frac{s^2 + \omega_0^2}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
+$$

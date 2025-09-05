@@ -1,0 +1,28 @@
+# Introduction
+
+Integrated circuits (ICs) have become indispensable in modern electronic systems owing to their compact form factor and reduced power consumption relative to discrete implementations, like PCBs. In this work, we present the design and realization of a biquad filter employing open-source tools, like Xschem. The following documentation details the methodologies and development steps undertaken throughout the filter’s implementation.
+
+This project is part of the Electronics Engineering (M. Sc.) course "Analogue and Mixed-Signal Circuit Design" at Hochschule Bremen City University of Applied Sciences (HSB).
+
+The Filter consists of four filter-types: Band-Pass, Low-Pass, High-Pass, and Band-Stop. Each realized with OpAmps (Operational Amplifiers).
+
+In this project, a fully integrated second-order biquad filter is designed, whose key specifications are a center frequency of $f_0 = 1~\text{kHz}$, a quality factor of $Q = 10$, and a DC pass-band gain of $H_0 = 1$. These parameters ensure a narrowband response around $1~\text{kHz}$ with a peak gain of unity at low frequencies and sharp roll-off in the stop-bands.
+
+Since we as student development team had a course regarding the same filter-circuit in our Bachelors, creating a PCB-Design, several differences appear when designing an integrated circuit instead of a PCB-Layout:  
+In a PCB design, each resistor, capacitor or operational amplifier is an individual component whose behavior are determined by packaging and board-level routing. Traces can be routed over multiple layers and adjusted or re-routed quickly to correct errors, and heat dissipation is managed by copper pours, thermal vias and component placement. Manufacturing can be done faster, easier and cheaper, sometimes even in-house with the right tools. 
+
+An IC implementation must realize all passive and active elements in silicon, with component values depend on device geometry and process parameters rather than off-the-shelf parts. Layout constraints are far tighter, interconnect parasitics, device matching and substrate coupling must be considered. Thermal dissipation spreads through the silicon substrate. Because tape-outs require weeks or months, first-pass correctness is essential, and extensive device modeling, parasitic extraction and layout automation are required to achieve the target filter response on chip.
+
+The basic specifications are listed below in @tbl-design_specs:
+
+| Parameter              | Value                           |
+|:-----------------------|:--------------------------------|
+| Design frequency       | $f_0 = 1~\text{kHz}$       |
+| Quality factor         | $Q = 10$                      |
+| DC pass-band gain      | $H_0 = 1$                     |
+| Technology              | IHP Open Source PDK 130nm BiCMOS SG13G2      
+
+: Design Specification for Biquad Filter {#tbl-design_specs}
+
+
+> **Note:** This documentation details our development process during our Master's Course, but does **not** include an actual tape-out or fabricated silicon. We happily invite the open-source community to enhance our work by adding features, extend it, fix errors or even complete the full design process.

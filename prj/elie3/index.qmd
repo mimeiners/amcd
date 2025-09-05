@@ -1,0 +1,38 @@
+---
+title: "IC Design of a Universal Biquad Filter"
+author: 
+  - name: Aditya Ranjan Shandilya
+    email: ashandilya@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+    affiliation:
+      - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+        city: Bremen
+        state: Germany
+        url: https://www.hs-bremen.de  
+  - name: Merlin Anitha Athisayaraj
+    email: mathisayaraj@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+
+keyword:
+  - Filter Design 
+  - IC Design
+
+bibliography: references.bib
+
+abstract: |
+    This paper presents the IC design of a universal biquad filter with a 1 kHz corner frequency and Q-factor of 10. The
+    design, initiated with Python behavioral modeling and simulated in Xschem, first explored an ideal op-amp based
+    filter. However, its transistor-level implementation with a 5-transistor OTA failed due to poor OTA performance.
+    This led to a revised design utilizing a more robust Gm-C biquad topology driven by a high-performance, fully
+    differential OTA. While facing challenges in reaching the desired OTA gain, the final Gm-C filter's simulated
+    low-pass response indicated areas for further optimization in the design approach for mixed-signal applications.
+---
+
+{{< include content/_sec_introduction.qmd >}}
+{{< include content/_sec_filter-design-fundamentals.qmd >}}
+{{< include content/_sec_behavioural-modelling.qmd >}}
+{{< include content/_sec_circuit-design-and-simulation-in-xschem.qmd >}}
+{{< include content/_sec_conclusion.qmd >}}
+<!-- {{< include content/references.qmd >}} -->

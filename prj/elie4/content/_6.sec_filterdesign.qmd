@@ -1,0 +1,39 @@
+# Filter Design
+
+A second-order band-pass filter was chosen for its frequency-selective properties, making it ideal for isolating a narrow frequency band around a target center frequency. The topology used was MFB (Multiple Feedback Biquad). It allows simultaneous extraction of LPF, HPF, BPF, and BSF outputs from a single op-amp-based structure.
+
+The filter was designed to achieve a center frequency of 1000 Hz, with a quality factor 
+$𝑄 = 10$ to emphasize selectivity. A unity gain was selected to focus the design on shaping the frequency response rather than amplification. The resistance and capacitance values were determined using the following equation.
+
+$$
+\omega_0 = 2\pi f_0, \quad  \omega_0 = \frac{1}{RC}
+$$
+
+The TL082 dual JFET-input op-amp was selected for its high slew rate and wide bandwidth, making it suitable for audio- and low-frequency analog filtering. Its availability in the ASLK PRO kit further streamlined practical implementation.
+
+The following code can also be used to calculate the required capacitor value given a desired resistance, center frequency, and quality factor.
+
+```{python}
+#| echo: true
+import numpy as np
+def calculate_resistances(f0, Q, C):
+    """
+    Calculate required resistor values (R2 and R3) for the given
+    center frequency (f0), quality factor (Q), and capacitances C1, C2.
+    """
+    w0 = 2 * np.pi*f0
+    R = 1/ (w0 * C)
+    
+    return R
+
+# Example values
+f0 = 1000     # Hz
+Q = 10        # Quality factor
+C = 0.01e-6  # Farads
+
+
+R = calculate_resistances(f0, Q, C)
+print(f"Calculated R: {R:.0f} Ω")
+```
+
+This utility provides practical flexibility in component selection by enabling capacitance tuning based on resistor availability.

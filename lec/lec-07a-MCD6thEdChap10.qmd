@@ -1,0 +1,321 @@
+# Chapter 10Ideal Operational Amplifiers
+
+__Microelectronic Circuit Design__
+
+Richard C\. JaegerTravis N\. BlalockBenjamin J\. Blalock
+
+![](img/lec-07a-MCD6thEdChap10_0.png)
+
+_\(c\) 2021 McGraw\-Hill Education\. All rights reserved_
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Chapter Goals
+
+
+
+* Develop understanding of linear amplification concepts such as:
+  * Behavior and characteristics of ideal differential and operational amplifiers \(op amps\)
+  * Techniques used to analyze circuits containing ideal op amps
+  * Techniques used to determine voltage gain\, input resistance\, and output resistance of general amplifier circuits
+  * Classic op amp circuits\, including the inverting\, noninverting\, and summing amplifiers\, simple filters\, the voltage follower\, and the integrator
+  * Factors that must be considered in the design of circuits using operational amplifiers
+
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Ideal Operational Amplifier (Op Amp)
+
+
+
+* The Ideal Op Amp is a special case of ideal differential amplifier with infinite gain\, infinite  _R_  _id_  and zero  _R_  _o_  \.
+  * If A is infinite\,  _v_  _id_  is zero for any finite output voltage\.
+  * Infinite input resistance  _R_  _id_  forces input currents  _i_  _\+_  and  _i_  _\-_  to be zero\.
+* Ideal op amp analysis utilizes the following assumptions:
+  * Infinite common\-mode rejection\, power supply rejection\, open\-loop bandwidth\, output voltage range\, output current capability and slew rate
+  * Zero output resistance\, input\-bias currents and offset current\, input\-offset voltage\.
+
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Ideal Operational AmplifierAssumptions for Circuit Analysis
+
+![](img/lec-07a-MCD6thEdChap10_1.jpg)
+
+
+
+* Two assumptions are used to facilitate analysis of circuits containing ideal op amps
+  * Input voltage difference is zero:  _v_  _id_  = 0
+  * Amplifier input currents are zero:  i\+ = 0 and i\- = 0
+
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Building BlocksInverting Amplifier Circuit
+
+![](img/lec-07a-MCD6thEdChap10_2.png)
+
+Positive input is grounded\.
+
+The feedback network formed by resistors  _R_  _1_  and  _R_  _2 _ is connected between the inverting input and signal source and the inverting input and amplifier output\, respectively\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Inverting AmplifierVoltage Gain and Input Resistance
+
+Negative voltage gain implies 180o phase shift between dc/sinusoidal input and output signals\.
+
+Gain greater than 1 if  _R_  _2_  >  _R_  _1_
+
+Gain less than 1 if  _R_  _1_  >  _R_  _2_
+
+Inverting input of op amp is at ground potential \(but not connected directly to ground\) and is said to be a  __virtual ground__  __\.__
+
+![](img/lec-07a-MCD6thEdChap10_3.png)
+
+But i2 = i1 and v\- = 0 \(since vid = v\+ \- v\- = 0\)
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Inverting AmplifierInput and Output Resistances
+
+![](img/lec-07a-MCD6thEdChap10_4.png)
+
+_R_  _out_  is found by applying a  test current \(or voltage\) source to the amplifier output and determining the voltage \(or current\) with all independent sources turned off\.  Hence\, vi = 0
+
+Since i\- = 0 giving i1= i2
+
+However\, since v\- = 0\,  i1= 0\, and vx = 0 irrespective of the value of ix \.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Inverting AmplifierDesign Example
+
+__Problem__ : Design an inverting amplifier using an op amp
+
+__Given Data__ :  _A _  _v_ = 20 dB\,  _R_  _in_  =20 kW\,
+
+__Assumptions:__  Ideal op amp
+
+__Analysis__ : Input resistance is controlled by  _R_  _1_  and voltage gain is set by  _R_  _2_  /  _R_  _1_ \.
+
+A minus sign is added since the amplifier is inverting\.
+
+From Appendix A\, we find both resistors are standard values\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Building BlocksNon-inverting Amplifier Circuit
+
+![](img/lec-07a-MCD6thEdChap10_5.png)
+
+The input signal is applied to the non\-inverting input terminal\.
+
+Portion of the output signal is fed back to the negative input terminal\.
+
+Analysis is done by relating the voltage at  _v_  _1_  to input voltage  _v_  _i_  and output voltage  _v_  _o_  \.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Non-inverting AmplifierVoltage Gain and Input Resistance
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Non-inverting AmplifierOutput Resistance
+
+![](img/lec-07a-MCD6thEdChap10_6.png)
+
+_R_  _out_  is found by applying a  test current source to the amplifier output and setting  _v_  _i _ = 0\.
+
+We find the circuit to be identical to that for the output resistance calculation for  the inverting amplifier\.  Therefore:    _R_  _out_  =0
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Non-inverting AmplifierExample
+
+__Problem__ : Determine the characteristics of a given non\-inverting amplifier
+
+__Given Data__ :  _R_  _1 _ = 3 kW\,  _R_  _2_  = 43 kW\,  _v_  _i_  _ _ = \+0\.1 V
+
+__Assumptions:__  The op amp is ideal
+
+__Analysis__ :
+
+Since  _i_  _\-_  _=_ 0\,
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Building BlocksUnity-gain Buffer
+
+![](img/lec-07a-MCD6thEdChap10_7.png)
+
+A special case of the non\-inverting amplifier\, termed a voltage follower or unity gain buffer\, has infinite  _R_  _1_  and zero  _R_  _2_ \.  Hence  _A_  _v_  = \+1\.
+
+The unity\-gain buffer provides excellent impedance\-level transformation while maintaining signal voltage level\.
+
+An ideal voltage buffer does not require any input current and can drive any desired load resistance without loss of signal voltage\.
+
+Unity\-gain buffers are used in may sensor and data acquisition systems\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Building BlocksSumming Amplifier
+
+![](img/lec-07a-MCD6thEdChap10_8.jpg)
+
+Since  _i_  _\- _  _= _ 0\,  _i_  _3 _  _= i_  _1_  _ \+ i_  _2_  _\,_
+
+Scale factors for the 2 inputs can be independently adjusted by choice of  _R_  _2_  and  _R_  _1_ \.
+
+Any number of inputs can be connected to the summing junction through extra resistors\.
+
+A simple digital\-to\-analog converter can be formed using this technique\.
+
+Since negative amplifier input is at virtual ground\,
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# EIA:  Digital-to-Analog ConverterSumming Amplifier based DAC
+
+![](img/lec-07a-MCD6thEdChap10_9.png)
+
+The digital input b\, controls the switches\, allowing binary weighted currents to flow through the feedback resistor to create an analog voltage proportional to the digital input and bounded by VREF\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Op Amp Building BlocksDifference Amplifier
+
+![](img/lec-07a-MCD6thEdChap10_10.jpg)
+
+For R1 = R2 circuit is also called a differential subtractor and amplifies the difference between input signals\.
+
+_R_  _in2_  is series combination of  _R_  _1_  and  _R_  _2_  because  _i_  _\+_  is zero\.
+
+For  _v_  _2 _  _= _ 0\, _ R_  _in1 _  _= R_  _1_  _\, _ as the circuit reduces to an inverting amplifier _\._
+
+For the general case\,  _i_  _1_  is a function of  both  _v_  _1_  and  _v_  _2_ \.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Difference AmplifierExample
+
+__Problem__ : Determine  _V_  _o_ \,  _V_  _\+_ \,  _V_  _\-_ \,  _I_  _o_ \,  _I_  _1_ \,  _I_  _2_ \,  _I_  _3_  \.
+
+__Given Data__ :  _R_  _1 _ = 10 kW\,  _R_  _2_  = 100 kW\,  _V_  _1 _ = 5 V\,  _V_  _2 _ = 3 V
+
+__Assumptions:__  The op amp is ideal\.  Hence\,  _V_  _\-_  _ = V_  _\+_  and  _I_  _\- _  _= I_  _\+_ = 0\.
+
+__Analysis:  __ Using dc values\,
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Dependent FeedbackAn Active Low-Pass Filter
+
+![](img/lec-07a-MCD6thEdChap10_11.png)
+
+Simple resistance ratio is replaced with the ratio of complex impedances to yield a frequency dependent transfer function\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+![](img/lec-07a-MCD6thEdChap10_12.png)
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Dependent Feedback 	An Active High-Pass Filter
+
+![](img/lec-07a-MCD6thEdChap10_13.png)
+
+![](img/lec-07a-MCD6thEdChap10_14.png)
+
+![](img/lec-07a-MCD6thEdChap10_15.png)
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Dependent FeedbackIntegrator
+
+![](img/lec-07a-MCD6thEdChap10_16.png)
+
+Voltage at the circuit’s output at time  _t_  is given by the initial capacitor voltage plus the integral of the input signal from the start of the integration interval\, here  _t _ = 0\.
+
+Integration of an input step signal results in a ramp at the output\.
+
+Feedback resistor  _R_  _2_  in the inverting amplifier is replaced by capacitor  _C\._
+
+The circuit uses frequency\-dependent feedback\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# EIA:  Analog-to-Digital ConverterDual slope ADC
+
+![](img/lec-07a-MCD6thEdChap10_17.png)
+
+The capacitor C integrates the current –vx/R for time T1 and then measures the time T2 when the input current is VREF/R\.  The fraction of T2/T1 allows the control logic to convert the voltage vx to a digital value\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# Frequency Dependent FeedbackDifferentiator
+
+![](img/lec-07a-MCD6thEdChap10_18.jpg)
+
+Input resistor  _R_  _1_  in the inverting amplifier is replaced by capacitor  _C\._
+
+Derivative operation emphasizes high\-frequency components of input signal\, hence is less often used than the integrator\.
+
+Output is scaled version of derivative of input voltage\.
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+
+# End of Chapter 10
+
+![](img/lec-07a-MCD6thEdChap10_19.png)
+
+Jaeger/Blalock/Blalock      12/15/21
+
+Microelectronic Circuit Design\, 6E McGraw\-Hill
+

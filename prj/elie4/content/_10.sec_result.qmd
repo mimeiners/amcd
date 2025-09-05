@@ -1,0 +1,183 @@
+# Results
+
+## Experimental Setup
+
+In this section, we describe the methods used for testing the biquad filter across different platforms:
+
+* **Simulation:**
+
+  * Implemented using KiCad and simulated via ngspice.
+  * Frequency response obtained using `.ac dec` directive.
+  * Output exported and analyzed using Python for frequency and phase plots.
+
+* **ASLK Pro Kit:**
+
+  * Assembled filter on ASLK Pro board with TL082 op-amps.
+  * Function generator output set to sine wave (0.9 V peak-to-peak).
+  * Measurements captured from the LPF, HPF, BPF, and BSF outputs.
+  * Output analysis performed with Red Pitaya and graphs were generated using python.
+
+## Frequency Analysis
+
+### LPF
+
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Frequency Response](images/section10/Result/FreqAnalysis/LPF/Simulation.png){#fig-lpf-sim fig-align="center" fig-cap="Simulation Frequency Response (LPF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Frequency Response](images/section10/Result/FreqAnalysis/LPF/Breadboard.png){#fig-lpf-kit fig-align="center" fig-cap="Kit Frequency Response (LPF)"}
+:::
+
+:::
+
+
+### HPF
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Frequency Response](images/section10/Result/FreqAnalysis/HPF/Simulation.png){#fig-hpf-sim fig-align="center" fig-cap="Simulation Frequency Response (HPF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Frequency Response](images/section10/Result/FreqAnalysis/HPF/Breadboard.png){#fig-hpf-kit fig-align="center" fig-cap="Kit Frequency Response(HPF)"}
+:::
+:::
+
+### BPF
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Frequency Response](images/section10/Result/FreqAnalysis/BPF/Simulation.png){#fig-bpf-sim fig-align="center" fig-cap="Simulation Frequency Response (BPF)"}
+:::
+::: {.column width="50%"}
+![Kit Frequency Response](images/section10/Result/FreqAnalysis/BPF/Breadboard.png){#fig-bpf-kit fig-align="center" fig-cap="Kit Frequency Response(BPF)"}
+:::
+:::
+
+:::{.columns}
+
+::: {.column width="40%" style="padding: 1em; border: 1px solid #ccc; border-radius: 8px;"}
+From the csv file we can get
+- **Center frequency (f₀)**: 1000 Hz
+- **Peak amplitude**: 20.1755 dB
+ 
+For calculating the bandwidth, we need to find the frequencies where the response is 3dB below the peak.
+Upper -3dB point would be 1056.6 Hz and lower -3dB point would be 954.8 Hz. So bandwidth is the difference between them. It is:
+$$
+BW = |f_{upper} - f_{lower}|
+$$ 
+BW= 1056.6-954.8 = 101.80 Hz
+
+Now to find the quality factor (Q)
+
+$$
+Q = \frac {f_0} {BW}
+$$
+$$
+Q = \frac {1000}{101.80}
+$$
+Q = 9.8
+:::
+::: {.column width="40%" style="padding: 1em; border: 1px solid #ccc; border-radius: 8px;"}
+From the csv file we can get
+- **Center frequency (f₀)**: 977.01 Hz
+- **Peak amplitude**: 19.17 dB
+ 
+For calculating the bandwidth, we need to find the frequencies where the response is 3dB below the peak. Upper -3dB point would be 1076.837 Hz and lower -3dB point would be 921.75 Hz. So bandwidth is the difference between them. It is:
+$$
+BW = |f_{upper} - f_{lower}|
+$$ 
+BW= 1076.837-921.75 = 154.96 Hz
+
+Now to find the quality factor (Q)
+
+$$
+Q = \frac {f_0} {BW}
+$$
+$$
+Q = \frac {977.01}{154.96}
+$$
+Q = 6.30
+:::
+:::
+The possible causes would be:
+- KiCad uses ideal components, while real resistors/capacitors have tolerances (e.g., ±5%–10%).
+- PCB traces add stray capacitance (1–5 pF) and inductance, altering filter response.
+- KiCad assumes perfect power; real supplies have ripple.
+
+### BSF
+
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Frequency Response](images/section10/Result/FreqAnalysis/BSF/Simulation.png){#fig-bsf-sim fig-align="center" fig-cap="Simulation Frequency Response (BSF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Frequency Response](images/section10/Result/FreqAnalysis/BSF/Breadboard.png){#fig-bsf-kit fig-align="center" fig-cap="Kit Frequency Response(BSF)"}
+:::
+:::
+
+The frequency response of the biquad filter across simulation and ASLK Pro implementation shows expected filter behaviors for all configurations (LPF, HPF, BPF, BSF). In practice, both the LPF and HPF exhibited steeper slopes compared to simulation, likely due to parasitic effects and non-ideal op-amp behavior. The BPF and BSF responses confirmed correct center and notch frequencies around 1 kHz, with minor deviations in amplitude and phase caused by component tolerances and real-world limitations.
+
+## Transient Analysis
+
+### LPF
+
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Transient Response](images/section10/Result/TransAnalysis/LPF/Simulation.png){#fig-lpf-sim fig-align="center" fig-cap="Simulation Transient Response (LPF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Transient Response](images/section10/Result/TransAnalysis/LPF/Breadboard.png){#fig-lpf-kit fig-align="center" fig-cap="Kit Transient Response (LPF)"}
+:::
+
+:::
+
+
+### HPF
+
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Transient Response](images/section10/Result/TransAnalysis/HPF/Simulation.png){#fig-hpf-sim fig-align="center" fig-cap="Simulation Transient Response (HPF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Transient Response](images/section10/Result/TransAnalysis/HPF/Breadboard.png){#fig-hpf-kit fig-align="center" fig-cap="Kit Transient Response (HPF)"}
+:::
+
+:::
+
+### BPF
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Transient Response](images/section10/Result/TransAnalysis/BPF/Simulation.png){#fig-bpf-sim fig-align="center" fig-cap="Simulation Transient Response (BPF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Transient Response](images/section10/Result/TransAnalysis/BPF/Breadboard.png){#fig-bpf-kit fig-align="center" fig-cap="Kit Transient Response (BPF)"}
+:::
+:::
+
+### BSF
+:::{.columns}
+
+::: {.column width="50%"}
+![Simulation Transient Response](images/section10/Result/TransAnalysis/BSF/Simulation.png){#fig-bsf-sim fig-align="center" fig-cap="Simulation Transient Response (BSF)"}
+:::
+
+::: {.column width="50%"}
+![Kit Transient Response](images/section10/Result/TransAnalysis/BSF/Breadboard.png){#fig-bsf-kit fig-align="center" fig-cap="Kit Transient Response (BSF)"}
+:::
+:::
+
+
+Transient analysis for each filter type demonstrated good alignment between simulation and physical implementation. LPF and HPF showed clean responses with minor differences in rise time and settling due to hardware constraints. The BPF displayed underdamped oscillations as expected, while the BSF combined characteristics of LPF and HPF with slightly altered phase behavior in the practical setup. Overall, the filters behaved as intended with predictable real-world variations.
+
