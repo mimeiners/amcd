@@ -428,7 +428,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>This project explores the IC design of a biquad filter from mathematical modelling over ideal circuit implementations to sizing and using several differnet OTAs and a concluding physical implementation of an OTA. Two different OTA models were incorporated into implementing the universal biquad filter and compared with simulations to the theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a physical design with the help of KLayout.</p>
+    <p>This project explores the IC design of a biquad filter from mathematical modelling over ideal circuit implementations to sizing and using several differnet OTAs and a concluding physical implementation of an OTA. Two different OTA models were incorporated into implementing the universal biquad filter and compared with simulations to the theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a physical design with the help of KLayout. <a href="https://github.com/avahlen/AMCD_Group1"><strong>GitHub Repo</strong></a></p>
   </div>
 </div>
 
@@ -513,7 +513,7 @@ H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 \tag{5.2}\]</span></span></p>
 <p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <a href="#fig-lowPassDifferentQ" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
-<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-caption="Python code for plotting a low pass with different quality factors" data-execution_count="1">
+<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="1" data-caption="Python code for plotting a low pass with different quality factors">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Listing&nbsp;5.1
@@ -2470,7 +2470,7 @@ Figure&nbsp;7.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 <li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
 </ol>
 <p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="ca4201a5" class="cell" data-execution_count="2">
+<div id="f9860ea4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
@@ -2488,7 +2488,7 @@ Figure&nbsp;7.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="174c9c3d" class="cell" data-execution_count="3">
+<div id="a69eea80" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
@@ -2507,7 +2507,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="7c125151" class="cell" data-execution_count="4">
+<div id="8ef4f2c6" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
@@ -2523,7 +2523,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="a67f3ecb" class="cell" data-execution_count="5">
+<div id="49bcc906" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
@@ -2539,7 +2539,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="2f55834c" class="cell" data-execution_count="6">
+<div id="14482fbd" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
@@ -2561,7 +2561,7 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 \]</span></p>
 <p>In Python:</p>
-<div id="d180a65f" class="cell" data-execution_count="7">
+<div id="5f6a0d08" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
@@ -2573,7 +2573,7 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="87d7e4b5" class="cell" data-execution_count="8">
+<div id="1e5351ab" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -3449,7 +3449,7 @@ Figure&nbsp;8.7: Tying down different types of bulks contacts. Not to scale.
 <span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">  models were incorporated into implementing the universal biquad filter and compared with simulations to the</span></span>
 <span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="co">  theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required</span></span>
 <span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a><span class="co">  behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a</span></span>
-<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="co">  physical design with the help of KLayout.</span></span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="co">  physical design with the help of KLayout. [**GitHub Repo**](https://github.com/avahlen/AMCD_Group1)</span></span>
 <span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_introduction.qmd &gt;}}</span>

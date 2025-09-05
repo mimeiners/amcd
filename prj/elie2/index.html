@@ -379,7 +379,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>In this development report the design process of an integrated universal biquad filter is described. The development was done in a docker image for integrated circuit design, which is part of an open source kit. Subject of this development report is the design of an universal biquad filter, including the filter characterization and several steps of circuit design. Furthermore, the layout process is also part of this documentation. Additionally, the experiences with the open source development environment are shared as well. The filter was designed by the use of the IHP sg13g2 PDK.</p>
+    <p>In this development report the design process of an integrated universal biquad filter is described. The development was done in a docker image for integrated circuit design, which is part of an open source kit. Subject of this development report is the design of an universal biquad filter, including the filter characterization and several steps of circuit design. Furthermore, the layout process is also part of this documentation. Additionally, the experiences with the open source development environment are shared as well. The filter was designed by the use of the IHP sg13g2 PDK. <a href="https://github.com/Svensam/AMCD_Group2_IC_Design"><strong>GitHub Repo</strong></a></p>
   </div>
 </div>
 
@@ -513,7 +513,7 @@ Figure&nbsp;7.1: ASLK Pro Circuit Schematic
 <li><strong>BSF</strong>: Band-Stop Filter</li>
 </ul>
 <p>Additionally, a fixed resistance <span class="math inline">\(R\)</span> and capacitor <span class="math inline">\(C\)</span> is used for most parts. An exception can be seen at the negative input of the BSF-OP-Amp: First there is a resistor labeled with <span class="math inline">\(Q \cdot R\)</span>, as well as a resistor labeled <span class="math inline">\(R / H_0\)</span> below. For these resistors the resistance must be the value given by the mathematical relation given by each label and the fixed <span class="math inline">\(R\)</span> used in the other resistors: <span class="math inline">\(Q \cdot R\)</span> is used the set the quality factor <span class="math inline">\(Q\)</span>, and <span class="math inline">\(H_0\)</span> is used as the low frequency gain of the transfer functions.<br> The quality factor <span class="math inline">\(Q\)</span> controls the damping and thus the filter’s bandwidth. A higher <span class="math inline">\(Q\)</span> yields a narrower passband with a sharper peak at the resonance frequency, while a lower <span class="math inline">\(Q\)</span> produces a broader, more heavily damped response.<br> The parameter <span class="math inline">\(H_0\)</span> establishes the DC gain, scaling the low-frequency amplitude and thereby setting the overall output level of all four filter responses.</p>
-<div id="d5234d55" class="cell" data-execution_count="1">
+<div id="a68847d9" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -705,7 +705,7 @@ H(s) = H_0 \frac{b_2 \,\frac{s^2}{\omega_0^2} + b_1 \,\frac{s}{\omega_0} + b_0}
 <section id="sec-bode" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="sec-bode"><span class="header-section-number">8.1</span> Bode Plot</h2>
 <p>To validate the four filter types with selected values, a Bode Plot is created by showing magnitude and phase in over a bandwidth with <span class="math inline">\(0 \leq f \leq 3~\text{kHz}\)</span>:</p>
-<div id="1e7f34f7" class="cell" data-execution_count="2">
+<div id="fa6758c9" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -846,7 +846,7 @@ The phase shift at <span class="math inline">\(f_0\)</span> of BSF and LP are th
 <section id="polezero-analysis" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="polezero-analysis"><span class="header-section-number">8.2</span> Pole–Zero Analysis</h2>
 <p>By analyzing the poles and zeroes of each, the filters can be confirmed, if locations of poles and zeroes match each Filter-type.</p>
-<div id="74c396b7" class="cell" data-execution_count="3">
+<div id="18e7ece5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -964,19 +964,19 @@ The phase shift at <span class="math inline">\(f_0\)</span> of BSF and LP are th
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_79026/811226949.py:86: UserWarning:
+<pre><code>/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_12715/811226949.py:86: UserWarning:
 
 color is redundantly defined by the 'color' keyword argument and the fmt string "b" (-&gt; color=(0.0, 0.0, 1.0, 1)). The keyword argument will take precedence.
 
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_79026/811226949.py:92: UserWarning:
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_12715/811226949.py:92: UserWarning:
 
 color is redundantly defined by the 'color' keyword argument and the fmt string "r" (-&gt; color=(1.0, 0.0, 0.0, 1)). The keyword argument will take precedence.
 
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_79026/811226949.py:98: UserWarning:
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_12715/811226949.py:98: UserWarning:
 
 color is redundantly defined by the 'color' keyword argument and the fmt string "m" (-&gt; color=(0.75, 0.0, 0.75, 1)). The keyword argument will take precedence.
 
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_79026/811226949.py:104: UserWarning:
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_12715/811226949.py:104: UserWarning:
 
 color is redundantly defined by the 'color' keyword argument and the fmt string "g" (-&gt; color=(0.0, 0.5, 0.0, 1)). The keyword argument will take precedence.
 </code></pre>
@@ -1004,7 +1004,7 @@ This shows similar locations, comparing poles/zeroes to typical second order fil
 <h2 data-number="8.3" class="anchored" data-anchor-id="impulse-step-response"><span class="header-section-number">8.3</span> Impulse / Step Response</h2>
 <p>In this section time-domain simulations are created. Namely, impulse and step responses of each second-order filter are plotted so it can be observed how they react to sudden inputs.<br>
 Running the four transfer-function models through SciPy’s LTI routines produces following two Figures with 2x2 subplots:</p>
-<div id="9f5f7100" class="cell" data-execution_count="4">
+<div id="6fb80cee" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1142,7 +1142,7 @@ Note
 <p>The ´:::´ displayed between this note and the plots is a bug occurring when using python-code inside a collapsable text block. Please ignore it.</p>
 </div>
 </div>
-<div id="04cf6c58" class="cell" data-execution_count="5">
+<div id="543c0f72" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1295,7 +1295,7 @@ f_0 = 1\ \text{kHz},
 C = 100\ \text{nF},
 \]</span></p>
 <p>we get:</p>
-<div id="63f70bd9" class="cell" data-execution_count="6">
+<div id="c74ec84d" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2154,7 +2154,7 @@ Figure&nbsp;11.3: Error using LVS in KLayout
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">  development report is the design of an universal biquad filter, including the filter characterization and several</span></span>
 <span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co">  steps of circuit design. Furthermore, the layout process is also part of this documentation. Additionally, the</span></span>
 <span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">  experiences with the open source development environment are shared as well. The filter was designed by the use of the</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">  IHP sg13g2 PDK.</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">  IHP sg13g2 PDK. [**GitHub Repo**](https://github.com/Svensam/AMCD_Group2_IC_Design)</span></span>
 <span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_introduction.qmd &gt;}}</span>

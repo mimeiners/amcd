@@ -391,7 +391,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>This project explores the design and implementation of a second-order universal active (biquad) filter supporting low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain, phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results in analog filter design.</p>
+    <p>This project explores the design and implementation of a second-order universal active (biquad) filter supporting low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain, phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results in analog filter design. <a href="https://github.com/nilina-rose/AMCD-Group-4"><strong>GitHub Repo</strong></a></p>
   </div>
 </div>
 
@@ -403,7 +403,7 @@ window.Quarto = {
 <h1 data-number="7"><span class="header-section-number">7</span> Introduction</h1>
 <p>This project aims to design an analog universal biquad filter for a corner frequency of 1 kilohertz and a quality factor of 10. This was implemented from specification to simulation and finally to physical layout. This includes schematic design and simulation, functional modeling, and full PCB design. The utilisation of modern simulation tools and open-source platforms was immense for the developement of this project.</p>
 <p>The key feature of this project is to focus on simulation-based design using KICAD for schematic capture and analysis of the circuit and analysing the performance in frequency and time domain. For PCB implementation and layout, the same open-source tool is used and the functional modelling of the circuit is done using Analog System Lab Kit (ASLK) and Red Pitaya. The use of Red Pitaya is mentionable as it provides a cost-effective and adaptable platform for measuring the frequency response of ALSK tool kit circuit. The design workflow also includes documentation and analysis using Quarto, Jupyter Notebooks, and supporting tools such as Python, Numpy, and Matplotlib. All components of this project are managed using Git and documented in reproducible formats.</p>
-<p>NOTE: All design files, source code, and documentation are shared publicaly under our GITHUB repository.</p>
+<p>NOTE: All design files, source code, and documentation are shared publicaly under our <a href="https://github.com/nilina-rose/AMCD-Group-4">GitHub repository</a>.</p>
 </section>
 <section id="motivation" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Motivation</h1>
@@ -417,10 +417,10 @@ window.Quarto = {
 <section id="types-of-filters" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="types-of-filters"><span class="header-section-number">9.1</span> Types of Filters</h2>
 <p>There are four types of filters which are low pass filter, high pass filter, band pass filter and band stop filter or notch filter. Filters are classified based on allowing or blocking different band of frequencies. They treat different frequencies of the spectrum in various ways <span class="citation" data-cites="Cktdesign"><a href="../../references.html#ref-Cktdesign" role="doc-biblioref">[1]</a></span>. The low pass filter allows the low frequency signals to pass through the filter and attenuates the higher frequency signals. Whereas high pass filter works just the opposite of this by allowing the high frequency signals to pass through the filter and attenuates the low frequency signals. Band pass filter passes a specific range of frequencies and attenuates the rest and the band stop cuts off a specific range of signals and allows the rest to pass through the filter. The frequency response of each filters are <a href="#fig-freqrespideal" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> for a better understanding of the types of filters:</p>
-<div id="fig-freqrespideal" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Ideal Frequency Response Graph" data-fig-align="center">
+<div id="fig-freqrespideal" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Ideal Frequency Response Graph">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-freqrespideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section3/freqrespideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal Frequency Response Graph">
+<img src="images/section3/freqrespideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal Frequency Response Graph">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqrespideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9.1: Ideal Frequency Response Graph
@@ -443,10 +443,10 @@ f_c = \frac{1}{2 \pi R C}
 <section id="roll-off" class="level3" data-number="9.2.2">
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="roll-off"><span class="header-section-number">9.2.2</span> Roll-off</h3>
 <p>It is determined to measure the rate at which the filter attenuated the signal after the cut-off frequency <span class="citation" data-cites="rolloff"><a href="../../references.html#ref-rolloff" role="doc-biblioref">[3]</a></span>. More steeper the roll-off factor more better the filter works. So in order to increase this factor we need to look into other parameter called the order of the filter.</p>
-<div id="fig-folp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response Characteristics" data-fig-align="center">
+<div id="fig-folp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Frequency Response Characteristics">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-folp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section3/Firstorderlowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Frequency Response Characteristics">
+<img src="images/section3/Firstorderlowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Frequency Response Characteristics">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9.2: Filter Response Characteristics
@@ -463,10 +463,10 @@ Figure&nbsp;9.2: Filter Response Characteristics
 <p>It is the range of frequencies that passes through the filter without attenuation <span class="citation" data-cites="Cktdesign"><a href="../../references.html#ref-Cktdesign" role="doc-biblioref">[1]</a></span>. The bandwidth can be calculated by taking the difference of the frequnecies at -3db gain as shown in <a href="#fig-qbw" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> <span class="math display">\[
 BW = f_2 - f_1
 \]</span> The bandwidth of low pass filter can be frequnecy at 3db and for band pass it is as shown above while it is not defined for band stop and high pass filters.</p>
-<div id="fig-qbw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Q Factor and Bandwidth" data-fig-align="center">
+<div id="fig-qbw" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Q Factor and Bandwidth">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section3/qfactorandbw.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Q Factor and Bandwidth">
+<img src="images/section3/qfactorandbw.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Q Factor and Bandwidth">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9.3: Q Factor and Bandwidth
@@ -501,10 +501,10 @@ H(s) = \frac{b_0 + b_1 s + b_2 s^2}{a_0 + a_1 s + a_2 s^2}
 H(s)= \frac{V_{\text{out}} (s)}{V_{\text{in}} (s)}
 \]</span></p>
 <p>Consider the circuit diagram for second order low pass filter <a href="#fig-mfblp" class="quarto-xref">Figure&nbsp;<span>10.1</span></a></p>
-<div id="fig-mfblp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Second order MFB low pass filter" data-fig-align="center">
+<div id="fig-mfblp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Second order MFB low pass filter">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mfblp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section4/mfblowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Second order MFB low pass filter">
+<img src="images/section4/mfblowpass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-cap="Second order MFB low pass filter">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mfblp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: Second order MFB low pass filter
@@ -552,20 +552,20 @@ H(s) = H_0 \cdot \frac{s / Q}{s^2 + s / Q + 1}
 H(s) = \frac{s / Q}{s^2 + s / Q + 1}
 \]</span></p>
 <p>This normalized second-order band-pass filter exhibits a peak at the resonant frequency <span class="math inline">\(\omega_0\)</span>, with sharpness controlled by <span class="math inline">\(Q\)</span> <a href="#fig-frequencyrespmath" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>.</p>
-<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response of Second-Order BPF" data-fig-align="center">
+<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Frequency Response of Second-Order BPF">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section5/frequencyresponsemath.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
+<img src="images/section5/frequencyresponsemath.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Frequency Response of Second-Order BPF
 </figcaption>
 </figure>
 </div>
-<div id="fig-stepresponse" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Step Response of Second-Order BPF" data-fig-align="center">
+<div id="fig-stepresponse" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Step Response of Second-Order BPF">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stepresponse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section5/stepresponse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Step Response of Second-Order BPF">
+<img src="images/section5/stepresponse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Step Response of Second-Order BPF">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stepresponse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Step Response of Second-Order BPF
@@ -584,7 +584,7 @@ Figure&nbsp;11.2: Step Response of Second-Order BPF
 \]</span></p>
 <p>The TL082 dual JFET-input op-amp was selected for its high slew rate and wide bandwidth, making it suitable for audio- and low-frequency analog filtering. Its availability in the ASLK PRO kit further streamlined practical implementation.</p>
 <p>The following code can also be used to calculate the required capacitor value given a desired resistance, center frequency, and quality factor.</p>
-<div id="e52bc8a6" class="cell" data-execution_count="1">
+<div id="8bb0931d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -690,10 +690,10 @@ H(s) = \frac{a_2 s^2 + a_1 s + a_0}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2}
 <section id="visualization" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="visualization"><span class="header-section-number">13.5</span> Visualization</h2>
 <p>Below is a sample image used to visualize gain and phase responses for different filter types based on their transfer functions.</p>
-<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Frequency Response of Second-Order BPF" data-fig-align="center">
+<div id="fig-frequencyrespmath" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Frequency Response of Second-Order BPF">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section7/ideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
+<img src="images/section7/ideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Frequency Response of Second-Order BPF">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frequencyrespmath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;13.1: Bode Magnitude and Phase Response for Second-Order Filters
@@ -722,10 +722,10 @@ Figure&nbsp;13.1: Bode Magnitude and Phase Response for Second-Order Filters
 <section id="inverting-op-amp" class="level4" data-number="14.1.2.1">
 <h4 data-number="14.1.2.1" class="anchored" data-anchor-id="inverting-op-amp"><span class="header-section-number">14.1.2.1</span> Inverting op-amp:</h4>
 <p>We give input to the inverting input terminal of the op-amp, thus the name inverting op-amp configuration. We also give feedback from the output to this same input terminal as given in <a href="#fig-invertor" class="quarto-xref">Figure&nbsp;<span>14.1</span></a></p>
-<div id="fig-invertor" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Inverting Op-Amp Circuit" data-fig-align="center">
+<div id="fig-invertor" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Inverting Op-Amp Circuit">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-invertor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section9/invertoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Inverting Op-Amp Circuit">
+<img src="images/section9/invertoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Inverting Op-Amp Circuit">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-invertor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.1: Inverting Op-Amp Circuit
@@ -751,10 +751,10 @@ A = \frac{-R_F}{R_{\text{in}}}
 <section id="integrator" class="level4" data-number="14.1.2.2">
 <h4 data-number="14.1.2.2" class="anchored" data-anchor-id="integrator"><span class="header-section-number">14.1.2.2</span> Integrator</h4>
 <p>This op-amp gives us an integrated value of the input as output for the circuit. For acheiving this we just replaced the <span class="math inline">\(R_F\)</span> resistor with a capacitor as given in <a href="#fig-integrator" class="quarto-xref">Figure&nbsp;<span>14.2</span></a></p>
-<div id="fig-integrator" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Op-Amp as Integrator" data-fig-align="center">
+<div id="fig-integrator" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Op-Amp as Integrator">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section9/integratoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Op-Amp as Integrator">
+<img src="images/section9/integratoropamp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Op-Amp as Integrator">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.2: Op-Amp as Integrator
@@ -796,10 +796,10 @@ V_{\text{out}}= -\frac{1}{{R}{C}} \int V_{\text{in}} \, dt
 <section id="schematic-capture" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="schematic-capture"><span class="header-section-number">15.1</span> Schematic Capture</h2>
 <p>Below is the schematic created in KiCad for the implementation of the biquad filter circuit.</p>
-<div id="fig-biquadschematic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Biquad Kicad Schematic" data-fig-align="center">
+<div id="fig-biquadschematic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Biquad Kicad Schematic">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-biquadschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/biquadschematic.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Biquad Kicad Schematic">
+<img src="images/section8/biquadschematic.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Biquad Kicad Schematic">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biquadschematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.1: Biquad Kicad Schematic
@@ -810,10 +810,10 @@ Figure&nbsp;15.1: Biquad Kicad Schematic
 <section id="pcb-layout" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="pcb-layout"><span class="header-section-number">15.2</span> PCB Layout</h2>
 <p>The following images <a href="#fig-pcblayout" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>, <a href="#fig-pcbtop" class="quarto-xref">Figure&nbsp;<span>15.3</span></a>, <a href="#fig-pcbbottom" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> show the PCB layout used in the design, including the top and bottom routing diagrams. We used surface mount resistors and capacitors(SMD) while for other components, through hole technology(THT) was selected for integration.</p>
-<div id="fig-pcblayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Biquad PCB Layout" data-fig-align="center">
+<div id="fig-pcblayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Biquad PCB Layout">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pcblayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/pcblayout.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-fig-cap="Biquad PCB Layout">
+<img src="images/section8/pcblayout.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-fig-cap="Biquad PCB Layout">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcblayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.2: Biquad PCB Layout
@@ -825,7 +825,7 @@ Figure&nbsp;15.2: Biquad PCB Layout
 <div id="fig-pcbtop" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Top Layer Routing">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pcbtop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/pcbtop.svg" class="img-fluid figure-img" data-fig-cap="Top Layer Routing">
+<img src="images/section8/pcbtop.svg" class="img-fluid figure-img" data-fig-cap="Top Layer Routing">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbtop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.3: Biquad PCB Top layer Routing
@@ -836,7 +836,7 @@ Figure&nbsp;15.3: Biquad PCB Top layer Routing
 <div id="fig-pcbbottom" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Bottom Layer Routing">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pcbbottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/pcbbottom.svg" class="img-fluid figure-img" data-fig-cap="Bottom Layer Routing">
+<img src="images/section8/pcbbottom.svg" class="img-fluid figure-img" data-fig-cap="Bottom Layer Routing">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbbottom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.4: Biquad PCB Bottom layer Routing
@@ -847,10 +847,10 @@ Figure&nbsp;15.4: Biquad PCB Bottom layer Routing
 </div>
 <p>The PCB design follows the following specifications:<br> - Minimum trace width: <code>0.635 mm</code><br> - Placement of decoupling capacitors close to op-amps</p>
 <p>To validate the circuit’s performance, we tested the same design using the <strong>ASLK Pro kit</strong> and <strong>Red Pitaya</strong> as signal source and oscilloscope. The following picture <a href="#fig-alsk_layout" class="quarto-xref">Figure&nbsp;<span>15.5</span></a> shows the portion of the ASLK Pro board used to construct the biquad filter circuit.</p>
-<div id="fig-alsk_layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="ASLK Pro Setup" data-fig-align="center">
+<div id="fig-alsk_layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="ASLK Pro Setup">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-alsk_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/alsk_layout.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="ASLK Pro Setup">
+<img src="images/section8/alsk_layout.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="ASLK Pro Setup">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alsk_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.5: ASLK Pro Setup
@@ -858,10 +858,10 @@ Figure&nbsp;15.5: ASLK Pro Setup
 </figure>
 </div>
 <p>Red Pitaya was used to inject signals and monitor the filter output. The board acted as both a function generator and an oscilloscope. A basic block setup is given in the illustraion <a href="#fig-alsksetup" class="quarto-xref">Figure&nbsp;<span>15.6</span></a> below for better understanding.</p>
-<div id="fig-alsksetup" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Red Pitaya Setup" data-fig-align="center">
+<div id="fig-alsksetup" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Red Pitaya Setup">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-alsksetup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section8/alsksetup.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Red Pitaya Setup">
+<img src="images/section8/alsksetup.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Red Pitaya Setup">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alsksetup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15.6: Red Pitaya Setup
@@ -898,7 +898,7 @@ Figure&nbsp;15.6: Red Pitaya Setup
 <h3 data-number="16.2.1" class="anchored" data-anchor-id="lpf"><span class="header-section-number">16.2.1</span> LPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (LPF)" data-fig-align="center">
+<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Frequency Response (LPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/LPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (LPF)">
@@ -909,7 +909,7 @@ Figure&nbsp;16.1: Simulation Frequency Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response (LPF)" data-fig-align="center">
+<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Frequency Response (LPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/LPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response (LPF)">
@@ -926,7 +926,7 @@ Figure&nbsp;16.2: Kit Frequency Response
 <h3 data-number="16.2.2" class="anchored" data-anchor-id="hpf"><span class="header-section-number">16.2.2</span> HPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (HPF)" data-fig-align="center">
+<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Frequency Response (HPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/HPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (HPF)">
@@ -937,7 +937,7 @@ Figure&nbsp;16.3: Simulation Frequency Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(HPF)" data-fig-align="center">
+<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Frequency Response(HPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/HPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(HPF)">
@@ -954,7 +954,7 @@ Figure&nbsp;16.4: Kit Frequency Response
 <h3 data-number="16.2.3" class="anchored" data-anchor-id="bpf"><span class="header-section-number">16.2.3</span> BPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (BPF)" data-fig-align="center">
+<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Frequency Response (BPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/BPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (BPF)">
@@ -965,7 +965,7 @@ Figure&nbsp;16.5: Simulation Frequency Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(BPF)" data-fig-align="center">
+<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Frequency Response(BPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/BPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(BPF)">
@@ -1008,7 +1008,7 @@ Q = \frac {977.01}{154.96}
 <h3 data-number="16.2.4" class="anchored" data-anchor-id="bsf"><span class="header-section-number">16.2.4</span> BSF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Frequency Response (BSF)" data-fig-align="center">
+<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Frequency Response (BSF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/BSF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Frequency Response (BSF)">
@@ -1019,7 +1019,7 @@ Figure&nbsp;16.7: Simulation Frequency Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Frequency Response(BSF)" data-fig-align="center">
+<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Frequency Response(BSF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/FreqAnalysis/BSF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Frequency Response(BSF)">
@@ -1040,7 +1040,7 @@ Figure&nbsp;16.8: Kit Frequency Response
 <h3 data-number="16.3.1" class="anchored" data-anchor-id="lpf-1"><span class="header-section-number">16.3.1</span> LPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (LPF)" data-fig-align="center">
+<div id="fig-lpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Transient Response (LPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/LPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (LPF)">
@@ -1051,7 +1051,7 @@ Figure&nbsp;16.9: Simulation Transient Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (LPF)" data-fig-align="center">
+<div id="fig-lpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Transient Response (LPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/LPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (LPF)">
@@ -1068,7 +1068,7 @@ Figure&nbsp;16.10: Kit Transient Response
 <h3 data-number="16.3.2" class="anchored" data-anchor-id="hpf-1"><span class="header-section-number">16.3.2</span> HPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (HPF)" data-fig-align="center">
+<div id="fig-hpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Transient Response (HPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/HPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (HPF)">
@@ -1079,7 +1079,7 @@ Figure&nbsp;16.11: Simulation Transient Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (HPF)" data-fig-align="center">
+<div id="fig-hpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Transient Response (HPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/HPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (HPF)">
@@ -1096,7 +1096,7 @@ Figure&nbsp;16.12: Kit Transient Response
 <h3 data-number="16.3.3" class="anchored" data-anchor-id="bpf-1"><span class="header-section-number">16.3.3</span> BPF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (BPF)" data-fig-align="center">
+<div id="fig-bpf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Transient Response (BPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bpf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/BPF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (BPF)">
@@ -1107,7 +1107,7 @@ Figure&nbsp;16.13: Simulation Transient Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (BPF)" data-fig-align="center">
+<div id="fig-bpf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Transient Response (BPF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bpf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/BPF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (BPF)">
@@ -1124,7 +1124,7 @@ Figure&nbsp;16.14: Kit Transient Response
 <h3 data-number="16.3.4" class="anchored" data-anchor-id="bsf-1"><span class="header-section-number">16.3.4</span> BSF</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Simulation Transient Response (BSF)" data-fig-align="center">
+<div id="fig-bsf-sim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Simulation Transient Response (BSF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bsf-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/BSF/Simulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Simulation Transient Response (BSF)">
@@ -1135,7 +1135,7 @@ Figure&nbsp;16.15: Simulation Transient Response
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Kit Transient Response (BSF)" data-fig-align="center">
+<div id="fig-bsf-kit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Kit Transient Response (BSF)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bsf-kit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/section10/Result/TransAnalysis/BSF/Breadboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Kit Transient Response (BSF)">
@@ -1157,10 +1157,10 @@ Figure&nbsp;16.16: Kit Transient Response
 <p>Initially, while implementing the circuit in ALSK pro kit, the output we could get in using the red pitaya was just some noises for all the filter types. When observed closely we found out the need to connect a wire physically in the board from non-inverting terminal of the op-amp to the ground for the two op-amps in op-amp type II full section of the ALSK pro board. Whereas the other two op-amp were internally connected to ground.</p>
 <p>Both the PCBs that have designed didn’t give us any output as the we try to measure it using the red pitaya.</p>
 <p>On observation it was found that the PIN no 5 and PIN 6 got interchanged in KiCAD as shown in <a href="#fig-pcbfault" class="quarto-xref">Figure&nbsp;<span>17.1</span></a> even after importing the netlist from the schematic which was working.</p>
-<div id="fig-pcbfault" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Pin interchange" data-fig-align="center">
+<div id="fig-pcbfault" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Pin interchange">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pcbfault-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../../images/section12/pcbfault.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" data-fig-cap="Pin interchange">
+<img src="images/section12/pcbfault.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" data-fig-cap="Pin interchange">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcbfault-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.1: Pin interchange
@@ -1696,7 +1696,7 @@ Figure&nbsp;17.1: Pin interchange
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">    low-pass, high-pass, band-pass, and band-stop responses. The filter is realized across simulation, ASLK PRO kit, and</span></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">    PCB platforms, with performance evaluated through frequency and time-domain analysis. Emphasis is placed on gain,</span></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">    phase, and transient behavior, highlighting the alignment and trade-offs between theoretical and practical results</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    in analog filter design.</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    in analog filter design. [**GitHub Repo**](https://github.com/nilina-rose/AMCD-Group-4)</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_1.sec_introduction.qmd &gt;}}</span>
