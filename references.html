@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</title>
+<title>References – M 2.16 Microelectronic Circuit Design (MCD)</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -88,15 +56,14 @@ div.csl-indent {
 <link href="./images/hsb-logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c17bf2369ec451fec7864fad2b46db76.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -150,13 +117,12 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</a> 
-        <div class="sidebar-tools-main">
+      <a href="./">M 2.16 Microelectronic Circuit Design (MCD)</a> 
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/mimeiners/amcd/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./mcd.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -198,7 +164,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Design Projects</span></a>
+ <span class="menu-text">Summer 2025</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -255,7 +221,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">References</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">References</h1>
 </div>
 
 
@@ -273,52 +239,50 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-baker2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R.
+J. Baker, <em><span>CMOS</span>: Mixed-signal circuit design</em>, 2nd
+ed. Wiley-IEEE Press, 2008, p. 352. doi: <a href="https://doi.org/10.13140/RG.2.1.5146.6005">10.13140/RG.2.1.5146.6005</a>.</div>
+</div>
+<div id="ref-baker2010" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R.
+J. Baker, <em>CMOS: Circuit design, layout, and simulation</em>, 3rd ed.
+Wiley, 2010. doi: <a href="https://doi.org/10.1002/9780470891179">10.1002/9780470891179</a>.</div>
+</div>
 <div id="ref-lienig2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J.
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J.
 Lienig and J. Scheible, <em>Grundlagen des layoutentwurfs elektronischer
 schaltungen</em>. Springer International Publishing, 2023. doi: <a href="https://doi.org/10.1007/978-3-031-15768-4">10.1007/978-3-031-15768-4</a>.</div>
 </div>
 <div id="ref-pretl2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">H.
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H.
 Pretl, M. Koefinger, and S. Dorrer, <span>“Analog <span>Circuit</span>
 <span>Design</span>.”</span> [Online]. Available: <a href="https://iic-jku.github.io/analog-circuit-design">https://iic-jku.github.io/analog-circuit-design</a></div>
 </div>
 <div id="ref-pretl2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">H.
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">H.
 Pretl and G. Zachl, <em>GitHub repository of the IIC-OSIC-TOOLS</em>.
 (Jan. 2025). Zenodo. doi: <a href="https://doi.org/10.5281/zenodo.14634518">10.5281/zenodo.14634518</a>.</div>
 </div>
 <div id="ref-razavi2018" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">B.
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">B.
 Razavi, <span>“The biquadratic filter [a circuit for all
 seasons],”</span> <em>IEEE Solid-State Circuits Magazine</em>, vol. 10,
 no. 2, pp. 11–109, 2018, doi: <a href="https://doi.org/10.1109/MSSC.2018.2822859">10.1109/MSSC.2018.2822859</a>.</div>
 </div>
 <div id="ref-razavi2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">B.
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">B.
 Razavi, <span>“The design of a biquadratic filter [the analog
 mind],”</span> <em>IEEE Solid-State Circuits Magazine</em>, vol. 16, no.
 1, pp. 6–13, 2024, doi: <a href="https://doi.org/10.1109/mssc.2023.3336149">10.1109/mssc.2023.3336149</a>.</div>
 </div>
 <div id="ref-reisch2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">M.
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">M.
 Reisch, <em>Elektronische bauelemente: Funktion, grundschaltungen,
 modellierung mit SPICE</em>, 2nd ed. Springer, 2007, p. 1517. doi: <a href="https://doi.org/10.1007/978-3-540-34015-7">10.1007/978-3-540-34015-7</a>.</div>
 </div>
-<div id="ref-baker2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">R.
-J. Baker, <em>CMOS: Circuit design, layout, and simulation</em>, 3rd ed.
-Wiley, 2010. doi: <a href="https://doi.org/10.1002/9780470891179">10.1002/9780470891179</a>.</div>
-</div>
-<div id="ref-baker2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">R.
-J. Baker, <em><span>CMOS</span>: Mixed-signal circuit design</em>, 2nd
-ed. Wiley-IEEE Press, 2008, p. 352. doi: <a href="https://doi.org/10.13140/RG.2.1.5146.6005">10.13140/RG.2.1.5146.6005</a>.</div>
-</div>
 </div>
 
-
-<!-- -->
 
 
 </main> <!-- /main -->
@@ -392,57 +356,6 @@ ed. Wiley-IEEE Press, 2008, p. 352. doi: <a href="https://doi.org/10.13140/RG.2.
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -781,17 +694,12 @@ ed. Wiley-IEEE Press, 2008, p. 352. doi: <a href="https://doi.org/10.13140/RG.2.
   </div>
   <div class="nav-page nav-page-next">
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</p>
+<p>M 2.16 Microelectronic Circuit Design (MCD)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

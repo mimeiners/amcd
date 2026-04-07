@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.23">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,8 +11,11 @@
 <meta name="author" content="Finn Ringelsiep">
 <meta name="author" content="Alicia von Ahlen">
 
-<title>3&nbsp; IC Design of a Universal Biquad Filter – M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</title>
+<title>3&nbsp; IC Design of a Universal Biquad Filter – M 2.16 Microelectronic Circuit Design (MCD)</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -94,15 +97,14 @@ div.csl-indent {
 <link href="../../images/hsb-logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c17bf2369ec451fec7864fad2b46db76.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,7 +134,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -172,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Design Projects</a></li><li class="breadcrumb-item"><a href="../../prj/elie1/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Summer 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie1/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -185,13 +187,12 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</a> 
-        <div class="sidebar-tools-main">
+      <a href="../../">M 2.16 Microelectronic Circuit Design (MCD)</a> 
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/mimeiners/amcd/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../../mcd.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -233,7 +234,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Design Projects</span></a>
+ <span class="menu-text">Summer 2025</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,9 +382,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Design Projects</a></li><li class="breadcrumb-item"><a href="../../prj/elie1/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Summer 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie1/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></h1>
 </div>
 
 
@@ -2470,9 +2471,7 @@ Figure&nbsp;7.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 <li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
 </ol>
 <p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="f9860ea4" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="7486929d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>VDD <span class="op">=</span> <span class="fl">1.8</span>     <span class="co"># Supply voltage [V]</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>VTHN <span class="op">=</span> <span class="fl">0.4</span>    <span class="co"># NMOS threshold voltage [V]</span></span>
@@ -2481,16 +2480,13 @@ Figure&nbsp;7.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>mu_p_Cox <span class="op">=</span> <span class="fl">100e-6</span>  <span class="co"># PMOS process transconductance parameter [A/V^2]</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>lambda_n <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation NMOS [1/V]</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>lambda_p <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation PMOS [1/V]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>These parameters are critical for calculating transistor drain current in saturation:</p>
 <p><span class="math display">\[
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="a69eea80" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="b74b6ae6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ID1 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2500,48 +2496,39 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate W/L ratio for M1 and M2</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>WL1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID1 <span class="op">/</span> (mu_n_Cox <span class="op">*</span> VOV1<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M1 and M2: </span><span class="sc">{</span>WL1<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>W/L for M1 and M2: 25.00</code></pre>
 </div>
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="8ef4f2c6" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="f5c3f68b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ID5 <span class="op">=</span> <span class="fl">200e-6</span>   <span class="co"># Total bias current [A]</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>VOV5 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># Overdrive voltage [V]</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>WL5 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID5 <span class="op">/</span> (mu_n_Cox <span class="op">*</span> VOV5<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M5: </span><span class="sc">{</span>WL5<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>W/L for M5: 50.00</code></pre>
 </div>
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="49bcc906" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="ce3903b1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ID3 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>VOV3 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># [V]</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>WL3 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID3 <span class="op">/</span> (mu_p_Cox <span class="op">*</span> VOV3<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M3 and M4: </span><span class="sc">{</span>WL3<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>W/L for M3 and M4: 50.00</code></pre>
 </div>
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="14482fbd" class="cell" data-execution_count="6">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="73467e68" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ro1 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_n <span class="op">*</span> ID1)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ro3 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_p <span class="op">*</span> ID3)</span>
@@ -2549,7 +2536,6 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"gm1: </span><span class="sc">{</span>gm1<span class="sc">:.2e}</span><span class="ss"> S"</span>)</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ro1: </span><span class="sc">{</span>ro1<span class="sc">:.2e}</span><span class="ss"> Ω"</span>)</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ro3: </span><span class="sc">{</span>ro3<span class="sc">:.2e}</span><span class="ss"> Ω"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>gm1: 5.00e-04 S
 ro1: 1.00e+05 Ω
@@ -2561,21 +2547,16 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 \]</span></p>
 <p>In Python:</p>
-<div id="5f6a0d08" class="cell" data-execution_count="7">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="21e54972" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Voltage gain A_v: </span><span class="sc">{</span>Av<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Voltage gain A_v: 25.00</code></pre>
 </div>
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="1e5351ab" class="cell" data-execution_count="8">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0c7f1a7f" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>CL <span class="op">=</span> <span class="fl">1e-12</span>   <span class="co"># Load capacitance [F]</span></span>
@@ -2587,7 +2568,6 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gain Bandwidth Product (GBW)</span></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>GBW <span class="op">=</span> gm1 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> CL)</span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gain Bandwidth Product: </span><span class="sc">{</span>GBW<span class="sc">:.2e}</span><span class="ss"> Hz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Slew Rate: 2.00e+08 V/s
 Gain Bandwidth Product: 7.96e+07 Hz</code></pre>
@@ -2863,8 +2843,6 @@ Figure&nbsp;8.7: Tying down different types of bulks contacts. Not to scale.
 <!-- {{< include content/references.qmd >}} -->
 
 
-<!-- -->
-
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-aslkpro2012" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">K. R. K. Rao and C. P. Ravikumar, <em>Analog system lab kit PRO MANUAL</em>. Texas Instruments, 2012.</div>
@@ -3013,57 +2991,6 @@ Figure&nbsp;8.7: Tying down different types of bulks contacts. Not to scale.
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -3405,66 +3332,12 @@ Figure&nbsp;8.7: Tying down different types of bulks contacts. Not to scale.
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "IC Design of a Universal Biquad Filter"</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Atakan Baydogan</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: </span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">    email: abaydogan@stud.hs-bremen.de</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author"</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation:</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: City University of Applied Sciences (HSB)</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">        city: Bremen</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">        state: Germany</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">        url: https://www.hs-bremen.de</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Onno Kriens</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: </span></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co">    email: okriens@stud.hs-bremen.de</span></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author"</span></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Finn Ringelsiep</span></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: </span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co">    email: fringelsiep@stud.hs-bremen.de</span></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author"</span></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Alicia von Ahlen</span></span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0009-0007-3049-2455</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="co">    email: avahlen@stud.hs-bremen.de</span></span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="co">    roles: "Lead author"</span></span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="an">keyword:</span></span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="co">  - Filter design</span></span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co">  - Biquadratic filter</span></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="co">  - IC design</span></span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="co">  - Open-Source toolchain</span></span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> |</span></span>
-<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="co">  This project explores the IC design of a biquad filter from mathematical modelling over ideal circuit implementations</span></span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="co">  to sizing and using several differnet OTAs and a concluding physical implementation of an OTA. Two different OTA</span></span>
-<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="co">  models were incorporated into implementing the universal biquad filter and compared with simulations to the</span></span>
-<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="co">  theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required</span></span>
-<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a><span class="co">  behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a</span></span>
-<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="co">  physical design with the help of KLayout. [**GitHub Repo**](https://github.com/avahlen/AMCD_Group1)</span></span>
-<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_introduction.qmd &gt;}}</span>
-<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_theoretical_background.qmd &gt;}}</span>
-<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_characterisation.qmd &gt;}}</span>
-<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_xschem.qmd &gt;}}</span>
-<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_finns_part.qmd &gt;}}</span>
-<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>{{&lt; include content/_sec_conclusion-outlook.qmd &gt;}}</span>
-<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- {{&lt; include content/references.qmd &gt;}} --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)</p>
+<p>M 2.16 Microelectronic Circuit Design (MCD)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
