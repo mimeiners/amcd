@@ -60,7 +60,7 @@ any other processes required to make sensor output suitable for processing after
 
 
 ## Design Project
-*Design and Characterization of an Analog Universal Filter (Biquad).* 
+*Design of a discrete or integrated analog biquad filter.* 
 
 * Basics of filter design
   * Approximation and filter template
@@ -74,14 +74,6 @@ any other processes required to make sensor output suitable for processing after
   * Opamps
   * Integrators
   * Adders
-
-* ASLK Pro and Red Pitaya STEMlab
-  * Experiment 4 -- Design of Analog Filters
-  * Measurements: Steady State and Frequency Response
-  * Simulation with ngspice (KiCAD/Xschem)
-  * Data readout and management with Matlab and/or Python
-  * Behavioural modelling with Matlab and/or Python
-
 
 ## Scientific Computing
 
@@ -123,8 +115,6 @@ any other processes required to make sensor output suitable for processing after
 -   [Visual Studio Code](https://code.visualstudio.com)
 
 -   [Spyder IDE](https://www.spyder-ide.org)
-
--   [Thonny (Micro-)Python IDE](https://thonny.org)
 
 -   [Emacs](https://www.gnu.org/software/emacs/)
 
@@ -171,15 +161,11 @@ any other processes required to make sensor output suitable for processing after
 
 ## Bibliography and LaTeX
 
--   [Citavi im Detail \> Titel exportieren \> Export nach BibTeX](https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html)
+- [Citavi im Detail \> Titel exportieren \> Export nach BibTeX](https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html)
 
--   [RefWorks - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734&p=3912294)
+- [Benutzerdefinierte BibTex-Keys mit Zotero \| nerdpause](https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/)
 
--   [Benutzerdefinierte BibTex-Keys mit Zotero \| nerdpause](https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/)
-
--   [JabRef - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734&p=3897117)
-
--   [EndNote - Library Guide Univ. Melbourne](https://unimelb.libguides.com/latexbibtex/endnote)
+- [JabRef - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734&p=3897117)
 
 
 ## Design Project Flow
@@ -202,10 +188,9 @@ any other processes required to make sensor output suitable for processing after
 
 ## Assignments
 
-*Design Project.* 
+*Github Design Project.* 
 * **System Modell** Matlab/Python
 * **Circuit Design** SPICE
-* **Characterisation/Measurement** Red Pitaya
 * **Technical/Design Report**
 
 
@@ -215,10 +200,10 @@ any other processes required to make sensor output suitable for processing after
 * Fundamentals of microelectronics
   * Device physics and models
   * Transistor level analog circuits, elementary gain stages
-  * Control theory (requency response, feedback, stability)
-  * System theory (Laplace and Z-transform)
+  * Control theory (frequency response, feedback, stability)
+  * System theory (Laplace- and Z-transform)
 
-* Prior exposure to SPICE, Matlab/Simulink, Python (NumPy, SciPy) or equivalent
+* Prior exposure to SPICE, Matlab/Simulink, Python or equivalent
 * Please talk to me if you are not sure if you have the required background
 
 
@@ -258,22 +243,6 @@ any other processes required to make sensor output suitable for processing after
 ## TSMC Fab (Next Gen 7/5 nm)
 
 {{< video "https://www.youtube.com/embed/Hb1WDxSoSec" width="793" height="446">}}
-
-## Once upon a time ...
-
-![1906 Electron Tube](../images/lec-01-vacuum_tube.png)
-
-![1947 1st Transistor, Bell Labs](../images/lec-01-1st_transistor.png)
-
-## First IC and today's chips
-
-![1958 Jack Kilby's 1st IC](../images/lec-01-1st_ic_kilby.png)
-
-![Modern IC](../images/lec-01-modern_ic.png)
-
-## Packaging Densities
-
-![Wafer generations](../images/lec-01-wafers.png)
 
 ## Moore's Law
 

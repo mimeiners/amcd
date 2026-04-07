@@ -1,15 +1,13 @@
 # Unsyllabus
 
-| Name       | Description                                               |
-|------------|-----------------------------------------------------------|
-| Course     | M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)       |
-| Term       | Summer 2025                                               |
-| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
+| Name       | Description                                           |
+|------------|-------------------------------------------------------|
+| Course     | M 2.16 Microelectronic Circuit Design (MCD)           |
+| Term       | Summer 2026                                           |
+| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann |
 
-**(c) 2024-2025 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany**
+**(c) 2024-2026 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany**
 
 The course makes heavy use of circuit simulation, using [**Xschem**](https://xschem.sourceforge.io) for schematic entry and [**ngspice**](https://ngspice.sourceforge.io) for simulation. The 130nm CMOS technology [**SG13G2**](https://github.com/IHP-GmbH/IHP-Open-PDK) from [IHP Microelectronics](https://www.ihp-microelectronics.com) is used.
 
 Tools and PDK are integrated in the [**IIC-OSIC-TOOLS**](https://github.com/iic-jku/IIC-OSIC-TOOLS) Docker image, which will be used during the coursework.
-
-All course material is made publicly available and shared under the Apache-2.0 license.
