@@ -1,0 +1,9 @@
+# Introduction
+
+This tutorial provides a step-by-step introduction to designing and simulating a **simple analog inverter** using  the
+**open-source tools** hosted on the [IIC-OSIC](https://github.com/iic-jku/IIC-OSIC-TOOLS) platform, specifically with
+the [IHP SG13G2 PDK](https://github.com/IHP-GmbH/IHP-Open-PDK). The analog inverter, though simple, is a crucial element
+in analog and mixed-signal circuit design, offering valuable insights into device behavior, biasing, and small-signal
+performance. The goal of this tutorial is to prrovide a concise overview of the steps needed to create and verify simple
+CMOS circuits and systems.
+

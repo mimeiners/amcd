@@ -1,0 +1,49 @@
+## Introduction to Layout
+
+Layout is the physical representation of an integrated circuit, where circuit components such as transistors, interconnects, and vias are defined geometrically on various layers corresponding to materials used in fabrication. The layout must adhere strictly to design rules provided by the semiconductor foundry.
+We have two tools **Magic** and **KLayout** which enables layout design and verification. Magic being a long-standing tool favored for its tight integration with open-source flows, while KLayout offers powerful editing, scripting, and visualization capabilities, especially suited for hierarchical designs and PDKs such as SG13G2.
+
+
+### Designing Layout using Klayout
+
+Layout design is performed using [KLayout](https://github.com/KLayout/klayout), an open-source layout viewer and editor for GDSII and OASIS files. Inverter layout can be built either **manually from scratch or using parametric cells (P_Cells)** from the IHP SG13G2 PDK, p_cells simplify device instantiation by allowing parameterized generation of transistors and other structures. KLayout supports precise layer control, design rule checking, and layout-versus-schematic (LVS) compatibility.
+
+1. Start terminal and run IIC-OSIC docker image.
+
+2. To select the PDK, use command `iic-pdk ihp-sg13g` refer @fig-select-pdk 
+
+![Technology Selection](./figures/_fig_choose_pdk.png){#fig-select-pdk}
+
+::: {.callout-note title="Important"}
+This step is crucial as it sets the technology IHP-SG13G2 in the tools.
+:::
+
+3. Start klayout amd refer @fig-klayout-start. A new window of Klayout will open after the command. 
+
+![Klayout Launch.](./figures/_fig_klayout_start.png){#fig-klayout-start}
+
+4. To create new layout, Go to `Files >> New Layout`. New Layout Properties dialog box will appear, change `Top Cell from TOP to inv(inverter)` and leave the rest the same refer @fig-new-layout
+
+![New Layout](./figures/_fig_setting.png){#fig-new-layout}
+
+5. Now go to `Basic - Basic Layout Objects` on the left panel. Under `SG13_dev - IHP SG13G2 Pcells`, select an NMOS device and place it in the layout. `Press ESC` to exit placement mode. Repeat the process for the PMOS, placing it directly above the NMOS to follow standard inverter structure.
+
+![Pcells](./figures/_fig_p_cell.png){#fig-p-cell}
+
+6. On the right side, the layer list shows all available layers; bold entries indicate layers currently used in the layout. To view all layers from the full cell hierarchy, `click Display → Full Hierarchy | Press Shift + F`.
+
+::: {.callout-note title="Tips"}
+To rotate a PCell, go to the `Edit tab >> Move`, select the PCell, then right-click. Use the mouse wheel to zoom in and out, and press the middle mouse button to pan the layout view.
+:::
+
+7. `Double-click on the PCell` to open its parameter editor. Set parameters like the width and length values to match those used in your **Xschem schematic**, then `click OK` to apply the changes refer @fig-pcell-para
+
+![Parameters Window](./figures/_fig_pcell_parameters.png){#fig-pcell-para}
+
+8. Use the keyboard arrow keys to align the NMOS directly below the PMOS. Connect the **input** by joining the gates of both transistors using the `polysilicon layer - GatPoly.drawing`. Connect the **output** by linking the source and drain of PMOS and NMOS with the `Metal1 layer - Metal1.drawing`. Similarly, use `Metal1.drawing` to connect the PMOS source to VCC and the NMOS source to VSS. Label all metal connections using the `Metal1 pin layer - Metal1.pin`. Refer to the [IHP Open Source PDK DesignLIB](https://ihp-open-pdk-docs.readthedocs.io/en/latest/layout_rules/02_layer_table.html#layer-table) documentation to verify the correct layer numbers and purposes.
+
+9. Finally, save your layout by going to `File → Save As`, and choose the `GDSII` format to export your design. Your completed CMOS inverter layout should resemble the image shown below.
+
+![Final Layout](./figures/_fig_inverter.png){#fig-inv}
+
+[Here](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_layout_rules.pdf) you can find all the layout rules in depth and with illustrations.

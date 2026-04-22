@@ -1,0 +1,8 @@
+.subckt analog_inverter VIN VOUT VDD VSS
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+M1 VOUT VIN VDD VDD sg13_lv_pmos w=2.6u l=0.52u ng=1 m=1
+M2 VOUT VIN VSS VSS sg13_lv_nmos w=1.3u l=0.52u ng=1 m=1
+.ends

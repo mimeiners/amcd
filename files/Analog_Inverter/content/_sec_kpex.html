@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>sec_kpex</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="_sec_kpex_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_sec_kpex_files/libs/quarto-html/quarto.js"></script>
+<script src="_sec_kpex_files/libs/quarto-html/popper.min.js"></script>
+<script src="_sec_kpex_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_sec_kpex_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_sec_kpex_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_sec_kpex_files/libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_sec_kpex_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_sec_kpex_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_sec_kpex_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="klayout-pex-kpex" class="level1">
+<h1>Klayout-PEX (KPEX)</h1>
+<p>While in the schematic, a connection between device terminals is seen as an equipotential, the stacked geometries in a specific layout introduce parasitic effects, which can be thought of additional resistors, capacitors (and inductors), not modeled by and missing in the original schematic.</p>
+<p>To be able to simulate these effects, a parasitic extraction tool (PEX) is used, to extract a netlist from the layout, which represents the original schematic (created from the layout active and passive elements) augmented with the additional parasitic devices.</p>
+<section id="why-do-we-need-pex" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-we-need-pex">Why Do We Need PEX?</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Reason</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Performance Degradation</strong></td>
+<td>Parasitic capacitance reduces bandwidth and phase margin.</td>
+</tr>
+<tr class="even">
+<td><strong>Offset and Mismatch Effects</strong></td>
+<td>Parasitic coupling causes imbalance in differential paths.</td>
+</tr>
+<tr class="odd">
+<td><strong>Stability Impact</strong></td>
+<td>Additional phase lag from parasitics can destabilize feedback loops.</td>
+</tr>
+<tr class="even">
+<td><strong>Post-Layout Verification</strong></td>
+<td>Confirms that layout did not violate design intent (gain, UGB, PSRR, etc.).</td>
+</tr>
+<tr class="odd">
+<td><strong>Tapeout Confidence</strong></td>
+<td>Ensures high correlation between simulation and silicon behavior.</td>
+</tr>
+</tbody>
+</table>
+<p>IIC-OSIC-Tools offers <a href="https://martinjankoehler.github.io/klayout-pex-website/doc/doc.html">KPEX</a> for this purpose which is a tool, well integrated with Klayout by using its API.</p>
+</section>
+<section id="pex-using-klayout-pex-tool" class="level2">
+<h2 class="anchored" data-anchor-id="pex-using-klayout-pex-tool">PEX using Klayout-PEX tool</h2>
+<p>IIC-OSIC-Tools comes with pre-installed tool called as <strong>K-pex</strong>. The current status of <a href="https://martinjankoehler.github.io/klayout-pex-website/doc/doc.html#sec-into-klayout-pex-prototype-status">KLayout-PEX</a> says as following:</p>
+<p>Available KLayout PEX Engines:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 17%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Engine</strong></th>
+<th><strong>PEX Type</strong></th>
+<th><strong>Status</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>KPEX/MAGIC</code></td>
+<td>CC, RC</td>
+<td>Usable</td>
+<td>Wrapper engine, using installed <code>magic</code> tool</td>
+</tr>
+<tr class="even">
+<td><code>KPEX/FasterCap</code></td>
+<td>CC</td>
+<td>Usable, <em>pending QA</em></td>
+<td>Field solver engine using <code>FasterCap</code></td>
+</tr>
+<tr class="odd">
+<td><code>KPEX/FastHenry2</code></td>
+<td>R, L</td>
+<td>Planned</td>
+<td>Field solver engine using <code>FastHenry2</code></td>
+</tr>
+<tr class="even">
+<td><code>KPEX/2.5D</code></td>
+<td>CC</td>
+<td>Under construction</td>
+<td>Prototype engine implementing MAGIC concepts/formulas with <code>KLayout</code> means</td>
+</tr>
+<tr class="odd">
+<td><code>KPEX/2.5D</code></td>
+<td>R, RC</td>
+<td>Planned</td>
+<td>Prototype engine implementing MAGIC concepts/formulas with <code>KLayout</code> means</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="running-the-kpexmagic-engine" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-kpexmagic-engine">Running the <code>KPEX/MAGIC</code> Engine</h2>
+<p>The magic section of <code>kpex --help</code> describes the arguments and their defaults. Important arguments:</p>
+<ul>
+<li><code>--magicrc</code>: specify location of the <code>magicrc</code> file<br>
+</li>
+<li><code>--gds</code>: path to the GDS input layout<br>
+</li>
+<li><code>--magic</code>: enable magic engine</li>
+<li><code>--out_dir</code> : set the output directory</li>
+</ul>
+<section id="example-command" class="level3">
+<h3 class="anchored" data-anchor-id="example-command">Example Command</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kpex</span> <span class="at">--pdk</span> ihp_sg13g2 <span class="at">--magic</span> <span class="at">--gds</span> GDS_PATH <span class="at">--out_dir</span> OUTPUT_DIR_PATH</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>more to kpex can be found under the command <code>kpex --help</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/foss/designs</span> <span class="op">&gt;</span> kpex <span class="at">--help</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> kpex <span class="pp">[--</span><span class="ss">help</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">version</span><span class="pp">]</span> [--log_level LOG_LEVEL]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--threads</span> NUM_THREADS] <span class="at">--pdk</span> <span class="dt">{ihp_sg13g2</span><span class="op">,</span><span class="dt">sky130A}</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--out_dir</span> OUTPUT_DIR_BASE_PATH] [--gds GDS_PATH]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--schematic</span> SCHEMATIC_PATH] [--lvsdb LVSDB_PATH]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--cell</span> CELL_NAME] [--cache-lvs CACHE_LVS]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--cache-dir</span> CACHE_DIR_PATH] [--lvs-verbose KLAYOUT_LVS_VERBOSE]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--blackbox</span> BLACKBOX_DEVICES] <span class="pp">[--</span><span class="ss">fastercap</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">fastcap</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">magic</span><span class="pp">]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--2.5D]</span> [--k_void K_VOID] [--delaunay_amax DELAUNAY_AMAX]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--delaunay_b</span> DELAUNAY_B] [--geo_check GEOMETRY_CHECK]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--diel</span> DIELECTRIC_FILTER] [--tolerance FASTERCAP_TOLERANCE]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--d_coeff</span> FASTERCAP_D_COEFF]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--mesh</span> FASTERCAP_MESH_REFINEMENT_VALUE]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--ooc</span> FASTERCAP_OOC_CONDITION]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--auto_precond</span> FASTERCAP_AUTO_PRECONDITIONER] <span class="pp">[--</span><span class="ss">galerkin</span><span class="pp">]</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--jacobi]</span> [--magicrc MAGICRC_PATH] [--magic_mode <span class="dt">{CC</span><span class="op">,</span><span class="dt">RC</span><span class="op">,</span><span class="dt">R}</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--magic_cthresh</span> MAGIC_CTHRESH] [--magic_rthresh MAGIC_RTHRESH]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--magic_tolerance</span> MAGIC_TOLERANCE] [--magic_halo MAGIC_HALO]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--magic_short</span> <span class="dt">{none</span><span class="op">,</span><span class="dt">resistor</span><span class="op">,</span><span class="dt">voltage}</span>]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--magic_merge</span> <span class="dt">{none</span><span class="op">,</span><span class="dt">conservative</span><span class="op">,</span><span class="dt">aggressive}</span>] [--mode <span class="dt">{CC</span><span class="op">,</span><span class="dt">RC</span><span class="op">,</span><span class="dt">R}</span>]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="ex">[--halo</span> HALO] [--scale SCALE_RATIO_TO_FIT_HALO]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ex">kpex:</span> KLayout-integrated Parasitic Extraction Tool</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ex">Special</span> Options:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--help,</span> <span class="at">-h</span>            show this help message and exit</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--version,</span> <span class="at">-v</span>         show program<span class="st">'s version number and exit</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">  --log_level LOG_LEVEL</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">                        log_level ∈ {'</span>all<span class="st">', '</span>debug<span class="st">', '</span>subprocess<span class="st">', '</span>verbose<span class="st">',</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">                        '</span>info<span class="st">', '</span>warning<span class="st">', '</span>error<span class="st">', '</span>critical<span class="st">'}. Defaults to</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">                        '</span>subprocess<span class="st">'</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">  --threads NUM_THREADS</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="st">                        number of threads (e.g. for FasterCap) (default is 48)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="st">Parasitic Extraction Setup:</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="st">  --pdk {ihp_sg13g2,sky130A}</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="st">                        pdk ∈ {'</span>ihp_sg13g2<span class="st">', '</span>sky130A<span class="st">'}</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="st">  --out_dir, -o OUTPUT_DIR_BASE_PATH</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="st">                        Output directory path (default is '</span>output<span class="st">')</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="st">Parasitic Extraction Input:</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="st">  Either LVS is run, or an existing LVSDB is used</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">  --gds, -g GDS_PATH    GDS path (for LVS)</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">  --schematic, -s SCHEMATIC_PATH</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">                        Schematic SPICE netlist path (for LVS). If none given,</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">                        a dummy schematic will be created</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">  --lvsdb, -l LVSDB_PATH</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">                        KLayout LVSDB path (bypass LVS)</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">  --cell, -c CELL_NAME  Cell (default is the top cell)</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="st">  --cache-lvs CACHE_LVS</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="st">                        Used cached LVSDB (for given input GDS) (default is</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="st">                        True)</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="st">  --cache-dir CACHE_DIR_PATH</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="st">                        Path for cached LVSDB (default is .kpex_cache within</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="st">                        --out_dir)</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="st">  --lvs-verbose KLAYOUT_LVS_VERBOSE</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="st">                        Verbose KLayout LVS output (default is False)</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="st">Parasitic Extraction Options:</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="st">  --blackbox BLACKBOX_DEVICES</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="st">                        Blackbox devices like MIM/MOM caps, as they are</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="st">                        handled by SPICE models (default is False for testing</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="st">                        now)</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="st">  --fastercap           Run FasterCap engine (default is False)</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">  --fastcap             Run FastCap2 engine (default is False)</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="st">  --magic               Run MAGIC engine (default is False)</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="st">  --2.5D                Run 2.5D analytical engine (default is False)</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="st">Fastercap Options:</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="st">  --k_void, -k K_VOID   Dielectric constant of void (default is 3.9)</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="st">  --delaunay_amax, -a DELAUNAY_AMAX</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="st">                        Delaunay triangulation maximum area (default is 50)</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="st">  --delaunay_b, -b DELAUNAY_B</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="st">                        Delaunay triangulation b (default is 0.5)</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="st">  --geo_check GEOMETRY_CHECK</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="st">                        Validate geometries before passing to FasterCap</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="st">                        (default is False)</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="st">  --diel DIELECTRIC_FILTER</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="st">                        Comma separated list of dielectric filter patterns.</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="st">                        Allowed patterns are: (none, all, -dielname1,</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="st">                        +dielname2) (default is all)</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="st">  --tolerance FASTERCAP_TOLERANCE</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="st">                        FasterCap -aX error tolerance (default is 0.05)</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="st">  --d_coeff FASTERCAP_D_COEFF</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="st">                        FasterCap -d direct potential interaction coefficient</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="st">                        to mesh refinement (default is 0.5)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="st">  --mesh FASTERCAP_MESH_REFINEMENT_VALUE</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="st">                        FasterCap -m Mesh relative refinement value (default</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="st">                        is 0.5)</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="st">  --ooc FASTERCAP_OOC_CONDITION</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="st">                        FasterCap -f out-of-core free memory to link memory</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="st">                        condition (0 = don'</span>t go OOC, default is 2<span class="er">)</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--auto_precond</span> FASTERCAP_AUTO_PRECONDITIONER</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">FasterCap</span> <span class="at">-ap</span> Automatic preconditioner usage <span class="er">(</span><span class="ex">default</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">is</span> True<span class="kw">)</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--galerkin</span>            FasterCap <span class="at">-g</span> Use Galerkin scheme <span class="er">(</span><span class="ex">default</span> is False<span class="kw">)</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--jacobi</span>              FasterCap <span class="at">-pj</span> Use Jacobi preconditioner <span class="er">(</span><span class="ex">default</span> is</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">False</span><span class="kw">)</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="ex">Magic</span> Options:</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magicrc</span> MAGICRC_PATH</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Path</span> to magicrc configuration file <span class="er">(</span><span class="ex">default</span> is</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'/foss/pdks/ihp-sg13g2/libs.tech/magic/ihp-sg13g2.magi</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="st">                        crc'</span><span class="kw">)</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_mode</span> <span class="dt">{CC</span><span class="op">,</span><span class="dt">RC</span><span class="op">,</span><span class="dt">R}</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">magic_mode</span> ∈ {<span class="st">'CC'</span>, <span class="st">'RC'</span>, <span class="st">'R'</span>}. Defaults to <span class="st">'CC'</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_cthresh</span> MAGIC_CTHRESH</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Threshold</span> <span class="er">(in</span> <span class="ex">fF</span><span class="kw">)</span> <span class="cf">for</span> ignored <span class="ex">parasitic</span> capacitances</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">default</span> is 0.01<span class="kw">)</span><span class="bu">.</span> <span class="er">(</span><span class="ex">MAGIC</span> command: ext2spice cthresh</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>value<span class="op">&gt;</span><span class="kw">)</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_rthresh</span> MAGIC_RTHRESH</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Threshold</span> <span class="er">(in</span> <span class="ex">Ω</span><span class="kw">)</span> <span class="cf">for</span> ignored <span class="ex">parasitic</span> resistances</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">default</span> is 100<span class="kw">)</span><span class="bu">.</span> <span class="er">(</span><span class="ex">MAGIC</span> command: ext2spice rthresh</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>value<span class="op">&gt;</span><span class="kw">)</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_tolerance</span> MAGIC_TOLERANCE</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Set</span> ratio between resistor and device tolerance</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">default</span> is 1<span class="kw">)</span><span class="bu">.</span> <span class="er">(</span><span class="ex">MAGIC</span> command: extresist tolerance</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;</span>value<span class="op">&gt;</span><span class="kw">)</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_halo</span> MAGIC_HALO</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Custom</span> sidewall halo distance <span class="er">(in</span> <span class="ex">µm</span><span class="kw">)</span> <span class="kw">(</span><span class="ex">MAGIC</span> command:</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">extract</span> halo <span class="op">&lt;</span>value<span class="op">&gt;</span><span class="kw">)</span> <span class="kw">(</span><span class="ex">default</span> is no custom halo<span class="kw">)</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_short</span> <span class="dt">{none</span><span class="op">,</span><span class="dt">resistor</span><span class="op">,</span><span class="dt">voltage}</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">magic_short</span> ∈ {<span class="st">'none'</span>, <span class="st">'resistor'</span>, <span class="st">'voltage'</span>}.</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Defaults</span> to <span class="st">'none'</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--magic_merge</span> <span class="dt">{none</span><span class="op">,</span><span class="dt">conservative</span><span class="op">,</span><span class="dt">aggressive}</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">magic_merge</span> ∈ {<span class="st">'none'</span>, <span class="st">'conservative'</span>, <span class="st">'aggressive'</span>}.</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Defaults</span> to <span class="st">'none'</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ex">2.5D</span> Options:</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--mode</span> <span class="dt">{CC</span><span class="op">,</span><span class="dt">RC</span><span class="op">,</span><span class="dt">R}</span>      mode ∈ {<span class="st">'CC'</span>, <span class="st">'RC'</span>, <span class="st">'R'</span>}. Defaults to <span class="st">'CC'</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--halo</span> HALO           Custom sidewall halo distance <span class="er">(in</span> <span class="ex">µm</span><span class="kw">)</span> <span class="ex">to</span> override tech</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">info</span> <span class="er">(</span><span class="ex">default</span> is no custom halo<span class="kw">)</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--scale</span> SCALE_RATIO_TO_FIT_HALO</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Scale</span> fringe ratios, so that halo distance is 100%</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">(</span><span class="ex">default</span> is True<span class="kw">)</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ex">Environmental</span> variables:</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Variable</span>             Description</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a> <span class="ex">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>  <span class="ex">KPEX_FASTCAP_EXE</span>     Path to FastCap2 Executable. Defaults to <span class="st">'fastcap'</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>  <span class="ex">KPEX_FASTERCAP_EXE</span>   Path to FasterCap Executable. Defaults to <span class="st">'FasterCap'</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>  <span class="ex">KPEX_KLAYOUT_EXE</span>     Path to KLayout Executable. Defaults to <span class="st">'klayout'</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>  <span class="ex">KPEX_MAGIC_EXE</span>       Path to MAGIC Executable. Defaults to <span class="st">'magic'</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>  <span class="ex">PDKPATH</span>              Optional <span class="er">(</span><span class="ex">required</span> for default magicrc<span class="kw">)</span><span class="ex">,</span> e.g.</span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>                       <span class="va">$HOME</span><span class="ex">/.volare</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>  <span class="ex">PDK</span>                  Optional <span class="er">(</span><span class="ex">required</span> for default magicrc<span class="kw">)</span><span class="ex">,</span> <span class="er">(</span><span class="ex">e.g.</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>                       <span class="ex">sky130A</span><span class="kw">)</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once PEX is succesfully done, the extracted netlist SPICE file will be generated in the provided output path, which consists of extracted parasitics which can be further used to do post layout simulations and verify whether the design layout satisfies the design specifications or not.</p>
+<div id="fig-output-dir" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-output-dir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_pex_outputdir.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-output-dir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Extracted Spice file
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="post-layout-simulation." class="level2">
+<h2 class="anchored" data-anchor-id="post-layout-simulation.">Post layout simulation.</h2>
+<p>We have established testbenches for DC, AC, and transient analysis using the symbol of the designed inverter as a subcircuit. The next step is to perform post-layout simulation by replacing the schematic netlist with the extracted layout netlist (PEX), in order to verify whether the performance remains consistent after layout parasitics are included.</p>
+<p>Firstly we need to open the symbol file in Xschem, edit the properties of the symbol See <a href="#fig-primitive" class="quarto-xref">Figure&nbsp;2</a>. Change from <code>subcircuit</code> to <code>primitive</code>.</p>
+<div id="fig-primitive" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-primitive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_primitive.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-primitive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Primitive
+</figcaption>
+</figure>
+</div>
+<p>Once changed to primitive, now we can include the <code>.spice</code> file from PEX to the testbench. See <a href="#fig-include" class="quarto-xref">Figure&nbsp;3</a></p>
+<div id="fig-include" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-include-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_include.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-include-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Include
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<div id="fig-result" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_pex_output.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Result
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-result" class="quarto-xref">Figure&nbsp;4</a> shows that the response is as same as we expected from our schematic.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

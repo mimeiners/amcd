@@ -1,6 +1,6 @@
-# MScEE M 2.9 Analog and Mixed-Signal Circuit Design (AMCD)
+# MScEE M 2.14 Microelectronic Circuit Design (MCD)
 
-**(c) 2024-2025 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany**
+**(c) 2024-2026 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany**
 
 The course makes heavy use of circuit simulation for PCB and IC designs, using [**KiCAD**](https://www.kicad.org) for
  PCB design, [**Xschem**](https://xschem.sourceforge.io), [**KLayout**]() and

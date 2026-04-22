@@ -1,25 +1,20 @@
-# Lecture 2Filter Design
+# Filter Design
 
 # Introduction to Filters
 
-
-
-* Filtering = Frequency\-selective signal processing
+* Filtering = Frequency-selective signal processing
   * It‘s the most common type of signal processing
   * Examples
     * Extract desired signal from many \(radio\)
     * Seperate signal from noise
     * Amplifier bandwidth limitation
 * Where to start
-  * Perfectionist: Ideal \(low\-pass\) filter
+  * Perfectionist: Ideal \(low-pass\) filter
   * Engineer: Continuous\-time\, first\-order lowpass filter
 
-
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
 
 # Let‘s do something useful ...
-
-
 
 * Ideal LPF \(recall\)
 * RC LPF \(recall\)
@@ -34,12 +29,11 @@ Source: EECS247 B\. Boser\, Univ\. Berkeley
   * Elliptic
   * Bessel
 
-
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
 
 # First-order RC Filter
 
-Steady\-state response \(R=150kΩ\, C=10pF\)
+Steady\-state response 
 
 # s-Plane / Pole-Zero Map
 
@@ -47,11 +41,10 @@ Steady\-state response \(R=150kΩ\, C=10pF\)
 
 Question: Can we really get more than 100 dB damping at GHz?
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
+
 
 # Parasitics
-
-
 
 * Analog passive components aren‘t ideal\.
   * Extra real pole/zeros result from parasitics which limit the performance of analog components\.
@@ -64,18 +57,20 @@ Source: EECS247 B\. Boser\, Univ\. Berkeley
 * Digital filters do not suffer from these effects\.
   * Which effects do they suffer from?
 
+[@boser2003]
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
 
 # First-order RC Filter incl. Parasitics
 
 ![](img/lec-02a-analog_filter_design_3.png)
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
+
 
 # Frequency Response incl. Parasitics
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
+
 
 # Nomenclature Filter Types
 
@@ -83,9 +78,8 @@ Source: EECS247 B\. Boser\, Univ\. Berkeley
 
 Source: H\. Khorramabadi\, Univ\. Berkeley
 
+
 # The Filter Approximation Problem
-
-
 
 * Practical filter
   * Ripple in either or both the passband and stopband
@@ -95,12 +89,10 @@ Source: H\. Khorramabadi\, Univ\. Berkeley
   * Flat magnitude response in the passband
   * Infinite attenuation in the stopband
 
-
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Filter Design
-
-
 
 * Ideal filters are non\-causal or otherwise impractical
 * No global optimization techniques known
@@ -109,12 +101,10 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 * The overall goal of filter design is to approximate the ideal response by one that implements a reasonable compromise between filter complexity \(number of poles and zeros\) and approximation error
 * Filter design\, in general\, requires a compromise between magnitude response\, phase response\, step response\, complexity\, etc\.
 
-
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Filter Specifications
-
-
 
 * Frequency characteristics \(low\-pass filter\)
   * Passband ripple
@@ -129,20 +119,18 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
   * HD3 \(harmonic distortion\)
   * IIP3 or OIP3 \(input\-referred/output\-referred third order intercept point\)
 
+[@boser2003]
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
 
 # Design Parameter Q and w0
-
-
 
 * The term quality factor has different definitions in different contexts
   * Component quality factor \(inductor & capacitor\)
   * Pole quality factor
   * Bandpass filter quality factor
 
+[@boser2003]
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
 
 # Inductor / Capacitor Q
 
@@ -152,15 +140,13 @@ Capacitor Q
 
 Bandpass Q
 
-Source: EECS247 B\. Boser\, Univ\. Berkeley
+[@boser2003]
 
-# Bandpass Filter Q
-
-Source: EECS247 B\. Boser\, Univ\. Berkeley
 
 # Pole Q
 
-Ref\.  _Analog Filter Design_ \, Schaumann\, 2nd Ed\.\, p\. 134
+[@schaumann2010]
+
 
 # Lowpass Filter Template
 
@@ -170,6 +156,7 @@ Magnitude response is fully specified by Apmin\, Apmax\, As\, ωp\, ωs
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Second Order Lowpass Filter
 
 ![](img/lec-02a-analog_filter_design_16.png)
@@ -177,6 +164,7 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 Magnitude response is “maximally flat” \(no peaking\) for
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
 
 # Pole Positions
 
@@ -198,9 +186,8 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Improvements
-
-
 
 * A maximally flat response is great\, but how can we make the roll\-off steeper?
 * Let’s look at
@@ -213,22 +200,15 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
   * Chebychev \(type I and II\)
   * Cauer \(Elliptic\)
 
-
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# Adding Zeros on the Imaginary Axis
-
-![](img/lec-02a-analog_filter_design_19.png)
-
-![](img/lec-02a-analog_filter_design_20.png)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Bode Plot
 
 Steeper roll\-off at the expense of reduced stopband rejection
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
 
 # Adding Another Pole
 
@@ -238,9 +218,8 @@ Can fix this issue by increasing QP of H1\(s\)\!
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Utilizing Peaking in H1(s)
-
-
 
 * Win\-win improvement
   * Passband flat\, roll\-off steeper
@@ -266,24 +245,6 @@ The LHP roots are taken to be the poles of H\(s\)\, while those in the RHP are r
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# Magnitude Response and Coefficients
-
-![](img/lec-02a-analog_filter_design_25.png)
-
-[https://en\.wikipedia\.org/wiki/Butterworth\_filter](https://en.wikipedia.org/wiki/Butterworth_filter)
-
-| __n__ | __Denominator Polynomial__ |
-| :-: | :-: |
-| 1 | \( _s_  \+ 1\) |
-| 2 | _s_ 2 \+ 1\.4142 _s_  \+ 1 |
-| 3 | \( _s_  \+ 1\)\( _s_ 2 \+  _s_  \+ 1\) |
-| 4 | \( _s_ 2 \+ 0\.7654 _s_  \+ 1\)\( _s_ 2 \+ 1\.8478 _s_  \+ 1\) |
-| 5 | \( _s_  \+ 1\)\( _s_ 2 \+ 0\.6180 _s_  \+ 1\)\( _s_ 2 \+ 1\.6180 _s_  \+ 1\) |
-| 6 | \( _s_ 2 \+ 0\.5176 _s_  \+ 1\)\( _s_ 2 \+ 1\.4142 _s_  \+ 1\)\( _s_ 2 \+ 1\.9319 _s_  \+ 1\) |
-| 7 | \( _s_  \+ 1\)\( _s_ 2 \+ 0\.4450 _s_  \+ 1\)\( _s_ 2 \+ 1\.2470 _s_  \+ 1\)\( _s_ 2 \+ 1\.8019 _s_  \+ 1\) |
-| 8 | \( _s_ 2 \+ 0\.3902 _s_  \+ 1\)\( _s_ 2 \+ 1\.1111 _s_  \+ 1\)\( _s_ 2 \+ 1\.6629 _s_  \+ 1\)\( _s_ 2 \+ 1\.9616 _s_  \+ 1\) |
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # A Closer Look at n=4
 
@@ -309,163 +270,29 @@ How can we optimize this situation\, i\.e\. minimize the transition band for a g
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# Chebyshev1 Filter Approximation
-
-Fortunately someone has already figured this out
-
-The “Chebyshev1” filter approximation minimizes the error between the idealized response and the actual filter\, with the passband ripple as a parameter \(1dB for examples below\)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Matlab Code
 
 ![](img/lec-02a-analog_filter_design_31.png)
 
-wp =  <span style="color:#666666">1</span> ;  <span style="color:#408080"> _% Edge of _ </span>  <span style="color:#408080"> _passband_ </span>
-
-R =  <span style="color:#666666">1</span> ;   <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Passband_ </span>  <span style="color:#408080"> _ ripple in dB_ </span>
-
-\[z\, p\, k\] = cheby1\( <span style="color:#666666">4</span> \, R\, wp\,  <span style="color:#ba2121">'s'</span> \);
-
-sys = zpk\(z\, p\, k\);
-
-w =  <span style="color:#008000">logspace</span> \( <span style="color:#666666">\-2</span> \,  <span style="color:#666666">1</span> \,  <span style="color:#666666">1000</span> \);
-
-\[mag\, phase\] = bode\(sys\, w\);
-
-db =  <span style="color:#666666">20\*</span> log10\( <span style="color:#008000">reshape</span> \(mag\,  <span style="color:#666666">1</span> \,  <span style="color:#008000">length</span> \(w\)\)\);
-
-fig1 =  <span style="color:#008000">figure</span> \( <span style="color:#666666">1</span> \)
-
-<span style="color:#008000">semilogx</span> \(w\, db\,  <span style="color:#ba2121">'</span>  <span style="color:#ba2121">linewidth</span>  <span style="color:#ba2121">'</span> \,  <span style="color:#666666">2</span> \);  <span style="color:#008000">hold</span>  on;
-
-<span style="color:#008000">plot</span> \(\[w\( <span style="color:#666666">1</span> \) w\( <span style="color:#008000"> __end__ </span> \)\]\, \[ <span style="color:#666666">0</span>   <span style="color:#666666">0</span> \]\,  <span style="color:#ba2121">'\-\-'</span> \);
-
-<span style="color:#008000">plot</span> \(\[w\( <span style="color:#666666">1</span> \) w\( <span style="color:#008000"> __end__ </span> \)\]\, \[ <span style="color:#666666">\-1</span>   <span style="color:#666666">\-1</span> \]\,  <span style="color:#ba2121">'\-\-'</span> \);
-
-<span style="color:#008000"> __set__ </span> \( <span style="color:#008000">gca</span> \,  <span style="color:#ba2121">'</span>  <span style="color:#ba2121">fontsize</span>  <span style="color:#ba2121">'</span> \,  <span style="color:#666666">14</span> \);
-
-<span style="color:#008000">xlabel</span> \( <span style="color:#ba2121">'\\omega in rad/sec'</span> \)
-
-<span style="color:#008000">ylabel</span> \( <span style="color:#ba2121">'Magnitude in dB'</span> \);
-
-<span style="color:#008000">axis</span> \(\[ <span style="color:#008000">min</span> \(w\)  <span style="color:#008000">max</span> \(w\)  <span style="color:#666666">\-10</span>   <span style="color:#666666">4</span> \]\)
-
-<span style="color:#008000">grid</span>  on;
-
-<span style="color:#008000">print</span> \(fig1\,  <span style="color:#ba2121">'lec2s35'</span> \,  <span style="color:#ba2121">'\-</span>  <span style="color:#ba2121">dpng</span>  <span style="color:#ba2121">'</span> \)
-
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# Elliptic (Cauer) Filter Approximation
-
-The Elliptic filter approximation combines our previous ideas and adds imaginary zeros to sharpen the transition band
-
-This approximation has the passband ripple and stopband attenuation as a parameter \(1dB and 20dB\, respectively\, for example below\)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Matlab Code
-
-wp =  <span style="color:#666666">1; </span>  <span style="color:#408080"> _% Edge of _ </span>  <span style="color:#408080"> _passband_ </span>
-
-Rp =  <span style="color:#666666">1;  </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Passband_ </span>  <span style="color:#408080"> _ ripple in dB_ </span>
-
-Rs =  <span style="color:#666666">20; </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Stopband_ </span>  <span style="color:#408080"> _ attenuation_ </span>
-
-\[z\, p\, k\] = ellip\( <span style="color:#666666">4\, Rp\, Rs\, wp\, </span>  <span style="color:#ba2121">'s'\);</span>
-
-sys = zpk\(z\, p\, k\);
-
-w =  <span style="color:#008000">logspace\(</span>  <span style="color:#666666">\-2\, 1\, 1000\);</span>
-
-\[mag\, phase\] = bode\(sys\, w\);
-
-db =  <span style="color:#666666">20\*log10\(</span>  <span style="color:#008000">reshape\(mag\, </span>  <span style="color:#666666">1\, </span>  <span style="color:#008000">length\(w\)\)\);</span>
-
-fig1 =  <span style="color:#008000">figure\(</span>  <span style="color:#666666">1\)</span>
-
-<span style="color:#008000">semilogx</span>  <span style="color:#008000">\(w\, </span>  <span style="color:#008000">db</span>  <span style="color:#008000">\, </span>  <span style="color:#ba2121">'</span>  <span style="color:#ba2121">linewidth</span>  <span style="color:#ba2121">'\, </span>  <span style="color:#666666">2\); </span>  <span style="color:#008000">hold on;</span>
-
-<span style="color:#008000">plot\(\[w\(</span>  <span style="color:#666666">1\) w\(</span>  <span style="color:#008000"> __end\)\]\, \[__ </span>  <span style="color:#666666"> __0 0\]\, __ </span>  <span style="color:#ba2121"> __'\-\-'\);__ </span>
-
-<span style="color:#008000">plot\(\[w\(</span>  <span style="color:#666666">1\) w\(</span>  <span style="color:#008000"> __end\)\]\, \[__ </span>  <span style="color:#666666"> __\-1 \-1\]\, __ </span>  <span style="color:#ba2121"> __'\-\-'\);__ </span>
-
-<span style="color:#008000"> __set\(__ </span>  <span style="color:#008000"> __gca__ </span>  <span style="color:#008000"> __\, __ </span>  <span style="color:#ba2121"> __'__ </span>  <span style="color:#ba2121"> __fontsize__ </span>  <span style="color:#ba2121"> __'\, __ </span>  <span style="color:#666666"> __14\);__ </span>
-
-<span style="color:#008000">xlabel</span>  <span style="color:#008000">\(</span>  <span style="color:#ba2121">'\\omega in rad/sec'\)</span>
-
-<span style="color:#008000">ylabel</span>  <span style="color:#008000">\(</span>  <span style="color:#ba2121">'Magnitude in dB'\);</span>
-
-<span style="color:#008000">axis\(\[min\(w\) max\(w\) </span>  <span style="color:#666666">\-30 4\]\)</span>
-
-<span style="color:#008000">grid;</span>
-
-<span style="color:#008000">print\(fig1\, </span>  <span style="color:#ba2121">'lec2s37'\, '\-dpng'\)</span>
 
 ![](img/lec-02a-analog_filter_design_33.png)
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# Chebyshev2 Filter Approximation
-
-No ripple in the passband\, but finite stopband attenuation and ripple due to imaginary zeros
-
-This approximation takes the stopband attenuation as a parameter \(20 dB in the example below\)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Design Example
-
-wp= <span style="color:#666666">2\*</span>  <span style="color:#008000">pi</span>  <span style="color:#666666">\*1e6; </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Passband_ </span>  <span style="color:#408080"> _ edge_ </span>
-
-ws= <span style="color:#666666">2\*</span>  <span style="color:#008000">pi</span>  <span style="color:#666666">\*2e6; </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Stopband_ </span>  <span style="color:#408080"> _ edge_ </span>
-
-Rp= <span style="color:#666666">1;  </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Passband_ </span>  <span style="color:#408080"> _ ripple_ </span>
-
-Rs= <span style="color:#666666">40; </span>  <span style="color:#408080"> _% _ </span>  <span style="color:#408080"> _Stopband_ </span>  <span style="color:#408080"> _ attenuation_ </span>
-
-<span style="color:#408080"> _% Determine required order and synthesize_ </span>
-
-\[N\, wp\] = ellipord\(wp\, ws\, Rp\, Rs\,  <span style="color:#ba2121">'s'\);</span>
-
-\[z\, p\, k\] = ellip\(N\, Rp\, Rs\, wp\,  <span style="color:#ba2121">'s'\);</span>
-
-sys = zpk\(z\, p\, k\);
-
-f =  <span style="color:#008000">logspace\(</span>  <span style="color:#666666">4\, 7\, 1000\);</span>
-
-\[mag\, phase\] = bode\(sys\,  <span style="color:#666666">2\*</span>  <span style="color:#008000">pi</span>  <span style="color:#666666">\*f\);</span>
-
-db =  <span style="color:#666666">20\*log10\(</span>  <span style="color:#008000">reshape\(mag\, </span>  <span style="color:#666666">1\, </span>  <span style="color:#008000">length\(f\)\)\);</span>
-
-fig1 =  <span style="color:#008000">figure\(</span>  <span style="color:#666666">1\)</span>
-
-<span style="color:#008000">semilogx</span>  <span style="color:#008000">\(f\, </span>  <span style="color:#008000">db</span>  <span style="color:#008000">\, </span>  <span style="color:#ba2121">'</span>  <span style="color:#ba2121">linewidth</span>  <span style="color:#ba2121">'\, </span>  <span style="color:#666666">2\); </span>  <span style="color:#008000">hold on;</span>
-
-<span style="color:#008000">plot\(\[f\(</span>  <span style="color:#666666">1\) f\(</span>  <span style="color:#008000"> __end\)\]\, \[__ </span>  <span style="color:#666666"> __0 0\]\, __ </span>  <span style="color:#ba2121"> __'\-\-'\);__ </span>
-
-<span style="color:#008000">plot\(\[f\(</span>  <span style="color:#666666">1\) f\(</span>  <span style="color:#008000"> __end\)\]\, \[__ </span>  <span style="color:#666666"> __\-1 \-1\]\, __ </span>  <span style="color:#ba2121"> __'\-\-'\);__ </span>
-
-<span style="color:#008000"> __set\(__ </span>  <span style="color:#008000"> __gca__ </span>  <span style="color:#008000"> __\, __ </span>  <span style="color:#ba2121"> __'__ </span>  <span style="color:#ba2121"> __fontsize__ </span>  <span style="color:#ba2121"> __'\, __ </span>  <span style="color:#666666"> __14\);__ </span>
-
-<span style="color:#008000">xlabel</span>  <span style="color:#008000">\(</span>  <span style="color:#ba2121">'Frequency in Hz'\)</span>
-
-<span style="color:#008000">ylabel</span>  <span style="color:#008000">\(</span>  <span style="color:#ba2121">'Magnitude in dB'\);</span>
-
-<span style="color:#008000">axis\(\[min\(f\) max\(f\) </span>  <span style="color:#666666">\-50 4\]\)</span>
-
-<span style="color:#008000">grid;</span>
-
-<span style="color:#008000">print\(fig1\, </span>  <span style="color:#ba2121">'lec2s39'\, '\-dpng'\)</span>
 
 ![](img/lec-02a-analog_filter_design_35.png)
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
+
 # Step Response of Design Example
-
-
 
 * Overshoot and other forms of pulse deformation can be problematic
   * Consider e\.g\. oscilloscopes\, pulse\-based data links\, etc\.
@@ -492,21 +319,22 @@ This condition is satisfied for
 
 A filter with this characteristic is called “linear phase”\.
 
-Source: EE247\, B\. Boser\, Univ\. Berkeley
+[@boser2003]
+
 
 # Delay with Linear Phase
 
 Source: U\. Moon\, Stanford Univ\.
 
+
 # Delay with Nonlinear Phase
 
 Phase distortion occurs whenever the phase is nonlinear\, i\.e\. the derivative of the phase is not constant\.
-
 The \(negative\) derivative of the phase is also called “group delay” or τg
-
 Note that for a linear phase filter\, we have τg = τd = const\.
 
 Source: U\. Moon\, Stanford Univ\.
+
 
 # Comparison: Bessel vs. Chebyshev I
 
@@ -520,6 +348,7 @@ Passband ripple of 1dB for Chebyshev I
 
 Source: H\. Khorramabadi\, Univ\. Berkeley
 
+
 # Phase and Group Delay
 
 ![](img/lec-02a-analog_filter_design_40.png)
@@ -528,79 +357,18 @@ Source: H\. Khorramabadi\, Univ\. Berkeley
 
 Source: H\. Khorramabadi\, Univ\. Berkeley
 
+
 # Step Response
 
 ![](img/lec-02a-analog_filter_design_42.png)
 
+
 # Pulse Response
-
-clear all
-
-fs = 1e6;
-
-Ts = 1/fs;
-
-fp = 100e3;
-
-wp = 2\*pi\*fp;  _% Edge of passband in Hz_
-
-R = 1;   _% Passband ripple in dB_
-
-\[zb\, pb\, kb\] = besself\(4\, wp\);
-
-sys\_b = zpk\(zb\, pb\, kb\);
-
-\[zc\, pc\, kc\] = cheby1\(4\, R\, wp\, 's'\);
-
-sys\_c = zpk\(zc\, pc\, kc\);
-
-_% _  _Generate_  _ _  _rectangular_
-
-t = 0:Ts:tc\( __end__  __\);__
-
-w = 0\.1e\-4;
-
-u = rectpuls\(t\,w\);
-
-x0 = 0;
-
-_% Simulate LTI response_
-
-\[ysim\_c\, tsim\_c\, xsim\_c\] = lsim\(sys\_c\, u\, t\, x0\);
-
-\[ysim\_b\, tsim\_b\, xsim\_b\] = lsim\(sys\_b\, u\, t\, x0\);
-
-fig2 = figure\(2\)
-
-plot\(tsim\_b\, ysim\_b\, tsim\_c\, ysim\_c\, t\, u\, 'linewidth'\, 2\); hold on;
-
-__set\(__  __gca__  __\, '__  __fontsize__  __'\, 14\);__
-
-xlabel\('Time in sec\.'\)
-
-ylabel\('Amplitude'\);
-
-_% _  _axis_  _\(\[_  _min_  _\(_  _tc_  _\) _  _max_  _\(_  _tc_  _\) 0 1\.4\]\)_
-
-grid;
-
-legend\('4th Ord\. Bessel filter'\, \.\.\.
-
-'4th Ord\. Chebyshev Type I filter'\, \.\.\.
-
-'Location'\,'southeast'\);
 
 ![](img/lec-02a-analog_filter_design_43.png)
 
-# Intersymbol Interference
-
-![](img/lec-02a-analog_filter_design_44.png)
-
-Source: H\. Khorramabadi\, Univ\. Berkeley
 
 # What about other filters than LP?
-
-
 
 * Frequency Transformation
   * Lowpass\-to\-lowpass transformation
@@ -608,26 +376,11 @@ Source: H\. Khorramabadi\, Univ\. Berkeley
   * Lowpass\-to\-bandpass transformation
   * Lowpass\-to\-bandstop transformation
 * Cmp\.
-* _[https://www\.analog\.com/en/education/education\-library/op\-amp\-applications\-handbook\.html](https://www.analog.com/en/education/education-library/op-amp-applications-handbook.html)_
-* _Electronic Filter Design Handbook_ \,  Williams and Taylor\, McGraw\-Hill
-* _Continuous\-Time Active Filter Design_ \, T\. Deliyannis et\. al\.\, CRC Press
+
+[@williams2006]
+[@deliyannis1998]
 
 
 # Element Transformation (1)
 
-_Ref\. Continuous\-Time Active Filter Design_ \, T\. Deliyannis\, CRC Press
-
-_Ref\. Continuous\-Time Active Filter Design_ \, T\. Deliyannis\, CRC Press
-
-# Lowpass to Highpass Transformation
-
-The s\-domain poles and zeros simply become inverted\.  As shown by the examples\, zeros at infinity move to the origin\, and finite\-valued poles become |1/poleLP| in magnitude and become conjugates \(flips between quadrant II & III\)\.  The mapping boundary is the  _unit circle_ \.
-
-Source: U\. Moon\, Stanford Univ\.
-
-# Lowpass to Bandpass Transformation
-
-For a “narrowband” approximation\, the s\-domain poles and zeros simply become replicated at ±jω with a smaller unit circle of radius 1/2 _a_ \.  To realize a wideband filter\, use a cascade of highpass and lowpass filters\.
-
-Source: U\. Moon\, Stanford Univ\.
-
+[@deliyannis1998]

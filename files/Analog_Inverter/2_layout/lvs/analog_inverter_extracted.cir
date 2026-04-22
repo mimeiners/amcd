@@ -1,0 +1,8 @@
+* Extracted by KLayout with SG13G2 LVS runset on : 05/06/2025 03:54
+
+.SUBCKT analog_inverter VIN VSS VDD VOUT
+M$1 VSS VIN VOUT VSS sg13_lv_nmos L=0.52u W=1.3u AS=0.585p AD=0.442p PS=3.5u
++ PD=3.28u
+M$2 VDD VIN VOUT VDD sg13_lv_pmos L=0.52u W=2.6u AS=1.352p AD=0.884p PS=6.24u
++ PD=5.88u
+.ENDS analog_inverter

@@ -1,0 +1,235 @@
+# Klayout-PEX (KPEX)
+
+While in the schematic, a connection between device terminals is seen as an equipotential, the stacked geometries in a specific layout introduce parasitic effects, which can be thought of additional resistors, capacitors (and inductors), not modeled by and missing in the original schematic.
+
+To be able to simulate these effects, a parasitic extraction tool (PEX) is used, to extract a netlist from the layout, which represents the original schematic (created from the layout active and passive elements) augmented with the additional parasitic devices.
+
+## Why Do We Need PEX?
+
+| Reason                          | Description                                                                 |
+|---------------------------------|-----------------------------------------------------------------------------|
+| **Performance Degradation**     | Parasitic capacitance reduces bandwidth and phase margin.                   |
+| **Offset and Mismatch Effects** | Parasitic coupling causes imbalance in differential paths.                  |
+| **Stability Impact**            | Additional phase lag from parasitics can destabilize feedback loops.        |
+| **Post-Layout Verification**    | Confirms that layout did not violate design intent (gain, UGB, PSRR, etc.). |
+| **Tapeout Confidence**          | Ensures high correlation between simulation and silicon behavior.           |
+
+
+IIC-OSIC-Tools offers [KPEX](https://martinjankoehler.github.io/klayout-pex-website/doc/doc.html) for this purpose which is a tool, well integrated with Klayout by using its API. 
+
+
+
+
+
+## PEX using Klayout-PEX tool
+
+IIC-OSIC-Tools comes with pre-installed tool called as **K-pex**. The current status of [KLayout-PEX](https://martinjankoehler.github.io/klayout-pex-website/doc/doc.html#sec-into-klayout-pex-prototype-status) says as following:
+
+Available KLayout PEX Engines:
+
+| **Engine**         | **PEX Type** | **Status**             | **Description**                                                                 |
+|--------------------|--------------|-------------------------|----------------------------------------------------------------------------------|
+| `KPEX/MAGIC`       | CC, RC       | Usable                  | Wrapper engine, using installed `magic` tool                                     |
+| `KPEX/FasterCap`   | CC           | Usable, *pending QA*    | Field solver engine using `FasterCap`                                            |
+| `KPEX/FastHenry2`  | R, L         | Planned                 | Field solver engine using `FastHenry2`                                           |
+| `KPEX/2.5D`        | CC           | Under construction      | Prototype engine implementing MAGIC concepts/formulas with `KLayout` means       |
+| `KPEX/2.5D`        | R, RC        | Planned                 | Prototype engine implementing MAGIC concepts/formulas with `KLayout` means       |
+
+
+## Running the `KPEX/MAGIC` Engine
+
+
+The magic section of `kpex --help` describes the arguments and their defaults. Important arguments:
+
+- `--magicrc`: specify location of the `magicrc` file  
+- `--gds`: path to the GDS input layout  
+- `--magic`: enable magic engine
+- `--out_dir` : set the output directory
+
+### Example Command
+
+```bash
+kpex --pdk ihp_sg13g2 --magic --gds GDS_PATH --out_dir OUTPUT_DIR_PATH
+```  
+more to kpex can be found under the command `kpex --help`
+
+```bash
+/foss/designs > kpex --help
+Usage: kpex [--help] [--version] [--log_level LOG_LEVEL]
+            [--threads NUM_THREADS] --pdk {ihp_sg13g2,sky130A}
+            [--out_dir OUTPUT_DIR_BASE_PATH] [--gds GDS_PATH]
+            [--schematic SCHEMATIC_PATH] [--lvsdb LVSDB_PATH]
+            [--cell CELL_NAME] [--cache-lvs CACHE_LVS]
+            [--cache-dir CACHE_DIR_PATH] [--lvs-verbose KLAYOUT_LVS_VERBOSE]
+            [--blackbox BLACKBOX_DEVICES] [--fastercap] [--fastcap] [--magic]
+            [--2.5D] [--k_void K_VOID] [--delaunay_amax DELAUNAY_AMAX]
+            [--delaunay_b DELAUNAY_B] [--geo_check GEOMETRY_CHECK]
+            [--diel DIELECTRIC_FILTER] [--tolerance FASTERCAP_TOLERANCE]
+            [--d_coeff FASTERCAP_D_COEFF]
+            [--mesh FASTERCAP_MESH_REFINEMENT_VALUE]
+            [--ooc FASTERCAP_OOC_CONDITION]
+            [--auto_precond FASTERCAP_AUTO_PRECONDITIONER] [--galerkin]
+            [--jacobi] [--magicrc MAGICRC_PATH] [--magic_mode {CC,RC,R}]
+            [--magic_cthresh MAGIC_CTHRESH] [--magic_rthresh MAGIC_RTHRESH]
+            [--magic_tolerance MAGIC_TOLERANCE] [--magic_halo MAGIC_HALO]
+            [--magic_short {none,resistor,voltage}]
+            [--magic_merge {none,conservative,aggressive}] [--mode {CC,RC,R}]
+            [--halo HALO] [--scale SCALE_RATIO_TO_FIT_HALO]
+
+kpex: KLayout-integrated Parasitic Extraction Tool
+
+Special Options:
+  --help, -h            show this help message and exit
+  --version, -v         show program's version number and exit
+  --log_level LOG_LEVEL
+                        log_level ∈ {'all', 'debug', 'subprocess', 'verbose',
+                        'info', 'warning', 'error', 'critical'}. Defaults to
+                        'subprocess'
+  --threads NUM_THREADS
+                        number of threads (e.g. for FasterCap) (default is 48)
+
+Parasitic Extraction Setup:
+  --pdk {ihp_sg13g2,sky130A}
+                        pdk ∈ {'ihp_sg13g2', 'sky130A'}
+  --out_dir, -o OUTPUT_DIR_BASE_PATH
+                        Output directory path (default is 'output')
+
+Parasitic Extraction Input:
+  Either LVS is run, or an existing LVSDB is used
+
+  --gds, -g GDS_PATH    GDS path (for LVS)
+  --schematic, -s SCHEMATIC_PATH
+                        Schematic SPICE netlist path (for LVS). If none given,
+                        a dummy schematic will be created
+  --lvsdb, -l LVSDB_PATH
+                        KLayout LVSDB path (bypass LVS)
+  --cell, -c CELL_NAME  Cell (default is the top cell)
+  --cache-lvs CACHE_LVS
+                        Used cached LVSDB (for given input GDS) (default is
+                        True)
+  --cache-dir CACHE_DIR_PATH
+                        Path for cached LVSDB (default is .kpex_cache within
+                        --out_dir)
+  --lvs-verbose KLAYOUT_LVS_VERBOSE
+                        Verbose KLayout LVS output (default is False)
+
+Parasitic Extraction Options:
+  --blackbox BLACKBOX_DEVICES
+                        Blackbox devices like MIM/MOM caps, as they are
+                        handled by SPICE models (default is False for testing
+                        now)
+  --fastercap           Run FasterCap engine (default is False)
+  --fastcap             Run FastCap2 engine (default is False)
+  --magic               Run MAGIC engine (default is False)
+  --2.5D                Run 2.5D analytical engine (default is False)
+
+Fastercap Options:
+  --k_void, -k K_VOID   Dielectric constant of void (default is 3.9)
+  --delaunay_amax, -a DELAUNAY_AMAX
+                        Delaunay triangulation maximum area (default is 50)
+  --delaunay_b, -b DELAUNAY_B
+                        Delaunay triangulation b (default is 0.5)
+  --geo_check GEOMETRY_CHECK
+                        Validate geometries before passing to FasterCap
+                        (default is False)
+  --diel DIELECTRIC_FILTER
+                        Comma separated list of dielectric filter patterns.
+                        Allowed patterns are: (none, all, -dielname1,
+                        +dielname2) (default is all)
+  --tolerance FASTERCAP_TOLERANCE
+                        FasterCap -aX error tolerance (default is 0.05)
+  --d_coeff FASTERCAP_D_COEFF
+                        FasterCap -d direct potential interaction coefficient
+                        to mesh refinement (default is 0.5)
+  --mesh FASTERCAP_MESH_REFINEMENT_VALUE
+                        FasterCap -m Mesh relative refinement value (default
+                        is 0.5)
+  --ooc FASTERCAP_OOC_CONDITION
+                        FasterCap -f out-of-core free memory to link memory
+                        condition (0 = don't go OOC, default is 2)
+  --auto_precond FASTERCAP_AUTO_PRECONDITIONER
+                        FasterCap -ap Automatic preconditioner usage (default
+                        is True)
+  --galerkin            FasterCap -g Use Galerkin scheme (default is False)
+  --jacobi              FasterCap -pj Use Jacobi preconditioner (default is
+                        False)
+
+Magic Options:
+  --magicrc MAGICRC_PATH
+                        Path to magicrc configuration file (default is
+                        '/foss/pdks/ihp-sg13g2/libs.tech/magic/ihp-sg13g2.magi
+                        crc')
+  --magic_mode {CC,RC,R}
+                        magic_mode ∈ {'CC', 'RC', 'R'}. Defaults to 'CC'
+  --magic_cthresh MAGIC_CTHRESH
+                        Threshold (in fF) for ignored parasitic capacitances
+                        (default is 0.01). (MAGIC command: ext2spice cthresh
+                        <value>)
+  --magic_rthresh MAGIC_RTHRESH
+                        Threshold (in Ω) for ignored parasitic resistances
+                        (default is 100). (MAGIC command: ext2spice rthresh
+                        <value>)
+  --magic_tolerance MAGIC_TOLERANCE
+                        Set ratio between resistor and device tolerance
+                        (default is 1). (MAGIC command: extresist tolerance
+                        <value>)
+  --magic_halo MAGIC_HALO
+                        Custom sidewall halo distance (in µm) (MAGIC command:
+                        extract halo <value>) (default is no custom halo)
+  --magic_short {none,resistor,voltage}
+                        magic_short ∈ {'none', 'resistor', 'voltage'}.
+                        Defaults to 'none'
+  --magic_merge {none,conservative,aggressive}
+                        magic_merge ∈ {'none', 'conservative', 'aggressive'}.
+                        Defaults to 'none'
+
+2.5D Options:
+  --mode {CC,RC,R}      mode ∈ {'CC', 'RC', 'R'}. Defaults to 'CC'
+  --halo HALO           Custom sidewall halo distance (in µm) to override tech
+                        info (default is no custom halo)
+  --scale SCALE_RATIO_TO_FIT_HALO
+                        Scale fringe ratios, so that halo distance is 100%
+                        (default is True)
+
+Environmental variables:
+
+  Variable             Description
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  KPEX_FASTCAP_EXE     Path to FastCap2 Executable. Defaults to 'fastcap'
+  KPEX_FASTERCAP_EXE   Path to FasterCap Executable. Defaults to 'FasterCap'
+  KPEX_KLAYOUT_EXE     Path to KLayout Executable. Defaults to 'klayout'
+  KPEX_MAGIC_EXE       Path to MAGIC Executable. Defaults to 'magic'
+  PDKPATH              Optional (required for default magicrc), e.g.
+                       $HOME/.volare
+  PDK                  Optional (required for default magicrc), (e.g.
+                       sky130A)
+
+
+```
+Once PEX is succesfully done, the extracted netlist SPICE file will be generated in the provided output path, which consists of extracted parasitics which can be further used to do post layout simulations and verify whether the design layout satisfies the design specifications or not.
+
+
+![Extracted Spice file](figures/_fig_pex_outputdir.png){#fig-output-dir}
+
+## Post layout simulation.
+
+We have established testbenches for DC, AC, and transient analysis using the symbol of the designed inverter as a subcircuit. The next step is to perform post-layout simulation by replacing the schematic netlist with the extracted layout netlist (PEX), in order to verify whether the performance remains consistent after layout parasitics are included.
+
+Firstly we need to open the symbol file in Xschem, edit the properties of the symbol See @fig-primitive. Change from `subcircuit` to `primitive`.
+
+![Primitive](figures/_fig_primitive.png){#fig-primitive}
+
+Once changed to primitive, now we can include the `.spice` file from PEX to the testbench. See @fig-include
+
+
+![Include](figures/_fig_include.png){#fig-include}
+
+## Results 
+
+![Result](figures/_fig_pex_output.png){#fig-result}
+
+@fig-result shows that the response is as same as we expected from our schematic.
+
+
+
+

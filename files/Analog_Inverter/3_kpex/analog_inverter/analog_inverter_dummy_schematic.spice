@@ -1,0 +1,3 @@
+.subckt analog_inverter VDD VSS
+.ends
+.end

@@ -1,0 +1,36 @@
+---
+title: "Analog Inverter Tutorial"
+author:
+  - name: Priyanka Toyni
+    orcid:  
+    email: ptoyni@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+    affiliation:
+      - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+        city: Bremen
+        state: Germany
+        url: https://www.hs-bremen.de  
+  - name: Hrishikesh Pangavhane
+    orcid: 
+    email: hpangavhane@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+
+keyword:
+    - Inverter 
+    - Layout
+abstract: |
+    In ... general ...
+date: last-modified
+license: "Apache-2.0 license"
+number-sections: true
+bibliography: references.bib
+---
+
+{{< include content/_sec_Intro.qmd >}}
+{{< include content/_sec_Tools.qmd >}}
+{{< include content/_sec_layout.qmd >}}
+{{< include content/_sec_kpex.qmd >}}
+{{< include content/_sec_xschem_shortcuts.qmd >}}
+{{< include content/_sec_ngspice_shortcuts.qmd >}}

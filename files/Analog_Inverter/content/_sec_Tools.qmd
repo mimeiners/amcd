@@ -1,0 +1,87 @@
+# Full design flow using IIC-OSIC tools 
+
+## Schematic entry using Xschem
+
+Schematic entry is performed using [Xschem](https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html), a powerful
+open-source  schematic editor well-suited for analog and mixed-signal circuit design. In this step, the analog inverter
+circuit is constructed by placing and connecting NMOS and PMOS transistors from the **IHP SG13G2 PDK** library. Xschem provides
+an intuitive interface for defining circuit topology, assigning device parameters like W/L ratios, and labeling nodes
+for simulation. Proper hierarchy and net labeling ensure compatibility with simulation and layout tools used later in
+the design flow.
+
+1. Start terminal and run IIC-OSIC docker image
+
+2. To select the PDK, use command `iic-pdk ihp-sg13g` refer @fig-select-pdk 
+
+![Xschem Entry.](./figures/_fig_choose_pdk.png){#fig-select-pdk}
+
+3. Start xschem and create a new schematic. Name it as (Analog_Inverter.sch)
+
+4. Using `Ctrl+i` insert symbol from the sg13g2 library for lv_nmos and lv_pmos where lv stands for low-voltage 
+
+5. customize the transistor's dimensions (select the symbol, right click on it and edit its properties) refer
+   @fig-edit-properties 
+
+![Xschem Entry.](./figures/_fig_edit_properties.png){#fig-edit-properties}
+
+6. Place an input pin `ipin.sym` and an output pin `opin.sym` the symbols are available in the library
+`~/foss/tools/xschem/share/xschem/xschem_library/devices` label the name of the input and output pins (select the pin,
+right click on it and edit its properties)
+
+7. To wire to components, `Ctrl+w`
+
+8. Once finished, save the schematic `Ctrl+Shift+S` See @fig-xschem-symbol
+
+![Xschem Entry.](./figures/Analog_Inverter_xschem.png){#fig-xschem-entry}
+
+9. For creating a symbol, `Symbol --> Make symbol from schematic | Ctrl+L`. We can also edit the symbol by opening
+   it in a new tab, see @fig-xschem-symbol
+
+![Xschem Symbol.](./figures/Analog_Inverter_symbol.svg){#fig-xschem-symbol}
+
+10. Now that we have created a symbol, we need to perform DC and Transient analysis using NgSpice.
+
+
+## Simulation using NgSpice
+
+To perform various analysis, we need to create simulation testbenches.
+
+1. Open new tab in xschem `Ctrl+o`, insert the symbol for inverter (Analog_Inverter.sym) `Ctrl+i`. Design a testbench in
+   xschem see @fig-tb-dc.
+
+![Xschem Testbench.](./figures/_fig_testbench.svg){#fig-tb-dc}
+
+2. The spice directives **MODELS1** and **NGSPICE1** are code.sym instances with the attributes shown in
+   @fig-NgSpice and @fig-TT-Models
+
+![Xschem Testbench.](./figures/_fig_NgSpice.png){#fig-NgSpice}
+
+
+![Xschem TT Corner.](./figures/_fig_TT_Models.png){#fig-TT-Models}
+
+3. Click the **Netlist** button to create a netlist which will give us a `.spice` file and then click on **Simulate**
+   button to run the simulation. 
+
+
+::: {.callout-note title="Important"}
+We have used NgSpice interactive mode for the spice simulation see @fig-spice-mode. We can also find other modes
+`Simulation --> Configure simulator and tools`
+:::
+
+![Simulator Mode](./figures/_fig_NgSpice_Mode.png){#fig-spice-mode}
+
+## Output Results
+
+Outputs of dc and transient analysis can be seen in 
+
+![DC Analysis](./figures/_fig_tb_dc.png){#fig-tb-dc1}
+
+![Transient Analysis](./figures/_fig_tb_tran.png){#fig-tb-tran}
+
+## Post processing and simulation using python
+
+![Transient Curver](./figures/_fig_inverter_transient.svg)
+
+![DC Charachteristics](./figures/_fig_inverter_dc_analysis.svg)
+
+![VTC](./figures/_fig_inverter_vtc.svg)
