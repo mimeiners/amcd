@@ -43,8 +43,8 @@ book:
     - part: Lecture
       chapters:
         - lec/lec-01-intro.qmd
-        # - lec/lec-02a-analog_filter_design.qmd
-        # - lec/lec-03a-biquads.qmd
+        - lec/lec-02a-analog_filter_design.qmd
+        - lec/lec-03a-biquads.qmd
         # - lec/lec-04-ladders.qmd
         # - lec/lec-05-noise.qmd
         # - lec/lec-06-gm-ID.qmd
@@ -66,7 +66,11 @@ book:
         # - lec/lec-11-sc_filter.qmd
         # - lec/lec-12-adc_dac.qmd
 
-    - part: Summer 2025
+    - part: Lab
+      chapters:
+        - lab/Analog_Inverter/index.qmd
+
+    - part: Projects 2025
       chapters:
         - prj/elie1/index.qmd
         - prj/elie2/index.qmd

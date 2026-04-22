@@ -1,4 +1,4 @@
-# Lecture 3Biquads
+# Biquads
 
 # Architectural Options for High-Order Filters
 
@@ -6,45 +6,36 @@ Cascades of \(active\) first and second\-order sections
 
 Ladder filters \(passive or emulated using active components\)
 
-
-
 * Specialized architectures\, typically emphasizing low complexity
   * Watch out for sensitivity issues \(more later\)
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Building Block Options
 
 ![](img/lec-03a-biquads_0.png)
 
 Kuhn\, IEEE TCAS II\, 10/2003
+[@murmann2009]
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Example
-
-
 
 * An interesting filter that combines three different approaches
   * Passive LC
   * Active RC
   * Switched capacitor
 
-
 ![](img/lec-03a-biquads_1.png)
-
-Schreier\, JSSC 12/2002
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
----
 
 Cascade the filter with an equalizer block that compensates the delay variation of the filter.
 
+Schreier\, JSSC 12/2002
+[@murmann2009]
+
+
+
 # The Challenge
-
-
 
 * Way  _too many_  options available\.
 * Deciding on which implementation is  <span style="color:#ff0000">best </span> may only be possible once several options have been thoroughly compared\.
@@ -53,16 +44,15 @@ Cascade the filter with an equalizer block that compensates the delay variation 
 * For now\, we will focus on the realization of second order sections\.
   * The treatment of second order sections will help us understand\, why we may ultimately want to go for a ladder implementation\.
 
+[@murmann2009]
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Passive LC Lowpass Filter
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
+
 
 # On-Chip Capacitors
-
-
 
 * Typically 1\-2 fF/μm2 \(10\-20 fF/μm2 for advanced structures\)
   * For 1 fF/μm2\, a 10 pF capacitor occupies ~100μm x 100μm
@@ -83,7 +73,8 @@ Aparicio\, JSSC 3/2002\, doi: 10\.1109/4\.987091
 
 Ng et al\.\, IEEE Trans\. Electron Dev\.\, 7/2005\, doi: 10\.1109/TED\.2005\.850642
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
+
 
 # On-chip Inductors
 
@@ -101,7 +92,8 @@ Mohan\, JSSC 10/1999
 
 Bevilacqua\, ISSCC 2004
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
+
 
 # Inductor Quality Factor
 
@@ -113,11 +105,11 @@ Generally unusable below 100 MHz
 
 They are very useful for RF\, though\!
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # LC Lowpass Example
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
+
 
 # Summary
 
@@ -127,7 +119,6 @@ On\-chip inductors tend to be avoided whenever possible\, and are typically not 
 
 The solution to this problem is to  <span style="color:#ff0000">simulate</span>  the inductors  <span style="color:#008000">using active components\.</span>
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Gyrators
 
@@ -135,13 +126,15 @@ Gyrators are  <span style="color:#008000">active inductors</span> \.
 
 ![](img/lec-03a-biquads_8.png)
 
-Deliyannis et al\.\,  _Continuous\-Time Active Filter Design\, 1998_
+[@deliyannis1998]
 
 The above circuit is not all that useful for our lowpass filter; we need a  <span style="color:#008000">floating</span>  inductor\.
 
-<span style="color:#008000">Don’t</span>  want the inductance to  <span style="color:#008000">be ground referenced</span> \.
+<span style="color:#008000">Don’t</span>  want the inductance to  <span style="color:#008000">be ground
+referenced</span> \.
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+[@murmann2009]
 
 # Floating Gyrator
 
@@ -155,7 +148,7 @@ Floating gyrators are pretty complex \(and sensitive to parasitics\)\.
 
 There must be a better way to solve this problem …
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Integrators
 
@@ -163,13 +156,13 @@ A circuit that we can build without much sweat is an active integrator\, e\.g\. 
 
 Assuming the availability of an ideal op\-amp\, we have
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # State-Space Realization
 
 State variables \(integrator outputs\)
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Signal Flow Graph (SFG)
 
@@ -177,23 +170,20 @@ Looks promising\, but the problem with this realization is that the first integr
 
 We need the opposite if we want to realize the circuit with an RC integrator\.
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Modified (Equivalent) SFG
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Implementation
-
-
 
 * One remaining issue is that the transfer function is inverted
   * We could fix that \(if needed\) using a fourth op\-amp
   * Or by pushing A2 toward the input\, and utilizing both its inverting and non\-inverting input
     * The latter trick is used in the so\-called KHN biquad
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # KHN Biquad
 
@@ -201,7 +191,7 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 KHN biquad\, Deliyannis et al\.\,  _Continuous\-Time Active Filter Design\, 1998_
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Highpass and Bandpass Output
 
@@ -209,7 +199,7 @@ An interesting feature of some biquads \(including the KHN\) is that they provid
 
 ![](img/lec-03a-biquads_14.png)
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # The General KHN Biquad
 
@@ -217,7 +207,7 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 Implements arbitrary poles and zeros
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Tow-Thomas Biquad
 
@@ -225,7 +215,7 @@ General biquad using only three op\-amps
 
 P\. E\. Fleischer and J\. Tow\, “Design Formulas for biquad active filters using three operational amplifiers\,” Proc\. IEEE\, vol\. 61\, pp\. 662\-3\, May 1973\.
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Tow-Thomas Transfer Functions
 
@@ -233,11 +223,11 @@ Vo2/Vin implements a general biquad section with arbitrary poles and zeros
 
 Vo1/Vin and Vo3/Vin realize the same poles but are limited to at most one finite zero
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Tow-Thomas Design Equations
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Sallen-Key LPF
 
@@ -255,7 +245,7 @@ Versions exist for HP\, BP\, etc\.cnf\. [https://en\.wikipedia\.org/wiki/Sallen�
 
 Popular choice of parameters:
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Tow-Thomas or Sallen-Key?
 
@@ -269,7 +259,7 @@ Unfortunately\, the Sallen\-Key realization comes with disadvantages in terms of
 
 Let’s take a closer look …
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Bode Sensitivity
 
@@ -279,7 +269,7 @@ In order to relate fractional changes in y to fractional changes in x we can the
 
 Common sense: sensitivity is a first order approximation\, accurate only for “small” errors \(Taylor series expansion at operation point\)\.
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Parameter Variations (1)
 
@@ -293,14 +283,11 @@ Discrete resistors and capacitors
 
 ![](img/lec-03a-biquads_21.jpg)
 
-
-
 * Come in many different shapes and sizes and accuracies
   * e\.g\. metal film resistors\, ~0\.1% accurate\, 5ppm/°C
   * e\.g\. C0G dielectric capacitors\, 2% accurate\, very small temperature dependence
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 Integrated resistors and capacitors
 
@@ -308,18 +295,16 @@ Integrated resistors and capacitors
 
 ![](img/lec-03a-biquads_23.png)
 
-
-
 * Important to distinguish between
   * Global process variations   <span style="color:#c00000">On the order of \+/\- 20% \!</span>
   * Device\-to\-device mismatch  On the order of 1% or less
 
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Global Process Variations
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Device-to-Device Mismatch
 
@@ -329,7 +314,7 @@ These differences are called  <span style="color:#008000">mismatch</span> \.
 
 ![](img/lec-03a-biquads_25.png)
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Statistical Model
 
@@ -341,11 +326,9 @@ Empirically\, the standard deviation of the mismatch between two closely spaced 
 
 Sometimes referred to as “Pelgrom’s rule” with       as “Pelgrom’s coefficient”Ref\. Pelgrom et\. al\.\, “Matching Properties of MOS Transistors\,” JSSC\, Oct\. 1989
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Global vs. Device-to-Device Variations
-
-
 
 * Global Variations
   * Resistors\, capacitors: ~ \+/\- 20 %
@@ -360,29 +343,23 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 * <span style="color:#008000">Hmm </span>  <span style="color:#008000">… could we build filters that depend only on component ratios?</span>
   * Switched capacitor filters: Poles set by ratio of capacitors and a clock
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Sensitivity to Global Variations
-
-
 
 * QP is independent of global variations in both realizations
   * Assuming all R and C use the same device structure\, respectively
 * ωP varies with the RC product of the components
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Sensitivity to Mismatch (Sallen-Key)
 
 Sensitivity depends on QP and “component spread” i\.e\. the ratios of the resistors and capacitors\, respectively\.
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Example (1)
-
-
 
 * Want to design a Sallen\-Key filter with QP=10
 * <span style="color:#008000">Choice 1</span> : All R and C are the same: G = 3 \-\(1/QP\) = 2\.9
@@ -391,8 +368,7 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
   * Can show that G=1 is a good choice
   * see e\.g\. [https://www\.maximintegrated\.com/en/app\-notes/index\.mvp/id/738](https://www.maximintegrated.com/en/app-notes/index.mvp/id/738)Note: The expression for SQK is incorrect in this application note \(R3 and R1 should be interchanged in this expression to match the result on the previous slide\)
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Example (2)
 
@@ -404,21 +380,16 @@ Unfortunately\, in this case
 
 Bottom line: The Sallen\-Key realization suffers from a strong tradeoff between sensitivity and component spread
 
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Sensitivity to Mismatch (Tow-Thomas)
-
-
 
 * Constant sensitivities\, independent of Q and component spread
   * Much nicer\!
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
+[@murmann2009]
 
 # Conclusions
-
-
 
 * Biquads can be realized in numerous different ways\.
 * Implementation and component sizing have a big impact on sensitivity to variations\.
@@ -432,352 +403,4 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
   * Sensitivities trade off with component spreadTypically use  <span style="color:#008000">G=1</span>  and use this circuit only for  <span style="color:#008000">low Q</span>  poles\.
   * Case Study by MAXIM[https://www\.maximintegrated\.com/en/app\-notes/index\.mvp/id/738](https://www.maximintegrated.com/en/app-notes/index.mvp/id/738)
 
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Example 1: WCDMA Receiver
-
-Yee et al\.\, “A 2\-GHz low\-power single\-chip CMOS receiver for WCDMA applications\,” Proc\. ESSCC\, 2000
-
-![](img/lec-03a-biquads_27.png)
-
-![](img/lec-03a-biquads_29.png)
-
-![](img/lec-03a-biquads_30.png)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Example 2: CDMA/GPS Receiver
-
-
-
-* Channel select filters \(CSF\)
-  * 640 kHz passband\, lowpass
-  * 0\.5 dB passband ripple
-  * > 40 dB stopband attenuation at 900 kHz
-* 5th order elliptical filter
-* Phase distortion can be tolerated in this application
-
-
-![](img/lec-03a-biquads_31.png)
-
-Lim et al\.\, “A Fully Integrated Direct\-Conversion Receiver for CDMA and GPS Applications\,” IEEE JSSC\, Nov\. 2006
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Zero-Pole-Gain (zpk) Matlab Synthesis
-
-__             204155\.1855 \(s^2 \+ 2\.786e013\) \(s^2 \+ 5\.715e013\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s\+1\.89e006\) \(s^2 \+ 2\.217e006s \+ 1\.034e013\) \(s^2 \+ 5\.315e005s \+ 1\.664e013\)__
-
-__                     \(s^2/2\.786e013 \+ 1\) \(s^2/5\.715e013 \+ 1\)__
-
-__= \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__  \(__  __s__  __/1\.89e006 \+ 1\) \(s^2/1\.034e013 \+ __  __s__  __/4\.6640e\+006 \+ 1\) \(s^2/1\.664e013 \+ __  __s__  __/3\.1308e\+007 \+ 1\)__
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Pole and Zero Locations
-
-|  |  | ωP | QP |
-| :-: | :-: | :-: | :-: |
-| p1\,2 | \-42\.30 ± j647\.83 kHz | 649\.21 kHz | 7\.6748 |
-| p3\,4 | \-176\.45 ± j480\.30 kHz | 511\.68 kHz | 1\.4499 |
-| p5 | \-300\.80 kHz |  |  |
-
-| z1\,2 | ± j1203\.2 kHz |
-| :-: | :-: |
-| z3\,4 | ± j840\.1 kHz |
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Pole-Zero Pairing
-
-Pairing high\-Q poles with nearby zeros is desirable from a dynamic range perspective\.
-
-Say that the amplifier at the output of the biquad can handle a maximum signal of 1 Vpeak
-
-If the biquad response peaks 20 dB above unity\, this means that we can only process inputs with 100 mV amplitude near the frequency of the peak \(which lies in the passband\)\.
-
-The signal is therefore reduced relative to the thermal noise of the circuit\, which is highly undesirable\.
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Pairing Options for p1,2 (High-Q)
-
-Pairing with nearby zero
-
-Pairing with remote zero
-
-__         \(s^2/2\.786e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.664e013 \+ s/3\.1308e\+007 \+ 1\)__
-
-__       \(s^2/5\.715e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.664e013 \+ s/3\.1308e\+007 \+ 1\)__
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Response of the Individual Sections
-
-First\-order section
-
-In which order should we cascade these sections?
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Biquad Ordering
-
-Ordering the Biquads from low\-Q to high\-Q generally yields “smooth” transfer functions from the input to the intermediate nodes\, and often helps minimize harmonic distortion\, but the output will have significant noise peaking near the corner frequency due to the last stage with high\-Q\.
-
-Reversing the ordering will allow the later stages to filter out the noise peaking near corner frequency\.  May also filter out harmonics \(but not intermodulation\)\.
-
-In practical filter design\, it would be worthwhile giving some thoughts to the options that you may have for the ordering of the biquads\. In a non\-lowpass filter application\, inherent ac\-coupling may also be used to your advantage to suppress offset accumulation\.
-
-Ref\. Schaumann et\. al\.\, Analog Filter Design\, Oxford Univ\. Press\, Ch\. 5\.3
-
-Source: U\. Moon\, Stanford Univ\.
-
-# Intermediate Outputs for Low-Q  High-Q
-
-This ordering is most frequently used in practice
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Intermediate Outputs for High-Q  Low-Q
-
-
-
-* At first glance this looks bad\, but the noise from the high\-Q biquad is filtered before it reaches the output
-  * We will revisit this situation in the context of noise analysis
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Dynamic Range Scaling
-
-Suppose we decided that the second ordering is what we want to use for our design
-
-In this case\, we need to think about a proper gain distribution that avoids “clipping” in the individual amplifiers
-
-For this purpose\, we introduce gain scale factors for each section\, while keeping the overall gain constant \(K1K2K3 = 1 in this example\)
-
-__        1__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(__  __s__  __/1\.89e006 \+ 1\)__
-
-__       \(s^2/5\.715e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.034e013 \+ __  __s__  __/4\.6640e\+006 \+ 1\)__
-
-__         \(s^2/2\.786e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.664e013 \+ __  __s__  __/3\.1308e\+007 \+ 1\)__
-
-__       __  <span style="color:#c00000"> __K3__ </span>
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s/1\.89e006 \+ 1\)__
-
-__       __  <span style="color:#c00000"> __K2__ </span>  __\*\(s^2/5\.715e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.034e013 \+ s/4\.6640e\+006 \+ 1\)__
-
-__       __  <span style="color:#c00000"> __K1__ </span>  __\*\(s^2/2\.786e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.664e013 \+ __  __s__  __/3\.1308e\+007 \+ 1\)__
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Analysis (1)
-
-Suppose we chose K1=K2=K3=1 and assume that we will apply single sine waves with arbitrary frequencies to the input
-
-Since H1 has significant peaking \(|H1|max ≅ 3\.19 ≅10 dB\)\, we can guarantee proper operation only for input amplitudes up to
-
-Since the overall gain is unity \(with no peaking above 1\)\, this means Vout swings only 314mV\, meaning that we are “wasting” available signal range
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Analysis (2)
-
-
-
-* A more desirable outcome may be to scale K1\, K2\, K3 such that all stages utilize the maximum available swing as the input tone is swept across all frequencies
-  * Note that in general\, the maximum output swings for each stage may not occur at the same frequency\.
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Analysis (3)
-
-This is achieved for
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Intermediate Outputs After DR Scaling
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Arguments Against “Sinusoidal” DR Scaling
-
-
-
-* If the input signal is wide\-band \(as in many telecommunication systems\)\, the node with peaking may not saturate due to limited signal power in that frequency region
-  * May want to optimize the gain distribution based on a power spectral density “template” of the incoming signal
-* Aligning the peaks for each output perfectly will require non\-integer component ratios
-  * But we may want to use integer ratios to improve matching
-* For a discussion on why sinusoidal dynamic range scaling may not always the best choice\, see Behbahani\, JSSC 4/2000
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Expressions for Implementation
-
-__     2\.3021__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s/1\.89e006 \+ 1\)__
-
-__   1\.3865\*\(s^2/5\.715e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.034e013 \+ __  __s__  __/4\.6640e\+006 \+ 1\)__
-
-__     0\.3133\*\(s^2/2\.786e013 \+ 1\)__
-
-__\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-__
-
-__\(s^2/1\.664e013 \+ __  __s__  __/3\.1308e\+007 \+ 1\)__
-
-![](img/lec-03a-biquads_41.png)
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Tow-Thomas Component Values (b1=0)
-
-
-
-* a0\, a1\, b0\, b1\, b2 are known; can pick k1\, k2\, C1\, C2 and R8
-* Reasonable starting values
-  * k1 = k2 = 1
-  * Set C1 = C2  to a reasonable value that is easily implemented\, e\.g\. 1pF
-  * Set R8 to a reasonable value that is easily implemented and represents an integer multiple or fraction of R2\, R3 or R7
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Example Design Flow
-
-
-
-* First cut component calculation using reasonable starting values for k1\, k2\, C1\, C2 and R8
-* Dynamic range scaling of internal amplifier outputs by adjusting k1 and k2
-* Thermal noise scaling using ideal amplifiers
-  * Increase all capacitors and reduce all resistors until noise specification is met
-* Design amplifiers
-* Repeat thermal noise scaling to accommodate amplifier noise
-* Analyze sensitivity to component variations and devise tuning mechanism \(if needed\)
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Dynamic Range Scaling of Internal Nodes
-
-![](img/lec-03a-biquads_42.png)
-
-Scale k1 and k2 such that peak magnitude at Vo1 and Vo2 corresponds to maximum available amplifier swing
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Sensitivity Analysis
-
-
-
-* Ideally\, we would like to have an analytical expression that relates “interesting points” of the response to variations in all components
-  * E\.g\. calculate variations in the passband ripple as a function of the percent error in R2
-* This is almost impossible or at least impractical to do in practice
-
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Monte-Carlo (MC) Analysis
-
-
-
-* Monte\-Carlo \(MC\) Analysis \(Sensitivity Analysis\, Stat\.\)
-  * Have a statistical model for all components\.
-  * Run a large number of simulations \(Matlab or SPICE\) to capture many statistical outcomes and create overlay plot from all runs\.
-  * [http://k6jca\.blogspot\.de/2012/07/monte\-carlo\-and\-worst\-case\-circuit\.html](http://k6jca.blogspot.de/2012/07/monte-carlo-and-worst-case-circuit.html)
-* Such an analysis is very useful for validation\, but perhaps too much work for intuition building and/or design guidance\.
-
-
-![](img/lec-03a-biquads_44.png)
-
-MAXIM APPLICATION NOTE 738: Minimizing Component\-Variation Sensitivity in Single Op Amp Filters
-
-http://www\.maxim\-ic\.com/appnotes\.cfm/an\_pk/738/
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Basic Sensitivity Analysis
-
-
-
-* Say we just want to get a basic feel for the sensitivities
-* Look at impact of
-  * Global process variations
-  * Component mismatch
-* For global process variations\, we have already seen that
-
-
-If all R and C vary by the same percentage\, the filter “shape” is preserved and shifted back and forth along the frequency axis
-
-If this is a problem for the application\, we can “tune” either R or C to bring the filter response back to the desired location
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Mismatch Analysis
-
-Suppose we had resistors and capacitors that deviate from their nominal component value \(which is subject to global variations\) by a standard deviation of 1%
-
-Since
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Passband with Pole Errors (1)
-
-± 4% change in wP of first order section
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-± 4% change in wP of low\-Q section
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-± 4% change in wP of high\-Q section
-
-Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
+[@murmann2009]
