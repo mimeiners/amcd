@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Filter Design – M 2.16 Microelectronic Circuit Design (MCD)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lec/lec-03a-biquads.html" rel="next">
+<link href="../lec/lec-01-intro.html" rel="prev">
+<link href="../images/hsb-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c17bf2369ec451fec7864fad2b46db76.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../lec/lec-02a-analog_filter_design.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter Design</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">M 2.16 Microelectronic Circuit Design (MCD)</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/mimeiners/amcd/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../mcd.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lec/lec-01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lec/lec-02a-analog_filter_design.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lec/lec-03a-biquads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biquads</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lab</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab/Analog_Inverter/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog Inverter Tutorial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Projects 2025</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prj/elie1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prj/elie2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prj/elie3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prj/elie4/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prj/elie5/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Design and Implementation of Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-filters" id="toc-introduction-to-filters" class="nav-link active" data-scroll-target="#introduction-to-filters"><span class="header-section-number">4</span> Introduction to Filters</a></li>
+  <li><a href="#lets-do-something-useful" id="toc-lets-do-something-useful" class="nav-link" data-scroll-target="#lets-do-something-useful"><span class="header-section-number">5</span> Let‘s do something useful …</a></li>
+  <li><a href="#first-order-rc-filter" id="toc-first-order-rc-filter" class="nav-link" data-scroll-target="#first-order-rc-filter"><span class="header-section-number">6</span> First-order RC Filter</a></li>
+  <li><a href="#s-plane-pole-zero-map" id="toc-s-plane-pole-zero-map" class="nav-link" data-scroll-target="#s-plane-pole-zero-map"><span class="header-section-number">7</span> s-Plane / Pole-Zero Map</a></li>
+  <li><a href="#frequency-response" id="toc-frequency-response" class="nav-link" data-scroll-target="#frequency-response"><span class="header-section-number">8</span> Frequency Response</a></li>
+  <li><a href="#parasitics" id="toc-parasitics" class="nav-link" data-scroll-target="#parasitics"><span class="header-section-number">9</span> Parasitics</a></li>
+  <li><a href="#first-order-rc-filter-incl.-parasitics" id="toc-first-order-rc-filter-incl.-parasitics" class="nav-link" data-scroll-target="#first-order-rc-filter-incl.-parasitics"><span class="header-section-number">10</span> First-order RC Filter incl.&nbsp;Parasitics</a></li>
+  <li><a href="#frequency-response-incl.-parasitics" id="toc-frequency-response-incl.-parasitics" class="nav-link" data-scroll-target="#frequency-response-incl.-parasitics"><span class="header-section-number">11</span> Frequency Response incl.&nbsp;Parasitics</a></li>
+  <li><a href="#nomenclature-filter-types" id="toc-nomenclature-filter-types" class="nav-link" data-scroll-target="#nomenclature-filter-types"><span class="header-section-number">12</span> Nomenclature Filter Types</a></li>
+  <li><a href="#the-filter-approximation-problem" id="toc-the-filter-approximation-problem" class="nav-link" data-scroll-target="#the-filter-approximation-problem"><span class="header-section-number">13</span> The Filter Approximation Problem</a></li>
+  <li><a href="#filter-design" id="toc-filter-design" class="nav-link" data-scroll-target="#filter-design"><span class="header-section-number">14</span> Filter Design</a></li>
+  <li><a href="#filter-specifications" id="toc-filter-specifications" class="nav-link" data-scroll-target="#filter-specifications"><span class="header-section-number">15</span> Filter Specifications</a></li>
+  <li><a href="#design-parameter-q-and-w0" id="toc-design-parameter-q-and-w0" class="nav-link" data-scroll-target="#design-parameter-q-and-w0"><span class="header-section-number">16</span> Design Parameter Q and w0</a></li>
+  <li><a href="#inductor-capacitor-q" id="toc-inductor-capacitor-q" class="nav-link" data-scroll-target="#inductor-capacitor-q"><span class="header-section-number">17</span> Inductor / Capacitor Q</a></li>
+  <li><a href="#pole-q" id="toc-pole-q" class="nav-link" data-scroll-target="#pole-q"><span class="header-section-number">18</span> Pole Q</a></li>
+  <li><a href="#lowpass-filter-template" id="toc-lowpass-filter-template" class="nav-link" data-scroll-target="#lowpass-filter-template"><span class="header-section-number">19</span> Lowpass Filter Template</a></li>
+  <li><a href="#second-order-lowpass-filter" id="toc-second-order-lowpass-filter" class="nav-link" data-scroll-target="#second-order-lowpass-filter"><span class="header-section-number">20</span> Second Order Lowpass Filter</a></li>
+  <li><a href="#pole-positions" id="toc-pole-positions" class="nav-link" data-scroll-target="#pole-positions"><span class="header-section-number">21</span> Pole Positions</a></li>
+  <li><a href="#improvements" id="toc-improvements" class="nav-link" data-scroll-target="#improvements"><span class="header-section-number">22</span> Improvements</a></li>
+  <li><a href="#bode-plot" id="toc-bode-plot" class="nav-link" data-scroll-target="#bode-plot"><span class="header-section-number">23</span> Bode Plot</a></li>
+  <li><a href="#adding-another-pole" id="toc-adding-another-pole" class="nav-link" data-scroll-target="#adding-another-pole"><span class="header-section-number">24</span> Adding Another Pole</a></li>
+  <li><a href="#utilizing-peaking-in-h1s" id="toc-utilizing-peaking-in-h1s" class="nav-link" data-scroll-target="#utilizing-peaking-in-h1s"><span class="header-section-number">25</span> Utilizing Peaking in H1(s)</a></li>
+  <li><a href="#nth-order-generalization" id="toc-nth-order-generalization" class="nav-link" data-scroll-target="#nth-order-generalization"><span class="header-section-number">26</span> nth Order Generalization</a></li>
+  <li><a href="#pole-locations" id="toc-pole-locations" class="nav-link" data-scroll-target="#pole-locations"><span class="header-section-number">27</span> Pole Locations</a></li>
+  <li><a href="#a-closer-look-at-n4" id="toc-a-closer-look-at-n4" class="nav-link" data-scroll-target="#a-closer-look-at-n4"><span class="header-section-number">28</span> A Closer Look at n=4</a></li>
+  <li><a href="#increasing-qp2" id="toc-increasing-qp2" class="nav-link" data-scroll-target="#increasing-qp2"><span class="header-section-number">29</span> Increasing QP2</a></li>
+  <li><a href="#increased-qp2-reduced-ωp1" id="toc-increased-qp2-reduced-ωp1" class="nav-link" data-scroll-target="#increased-qp2-reduced-ωp1"><span class="header-section-number">30</span> Increased QP2, Reduced ωP1</a></li>
+  <li><a href="#comparison-with-original-butterworth" id="toc-comparison-with-original-butterworth" class="nav-link" data-scroll-target="#comparison-with-original-butterworth"><span class="header-section-number">31</span> Comparison with Original Butterworth</a></li>
+  <li><a href="#matlab-code" id="toc-matlab-code" class="nav-link" data-scroll-target="#matlab-code"><span class="header-section-number">32</span> Matlab Code</a></li>
+  <li><a href="#matlab-code-1" id="toc-matlab-code-1" class="nav-link" data-scroll-target="#matlab-code-1"><span class="header-section-number">33</span> Matlab Code</a></li>
+  <li><a href="#design-example" id="toc-design-example" class="nav-link" data-scroll-target="#design-example"><span class="header-section-number">34</span> Design Example</a></li>
+  <li><a href="#step-response-of-design-example" id="toc-step-response-of-design-example" class="nav-link" data-scroll-target="#step-response-of-design-example"><span class="header-section-number">35</span> Step Response of Design Example</a></li>
+  <li><a href="#phase-distortion-1" id="toc-phase-distortion-1" class="nav-link" data-scroll-target="#phase-distortion-1"><span class="header-section-number">36</span> Phase Distortion (1)</a></li>
+  <li><a href="#delay-with-linear-phase" id="toc-delay-with-linear-phase" class="nav-link" data-scroll-target="#delay-with-linear-phase"><span class="header-section-number">37</span> Delay with Linear Phase</a></li>
+  <li><a href="#delay-with-nonlinear-phase" id="toc-delay-with-nonlinear-phase" class="nav-link" data-scroll-target="#delay-with-nonlinear-phase"><span class="header-section-number">38</span> Delay with Nonlinear Phase</a></li>
+  <li><a href="#comparison-bessel-vs.-chebyshev-i" id="toc-comparison-bessel-vs.-chebyshev-i" class="nav-link" data-scroll-target="#comparison-bessel-vs.-chebyshev-i"><span class="header-section-number">39</span> Comparison: Bessel vs.&nbsp;Chebyshev I</a></li>
+  <li><a href="#phase-and-group-delay" id="toc-phase-and-group-delay" class="nav-link" data-scroll-target="#phase-and-group-delay"><span class="header-section-number">40</span> Phase and Group Delay</a></li>
+  <li><a href="#step-response" id="toc-step-response" class="nav-link" data-scroll-target="#step-response"><span class="header-section-number">41</span> Step Response</a></li>
+  <li><a href="#pulse-response" id="toc-pulse-response" class="nav-link" data-scroll-target="#pulse-response"><span class="header-section-number">42</span> Pulse Response</a></li>
+  <li><a href="#what-about-other-filters-than-lp" id="toc-what-about-other-filters-than-lp" class="nav-link" data-scroll-target="#what-about-other-filters-than-lp"><span class="header-section-number">43</span> What about other filters than LP?</a></li>
+  <li><a href="#element-transformation-1" id="toc-element-transformation-1" class="nav-link" data-scroll-target="#element-transformation-1"><span class="header-section-number">44</span> Element Transformation (1)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/amcd/edit/main/lec/lec-02a-analog_filter_design.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/amcd/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../lec/lec-02a-analog_filter_design.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter Design</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter Design</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-to-filters" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Introduction to Filters</h1>
+<ul>
+<li>Filtering = Frequency-selective signal processing
+<ul>
+<li>It‘s the most common type of signal processing</li>
+<li>Examples
+<ul>
+<li>Extract desired signal from many (radio)</li>
+<li>Seperate signal from noise</li>
+<li>Amplifier bandwidth limitation</li>
+</ul></li>
+</ul></li>
+<li>Where to start
+<ul>
+<li>Perfectionist: Ideal (low-pass) filter</li>
+<li>Engineer: Continuous-time, first-order lowpass filter</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="lets-do-something-useful" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Let‘s do something useful …</h1>
+<ul>
+<li>Ideal LPF (recall)</li>
+<li>RC LPF (recall)</li>
+<li>Specification
+<ul>
+<li>Quality factor</li>
+<li>Frequency characteristics</li>
+<li>Poles and zeros</li>
+<li>Group delay, impulse response</li>
+</ul></li>
+<li>Approximation problem
+<ul>
+<li>Butterworth</li>
+<li>Chebychev</li>
+<li>Elliptic</li>
+<li>Bessel</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="first-order-rc-filter" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> First-order RC Filter</h1>
+<p>Steady-state response</p>
+</section>
+<section id="s-plane-pole-zero-map" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> s-Plane / Pole-Zero Map</h1>
+</section>
+<section id="frequency-response" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Frequency Response</h1>
+<p>Question: Can we really get more than 100 dB damping at GHz?</p>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="parasitics" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Parasitics</h1>
+<ul>
+<li>Analog passive components aren‘t ideal.
+<ul>
+<li>Extra real pole/zeros result from parasitics which limit the performance of analog components.</li>
+<li>Parasitic effects begin to appear „50 dB beyond“ desired component characteristics.</li>
+<li>Common sense helps anticipate them.</li>
+</ul></li>
+<li>Possible parasitics
+<ul>
+<li>Shunt capacitance</li>
+<li>Feed-through capacitance</li>
+<li>Finite inductor, capacitor Q</li>
+</ul></li>
+<li>Digital filters do not suffer from these effects.
+<ul>
+<li>Which effects do they suffer from?</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="first-order-rc-filter-incl.-parasitics" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> First-order RC Filter incl.&nbsp;Parasitics</h1>
+<p><img src="img/lec-02a-analog_filter_design_3.png" class="img-fluid"></p>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="frequency-response-incl.-parasitics" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Frequency Response incl.&nbsp;Parasitics</h1>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="nomenclature-filter-types" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Nomenclature Filter Types</h1>
+<p><img src="img/lec-02a-analog_filter_design_5.png" class="img-fluid"></p>
+<p>Source: H. Khorramabadi, Univ. Berkeley</p>
+</section>
+<section id="the-filter-approximation-problem" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> The Filter Approximation Problem</h1>
+<ul>
+<li>Practical filter
+<ul>
+<li>Ripple in either or both the passband and stopband</li>
+<li>Limited attenuation in the stopband</li>
+</ul></li>
+<li>Ideal Filter
+<ul>
+<li>Brick-wall characteristic</li>
+<li>Flat magnitude response in the passband</li>
+<li>Infinite attenuation in the stopband</li>
+</ul></li>
+</ul>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="filter-design" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Filter Design</h1>
+<ul>
+<li>Ideal filters are non-causal or otherwise impractical</li>
+<li>No global optimization techniques known</li>
+<li>In practice, chose from several known solutions
+<ul>
+<li>Butterworth, Elliptic, Bessel, …</li>
+</ul></li>
+<li>The overall goal of filter design is to approximate the ideal response by one that implements a reasonable compromise between filter complexity (number of poles and zeros) and approximation error</li>
+<li>Filter design, in general, requires a compromise between magnitude response, phase response, step response, complexity, etc.</li>
+</ul>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="filter-specifications" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Filter Specifications</h1>
+<ul>
+<li>Frequency characteristics (low-pass filter)
+<ul>
+<li>Passband ripple</li>
+<li>Cutoff frequency or -3dB frequency</li>
+<li>Stopband rejection</li>
+<li>Passband gain</li>
+</ul></li>
+<li>Phase characteristics
+<ul>
+<li>Group delay</li>
+</ul></li>
+<li>SNR, dynamic range, SNDR, signal-to-noise + distortion ratio</li>
+<li>Linearity measures
+<ul>
+<li>IM3 (intermodulation distortion)</li>
+<li>HD3 (harmonic distortion)</li>
+<li>IIP3 or OIP3 (input-referred/output-referred third order intercept point)</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="design-parameter-q-and-w0" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Design Parameter Q and w0</h1>
+<ul>
+<li>The term quality factor has different definitions in different contexts
+<ul>
+<li>Component quality factor (inductor &amp; capacitor)</li>
+<li>Pole quality factor</li>
+<li>Bandpass filter quality factor</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="inductor-capacitor-q" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Inductor / Capacitor Q</h1>
+<p>Inductor Q</p>
+<p>Capacitor Q</p>
+<p>Bandpass Q</p>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="pole-q" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Pole Q</h1>
+<p><span class="citation" data-cites="schaumann2010"><a href="../references.html#ref-schaumann2010" role="doc-biblioref">[2]</a></span></p>
+</section>
+<section id="lowpass-filter-template" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Lowpass Filter Template</h1>
+<p>Max./min. passband gain</p>
+<p>Magnitude response is fully specified by Apmin, Apmax, As, ωp, ωs</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="second-order-lowpass-filter" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Second Order Lowpass Filter</h1>
+<p><img src="img/lec-02a-analog_filter_design_16.png" class="img-fluid"></p>
+<p>Magnitude response is “maximally flat” (no peaking) for</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="pole-positions" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Pole Positions</h1>
+<p>The poles are the roots of the denominator polynomial</p>
+<p>Location in the s-plane for QP &gt; 0.5</p>
+<p><img src="img/lec-02a-analog_filter_design_17.png" class="img-fluid"></p>
+<p><strong> </strong> <strong>Complex conjugate poles</strong></p>
+<p>Source: Carusone, p. 164</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+<p><img src="img/lec-02a-analog_filter_design_18.png" class="img-fluid"></p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="improvements" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Improvements</h1>
+<ul>
+<li>A maximally flat response is great, but how can we make the roll-off steeper?</li>
+<li>Let’s look at
+<ul>
+<li>Imaginary zeros</li>
+<li>Increasing the filter order</li>
+<li>High-Q poles</li>
+<li>High-Q poles and imaginary zeros</li>
+</ul></li>
+<li>Different filter approximation
+<ul>
+<li>Butterworth</li>
+<li>Chebychev (type I and II)</li>
+<li>Cauer (Elliptic)</li>
+</ul></li>
+</ul>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="bode-plot" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> Bode Plot</h1>
+<p>Steeper roll-off at the expense of reduced stopband rejection</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="adding-another-pole" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> Adding Another Pole</h1>
+<p>As expected, steeper roll-off, but transition is not all that sharp</p>
+<p>Can fix this issue by increasing QP of H1(s)!</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="utilizing-peaking-in-h1s" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> Utilizing Peaking in H1(s)</h1>
+<ul>
+<li>Win-win improvement
+<ul>
+<li>Passband flat, roll-off steeper</li>
+</ul></li>
+</ul>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="nth-order-generalization" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> nth Order Generalization</h1>
+<p>Stephen Butterworth showed in 1930 that the magnitude response of an nth order maximally flat lowpass filter is given by</p>
+<p>This magnitude response is monotonically decreasing and satisfies</p>
+<p>The corresponding pole locations can be determined using</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="pole-locations" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Pole Locations</h1>
+<p>The poles lie equally spaced (in angle) on a circle in the s-plane centered at the origin with radius ωp</p>
+<p>The LHP roots are taken to be the poles of H(s), while those in the RHP are regarded as the poles of H(–s)</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="a-closer-look-at-n4" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> A Closer Look at n=4</h1>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="increasing-qp2" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> Increasing QP2</h1>
+<p>Helps make the roll-off steeper, but introduces peaking</p>
+<p>We can try to alleviate this problem this by reducing ωP1</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="increased-qp2-reduced-ωp1" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> Increased QP2, Reduced ωP1</h1>
+<p>This may not a bad choice of we can tolerate some peaking or ripple</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="comparison-with-original-butterworth" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> Comparison with Original Butterworth</h1>
+<p>How can we optimize this situation, i.e. minimize the transition band for a given tolerable peaking (or “ripple”) in the passband?</p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="matlab-code" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Matlab Code</h1>
+<p><img src="img/lec-02a-analog_filter_design_31.png" class="img-fluid"></p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="matlab-code-1" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> Matlab Code</h1>
+<p><img src="img/lec-02a-analog_filter_design_33.png" class="img-fluid"></p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="design-example" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> Design Example</h1>
+<p><img src="img/lec-02a-analog_filter_design_35.png" class="img-fluid"></p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="step-response-of-design-example" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> Step Response of Design Example</h1>
+<ul>
+<li>Overshoot and other forms of pulse deformation can be problematic
+<ul>
+<li>Consider e.g. oscilloscopes, pulse-based data links, etc.</li>
+</ul></li>
+<li>The pulse deformation is mostly due to the fact that different frequency components pass the filter with different time delays
+<ul>
+<li>This is called phase distortion</li>
+</ul></li>
+<li>Let’s first have a look at the phase response of our filter</li>
+</ul>
+<p><img src="img/lec-02a-analog_filter_design_36.png" class="img-fluid"></p>
+<p>Source: EE315a, B. Murmann, Stanford Univ.</p>
+</section>
+<section id="phase-distortion-1" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Phase Distortion (1)</h1>
+<p>Consider a filter with transfer function</p>
+<p>Apply two sine waves at different frequencies (two-tone test)</p>
+<p>Source: EE247, B. Boser, Univ. Berkeley</p>
+<p>Assuming that the difference between |H(jω1)| and |H(jω2)| is small, the “shape” of the time-domain output signal will be preserved as long as</p>
+<p>This condition is satisfied for</p>
+<p>A filter with this characteristic is called “linear phase”.</p>
+<p><span class="citation" data-cites="boser2003"><a href="../references.html#ref-boser2003" role="doc-biblioref">[1]</a></span></p>
+</section>
+<section id="delay-with-linear-phase" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Delay with Linear Phase</h1>
+<p>Source: U. Moon, Stanford Univ.</p>
+</section>
+<section id="delay-with-nonlinear-phase" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> Delay with Nonlinear Phase</h1>
+<p>Phase distortion occurs whenever the phase is nonlinear, i.e. the derivative of the phase is not constant. The (negative) derivative of the phase is also called “group delay” or τg Note that for a linear phase filter, we have τg = τd = const.</p>
+<p>Source: U. Moon, Stanford Univ.</p>
+</section>
+<section id="comparison-bessel-vs.-chebyshev-i" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> Comparison: Bessel vs.&nbsp;Chebyshev I</h1>
+<p><img src="img/lec-02a-analog_filter_design_39.png" class="img-fluid"></p>
+<p>Lowpass filters with 100 kHz passband</p>
+<p>Both filters are 4th order with the same -3 dB frequency</p>
+<p>Passband ripple of 1dB for Chebyshev I</p>
+<p>Source: H. Khorramabadi, Univ. Berkeley</p>
+</section>
+<section id="phase-and-group-delay" class="level1" data-number="40">
+<h1 data-number="40"><span class="header-section-number">40</span> Phase and Group Delay</h1>
+<p><img src="img/lec-02a-analog_filter_design_40.png" class="img-fluid"></p>
+<p><img src="img/lec-02a-analog_filter_design_41.png" class="img-fluid"></p>
+<p>Source: H. Khorramabadi, Univ. Berkeley</p>
+</section>
+<section id="step-response" class="level1" data-number="41">
+<h1 data-number="41"><span class="header-section-number">41</span> Step Response</h1>
+<p><img src="img/lec-02a-analog_filter_design_42.png" class="img-fluid"></p>
+</section>
+<section id="pulse-response" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> Pulse Response</h1>
+<p><img src="img/lec-02a-analog_filter_design_43.png" class="img-fluid"></p>
+</section>
+<section id="what-about-other-filters-than-lp" class="level1" data-number="43">
+<h1 data-number="43"><span class="header-section-number">43</span> What about other filters than LP?</h1>
+<ul>
+<li>Frequency Transformation
+<ul>
+<li>Lowpass-to-lowpass transformation</li>
+<li>Lowpass-to-highpass transformation</li>
+<li>Lowpass-to-bandpass transformation</li>
+<li>Lowpass-to-bandstop transformation</li>
+</ul></li>
+<li>Cmp.</li>
+</ul>
+<p><span class="citation" data-cites="williams2006"><a href="../references.html#ref-williams2006" role="doc-biblioref">[3]</a></span> <span class="citation" data-cites="deliyannis1998"><a href="../references.html#ref-deliyannis1998" role="doc-biblioref">[4]</a></span></p>
+</section>
+<section id="element-transformation-1" class="level1" data-number="44">
+<h1 data-number="44"><span class="header-section-number">44</span> Element Transformation (1)</h1>
+<p><span class="citation" data-cites="deliyannis1998"><a href="../references.html#ref-deliyannis1998" role="doc-biblioref">[4]</a></span></p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-boser2003" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B. E. Boser, <span>“EECS247: Analog-digital interface integrated circuits.”</span> Course notes, University of California Berkeley, Feb. 2003.</div>
+</div>
+<div id="ref-schaumann2010" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R. Schaumann, H. Xiao, and M. E. van Valkenburg, <em>Design of analog filters</em>, 2nd ed. Cambridge University Press, 2010.</div>
+</div>
+<div id="ref-williams2006" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">A. Williams and F. J. Taylor, <em>Electronic filter design handbook</em>, 4th ed. McGraw-Hill Professional, 2006, p. 775.</div>
+</div>
+<div id="ref-deliyannis1998" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">T. Deliyannis, Y. Sun, and J. K. Fidler, <em>Continuous-time active filter design</em>. CRC Press, 1998. doi: <a href="https://doi.org/10.1201/9781439821879">10.1201/9781439821879</a>.</div>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mimeiners\.github\.io\/amcd\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lec/lec-01-intro.html" class="pagination-link" aria-label="Introduction and Survey">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lec/lec-03a-biquads.html" class="pagination-link" aria-label="Biquads">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biquads</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>M 2.16 Microelectronic Circuit Design (MCD)</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mimeiners/amcd/edit/main/lec/lec-02a-analog_filter_design.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/amcd/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

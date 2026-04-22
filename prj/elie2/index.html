@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="author" content="Sven Samland">
 <meta name="author" content="Julian Scheeler">
 
-<title>4&nbsp; IC Design of a Universal Biquad Filter – M 2.16 Microelectronic Circuit Design (MCD)</title>
+<title>7&nbsp; IC Design of a Universal Biquad Filter – M 2.16 Microelectronic Circuit Design (MCD)</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -100,7 +100,7 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-c17bf2369ec451fec7864fad2b46db76.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -173,7 +173,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Summer 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie2/index.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Projects 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie2/index.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -228,12 +228,24 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lec/lec-02a-analog_filter_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lec/lec-03a-biquads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biquads</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Summer 2025</span></a>
+ <span class="menu-text">Lab</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -241,32 +253,49 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lab/Analog_Inverter/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog Inverter Tutorial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Projects 2025</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../prj/elie1/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../prj/elie2/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../prj/elie3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../prj/elie4/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Design and Implementation of a Universal Biquad Filter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../prj/elie5/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Design and Implementation of Universal Biquad Filter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Design and Implementation of Universal Biquad Filter</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,60 +316,60 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5</span> Introduction</a></li>
-  <li><a href="#sec-env" id="toc-sec-env" class="nav-link" data-scroll-target="#sec-env"><span class="header-section-number">6</span> Creating the Development Environment</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8</span> Introduction</a></li>
+  <li><a href="#sec-env" id="toc-sec-env" class="nav-link" data-scroll-target="#sec-env"><span class="header-section-number">9</span> Creating the Development Environment</a>
   <ul class="collapse">
-  <li><a href="#installing-the-container" id="toc-installing-the-container" class="nav-link" data-scroll-target="#installing-the-container"><span class="header-section-number">6.1</span> Installing the Container</a></li>
+  <li><a href="#installing-the-container" id="toc-installing-the-container" class="nav-link" data-scroll-target="#installing-the-container"><span class="header-section-number">9.1</span> Installing the Container</a></li>
   </ul></li>
-  <li><a href="#circuit-schematic" id="toc-circuit-schematic" class="nav-link" data-scroll-target="#circuit-schematic"><span class="header-section-number">7</span> Circuit Schematic</a>
+  <li><a href="#circuit-schematic" id="toc-circuit-schematic" class="nav-link" data-scroll-target="#circuit-schematic"><span class="header-section-number">10</span> Circuit Schematic</a>
   <ul class="collapse">
-  <li><a href="#operational-amplifier" id="toc-operational-amplifier" class="nav-link" data-scroll-target="#operational-amplifier"><span class="header-section-number">7.1</span> Operational Amplifier</a></li>
-  <li><a href="#transfer-functions" id="toc-transfer-functions" class="nav-link" data-scroll-target="#transfer-functions"><span class="header-section-number">7.2</span> Transfer Functions</a></li>
+  <li><a href="#operational-amplifier" id="toc-operational-amplifier" class="nav-link" data-scroll-target="#operational-amplifier"><span class="header-section-number">10.1</span> Operational Amplifier</a></li>
+  <li><a href="#transfer-functions" id="toc-transfer-functions" class="nav-link" data-scroll-target="#transfer-functions"><span class="header-section-number">10.2</span> Transfer Functions</a></li>
   </ul></li>
-  <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter"><span class="header-section-number">8</span> Filter Design</a>
+  <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter"><span class="header-section-number">11</span> Filter Design</a>
   <ul class="collapse">
-  <li><a href="#sec-bode" id="toc-sec-bode" class="nav-link" data-scroll-target="#sec-bode"><span class="header-section-number">8.1</span> Bode Plot</a></li>
-  <li><a href="#polezero-analysis" id="toc-polezero-analysis" class="nav-link" data-scroll-target="#polezero-analysis"><span class="header-section-number">8.2</span> Pole–Zero Analysis</a></li>
-  <li><a href="#impulse-step-response" id="toc-impulse-step-response" class="nav-link" data-scroll-target="#impulse-step-response"><span class="header-section-number">8.3</span> Impulse / Step Response</a></li>
+  <li><a href="#sec-bode" id="toc-sec-bode" class="nav-link" data-scroll-target="#sec-bode"><span class="header-section-number">11.1</span> Bode Plot</a></li>
+  <li><a href="#polezero-analysis" id="toc-polezero-analysis" class="nav-link" data-scroll-target="#polezero-analysis"><span class="header-section-number">11.2</span> Pole–Zero Analysis</a></li>
+  <li><a href="#impulse-step-response" id="toc-impulse-step-response" class="nav-link" data-scroll-target="#impulse-step-response"><span class="header-section-number">11.3</span> Impulse / Step Response</a></li>
   </ul></li>
-  <li><a href="#sec-circuit-design" id="toc-sec-circuit-design" class="nav-link" data-scroll-target="#sec-circuit-design"><span class="header-section-number">9</span> Circuit Design</a>
+  <li><a href="#sec-circuit-design" id="toc-sec-circuit-design" class="nav-link" data-scroll-target="#sec-circuit-design"><span class="header-section-number">12</span> Circuit Design</a>
   <ul class="collapse">
-  <li><a href="#sec-aslk-design" id="toc-sec-aslk-design" class="nav-link" data-scroll-target="#sec-aslk-design"><span class="header-section-number">9.1</span> ASLK Pro Experiment 4 Implementation</a>
+  <li><a href="#sec-aslk-design" id="toc-sec-aslk-design" class="nav-link" data-scroll-target="#sec-aslk-design"><span class="header-section-number">12.1</span> ASLK Pro Experiment 4 Implementation</a>
   <ul class="collapse">
-  <li><a href="#ideal-circuit-design-aslk" id="toc-ideal-circuit-design-aslk" class="nav-link" data-scroll-target="#ideal-circuit-design-aslk"><span class="header-section-number">9.1.1</span> Ideal Circuit Design (ASLK)</a></li>
-  <li><a href="#real-circuit-design-aslk" id="toc-real-circuit-design-aslk" class="nav-link" data-scroll-target="#real-circuit-design-aslk"><span class="header-section-number">9.1.2</span> Real Circuit Design (ASLK)</a></li>
+  <li><a href="#ideal-circuit-design-aslk" id="toc-ideal-circuit-design-aslk" class="nav-link" data-scroll-target="#ideal-circuit-design-aslk"><span class="header-section-number">12.1.1</span> Ideal Circuit Design (ASLK)</a></li>
+  <li><a href="#real-circuit-design-aslk" id="toc-real-circuit-design-aslk" class="nav-link" data-scroll-target="#real-circuit-design-aslk"><span class="header-section-number">12.1.2</span> Real Circuit Design (ASLK)</a></li>
   </ul></li>
-  <li><a href="#sec-baker-design" id="toc-sec-baker-design" class="nav-link" data-scroll-target="#sec-baker-design"><span class="header-section-number">9.2</span> Baker Implementation</a>
+  <li><a href="#sec-baker-design" id="toc-sec-baker-design" class="nav-link" data-scroll-target="#sec-baker-design"><span class="header-section-number">12.2</span> Baker Implementation</a>
   <ul class="collapse">
-  <li><a href="#ideal-circuit-design-baker" id="toc-ideal-circuit-design-baker" class="nav-link" data-scroll-target="#ideal-circuit-design-baker"><span class="header-section-number">9.2.1</span> Ideal Circuit Design (Baker)</a></li>
-  <li><a href="#real-circuit-design-baker" id="toc-real-circuit-design-baker" class="nav-link" data-scroll-target="#real-circuit-design-baker"><span class="header-section-number">9.2.2</span> Real Circuit Design (Baker)</a></li>
+  <li><a href="#ideal-circuit-design-baker" id="toc-ideal-circuit-design-baker" class="nav-link" data-scroll-target="#ideal-circuit-design-baker"><span class="header-section-number">12.2.1</span> Ideal Circuit Design (Baker)</a></li>
+  <li><a href="#real-circuit-design-baker" id="toc-real-circuit-design-baker" class="nav-link" data-scroll-target="#real-circuit-design-baker"><span class="header-section-number">12.2.2</span> Real Circuit Design (Baker)</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#sec-layout" id="toc-sec-layout" class="nav-link" data-scroll-target="#sec-layout"><span class="header-section-number">10</span> Layout</a>
+  <li><a href="#sec-layout" id="toc-sec-layout" class="nav-link" data-scroll-target="#sec-layout"><span class="header-section-number">13</span> Layout</a>
   <ul class="collapse">
-  <li><a href="#workflow-in-klayout" id="toc-workflow-in-klayout" class="nav-link" data-scroll-target="#workflow-in-klayout"><span class="header-section-number">10.1</span> Workflow in KLayout</a></li>
-  <li><a href="#differences-to-discrete-layout-process" id="toc-differences-to-discrete-layout-process" class="nav-link" data-scroll-target="#differences-to-discrete-layout-process"><span class="header-section-number">10.2</span> Differences to discrete layout process</a></li>
+  <li><a href="#workflow-in-klayout" id="toc-workflow-in-klayout" class="nav-link" data-scroll-target="#workflow-in-klayout"><span class="header-section-number">13.1</span> Workflow in KLayout</a></li>
+  <li><a href="#differences-to-discrete-layout-process" id="toc-differences-to-discrete-layout-process" class="nav-link" data-scroll-target="#differences-to-discrete-layout-process"><span class="header-section-number">13.2</span> Differences to discrete layout process</a></li>
   </ul></li>
-  <li><a href="#sec-challenges" id="toc-sec-challenges" class="nav-link" data-scroll-target="#sec-challenges"><span class="header-section-number">11</span> Challenges</a>
+  <li><a href="#sec-challenges" id="toc-sec-challenges" class="nav-link" data-scroll-target="#sec-challenges"><span class="header-section-number">14</span> Challenges</a>
   <ul class="collapse">
-  <li><a href="#circuit-design" id="toc-circuit-design" class="nav-link" data-scroll-target="#circuit-design"><span class="header-section-number">11.1</span> Circuit Design</a></li>
-  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">11.2</span> Layout</a>
+  <li><a href="#circuit-design" id="toc-circuit-design" class="nav-link" data-scroll-target="#circuit-design"><span class="header-section-number">14.1</span> Circuit Design</a></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">14.2</span> Layout</a>
   <ul class="collapse">
-  <li><a href="#import-spice-function" id="toc-import-spice-function" class="nav-link" data-scroll-target="#import-spice-function"><span class="header-section-number">11.2.1</span> Import SPICE function</a></li>
-  <li><a href="#lvs" id="toc-lvs" class="nav-link" data-scroll-target="#lvs"><span class="header-section-number">11.2.2</span> LVS</a></li>
+  <li><a href="#import-spice-function" id="toc-import-spice-function" class="nav-link" data-scroll-target="#import-spice-function"><span class="header-section-number">14.2.1</span> Import SPICE function</a></li>
+  <li><a href="#lvs" id="toc-lvs" class="nav-link" data-scroll-target="#lvs"><span class="header-section-number">14.2.2</span> LVS</a></li>
   </ul></li>
-  <li><a href="#time-constraints" id="toc-time-constraints" class="nav-link" data-scroll-target="#time-constraints"><span class="header-section-number">11.3</span> Time Constraints</a></li>
+  <li><a href="#time-constraints" id="toc-time-constraints" class="nav-link" data-scroll-target="#time-constraints"><span class="header-section-number">14.3</span> Time Constraints</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">12</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">15</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/amcd/edit/main/prj/elie2/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/amcd/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Summer 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie2/index.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../prj/elie1/index.html">Projects 2025</a></li><li class="breadcrumb-item"><a href="../../prj/elie2/index.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></h1>
 </div>
 
 
@@ -388,8 +417,8 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Introduction</h1>
+<section id="introduction" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Introduction</h1>
 <p>Integrated circuits (ICs) have become indispensable in modern electronic systems owing to their compact form factor and reduced power consumption relative to discrete implementations, like PCBs. In this work, we present the design and realization of a biquad filter employing open-source tools, like Xschem. The following documentation details the methodologies and development steps undertaken throughout the filter’s implementation.</p>
 <p>This project is part of the Electronics Engineering (M. Sc.) course “Analogue and Mixed-Signal Circuit Design” at Hochschule Bremen City University of Applied Sciences (HSB).</p>
 <p>The Filter consists of four filter-types: Band-Pass, Low-Pass, High-Pass, and Band-Stop. Each realized with OpAmps (Operational Amplifiers).</p>
@@ -397,11 +426,11 @@ window.Quarto = {
 <p>Since we as student development team had a course regarding the same filter-circuit in our Bachelors, creating a PCB-Design, several differences appear when designing an integrated circuit instead of a PCB-Layout:<br>
 In a PCB design, each resistor, capacitor or operational amplifier is an individual component whose behavior are determined by packaging and board-level routing. Traces can be routed over multiple layers and adjusted or re-routed quickly to correct errors, and heat dissipation is managed by copper pours, thermal vias and component placement. Manufacturing can be done faster, easier and cheaper, sometimes even in-house with the right tools.</p>
 <p>An IC implementation must realize all passive and active elements in silicon, with component values depend on device geometry and process parameters rather than off-the-shelf parts. Layout constraints are far tighter, interconnect parasitics, device matching and substrate coupling must be considered. Thermal dissipation spreads through the silicon substrate. Because tape-outs require weeks or months, first-pass correctness is essential, and extensive device modeling, parasitic extraction and layout automation are required to achieve the target filter response on chip.</p>
-<p>The basic specifications are listed below in <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>5.1</span></a>:</p>
+<p>The basic specifications are listed below in <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>8.1</span></a>:</p>
 <div id="tbl-design_specs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-design_specs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.1: Design Specification for Biquad Filter
+Table&nbsp;8.1: Design Specification for Biquad Filter
 </figcaption>
 <div aria-describedby="tbl-design_specs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -441,8 +470,8 @@ Table&nbsp;5.1: Design Specification for Biquad Filter
 <p><strong>Note:</strong> This documentation details our development process during our Master’s Course, but does <strong>not</strong> include an actual tape-out or fabricated silicon. We happily invite the open-source community to enhance our work by adding features, extend it, fix errors or even complete the full design process.</p>
 </blockquote>
 </section>
-<section id="sec-env" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Creating the Development Environment</h1>
+<section id="sec-env" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Creating the Development Environment</h1>
 <p>The basic environment is accessed within a docker container. Therefore, “Docker Desktop” should be installed. In addition, “Git” is needed to download the container to the own machine. Optional “Tortoise Git” can be used for easier, and more intuitive handling of Git. For Windows Machines, installing WSL is recommended.</p>
 <p><strong>Used Programs on own Machine:</strong></p>
 <ul>
@@ -458,8 +487,8 @@ Table&nbsp;5.1: Design Specification for Biquad Filter
 <li>NGSpice</li>
 <li>Xschem</li>
 </ul>
-<section id="installing-the-container" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="installing-the-container"><span class="header-section-number">6.1</span> Installing the Container</h2>
+<section id="installing-the-container" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="installing-the-container"><span class="header-section-number">9.1</span> Installing the Container</h2>
 <p>To create the Docker container, a Git repository needs to be cloned. For this purpose a dedicated folder (named: eda) needs to be created. Inside this dedicated folder the repository “<a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS</a>” with the main branch <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>.</p>
 <p>After cloning, the folder structure is extended with our subdivision for the different development stages to:</p>
 <ul>
@@ -491,22 +520,22 @@ Table&nbsp;5.1: Design Specification for Biquad Filter
 <p>The full process for setting up the design environment is described at the Git-repository IIC-OSIC-TOOLS.</p>
 </section>
 </section>
-<section id="circuit-schematic" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Circuit Schematic</h1>
+<section id="circuit-schematic" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Circuit Schematic</h1>
 <p>After the configuration of our work machines we want to create our filter design with an existing Circuit-Schematic from “Analog System Lab Kit Pro Manual”.</p>
 <p>The used Circuit is based on ALSK Pro Experiment 4. This active filter uses 4 OP-Amps <span class="citation" data-cites="AnalogSystemLabKitPROMANUAL"><a href="../../references.html#ref-AnalogSystemLabKitPROMANUAL" role="doc-biblioref">[2]</a></span>:</p>
 <!-- ![ALSK Pro Circuit Schematic](images/ALSK_Biquad_Circuit.png) {fig-align="center" fig-cap="ALSK Pro Circuit Schematic" #fig-biquad-aslkPRO} -->
-<div id="fig-biquad-aslkPRO" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="ASLK Pro Circuit Schematic" data-fig-align="center">
+<div id="fig-biquad-aslkPRO" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="ASLK Pro Circuit Schematic">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-biquad-aslkPRO-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ALSK_Biquad_Circuit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="ASLK Pro Circuit Schematic">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biquad-aslkPRO-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: ASLK Pro Circuit Schematic
+Figure&nbsp;10.1: ASLK Pro Circuit Schematic
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> shows a reference potential at the output of each of the following filters, with following meanings:</p>
+<p><a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> shows a reference potential at the output of each of the following filters, with following meanings:</p>
 <ul>
 <li><strong>BPF</strong>: Band-Pass Filter</li>
 <li><strong>LPF</strong>: Low-Pass Filter</li>
@@ -514,7 +543,7 @@ Figure&nbsp;7.1: ASLK Pro Circuit Schematic
 <li><strong>BSF</strong>: Band-Stop Filter</li>
 </ul>
 <p>Additionally, a fixed resistance <span class="math inline">\(R\)</span> and capacitor <span class="math inline">\(C\)</span> is used for most parts. An exception can be seen at the negative input of the BSF-OP-Amp: First there is a resistor labeled with <span class="math inline">\(Q \cdot R\)</span>, as well as a resistor labeled <span class="math inline">\(R / H_0\)</span> below. For these resistors the resistance must be the value given by the mathematical relation given by each label and the fixed <span class="math inline">\(R\)</span> used in the other resistors: <span class="math inline">\(Q \cdot R\)</span> is used the set the quality factor <span class="math inline">\(Q\)</span>, and <span class="math inline">\(H_0\)</span> is used as the low frequency gain of the transfer functions.<br> The quality factor <span class="math inline">\(Q\)</span> controls the damping and thus the filter’s bandwidth. A higher <span class="math inline">\(Q\)</span> yields a narrower passband with a sharper peak at the resonance frequency, while a lower <span class="math inline">\(Q\)</span> produces a broader, more heavily damped response.<br> The parameter <span class="math inline">\(H_0\)</span> establishes the DC gain, scaling the low-frequency amplitude and thereby setting the overall output level of all four filter responses.</p>
-<div id="56cfdc2c" class="cell" data-execution_count="1">
+<div id="b79cbde3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -593,16 +622,16 @@ The first figure shows the low-pass response for several different <span class="
 </ul>
 <p>In each case, <span class="math inline">\(Q\)</span> determines how sharply the filter transitions around its critical frequencies (i.e.&nbsp;the <span class="math inline">\(-3~\text{dB}\)</span> cutoff points), defining whether the filter is highly selective or more broadly tuned.</p>
 <p>Below, in the second Figure illustrates how varying the DC pass-band gain <span class="math inline">\(H_0\)</span> simply shifts the entire magnitude response up or down without changing its center frequency or bandwidth. <span class="math inline">\(H_0\)</span> sets the absolute gain level in the pass-band. Higher, <span class="math inline">\(H_0\)</span> increases overall amplitude, lower <span class="math inline">\(H_0\)</span> attenuates it, while leaving the filter’s shape determined by <span class="math inline">\(f_0\)</span> and <span class="math inline">\(Q\)</span> intact.</p>
-<section id="operational-amplifier" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="operational-amplifier"><span class="header-section-number">7.1</span> Operational Amplifier</h2>
-<p>The circuit of the biquad filter in <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> consists of 4 OpAmps, with two integrators (BPF, LPF) and two adders (HPF, BSF). Since these aren’t finished parts for the circuit (unlike at PCB-Design), the OpAmps need to be as well. For this purpose OTA (operational-transconductance amplifier) are used. These can bee seen in following Figure <span class="citation" data-cites="razaviDesignAnalogCMOS2017"><a href="../../references.html#ref-razaviDesignAnalogCMOS2017" role="doc-biblioref">[3]</a></span>:</p>
-<div id="fig-OpAmpStages" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Stages inside an OpAmp" data-fig-align="center">
+<section id="operational-amplifier" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="operational-amplifier"><span class="header-section-number">10.1</span> Operational Amplifier</h2>
+<p>The circuit of the biquad filter in <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> consists of 4 OpAmps, with two integrators (BPF, LPF) and two adders (HPF, BSF). Since these aren’t finished parts for the circuit (unlike at PCB-Design), the OpAmps need to be as well. For this purpose OTA (operational-transconductance amplifier) are used. These can bee seen in following Figure <span class="citation" data-cites="razaviDesignAnalogCMOS2017"><a href="../../references.html#ref-razaviDesignAnalogCMOS2017" role="doc-biblioref">[3]</a></span>:</p>
+<div id="fig-OpAmpStages" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Stages inside an OpAmp">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-OpAmpStages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/InternalOpAmp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Stages inside an OpAmp">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OpAmpStages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.2: Internal Stages of 5T-OTA
+Figure&nbsp;10.2: Internal Stages of 5T-OTA
 </figcaption>
 </figure>
 </div>
@@ -616,8 +645,8 @@ Figure&nbsp;7.2: Internal Stages of 5T-OTA
 At the Differential Amplifier the small input voltage difference is converted into currents.<br>
 Lastly the Current Source supplies a constant bias current to set the transconductance.</p>
 </section>
-<section id="transfer-functions" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="transfer-functions"><span class="header-section-number">7.2</span> Transfer Functions</h2>
+<section id="transfer-functions" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="transfer-functions"><span class="header-section-number">10.2</span> Transfer Functions</h2>
 <p>Each of the filters can be expressed by their transfer function for further analysis. In the following transfer functions:</p>
 <ul>
 <li><span class="math inline">\(s\)</span> is the complex Laplace variable<br>
@@ -697,13 +726,13 @@ H(s) = H_0 \frac{b_2 \,\frac{s^2}{\omega_0^2} + b_1 \,\frac{s}{\omega_0} + b_0}
 </table>
 </section>
 </section>
-<section id="sec-filter" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Filter Design</h1>
-<p>Based on specification from <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>5.1</span></a> and <span class="math inline">\(\omega = 2 \pi \cdot f_0\)</span> needs to be used, therefore not needing to specify part specifications for resistors and capacitors. This will be done in <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 9</span></a>.</p>
-<section id="sec-bode" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="sec-bode"><span class="header-section-number">8.1</span> Bode Plot</h2>
+<section id="sec-filter" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Filter Design</h1>
+<p>Based on specification from <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>8.1</span></a> and <span class="math inline">\(\omega = 2 \pi \cdot f_0\)</span> needs to be used, therefore not needing to specify part specifications for resistors and capacitors. This will be done in <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<section id="sec-bode" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sec-bode"><span class="header-section-number">11.1</span> Bode Plot</h2>
 <p>To validate the four filter types with selected values, a Bode Plot is created by showing magnitude and phase in over a bandwidth with <span class="math inline">\(0 \leq f \leq 3~\text{kHz}\)</span>:</p>
-<div id="94866550" class="cell" data-execution_count="2">
+<div id="a0eac1e1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -838,10 +867,10 @@ H(s) = H_0 \frac{b_2 \,\frac{s^2}{\omega_0^2} + b_1 \,\frac{s}{\omega_0} + b_0}
 <p>At <span class="math inline">\(f_0\)</span> the gain of <span class="math inline">\(Q=10\)</span> (equals <span class="math inline">\(20~\text{dB}\)</span>) can be seen for LPF, BPF, HPF, and a notch for BSF. This demonstrates the desired behavior of the biquad Filter.<br>
 The phase shift at <span class="math inline">\(f_0\)</span> of BSF and LP are the smallest (ca. <span class="math inline">\(-25°\)</span>), with BPF being at around <span class="math inline">\(-110°\)</span>, and HP the highest phase shift with <span class="math inline">\(155°\)</span>.</p>
 </section>
-<section id="polezero-analysis" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="polezero-analysis"><span class="header-section-number">8.2</span> Pole–Zero Analysis</h2>
+<section id="polezero-analysis" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="polezero-analysis"><span class="header-section-number">11.2</span> Pole–Zero Analysis</h2>
 <p>By analyzing the poles and zeroes of each, the filters can be confirmed, if locations of poles and zeroes match each Filter-type.</p>
-<div id="c2e2a399" class="cell" data-execution_count="3">
+<div id="448a0736" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.signal <span class="im">import</span> freqs</span>
@@ -956,13 +985,13 @@ The phase shift at <span class="math inline">\(f_0\)</span> of BSF and LP are th
 <span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_8084/811226949.py:86: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "b" (-&gt; color=(0.0, 0.0, 1.0, 1)). The keyword argument will take precedence.
+<pre><code>/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_5009/811226949.py:86: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "b" (-&gt; color=(0.0, 0.0, 1.0, 1)). The keyword argument will take precedence.
   axes2[0,0].semilogx(f, db_LP, 'b', linewidth=1.5, color="blue")
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_8084/811226949.py:92: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "r" (-&gt; color=(1.0, 0.0, 0.0, 1)). The keyword argument will take precedence.
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_5009/811226949.py:92: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "r" (-&gt; color=(1.0, 0.0, 0.0, 1)). The keyword argument will take precedence.
   axes2[0,1].semilogx(f, db_HP, 'r', linewidth=1.5, color="orange")
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_8084/811226949.py:98: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "m" (-&gt; color=(0.75, 0.0, 0.75, 1)). The keyword argument will take precedence.
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_5009/811226949.py:98: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "m" (-&gt; color=(0.75, 0.0, 0.75, 1)). The keyword argument will take precedence.
   axes2[1,0].semilogx(f, db_BP, 'm', linewidth=1.5, color="green")
-/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_8084/811226949.py:104: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "g" (-&gt; color=(0.0, 0.5, 0.0, 1)). The keyword argument will take precedence.
+/var/folders/bs/dl5x4l2n6xv6ywrg8knjtw440000gn/T/ipykernel_5009/811226949.py:104: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "g" (-&gt; color=(0.0, 0.5, 0.0, 1)). The keyword argument will take precedence.
   axes2[1,1].semilogx(f, db_BS, 'g', linewidth=1.5, color="red")</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -982,13 +1011,13 @@ The phase shift at <span class="math inline">\(f_0\)</span> of BSF and LP are th
 </div>
 <p>The script uses <code>freqs()</code> of the SciPy toolbox to convert numerator and denominator coefficient vectors into frequency responses, confirming further the Filter by analyzing poles and zeroes.<br>
 No finite zeros for the Low-Pass, a double zero at <span class="math inline">\(s=0\)</span> for the High-Pass, a single zero at the origin for the Band-Pass, and conjugate zeros at the left half for the band-stop.<br>
-This shows similar locations, comparing poles/zeroes to typical second order filters <span class="citation" data-cites="zumbahlenBasicLinearDesign2007"><a href="../../references.html#ref-zumbahlenBasicLinearDesign2007" role="doc-biblioref">[4]</a></span>. Also creating plots based on the numerator and denumerator creates similar magnitude responses (Second Figure) similar to <a href="#sec-bode" class="quarto-xref"><span>Section 8.1</span></a>.</p>
+This shows similar locations, comparing poles/zeroes to typical second order filters <span class="citation" data-cites="zumbahlenBasicLinearDesign2007"><a href="../../references.html#ref-zumbahlenBasicLinearDesign2007" role="doc-biblioref">[4]</a></span>. Also creating plots based on the numerator and denumerator creates similar magnitude responses (Second Figure) similar to <a href="#sec-bode" class="quarto-xref"><span>Section 11.1</span></a>.</p>
 </section>
-<section id="impulse-step-response" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="impulse-step-response"><span class="header-section-number">8.3</span> Impulse / Step Response</h2>
+<section id="impulse-step-response" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="impulse-step-response"><span class="header-section-number">11.3</span> Impulse / Step Response</h2>
 <p>In this section time-domain simulations are created. Namely, impulse and step responses of each second-order filter are plotted so it can be observed how they react to sudden inputs.<br>
 Running the four transfer-function models through SciPy’s LTI routines produces following two Figures with 2x2 subplots:</p>
-<div id="b6ce789e" class="cell" data-execution_count="4">
+<div id="1176e124" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.signal <span class="im">import</span> TransferFunction, impulse, step</span>
@@ -1121,7 +1150,7 @@ Note
 <p>The ´:::´ displayed between this note and the plots is a bug occurring when using python-code inside a collapsable text block. Please ignore it.</p>
 </div>
 </div>
-<div id="305f6606" class="cell" data-execution_count="5">
+<div id="eaa2da96" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.signal <span class="im">import</span> TransferFunction, impulse, step</span>
@@ -1219,24 +1248,24 @@ Note
 </details>
 </section>
 </section>
-<section id="sec-circuit-design" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Circuit Design</h1>
-<p>To implement the desired behavior of the biquad circuit described in the previous chapter <a href="#sec-filter" class="quarto-xref"><span>Chapter 8</span></a> into an integrated circuit design, an ideal biquad (<a href="#fig-ideal_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>) is first created in <a href="#sec-aslk-design" class="quarto-xref"><span>Section 9.1</span></a>. This serves to validate the expected behavior. Once this validation is successful, the ideal operational amplifiers (op-amps) can be replaced with real op-amps or Operational-Transconductance-Amplifiers (OTAs). In our case, the ideal op-amps were initially replaced with the “improved OTAs” (<a href="#fig-real_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>9.3</span></a>) developed by Prof.&nbsp;Pretl <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>. However, since these did not reproduce the desired behavior after several attempts (<a href="#sec-challenges" class="quarto-xref"><span>Chapter 11</span></a>), a new biquad structure based on Baker <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span> in <a href="#sec-baker-design" class="quarto-xref"><span>Section 9.2</span></a> was developed. Again, an ideal circuit using ideal OTAs was first implemented (<a href="#fig-ideal_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>9.7</span></a>). After successfully validating the desired behavior, the ideal OTAs were replaced with a real transistor-level circuit (<a href="#fig-real_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>9.10</span></a>). This biquad was then further adjusted to qualitatively achieve the desired behavior.</p>
+<section id="sec-circuit-design" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Circuit Design</h1>
+<p>To implement the desired behavior of the biquad circuit described in the previous chapter <a href="#sec-filter" class="quarto-xref"><span>Chapter 11</span></a> into an integrated circuit design, an ideal biquad (<a href="#fig-ideal_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>) is first created in <a href="#sec-aslk-design" class="quarto-xref"><span>Section 12.1</span></a>. This serves to validate the expected behavior. Once this validation is successful, the ideal operational amplifiers (op-amps) can be replaced with real op-amps or Operational-Transconductance-Amplifiers (OTAs). In our case, the ideal op-amps were initially replaced with the “improved OTAs” (<a href="#fig-real_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>) developed by Prof.&nbsp;Pretl <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>. However, since these did not reproduce the desired behavior after several attempts (<a href="#sec-challenges" class="quarto-xref"><span>Chapter 14</span></a>), a new biquad structure based on Baker <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span> in <a href="#sec-baker-design" class="quarto-xref"><span>Section 12.2</span></a> was developed. Again, an ideal circuit using ideal OTAs was first implemented (<a href="#fig-ideal_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>12.7</span></a>). After successfully validating the desired behavior, the ideal OTAs were replaced with a real transistor-level circuit (<a href="#fig-real_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>12.10</span></a>). This biquad was then further adjusted to qualitatively achieve the desired behavior.</p>
 <p>Due to the complexity of implementing a biquad in the integrated circuit design, the parameters of the circuits provided were rather tested in the simulation process and attempts were made to adapt them so that our requirements could be met. The correct approach would be to mathematically determine the various parameters based on the desired characterization of the filter and then adjust them with small changes towards the end. This includes, for example, the pre-calculation of capacitor sizes as well as the determination of the individual gains of the OTAs and the corresponding design of the W/L ratios of the transistors etc.. In addition, we limit ourselves to the AC simulation in order to be able to better compare our filter behavior. To validate the system correctly, a transient and noise simulation would also have to be carried out.</p>
-<section id="sec-aslk-design" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="sec-aslk-design"><span class="header-section-number">9.1</span> ASLK Pro Experiment 4 Implementation</h2>
+<section id="sec-aslk-design" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="sec-aslk-design"><span class="header-section-number">12.1</span> ASLK Pro Experiment 4 Implementation</h2>
 <p>In the following sections the design following ASLK Pro Experiment 4 <span class="citation" data-cites="AnalogSystemLabKitPROMANUAL"><a href="../../references.html#ref-AnalogSystemLabKitPROMANUAL" role="doc-biblioref">[2]</a></span> is described.</p>
-<section id="ideal-circuit-design-aslk" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="ideal-circuit-design-aslk"><span class="header-section-number">9.1.1</span> Ideal Circuit Design (ASLK)</h3>
+<section id="ideal-circuit-design-aslk" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="ideal-circuit-design-aslk"><span class="header-section-number">12.1.1</span> Ideal Circuit Design (ASLK)</h3>
 <p>As an initial step in the development of the universal biquad filter, an ideal version of the circuit was implemented based on “ALSK Pro Experiment 4”, as described in <span class="citation" data-cites="AnalogSystemLabKitPROMANUAL"><a href="../../references.html#ref-AnalogSystemLabKitPROMANUAL" role="doc-biblioref">[2]</a></span>. The objective was to validate the theoretical filter behavior before moving on to a transistor-level implementation.</p>
 <p>The circuit was built using Xschem and employs an ideal operational amplifier, provided as a .subckt SPICE model by Prof.&nbsp;Meiners. This model is named opamp1 and was integrated into the project directory under 2_ideal_cir. To include the model in Xschem, a .lib directive was used to reference the netlist, and care was taken to ensure the symbol pin configuration matched the subcircuit definition.</p>
-<div id="fig-ideal_Circuit_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem" data-fig-align="center">
+<div id="fig-ideal_Circuit_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ideal_Circuit_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ideal_cir_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal_Circuit_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.1: Ideal circuit of the ASLK biquad filter in Xschem (2_ideal_cir/toplevel.sch)
+Figure&nbsp;12.1: Ideal circuit of the ASLK biquad filter in Xschem (2_ideal_cir/toplevel.sch)
 </figcaption>
 </figure>
 </div>
@@ -1247,7 +1276,7 @@ Figure&nbsp;9.1: Ideal circuit of the ASLK biquad filter in Xschem (2_ideal_cir/
 <li><strong>HPF</strong>: High-Pass Filter</li>
 <li><strong>BSF</strong>: Band-Stop Filter</li>
 </ul>
-<p>Each stage is realized using a dedicated instance of the ideal op-amp. The resistor and capacitor values are defined in a SPICE-compatible .param statement in params.txt, which was loaded within the schematic environment. These parameters were derived from the characterization goals described in <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>5.1</span></a>:</p>
+<p>Each stage is realized using a dedicated instance of the ideal op-amp. The resistor and capacitor values are defined in a SPICE-compatible .param statement in params.txt, which was loaded within the schematic environment. These parameters were derived from the characterization goals described in <a href="#tbl-design_specs" class="quarto-xref">Table&nbsp;<span>8.1</span></a>:</p>
 <ul>
 <li><strong>Center frequency</strong>: <span class="math inline">\(f_0 = 1~\mathrm{kHz}\)</span></li>
 <li><strong>Quality factor</strong>: <span class="math inline">\(Q=10\)</span></li>
@@ -1271,7 +1300,7 @@ f_0 = 1\ \text{kHz},
 C = 100\ \text{nF},
 \]</span></p>
 <p>we get:</p>
-<div id="f8725435" class="cell" data-execution_count="6">
+<div id="66bd87f3" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1308,235 +1337,235 @@ Rounded: R = 1.59 kΩ</code></pre>
 <img src="images/Plot_EvalDesign_V1_ideal.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal_biquad_V1_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.2: Results of the ideal ALSK biquad filter
+Figure&nbsp;12.2: Results of the ideal ALSK biquad filter
 </figcaption>
 </figure>
 </div>
-<p>The <a href="#fig-ideal_biquad_V1_results" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> above shows the simulated behavior of the ideal biquad and the previously calculated theoretical curve. It can be seen that the ideal simulated biquad (red dashed line) corresponds well with the theory in the frequency responses of the four filter types. The peaks are somewhat weaker in the simulation than in theory. There are also differences in the phase response, for example the phase in the BSF, it’s shifted by <span class="math inline">\(180°\)</span>.</p>
+<p>The <a href="#fig-ideal_biquad_V1_results" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> above shows the simulated behavior of the ideal biquad and the previously calculated theoretical curve. It can be seen that the ideal simulated biquad (red dashed line) corresponds well with the theory in the frequency responses of the four filter types. The peaks are somewhat weaker in the simulation than in theory. There are also differences in the phase response, for example the phase in the BSF, it’s shifted by <span class="math inline">\(180°\)</span>.</p>
 </section>
-<section id="real-circuit-design-aslk" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="real-circuit-design-aslk"><span class="header-section-number">9.1.2</span> Real Circuit Design (ASLK)</h3>
-<p>As the ideal circuit has already been validated, it can now be implemented in the real circuit. To do this, the ideal OPAMPs were first replaced by the 5T-OTA from Pretl, but as their behavior was not convincing, we switched to the improved OTAs from Prof Pretl’s repository <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>. It’s shown in the <a href="#fig-real_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> below.</p>
-<div id="fig-real_Circuit_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Real circuit of second order Biquad Filter in Xschem" data-fig-align="center">
+<section id="real-circuit-design-aslk" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="real-circuit-design-aslk"><span class="header-section-number">12.1.2</span> Real Circuit Design (ASLK)</h3>
+<p>As the ideal circuit has already been validated, it can now be implemented in the real circuit. To do this, the ideal OPAMPs were first replaced by the 5T-OTA from Pretl, but as their behavior was not convincing, we switched to the improved OTAs from Prof Pretl’s repository <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>. It’s shown in the <a href="#fig-real_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> below.</p>
+<div id="fig-real_Circuit_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Real circuit of second order Biquad Filter in Xschem">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/real_cir_biquad_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Real circuit of second order Biquad Filter in Xschem">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.3: Real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad.sch)
+Figure&nbsp;12.3: Real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad.sch)
 </figcaption>
 </figure>
 </div>
-<p>Compared to the ideal circuit (<a href="#fig-ideal_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>), it is noticeable that the OTAs now have the voltage inputs vdd, vss, d_ena and the current input ibias.</p>
-<p>The following transistor circuit in <a href="#fig-real_Circuit_ota_v1" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> is located in the respective improved OTAs. These transistors then had to be adapted accordingly to our desired filter behavior. The “sizing tool” for the improved OTA from Prof.&nbsp;Pretl’s Analog Circuit Design lecture material <span class="citation" data-cites="pretl2024"><a href="../../references.html#ref-pretl2024" role="doc-biblioref">[6]</a></span> was used for this. It quickly became apparent that the current becomes very high with high capacitive loads. The capacitance of the capacitors was therefore reduced from <span class="math inline">\(100~\mathrm{nF}\)</span> to <span class="math inline">\(100~\mathrm{pF}\)</span>. In order to remain at a center frequency of <span class="math inline">\(f_0=1~\mathrm{kHz}\)</span>, the resistance value had to be increased accordingly from <span class="math inline">\(1.59~\mathrm{k\Omega}\)</span> to <span class="math inline">\(1.59~\mathrm{M\Omega}\)</span>. The sizing carried out can be found in the project directory (3_real_cir/sizing/sizing_improved_ota.ipynb).</p>
-<div id="fig-real_Circuit_ota_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Transistor circuit of Pretl's improved OTA in Xschem, (ota_improved.sch)" data-fig-align="center">
+<p>Compared to the ideal circuit (<a href="#fig-ideal_Circuit_v1" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>), it is noticeable that the OTAs now have the voltage inputs vdd, vss, d_ena and the current input ibias.</p>
+<p>The following transistor circuit in <a href="#fig-real_Circuit_ota_v1" class="quarto-xref">Figure&nbsp;<span>12.4</span></a> is located in the respective improved OTAs. These transistors then had to be adapted accordingly to our desired filter behavior. The “sizing tool” for the improved OTA from Prof.&nbsp;Pretl’s Analog Circuit Design lecture material <span class="citation" data-cites="pretl2024"><a href="../../references.html#ref-pretl2024" role="doc-biblioref">[6]</a></span> was used for this. It quickly became apparent that the current becomes very high with high capacitive loads. The capacitance of the capacitors was therefore reduced from <span class="math inline">\(100~\mathrm{nF}\)</span> to <span class="math inline">\(100~\mathrm{pF}\)</span>. In order to remain at a center frequency of <span class="math inline">\(f_0=1~\mathrm{kHz}\)</span>, the resistance value had to be increased accordingly from <span class="math inline">\(1.59~\mathrm{k\Omega}\)</span> to <span class="math inline">\(1.59~\mathrm{M\Omega}\)</span>. The sizing carried out can be found in the project directory (3_real_cir/sizing/sizing_improved_ota.ipynb).</p>
+<div id="fig-real_Circuit_ota_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Transistor circuit of Pretl's improved OTA in Xschem, (ota_improved.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_ota_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ota-improved.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Transistor circuit of Pretl's improved OTA in Xschem, (ota_improved.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_ota_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.4: Improved OTA of Prof.&nbsp;Pretl in Xschem (3_real_cir/ota_improved.sch)
+Figure&nbsp;12.4: Improved OTA of Prof.&nbsp;Pretl in Xschem (3_real_cir/ota_improved.sch)
 </figcaption>
 </figure>
 </div>
 <p>The individual transistors are IHP’s SG13G2 130nm CMOS Technology. A bias current of <span class="math inline">\(25~\micro\mathrm{A}\)</span> was determined by sizing. In addition, the voltages <span class="math inline">\(vdd = 1.5~\mathrm{V}\)</span>, <span class="math inline">\(vss = 0~\mathrm{V}\)</span> and <span class="math inline">\(ena = 1.5~\mathrm{V}\)</span> are required.</p>
-<p>To simplify the setting of the input variables, a test bench was also created for the entire circuit, which is seen in <a href="#fig-real_Circuit_tb_v1" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>.</p>
-<div id="fig-real_Circuit_tb_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_tb.sch)" data-fig-align="center">
+<p>To simplify the setting of the input variables, a test bench was also created for the entire circuit, which is seen in <a href="#fig-real_Circuit_tb_v1" class="quarto-xref">Figure&nbsp;<span>12.5</span></a>.</p>
+<div id="fig-real_Circuit_tb_v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_tb.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_tb_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/real_cir_tb_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_tb.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_tb_v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.5: Testbench for the real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad_tb.sch)
+Figure&nbsp;12.5: Testbench for the real circuit of the ASLK biquad filter in Xschem (3_real_cir/biquad_tb.sch)
 </figcaption>
 </figure>
 </div>
-<p>This circuit was then tested with an AC simulation. The result (blue dashed line) can be seen in the <a href="#fig-real_biquad_V1_results" class="quarto-xref">Figure&nbsp;<span>9.6</span></a> below.</p>
+<p>This circuit was then tested with an AC simulation. The result (blue dashed line) can be seen in the <a href="#fig-real_biquad_V1_results" class="quarto-xref">Figure&nbsp;<span>12.6</span></a> below.</p>
 <div id="fig-real_biquad_V1_results" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_biquad_V1_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Plot_EvalDesign_V1_real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_biquad_V1_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.6: Results of the real ALSK biquad filter
+Figure&nbsp;12.6: Results of the real ALSK biquad filter
 </figcaption>
 </figure>
 </div>
 <p>It can be seen that the desired behavior could not be reproduced. One of the reasons for this is that this type of OTA cannot drive the required current.</p>
 </section>
 </section>
-<section id="sec-baker-design" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-baker-design"><span class="header-section-number">9.2</span> Baker Implementation</h2>
+<section id="sec-baker-design" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-baker-design"><span class="header-section-number">12.2</span> Baker Implementation</h2>
 <p>As the desired behavior could not be reproduced, a new variant of a biquad was tried out. In this case, we cosntructed a biquad circuit according to Baker <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span> in the following sections. The design process remains the same as the previous one.</p>
-<section id="ideal-circuit-design-baker" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="ideal-circuit-design-baker"><span class="header-section-number">9.2.1</span> Ideal Circuit Design (Baker)</h3>
-<p>Here, too, an ideal circuit, which is seen in <a href="#fig-ideal_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>9.7</span></a>, was first constructed according to figure 3.53 in Baker’s bool <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5, p. 115]</a></span>.</p>
-<div id="fig-ideal_Circuit_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)" data-fig-align="center">
+<section id="ideal-circuit-design-baker" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="ideal-circuit-design-baker"><span class="header-section-number">12.2.1</span> Ideal Circuit Design (Baker)</h3>
+<p>Here, too, an ideal circuit, which is seen in <a href="#fig-ideal_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>12.7</span></a>, was first constructed according to figure 3.53 in Baker’s bool <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5, p. 115]</a></span>.</p>
+<div id="fig-ideal_Circuit_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ideal_Circuit_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/biquad_gm_c_V2_ideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal_Circuit_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.7: Ideal circuit of the Baker biquad filter in Xschem (2_ideal_cir/biquad_gm_c.sch)
+Figure&nbsp;12.7: Ideal circuit of the Baker biquad filter in Xschem (2_ideal_cir/biquad_gm_c.sch)
 </figcaption>
 </figure>
 </div>
-<p>The OTAs used have the ideal internal circuit shown in the following <a href="#fig-ideal_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>9.8</span></a>, which was provided by Prof Meiners.</p>
-<div id="fig-ideal_Circuit_ota_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Ideal OTA from Prof. Meiners (REF) in Xschem, (ota_gm_100u.sch)" data-fig-align="center">
+<p>The OTAs used have the ideal internal circuit shown in the following <a href="#fig-ideal_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>12.8</span></a>, which was provided by Prof Meiners.</p>
+<div id="fig-ideal_Circuit_ota_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Ideal OTA from Prof. Meiners (REF) in Xschem, (ota_gm_100u.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ideal_Circuit_ota_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ota_gm_100u_V2_ideal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Ideal OTA from Prof. Meiners (REF) in Xschem, (ota_gm_100u.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal_Circuit_ota_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.8: Ideal OTA provided by Prof.&nbsp;Meiners in Xschem (2_ideal_cir/ota_gm_100u.sch)
+Figure&nbsp;12.8: Ideal OTA provided by Prof.&nbsp;Meiners in Xschem (2_ideal_cir/ota_gm_100u.sch)
 </figcaption>
 </figure>
 </div>
-<p>The <a href="#fig-ideal_biquad_V2_results" class="quarto-xref">Figure&nbsp;<span>9.9</span></a> below show that the desired behavior from the AC simulation could be qualitatively reproduced (red dashed line). Compared to the theoretical behavior (green line), the peaks are very weak, but for now it’s okay. This ideal circuit can therefore be transferred to the real circuit.</p>
+<p>The <a href="#fig-ideal_biquad_V2_results" class="quarto-xref">Figure&nbsp;<span>12.9</span></a> below show that the desired behavior from the AC simulation could be qualitatively reproduced (red dashed line). Compared to the theoretical behavior (green line), the peaks are very weak, but for now it’s okay. This ideal circuit can therefore be transferred to the real circuit.</p>
 <div id="fig-ideal_biquad_V2_results" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ideal_biquad_V2_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Plot_EvalDesign_V2_ideal.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal_biquad_V2_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.9: Results of the ideal Baker biquad filter
+Figure&nbsp;12.9: Results of the ideal Baker biquad filter
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="real-circuit-design-baker" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="real-circuit-design-baker"><span class="header-section-number">9.2.2</span> Real Circuit Design (Baker)</h3>
-<p>For the real circuit, this means that the ideal OTAs are first replaced with the real OTAs. This has been done in the <a href="#fig-real_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>9.10</span></a>. It should be recognised that the real OTAs also have a voltage input for vdd and a current input for the bias current i_bias.</p>
-<div id="fig-real_Circuit_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Real circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)" data-fig-align="center">
+<section id="real-circuit-design-baker" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="real-circuit-design-baker"><span class="header-section-number">12.2.2</span> Real Circuit Design (Baker)</h3>
+<p>For the real circuit, this means that the ideal OTAs are first replaced with the real OTAs. This has been done in the <a href="#fig-real_Circuit_V2" class="quarto-xref">Figure&nbsp;<span>12.10</span></a>. It should be recognised that the real OTAs also have a voltage input for vdd and a current input for the bias current i_bias.</p>
+<div id="fig-real_Circuit_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Real circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/biquad_gm_c_V2_real.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Real circuit of second order Biquad Filter in Xschem, (biquad_gm_c.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.10: Real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c.sch)
+Figure&nbsp;12.10: Real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c.sch)
 </figcaption>
 </figure>
 </div>
 <p>It can be seen that these are differential OTAs. These require a positive (vinp) and a negative (vinn) input voltage. As well as a common-mode voltage (vcm). The output of the circuit results from <span class="math inline">\(\mathrm{vout} = \mathrm{outp} - \mathrm{outn}\)</span>.</p>
-<div id="fig-real_Circuit_ota_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Transistor circuit of Baker's OTA (REF) in Xschem, (ota_gm_c.sch)" data-fig-align="center">
+<div id="fig-real_Circuit_ota_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Transistor circuit of Baker's OTA (REF) in Xschem, (ota_gm_c.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_ota_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ota_gm_c_V2_real.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Transistor circuit of Baker's OTA (REF) in Xschem, (ota_gm_c.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_ota_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.11: Real OTA of the Baker biquad filter in Xschem (3_real_cir/ota_gm_c.sch)
+Figure&nbsp;12.11: Real OTA of the Baker biquad filter in Xschem (3_real_cir/ota_gm_c.sch)
 </figcaption>
 </figure>
 </div>
-<p>The transistors in the <a href="#fig-real_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>9.11</span></a> above have also been sized. These were determined according to the formulas of the individual gains from Baker’s document.</p>
+<p>The transistors in the <a href="#fig-real_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>12.11</span></a> above have also been sized. These were determined according to the formulas of the individual gains from Baker’s document.</p>
 <p>Here too, a test bench was created for better adjustment. The capacitor sizes were also specified in this. As mentioned at the beginning of this chapter, these values were determined by testing.</p>
-<div id="fig-real_Circuit_tb_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_gm_c_tb.sch)" data-fig-align="center">
+<div id="fig-real_Circuit_tb_V2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_gm_c_tb.sch)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_Circuit_tb_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/biquad_gm_c_tb_V2_real.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Real circuit Testbench of second order Biquad Filter in Xschem, (biquad_gm_c_tb.sch)">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_Circuit_tb_V2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.12: Testbench for the real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c_tb.sch)
+Figure&nbsp;12.12: Testbench for the real circuit of the Baker biquad filter in Xschem (3_real_cir/biquad_gm_c_tb.sch)
 </figcaption>
 </figure>
 </div>
-<p>The <a href="#fig-real_biquad_V2_results" class="quarto-xref">Figure&nbsp;<span>9.13</span></a> below shows the result of the AC simulation (blue dashed line). It can be seen that we have reached our design frequency around <span class="math inline">\(f_0 = 1~\mathrm{kHz}\)</span>. However, the amplification and attenuation are not as pronounced as in the ideal (red dashed line) or theoretical (green line) case.</p>
+<p>The <a href="#fig-real_biquad_V2_results" class="quarto-xref">Figure&nbsp;<span>12.13</span></a> below shows the result of the AC simulation (blue dashed line). It can be seen that we have reached our design frequency around <span class="math inline">\(f_0 = 1~\mathrm{kHz}\)</span>. However, the amplification and attenuation are not as pronounced as in the ideal (red dashed line) or theoretical (green line) case.</p>
 <div id="fig-real_biquad_V2_results" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-real_biquad_V2_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Plot_EvalDesign_V2_real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real_biquad_V2_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.13: Results of the real Baker biquad filter
+Figure&nbsp;12.13: Results of the real Baker biquad filter
 </figcaption>
 </figure>
 </div>
 </section>
 </section>
 </section>
-<section id="sec-layout" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Layout</h1>
-<p>In <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 9</span></a> the circuit for the biquad filter is designed. As we have seen, there are some differences between the ideal circuit and the real circuit. After matching the filter response of both circuits, we need to layout the circuit. Since the step from ideal circuit to the real circuit took more time than expected due to the challenges described in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 11</span></a>, it was not feasible to do a layout of the described filter. Additionally, the real circuit did not work as expected with the OTA and the improved OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>, a full layout will not be functional, since the OTAs are overloaded. From this outcome we decided to layout the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> to follow the whole design process and gain some experience in the layout process as well.</p>
+<section id="sec-layout" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Layout</h1>
+<p>In <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 12</span></a> the circuit for the biquad filter is designed. As we have seen, there are some differences between the ideal circuit and the real circuit. After matching the filter response of both circuits, we need to layout the circuit. Since the step from ideal circuit to the real circuit took more time than expected due to the challenges described in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 14</span></a>, it was not feasible to do a layout of the described filter. Additionally, the real circuit did not work as expected with the OTA and the improved OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>, a full layout will not be functional, since the OTAs are overloaded. From this outcome we decided to layout the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> to follow the whole design process and gain some experience in the layout process as well.</p>
 <p>The layout was done in <em>KLayout</em> with the use of the <em>IHP sg13g2</em> PDK. In contrast to the layout from the bachelor course ANS, where the same biquad circuit was realized as a discrete PCB with casual <code>TL082</code> OPAMPs, layouting integrated circuits is different to the PCB design.</p>
-<section id="workflow-in-klayout" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="workflow-in-klayout"><span class="header-section-number">10.1</span> Workflow in KLayout</h2>
-<p>In this section the layouting process using <em>KLayout</em> is described. In the first place the different layers will be described, afterward a connection to the discrete layouting process will be drawn. The schematic import from <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 9</span></a> is not directly possible. From this follows, every component need to be added to the layout manually. Later on, from the layout a netlist will be derived and compared to the netlist given by the schematic. This step is called Layout Versus Schematic (LVS).</p>
-<div id="fig-pmos-parts" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Representation of Drain, Source and Gate of a pMOS in KLayout" data-fig-align="center">
+<section id="workflow-in-klayout" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="workflow-in-klayout"><span class="header-section-number">13.1</span> Workflow in KLayout</h2>
+<p>In this section the layouting process using <em>KLayout</em> is described. In the first place the different layers will be described, afterward a connection to the discrete layouting process will be drawn. The schematic import from <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 12</span></a> is not directly possible. From this follows, every component need to be added to the layout manually. Later on, from the layout a netlist will be derived and compared to the netlist given by the schematic. This step is called Layout Versus Schematic (LVS).</p>
+<div id="fig-pmos-parts" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Representation of Drain, Source and Gate of a pMOS in KLayout">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pmos-parts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pmos_parts.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Representation of Drain, Source and Gate of a pMOS in KLayout">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-parts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: Drain, Source and Gate of pMOS in KLayout
+Figure&nbsp;13.1: Drain, Source and Gate of pMOS in KLayout
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> a part of a pMOS is shown. The drain and source contact of this pMOS are blue-colored areas, which represent the Metal1 layer. The drain and source nodes are connected through the green layer, which is the Active layer. The gate is red-colored and represents the GatPoly. All the contacts and the physical construction of the pMOS from <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> are covered in NWell- and pSD-layers. This can be seen in <a href="#fig-pmos-full" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>.</p>
-<div id="fig-pmos-full" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Representation of complete pMOS in KLayout" data-fig-align="center">
+<p>In <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> a part of a pMOS is shown. The drain and source contact of this pMOS are blue-colored areas, which represent the Metal1 layer. The drain and source nodes are connected through the green layer, which is the Active layer. The gate is red-colored and represents the GatPoly. All the contacts and the physical construction of the pMOS from <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> are covered in NWell- and pSD-layers. This can be seen in <a href="#fig-pmos-full" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>.</p>
+<div id="fig-pmos-full" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Representation of complete pMOS in KLayout">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pmos-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pmos_full.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Representation of complete pMOS in KLayout">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: Complete pMOS in KLayout
+Figure&nbsp;13.2: Complete pMOS in KLayout
 </figcaption>
 </figure>
 </div>
-<p>When inserting a pMOS in the layout the pMOS will look like the pMOS shown in <a href="#fig-pmos-full" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>. To connect the different ports of a pMOS, drawings on the respective layer need to be done. Connections on the same layer can be done directly by drawing a box, overlapping with the box of the pMOS contact. In <a href="#fig-pmos-con" class="quarto-xref">Figure&nbsp;<span>10.3</span></a> the gates of two pMOS are illustrated.</p>
-<div id="fig-pmos-con" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Connected gates of two pMOS cells" data-fig-align="center">
+<p>When inserting a pMOS in the layout the pMOS will look like the pMOS shown in <a href="#fig-pmos-full" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>. To connect the different ports of a pMOS, drawings on the respective layer need to be done. Connections on the same layer can be done directly by drawing a box, overlapping with the box of the pMOS contact. In <a href="#fig-pmos-con" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> the gates of two pMOS are illustrated.</p>
+<div id="fig-pmos-con" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Connected gates of two pMOS cells">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pmos-con-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pmos_gate_con.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Connected gates of two pMOS cells">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-con-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.3: Connected gates of pMOS in KLayout
+Figure&nbsp;13.3: Connected gates of pMOS in KLayout
 </figcaption>
 </figure>
 </div>
-<p>In order to connect two different layers, a via layer needs to be inserted to provide a vertical connection between them. To make pins accessible from the outside of the IC, a contact layer needs to be inserted. This can be observed in <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>, where the drain and source Metal1 pads are shadowed with a cyan pad, which represents the contact layer.</p>
+<p>In order to connect two different layers, a via layer needs to be inserted to provide a vertical connection between them. To make pins accessible from the outside of the IC, a contact layer needs to be inserted. This can be observed in <a href="#fig-pmos-parts" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>, where the drain and source Metal1 pads are shadowed with a cyan pad, which represents the contact layer.</p>
 <p>Another aspect which needs to be mentioned is the size of different components. According to the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> the transistors have different <span class="math inline">\(\frac{g_m}{i_d}\)</span> values and therefore different lengths <span class="math inline">\(L\)</span> and widths <span class="math inline">\(W\)</span>. Unlike discrete components, where the housing is the same, e.g.&nbsp;a resistor can have different values with the same dimensions, the dimensions in discrete design vary. In discrete design the behavior is determined by the sizing and therefore the physical space this component will allocate controls the behavior.</p>
-<div id="fig-5tota-klayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="5T-OTA in KLayout [@pretlGitHubRepositoryIICOSICTOOLS2025]" data-fig-align="center">
+<div id="fig-5tota-klayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="5T-OTA in KLayout [@pretlGitHubRepositoryIICOSICTOOLS2025]">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-5tota-klayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ota_full.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="5T-OTA in KLayout [@pretlGitHubRepositoryIICOSICTOOLS2025]">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5tota-klayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.4: 5T-OTA in KLayout <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>
+Figure&nbsp;13.4: 5T-OTA in KLayout <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-5tota-klayout" class="quarto-xref">Figure&nbsp;<span>10.4</span></a> the layout of the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> can be observed. It can be seen, that the components M3 and M4 are the largest components. This is caused by the higher <span class="math inline">\(\frac{g_m}{i_d}\)</span> and the fact, that these are pMOS transistors. On the other hand, the biasing transistors M9 and M10 are very small compared to M3 and M4. The difference in the size is caused by the different purpose and behavior.</p>
-<p>To ensure the layout is aligned with the schematic, the LVS needs to be performed. In this course the in <a href="#sec-env" class="quarto-xref"><span>Chapter 6</span></a> described tools were used. The LVS could not be performed as expected, the reason for this will be discussed in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 11</span></a>.</p>
+<p>In <a href="#fig-5tota-klayout" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> the layout of the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> can be observed. It can be seen, that the components M3 and M4 are the largest components. This is caused by the higher <span class="math inline">\(\frac{g_m}{i_d}\)</span> and the fact, that these are pMOS transistors. On the other hand, the biasing transistors M9 and M10 are very small compared to M3 and M4. The difference in the size is caused by the different purpose and behavior.</p>
+<p>To ensure the layout is aligned with the schematic, the LVS needs to be performed. In this course the in <a href="#sec-env" class="quarto-xref"><span>Chapter 9</span></a> described tools were used. The LVS could not be performed as expected, the reason for this will be discussed in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 14</span></a>.</p>
 </section>
-<section id="differences-to-discrete-layout-process" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="differences-to-discrete-layout-process"><span class="header-section-number">10.2</span> Differences to discrete layout process</h2>
+<section id="differences-to-discrete-layout-process" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="differences-to-discrete-layout-process"><span class="header-section-number">13.2</span> Differences to discrete layout process</h2>
 <p>The design processes for discrete and integrated circuit design differ in certain aspects, especially when it comes to layouting. However, there are also similarities. In the following comparison the differences and equalities are outlined.</p>
-<p>In the discrete layout, performed in KiCad, the first step was to draw the schematic and wire it. Afterward the footprints for the components have been chosen. After drawing and assigning the footprints, the components needed to be placed on the PCB and the connections were routed. In the discrete case this means connecting the pins of each component according to the schematic. Selecting the footprints in the discrete case is in some kind comparable to choosing the PDK in the integrated case. After choosing the PDK, the base components, e.g.&nbsp;pMOS and nMOS, are available. Following this step the base components will be placed in the drawing space. Since in integrated circuit design the components are more fundamental and the operation points and the behavior is defined by the geometry, for each component the geometry is specified with the derived values from the sizing in <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 9</span></a>. Another difference can be found when connecting the components. As described previously, in case of discrete design these connections were just wire-like connections between the pins (soldering pads). For the integrated layout every port of a component is on a different layer, which follows in connecting these different layers through e.g.&nbsp;vias.</p>
+<p>In the discrete layout, performed in KiCad, the first step was to draw the schematic and wire it. Afterward the footprints for the components have been chosen. After drawing and assigning the footprints, the components needed to be placed on the PCB and the connections were routed. In the discrete case this means connecting the pins of each component according to the schematic. Selecting the footprints in the discrete case is in some kind comparable to choosing the PDK in the integrated case. After choosing the PDK, the base components, e.g.&nbsp;pMOS and nMOS, are available. Following this step the base components will be placed in the drawing space. Since in integrated circuit design the components are more fundamental and the operation points and the behavior is defined by the geometry, for each component the geometry is specified with the derived values from the sizing in <a href="#sec-circuit-design" class="quarto-xref"><span>Chapter 12</span></a>. Another difference can be found when connecting the components. As described previously, in case of discrete design these connections were just wire-like connections between the pins (soldering pads). For the integrated layout every port of a component is on a different layer, which follows in connecting these different layers through e.g.&nbsp;vias.</p>
 <p>For the discrete and integrated circuit design it is necessary to do a design rule check (DRC). The design rule check is in some manner the same. In case of the integrated design the DRC is more detailed, since the layouting process is more complex due to the drawing of the different layers and geometries. Furthermore, the design rules are determined by the chosen PDK, while for the discrete design the design rules are specified by the manufacturer.</p>
 </section>
 </section>
-<section id="sec-challenges" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Challenges</h1>
+<section id="sec-challenges" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Challenges</h1>
 <p>In the whole design process of an integrated biquad filter some challenges were present. In this chapter the most important challenges and their influence on the filter design will be described.</p>
-<section id="circuit-design" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="circuit-design"><span class="header-section-number">11.1</span> Circuit Design</h2>
-<p>The design process followed the meet-in-the-middle design style, with mostly the top-down style <span class="citation" data-cites="lienig2023"><a href="../../references.html#ref-lienig2023" role="doc-biblioref">[7]</a></span>. When it came to the design of the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> was supposed to be the used device in the biquad design. Following this approach, from the real circuit of the 5T-OTA a ideal version like in <a href="#fig-ideal_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>9.8</span></a> was implemented. With the ideal description of the desired OTA the values for <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> (see <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>) were determined, such that the filter response matched the filter response of the behavioral model of the filter.</p>
-<p>The next step following the top-down style was the step from the ideal circuit to the real circuit. As the OTA in this case followed the bottom-up design, the implementation of the real design was expected to work without any disturbances. However, the filter response of the real circuit for the ALSK Pro Design in <a href="#sec-aslk-design" class="quarto-xref"><span>Section 9.1</span></a> did not match the desired response. The responses for all four filter types were very small and about 30 dB smaller than the expected one. In addition, the outputs of all filter types did not show any pass- or stopbands, which concluded to a not working filter. The reason for the small output voltages is the 5T-OTA. The 5T-OTA is not able to drive the necessary currents for resistive loads and therefore is not suitable for the desired filter in <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>. To identify the cause some time-intensive analysis was done, adding a buffer to the OTA included. In addition to the lack of current driveability the corner frequency was around 1 MHz instead of the design frequency of 1 kHz. With all these constraints the 5T-OTA is considered as not suitable for the application in the ASLK Pro biquad filter.</p>
+<section id="circuit-design" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="circuit-design"><span class="header-section-number">14.1</span> Circuit Design</h2>
+<p>The design process followed the meet-in-the-middle design style, with mostly the top-down style <span class="citation" data-cites="lienig2023"><a href="../../references.html#ref-lienig2023" role="doc-biblioref">[7]</a></span>. When it came to the design of the 5T-OTA from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span> was supposed to be the used device in the biquad design. Following this approach, from the real circuit of the 5T-OTA a ideal version like in <a href="#fig-ideal_Circuit_ota_V2" class="quarto-xref">Figure&nbsp;<span>12.8</span></a> was implemented. With the ideal description of the desired OTA the values for <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> (see <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>) were determined, such that the filter response matched the filter response of the behavioral model of the filter.</p>
+<p>The next step following the top-down style was the step from the ideal circuit to the real circuit. As the OTA in this case followed the bottom-up design, the implementation of the real design was expected to work without any disturbances. However, the filter response of the real circuit for the ALSK Pro Design in <a href="#sec-aslk-design" class="quarto-xref"><span>Section 12.1</span></a> did not match the desired response. The responses for all four filter types were very small and about 30 dB smaller than the expected one. In addition, the outputs of all filter types did not show any pass- or stopbands, which concluded to a not working filter. The reason for the small output voltages is the 5T-OTA. The 5T-OTA is not able to drive the necessary currents for resistive loads and therefore is not suitable for the desired filter in <a href="#fig-biquad-aslkPRO" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>. To identify the cause some time-intensive analysis was done, adding a buffer to the OTA included. In addition to the lack of current driveability the corner frequency was around 1 MHz instead of the design frequency of 1 kHz. With all these constraints the 5T-OTA is considered as not suitable for the application in the ASLK Pro biquad filter.</p>
 <p>During the design of the integrated OTA-based gm-C Biquad filter based on Baker’s methodology <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span>, several key challenges had to be resolved to align theory and implementation. A major point of confusion was the interpretation of capacitor values in Baker’s Fig. 3.53, where the notation “<span class="math inline">\(2C\)</span>” refers to the total differential capacitance—implying that the actual implemented capacitor should be half that value. Another critical clarification involved the OTA transconductance in Fig. 3.15(c), where four NMOS transistors form the differential input stage. It was determined that the effective transconductance is twice that of a single branch: <span class="math inline">\(gm_{eff} = 2 \cdot gm_{single}\)</span>​. Transistor sizing had to be performed carefully using the <span class="math inline">\(gm/ID\)</span> method, considering realistic overdrive voltages and minimum dimensions for the SG13G2 130 nm CMOS process. Additionally, the distribution of bias current among the four NMOS transistors per OTA initially caused confusion, but was clarified: each transistor carries one-fourth of the total OTA bias current. Theoretically, using different bias currents for each OTA could allow fine-tuning of the transconductance and thus optimize filter gain and Q. However, implementing this in Xschem/Ngspice led to unexpected inconsistencies—parallel current sources with equal nominal values produced different node voltages, and the cause could not be clearly identified. For this reason, a single shared current source was ultimately used in the simulation, which proved sufficient to achieve the desired filter behavior respectively.</p>
 </section>
-<section id="layout" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="layout"><span class="header-section-number">11.2</span> Layout</h2>
+<section id="layout" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="layout"><span class="header-section-number">14.2</span> Layout</h2>
 <p>In the layout process of the filter some challenges came up. Some of the most significant are discussed in the following sections.</p>
-<section id="import-spice-function" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="import-spice-function"><span class="header-section-number">11.2.1</span> Import SPICE function</h3>
-<p>As mentioned in <a href="#sec-layout" class="quarto-xref"><span>Chapter 10</span></a>, the complete schematic needs to be inserted manually into KLayout, since an import of a netlist is not available yet. A workaround, which makes use of magic as converter tool is known for other common PDKs like SkyWater130. The first step is to enable the <em>import SPICE</em> function, which reads in the spice netlist and generates a <code>.gds</code> file from it.</p>
-<div id="fig-import-magic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Import SPICE function in magic" data-fig-align="center">
+<section id="import-spice-function" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="import-spice-function"><span class="header-section-number">14.2.1</span> Import SPICE function</h3>
+<p>As mentioned in <a href="#sec-layout" class="quarto-xref"><span>Chapter 13</span></a>, the complete schematic needs to be inserted manually into KLayout, since an import of a netlist is not available yet. A workaround, which makes use of magic as converter tool is known for other common PDKs like SkyWater130. The first step is to enable the <em>import SPICE</em> function, which reads in the spice netlist and generates a <code>.gds</code> file from it.</p>
+<div id="fig-import-magic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Import SPICE function in magic">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-import-magic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/magic_importSpice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Import SPICE function in magic">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-magic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: Import SPICE function in magic
+Figure&nbsp;14.1: Import SPICE function in magic
 </figcaption>
 </figure>
 </div>
@@ -1555,44 +1584,44 @@ Important
 <p>RELEASE-NOTES: only a beta-version and therefore not fully functional</p>
 </div>
 </div>
-<p>When starting magic from the <code>4_layout</code> directory, the <em>import SPICE</em> button appears and a netlist to import can be selected. After generating the <code>.gds</code> file with magic and opening it in KLayout, the different cells appear. The resulting <code>.gds</code> file opened in KLayout can be seen in <a href="#fig-magic-layout" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>. However, the cells are not labeled and therefore are difficult to identify. In order to connect them properly according to the schematic, all components need to be added manually. This may be due to the fact, that it is a beta-version, which is stated in the <code>RELEASE-NOTES</code>.</p>
-<div id="fig-magic-layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Layout of 5T-OTA in KLayout generated from magic" data-fig-align="center">
+<p>When starting magic from the <code>4_layout</code> directory, the <em>import SPICE</em> button appears and a netlist to import can be selected. After generating the <code>.gds</code> file with magic and opening it in KLayout, the different cells appear. The resulting <code>.gds</code> file opened in KLayout can be seen in <a href="#fig-magic-layout" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>. However, the cells are not labeled and therefore are difficult to identify. In order to connect them properly according to the schematic, all components need to be added manually. This may be due to the fact, that it is a beta-version, which is stated in the <code>RELEASE-NOTES</code>.</p>
+<div id="fig-magic-layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Layout of 5T-OTA in KLayout generated from magic">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-magic-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/magicGDS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Layout of 5T-OTA in KLayout generated from magic">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-magic-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.2: Layout of 5T-OTA in KLayout generated from magic
+Figure&nbsp;14.2: Layout of 5T-OTA in KLayout generated from magic
 </figcaption>
 </figure>
 </div>
 <p>Figuring out how to enable the <em>import SPICE</em> function in magic and how the layout process overall works with the use of KLayout took a considerable amount of time. Since the workaround with importing a SPICE netlist did not work as expected, the layout needed to be generated and edited with KLayout. KLayout will start per default in the non-editing mode, which do not offer the opportunity to create layouts. To enable the editing mode, the complete menu or KLayout needs to be searched for this the editing mode option.</p>
 </section>
-<section id="lvs" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="lvs"><span class="header-section-number">11.2.2</span> LVS</h3>
-<p>As mentioned in <a href="#sec-layout" class="quarto-xref"><span>Chapter 10</span></a> the layout versus schematic (LVS) worked not as expected. The problem seems to be related with the naming of the files or the paths, as the error in <a href="#fig-lvs-error" class="quarto-xref">Figure&nbsp;<span>11.3</span></a> points out.</p>
-<div id="fig-lvs-error" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-cap="Error using LVS in KLayout" data-fig-align="center">
+<section id="lvs" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="lvs"><span class="header-section-number">14.2.2</span> LVS</h3>
+<p>As mentioned in <a href="#sec-layout" class="quarto-xref"><span>Chapter 13</span></a> the layout versus schematic (LVS) worked not as expected. The problem seems to be related with the naming of the files or the paths, as the error in <a href="#fig-lvs-error" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> points out.</p>
+<div id="fig-lvs-error" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-cap="Error using LVS in KLayout">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lvs-error-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/LVS-error.png" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-cap="Error using LVS in KLayout">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lvs-error-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.3: Error using LVS in KLayout
+Figure&nbsp;14.3: Error using LVS in KLayout
 </figcaption>
 </figure>
 </div>
 <p>The naming of the layout files, the top cells, netlist files and schematic were checked several times. Unfortunately the problem could not be solved, which means the LVS could not be performed.</p>
 </section>
 </section>
-<section id="time-constraints" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="time-constraints"><span class="header-section-number">11.3</span> Time Constraints</h2>
+<section id="time-constraints" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="time-constraints"><span class="header-section-number">14.3</span> Time Constraints</h2>
 <p>The limited time in the course is another aspect which needs to be mentioned. The ASLK Pro biquad filter is well-known by the group, since in the bachelor course ANS the same structure was used for the discrete circuit design. In comparison to the discrete design, the integrated design was handled in the IIC-Docker from <span class="citation" data-cites="pretlGitHubRepositoryIICOSICTOOLS2025"><a href="../../references.html#ref-pretlGitHubRepositoryIICOSICTOOLS2025" role="doc-biblioref">[1]</a></span>, which uses different tools like <em>ngspice</em> and <em>KLayout</em>. To understand the working principle of this integrated development image was not trivial. For instance the different workflow in <em>ngspice</em>, particularly the simulation commands, took considerable amount of time. The different layout process in <em>KLayout</em> and the integrated part took also a significant amount of time, which is a result of the earlier mentioned circumstances. The group spent also a lot of time to match the ideal and the real circuit, respectively. Unfortunately, the result of this investigation was to withdraw the ASLK Pro biquad filter approach and use the Baker implementation.</p>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Conclusion</h1>
-<p>In this course the design process of an integrated circuit was experienced. Since all team members designed the universal biquad filter from <span class="citation" data-cites="AnalogSystemLabKitPROMANUAL"><a href="../../references.html#ref-AnalogSystemLabKitPROMANUAL" role="doc-biblioref">[2]</a></span> previously in their bachelors course as a discrete version, the differences in the workflows of discrete and integrated design became clear. For instance, in the discrete design, the behavior was mainly determined by the choice of the values for <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> and the effects of the PCB layout were negligible. However, for the integrated design these insights do not fully apply. In the integrated design process the behavior is determined by different aspects. In <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span> the transconductance <span class="math inline">\(g_m\)</span> defines the filter coefficients and therefore the behavior of the filter. Different <span class="math inline">\(g_m\)</span> values for different OTAs lead to a different transfer functions. Examples are stated out in <a href="#sec-baker-design" class="quarto-xref"><span>Section 9.2</span></a>. The transconductance is also affected by the sizing of the transistor. The sizing of <span class="math inline">\(W\)</span> and <span class="math inline">\(L\)</span> in the integrated design can be understood similarly as the choice of <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span>. These links became clear by the help of this experiment and the challenges described in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 11</span></a>.</p>
-<p>As mentioned in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 11</span></a>, some issues with the circuit design were present. These challenges led to an enhanced understanding of the 5T-OTA and the design process of an integrated circuit itself. Oppositely, these challenges consumed a significant amount of the given time. Nevertheless, the project helped to comprehend the advanced possibilities of integrated circuit design as well as the different and more complex design process.</p>
+<section id="conclusion" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Conclusion</h1>
+<p>In this course the design process of an integrated circuit was experienced. Since all team members designed the universal biquad filter from <span class="citation" data-cites="AnalogSystemLabKitPROMANUAL"><a href="../../references.html#ref-AnalogSystemLabKitPROMANUAL" role="doc-biblioref">[2]</a></span> previously in their bachelors course as a discrete version, the differences in the workflows of discrete and integrated design became clear. For instance, in the discrete design, the behavior was mainly determined by the choice of the values for <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> and the effects of the PCB layout were negligible. However, for the integrated design these insights do not fully apply. In the integrated design process the behavior is determined by different aspects. In <span class="citation" data-cites="baker2008"><a href="../../references.html#ref-baker2008" role="doc-biblioref">[5]</a></span> the transconductance <span class="math inline">\(g_m\)</span> defines the filter coefficients and therefore the behavior of the filter. Different <span class="math inline">\(g_m\)</span> values for different OTAs lead to a different transfer functions. Examples are stated out in <a href="#sec-baker-design" class="quarto-xref"><span>Section 12.2</span></a>. The transconductance is also affected by the sizing of the transistor. The sizing of <span class="math inline">\(W\)</span> and <span class="math inline">\(L\)</span> in the integrated design can be understood similarly as the choice of <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span>. These links became clear by the help of this experiment and the challenges described in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 14</span></a>.</p>
+<p>As mentioned in <a href="#sec-challenges" class="quarto-xref"><span>Chapter 14</span></a>, some issues with the circuit design were present. These challenges led to an enhanced understanding of the 5T-OTA and the design process of an integrated circuit itself. Oppositely, these challenges consumed a significant amount of the given time. Nevertheless, the project helped to comprehend the advanced possibilities of integrated circuit design as well as the different and more complex design process.</p>
 <p>Such projects, in this collaborative environment, are considered by the team as very effective to understand the design process of integrated analog circuits. The room for individual design solutions enabled the team to experience more detailed insights to this topic. The error analysis in the step from ideal circuit to the real circuit contributed a lot to the understanding of the topic of circuit design.</p>
 <p>Despite the required biquad filter is not working at all and no DRC- and LVS-conform layout is available, the developer team learned much. Due to the use of open source tools instead of commercial tools the learning process was not only limited to the design in one specific toolchain. Indeed, the learning process included much information about the complete toolchain in general and gave a good insight, which processes are covered in commercial tools in the background, but are necessary in an open source environment.</p>
 <!-- {{< include content/references.qmd >}} -->
@@ -2027,12 +2056,12 @@ Figure&nbsp;11.3: Error using LVS in KLayout
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../prj/elie1/index.html" class="pagination-link" aria-label="IC Design of a Universal Biquad Filter">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../prj/elie3/index.html" class="pagination-link" aria-label="IC Design of a Universal Biquad Filter">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
