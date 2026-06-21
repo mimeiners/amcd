@@ -78,11 +78,11 @@ book:
     #     - prj/elie4/index.qmd
     #     - prj/elie5/index.qmd
 
-    - part: Projekte 2026
-      chapters:
-        - prj/elie2/index.qmd
-        - prj/elie3/index.qmd
-        - prj/elie3/index.qmd
+    # - part: Projekte 2026
+    #   chapters:
+    #     - prj/elie2/index.qmd
+    #     - prj/elie3/index.qmd
+    #     - prj/elie4/index.qmd
         
     - references.qmd
 
@@ -106,49 +106,49 @@ format:
     highlight-style: github
     default-image-extension: svg
 
-  # typst: default
+  typst: default
   
-  pdf:
-    documentclass: scrbook
-    classoption: [twoside]
+  # pdf:
+  #   documentclass: scrbook
+  #   classoption: [twoside]
 
-    # keep-tex: true
+  #   # keep-tex: true
    
-    toc: true
-    toc-depth: 3
-    # toc-title: "Table of contents"
-    # lof: true
-    # lot: true
+  #   toc: true
+  #   toc-depth: 3
+  #   # toc-title: "Table of contents"
+  #   # lof: true
+  #   # lot: true
 
-    number-sections: true
-    number-depth: 2
+  #   number-sections: true
+  #   number-depth: 2
         
-    papersize: a4
+  #   papersize: a4
     
-    geometry:
-      - inner=3cm
-      - outer=4cm
-      - top=3cm
-      - bottom=4cm
-      - headsep=22pt
-      - headheight=11pt
-      - footskip=33pt
-      - ignorehead
-      - ignorefoot
-      - heightrounded
+  #   geometry:
+  #     - inner=3cm
+  #     - outer=4cm
+  #     - top=3cm
+  #     - bottom=4cm
+  #     - headsep=22pt
+  #     - headheight=11pt
+  #     - footskip=33pt
+  #     - ignorehead
+  #     - ignorefoot
+  #     - heightrounded
 
-    fontsize: 11pt
-    pdfengine: xelatex
+  #   fontsize: 11pt
+  #   pdfengine: xelatex
 
-    mainfont: "Calibri"
-    monofont: "MesloLGS NF"
-    mathfont: "TeX Gyre Termes Math"
+  #   mainfont: "Calibri"
+  #   monofont: "MesloLGS NF"
+  #   mathfont: "TeX Gyre Termes Math"
     
-   # include-in-header:
-   #   - frontmatter/header.tex
-   # template-partials:
-   # - frontmatter/before-body.tex
-   # - frontmatter/toc.tex
+  #  # include-in-header:
+  #  #   - frontmatter/header.tex
+  #  # template-partials:
+  #  # - frontmatter/before-body.tex
+  #  # - frontmatter/toc.tex
   
   # epub:
   #   theme: flatly
